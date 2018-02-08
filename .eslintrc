@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}]
+  },
+  "settings" : {
+    "import/extensions": ["js", "jsx"]
+  },
+  "globals": {
+    "window": true,
+    "document": true
+  }
+}
