@@ -74,5 +74,5 @@ module.exports = (env) => {
       hot: true,
       clientLogLevel: 'none',
     },
-  }
+  };
 };

@@ -1,0 +1,23 @@
+ul.nav.nav-list.well {
+  padding: 0;
+
+  li.nav-header {
+    background: #d3d3d3;
+
+    a {
+      color: black;
+      font-size: larger;
+      margin: 0;
+    }
+  }
+
+  li.nav-header, li.api-list-item {
+    a {
+      cursor: pointer;
+    }
+  }
+}
+
+.doc-header {
+  color: #39a5dc;
+}

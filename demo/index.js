@@ -1,4 +1,4 @@
-import renderApp from './demo-app/demo-app';
+import renderApp from './demo-app';
 
 window.addEventListener('DOMContentLoaded', () => {
   renderApp();

@@ -57,6 +57,24 @@ function buildExternals(isBuild = false) {
       amd: 'lodash',
       root: '_',
     },
+    redux: {
+      commonjs: 'redux',
+      commonjs2: 'redux',
+      amd: 'redux',
+      root: 'Redux',
+    },
+    'react-redux': {
+      commonjs: 'react-redux',
+      commonjs2: 'react-redux',
+      amd: 'react-redux',
+      root: 'ReactRedux',
+    },
+    'react-router-dom': {
+      commonjs: 'react-router-dom',
+      commonjs2: 'react-router-dom',
+      amd: 'react-router-dom',
+      root: 'ReactRouterDOM',
+    },
   } : {};
 }
 
