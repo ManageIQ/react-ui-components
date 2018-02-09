@@ -6,7 +6,11 @@
   "rules": {
     "import/prefer-default-export": "off",
     "no-console": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}],
+    "max-len": [2, 150, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
   },
   "settings" : {
     "import/extensions": ["js", "jsx"]

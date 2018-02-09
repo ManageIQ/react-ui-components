@@ -6,25 +6,32 @@ const extractTextPlugin = new ExtractTextPlugin('[name].css');
 
 const providePlugin = new ProvidePlugin({
   react: 'react',
-  '$': 'jquery',
-  'jQuery': 'jquery',
+  $: 'jquery',
+  jQuery: 'jquery',
   'window.jQuery': 'jquery',
   'react-dom': 'react-dom',
-  '_': 'lodash'
+  _: 'lodash',
 });
 
 const htmlPlugin = new HtmlWebpackPlugin({
   title: 'ManageIQ Common React Components',
   template: '../demo/index.ejs',
-  inject: 'body'
+  inject: 'body',
 });
 
 const hotModuleReplacementPlugin = new HotModuleReplacementPlugin();
 
-module.exports = env => {
-  return Object.assign(
-    { extractTextPlugin },
-    env && env.build ? { providePlugin } : {},
-    env && env.server ? { htmlPlugin, hotModuleReplacementPlugin } : {}
-  )
+function buildPlugins(isBuild) {
+  return isBuild ? { providePlugin } : {};
+}
+
+function serverPlugins(isServer) {
+  return isServer ? { htmlPlugin, hotModuleReplacementPlugin } : {};
+}
+
+module.exports = (env) => {
+  const isBuild = env && env.build;
+  const isServer = env && env.server;
+  console.log(Object.assign({ extractTextPlugin }, buildPlugins(isBuild), serverPlugins(isServer)));
+  return Object.assign({ extractTextPlugin }, buildPlugins(isBuild), serverPlugins(isServer));
 };

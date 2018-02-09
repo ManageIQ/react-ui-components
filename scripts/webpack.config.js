@@ -1,10 +1,10 @@
-const { resolve, join} = require('path');
+const { resolve } = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { fileEntries, buildExternals, FILE_NAMES } = require('./helper-functions');
 
 const plugins = require('./plugins');
 
-module.exports = env => {
+module.exports = (env) => {
   const isBuild = env && env.build;
   const appPlugins = plugins(env);
   const isServer = env && env.server;
@@ -22,16 +22,16 @@ module.exports = env => {
       filename: '[name].js',
       library: '[name]',
       libraryTarget: 'umd',
-      umdNamedDefine: true
+      umdNamedDefine: true,
     },
     plugins: Object.keys(appPlugins).map(pluginName => appPlugins[pluginName]),
     module: {
       rules: [
         {
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: "eslint-loader"
+          loader: 'eslint-loader',
         },
         {
           test: /\.(js|jsx)$/,
@@ -40,7 +40,7 @@ module.exports = env => {
         },
         {
           test: /\.(ts|tsx)$/,
-          loader: 'awesome-typescript-loader'
+          loader: 'awesome-typescript-loader',
         },
         {
           test: /\.scss$/,
@@ -50,22 +50,24 @@ module.exports = env => {
             use: [
               'css-loader',
               {
-                loader: 'sass-loader'
-              }
-            ]
-          })
+                loader: 'sass-loader',
+              },
+            ],
+          }),
         },
-      ]
+      ],
     },
-    resolve: {extensions: ['.js','.jsx']},
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    },
     externals: buildExternals(isBuild),
     devServer: {
-      publicPath: "/",
+      publicPath: '/',
       inline: true,
       noInfo: false,
-      contentBase: "./dist",
+      contentBase: './dist',
       hot: true,
-      clientLogLevel: 'none'
+      clientLogLevel: 'none',
     },
   }
 };
