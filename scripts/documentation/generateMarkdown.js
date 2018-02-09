@@ -68,9 +68,14 @@ function generateProps(props) {
   );
 }
 
+function genLink(name) {
+  return '[' + name + '](/src/'+ name +'.jsx) \n';
+}
+
 function generateMarkdown(name, reactAPI) {
   var markdownString =
     generateTitle(name) + '\n' +
+    genLink(name) + '\n' +
     generateDesciption(reactAPI.description) + '\n' +
     generateProps(reactAPI.props);
 
