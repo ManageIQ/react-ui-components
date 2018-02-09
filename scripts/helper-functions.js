@@ -33,25 +33,31 @@ function fileExists(folder, fileType, fileNames) {
 
 function buildExternals(isBuild = false) {
   return !isBuild ? {
-    'react': {
+    react: {
       commonjs: 'react',
       commonjs2: 'react',
       amd: 'react',
-      root: 'React'
+      root: 'React',
     },
     'react-dom': {
       commonjs: 'react-dom',
       commonjs2: 'react-dom',
       amd: 'react-dom',
-      root: 'ReactDOM'
+      root: 'ReactDOM',
+    },
+    'patternfly-react': {
+      commonjs: 'patternfly-react',
+      commonjs2: 'patternfly-react',
+      amd: 'patternfly-react',
+      root: 'PFReact',
     },
     lodash: {
       commonjs: 'lodash',
       commonjs2: 'lodash',
       amd: 'lodash',
-      root: '_'
-    }
-  }: {};
+      root: '_',
+    },
+  } : {};
 }
 
 module.exports = { fileEntries, buildExternals, FILE_NAMES };

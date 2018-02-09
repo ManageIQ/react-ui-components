@@ -43,12 +43,17 @@ module.exports = (env) => {
           loader: 'awesome-typescript-loader',
         },
         {
+          test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
+          loader: 'url-loader?limit=20480&name=static/[name].[ext]',
+        },
+        {
           test: /\.scss$/,
           exclude: /node_modules/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
               'css-loader',
+              'resolve-url-loader',
               {
                 loader: 'sass-loader',
               },

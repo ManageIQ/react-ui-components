@@ -10,6 +10,7 @@ const providePlugin = new ProvidePlugin({
   jQuery: 'jquery',
   'window.jQuery': 'jquery',
   'react-dom': 'react-dom',
+  'patternfly-react': 'patternfly-react',
   _: 'lodash',
 });
 
@@ -32,6 +33,5 @@ function serverPlugins(isServer) {
 module.exports = (env) => {
   const isBuild = env && env.build;
   const isServer = env && env.server;
-  console.log(Object.assign({ extractTextPlugin }, buildPlugins(isBuild), serverPlugins(isServer)));
   return Object.assign({ extractTextPlugin }, buildPlugins(isBuild), serverPlugins(isServer));
 };
