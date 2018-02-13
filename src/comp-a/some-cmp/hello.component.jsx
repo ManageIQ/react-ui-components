@@ -1,4 +1,5 @@
 import React from 'react';
+import autobind from 'autobind-decorator';
 
 /**
  * Some component Example doc.
@@ -11,10 +12,16 @@ export class HelloCmp extends React.Component {
     };
   }
 
+  @autobind
+  bla() {
+    console.log(this, this.setState);
+  }
+
   render() {
     return (
       <div>
         Hello
+        {this.bla()}
       </div>
     );
   }

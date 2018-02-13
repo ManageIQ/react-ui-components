@@ -77,6 +77,34 @@ It will automatically watch your files and presents them using [storybook](https
 to use your new components, edit stories inside [stories/index.stories.js](/stories/index.stories.js) and debug them in
 nice storybook UI.
 
+#### Binding `this` to methods
+You have two ways how to create methods inside classes. One is based on babel using [preset-stage-0](https://babeljs.io/docs/plugins/preset-stage-0/), the other is based on decorators using
+[autobind-decorator](https://github.com/andreypopp/autobind-decorator)
+
+1. Babel based method
+```javascript 1.8
+import * as React from 'react';
+
+export class ExampleClass extends React.Component {
+  someMethod = () => {
+    //some work with this, which is component's this
+  }
+}
+```
+
+2. Decorator based method
+```javascript 1.8
+import * as React from 'react';
+import autobind from 'autobind-decorator';
+
+export class ExampleClass extends React.Component {
+  @autobind
+  someMethod() {
+    //some work with this, which is component's this
+  }
+}
+```
+
 ### Generating of documentation
 This project is using [react-docgen](https://github.com/reactjs/react-docgen) to generate documentation out of your comments
 in components.
