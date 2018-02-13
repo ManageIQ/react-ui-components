@@ -10,7 +10,7 @@
     "server": "webpack-dev-server --config scripts/webpack.config.js --env.server",
     "test": "jest",
     "doc": "react-docgen",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -c scripts/storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "engines": {
@@ -28,13 +28,22 @@
     "components",
     "ui"
   ],
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{jsx}"
+    ],
+    "roots": ["<rootDir>/src/"]
+  },
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-info": "^3.3.13",
     "@storybook/addon-links": "^3.3.12",
+    "@storybook/addon-options": "^3.3.13",
     "@storybook/addons": "^3.3.12",
-    "@storybook/react": "^3.3.12",
+    "@storybook/react": "^3.3.13",
     "autobind-decorator": "^2.1.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",

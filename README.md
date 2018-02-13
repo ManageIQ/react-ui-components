@@ -52,11 +52,17 @@ $ [npm|yarn] run vendor
 ```
 
 ### Development tools
-You can choose from three ways of how to code and test your application on local machine.
-
 To create new set of components you can create new folder inside `src/` folder with `index.js` as entrypoint to your new
 components, where you will export [components|reducers|actions] for other application to use. To create custom styles for
 your components, create `[style|styles|index].scss` next to `index.js` as entrypoint to your styles.
+
+To properly use storybook and tests you have to create two folders inside your component's folder.
+
+1. `stories` for storybook
+2. `tests` for jest tests
+
+### Local development
+You can choose from three ways of how to code and test your application on local machine.
 
 #### 1. `[npm|yarn] start`
 
