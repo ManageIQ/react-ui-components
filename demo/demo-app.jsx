@@ -1,24 +1,17 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-// import * as cmpA from '../src/comp-a';
-import { VmSnapshotForm } from '../src/vm-snapshot-form';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import TaggingConnected from '../src/tagging/containers/tagging';
+import taggingApp from '../src/tagging/reducers';
 
 export default function renderApp() {
-  ReactDOM.render(<VmSnapshotForm
-    onSubmit={values => console.log(JSON.stringify(values, 0, 2))}
-    errorMessages={{
-      name: 'Name is required',
-      description: 'Description is required',
-    }}
-    onCancel={() => console.log('action canceled')}
-    nameRequired
-    descriptionRequired
-    labels={{
-      name: 'Name',
-      description: 'Description',
-      snapMemory: 'Snapshot VM memory',
-      create: 'Create',
-      cancel: 'Cancel',
-    }}
-  />, document.getElementById('demo-app'));
+  const store = createStore(taggingApp);
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <TaggingConnected />
+    </Provider>,
+    document.getElementById('demo-app'),
+  );
 }
