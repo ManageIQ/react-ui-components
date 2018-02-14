@@ -1,5 +1,5 @@
 import React from 'react';
-import autobind from 'autobind-decorator';
+import { Alert } from 'patternfly-react';
 
 /**
  * Some component Example doc.
@@ -12,16 +12,16 @@ export class HelloCmp extends React.Component {
     };
   }
 
-  @autobind
-  bla() {
+  bla = () => {
     console.log(this, this.setState);
-  }
+  };
 
   render() {
     return (
       <div>
-        Hello
-        {this.bla()}
+        <Alert type="error">
+          I am an Alert
+        </Alert>
       </div>
     );
   }
