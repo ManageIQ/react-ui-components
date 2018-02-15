@@ -33,6 +33,9 @@
     "collectCoverageFrom": [
       "src/**/*.{jsx}"
     ],
+    "setupFiles": [
+      "<rootDir>/scripts/setupTests.js"
+    ],
     "roots": [
       "<rootDir>/src/"
     ]
@@ -60,6 +63,8 @@
     "bootstrap": "^4.0.0",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^1.9.0",
@@ -71,18 +76,10 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.2.1",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.4",
     "mkdir": "0.0.2",
     "node-sass": "^4.7.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-props": "0.0.3",
-    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-select": "^1.2.1",
     "react-test-renderer": "^16.2.0",
-    "redux": "^3.7.2",
     "resolve-url-loader": "^2.2.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
@@ -92,7 +89,14 @@
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
-    "awesome-typescript-loader": "^3.4.1",
-    "patternfly-react": "^1.8.0"
+    "lodash": "^4.17.4",
+    "patternfly-react": "^1.8.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "prop-types": "^15.6.0",
+    "react-props": "0.0.3",
+    "react-select": "^1.2.1",
+    "redux": "^3.7.2",
+    "react-redux": "^5.0.6"
   }
 }

@@ -14,6 +14,7 @@ export class HelloCmp extends React.Component {
 
   bla = () => {
     console.log(this, this.setState);
+    return 'some text';
   };
 
   render() {

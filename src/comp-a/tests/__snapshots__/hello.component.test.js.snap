@@ -2,6 +2,14 @@
 
 exports[`Some dummy test 1`] = `
 <div>
-  Hello
+  <div
+    className="alert alert-danger"
+  >
+    <span
+      aria-hidden="true"
+      className="pficon pficon-error-circle-o"
+    />
+    I am an Alert
+  </div>
 </div>
 `;
