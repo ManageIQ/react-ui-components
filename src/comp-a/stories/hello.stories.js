@@ -7,4 +7,4 @@ import '../styles.scss';
 import { HelloCmp } from '../some-cmp/hello.component';
 
 storiesOf('Hello', module)
-  .add('Hello example', () => <HelloCmp></HelloCmp>)
+  .add('Hello example', () => <HelloCmp />);

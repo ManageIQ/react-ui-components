@@ -12,10 +12,7 @@ export class HelloCmp extends React.Component {
     };
   }
 
-  bla = () => {
-    console.log(this, this.setState);
-    return 'some text';
-  };
+  bla = () => 'some text';
 
   render() {
     return (

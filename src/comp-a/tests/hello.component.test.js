@@ -1,18 +1,15 @@
 import React from 'react';
-import { HelloCmp } from '../some-cmp/hello.component';
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import {shallow} from 'enzyme';
+import { HelloCmp } from '../some-cmp/hello.component';
 
 test('Some dummy test', () => {
-  const component = renderer.create(
-    <HelloCmp></HelloCmp>,
-  );
-  let tree = component.toJSON();
+  const component = renderer.create(<HelloCmp />);
+  const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-test('bla bla', () => {
-  const component = shallow(<HelloCmp/>);
-  console.log(component.instance());
+test('Method test example', () => {
+  const component = shallow(<HelloCmp />);
   expect(component.instance().bla()).toBe('some text');
 });

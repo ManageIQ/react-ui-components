@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Some dummy test 1`] = `
-<div>
+<div
+  className="some-class"
+>
   <div
     className="alert alert-danger"
   >
