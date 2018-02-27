@@ -12,6 +12,9 @@
       "ignoreUrls": true,
       "ignoreComments": false
     }],
+    "react/require-default-props": [0],
+    "react/forbid-prop-types": [1],
+    "jsx-a11y/anchor-is-valid": [1]
   },
   "settings" : {
     "import/extensions": ["js", "jsx"]
