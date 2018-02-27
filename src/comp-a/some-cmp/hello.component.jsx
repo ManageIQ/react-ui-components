@@ -19,7 +19,7 @@ export class HelloCmp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="some-class">
         <Alert type="error">
           I am an Alert
         </Alert>
