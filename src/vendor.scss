@@ -7,4 +7,6 @@
 /**
   Patternfly React Specific Sass Extensions
 */
-@import '~patternfly-react/dist/css/patternfly-react.css';
+@import '~patternfly-react/dist/sass/patternfly-react';
+
+@import "~react-select/dist/react-select.css";
