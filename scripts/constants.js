@@ -22,13 +22,6 @@ const pfReact = {
   root: 'PFReact',
 };
 
-const lodash = {
-  commonjs: 'lodash',
-  commonjs2: 'lodash',
-  amd: 'lodash',
-  root: '_',
-};
-
 const redux = {
   commonjs: 'redux',
   commonjs2: 'redux',
@@ -63,7 +56,6 @@ module.exports = {
   FILE_NAMES,
   externals: {
     react,
-    lodash,
     redux,
     'patternfly-react': pfReact,
     'react-dom': reactDom,
