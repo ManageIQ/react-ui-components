@@ -2,8 +2,10 @@ import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import TaggingConnected from '../src/tagging/containers/tagging';
+import { TaggingConnected, TaggingWithButtonsConnected } from '../src/tagging/containers/tagging';
 import taggingApp from '../src/tagging/reducers';
+import { initialize, toggle } from '../src/tagging/reducers/reducers';
+import { loadState } from '../src/tagging/actions'
 
 const tags = {
   Name: ['Pepa', 'Franta', 'Karel'],
@@ -13,16 +15,26 @@ const tags = {
   Something: ['Steak', 'Duck', 'Veeeeery loooong teeeeeext heeeerreeee', 'Blabla'],
 };
 
-const setTags = [{ tagCategory: "Name", tagValue: "Pepa" }];
-const defaultState = { tags: tags, setTags: setTags };
+const newTags = [
+  { description: 'Name', id: 1, values: [{ description: 'Pepa', id: 11 }, { description: 'Franta', id: 12 }] },
+  { description: 'Number', id: 2, values: [{ description: '1', id: 21 }, { description: '2', id: 22 }] },
+  { description: 'Animal', id: 3, values: [{ description: 'Duck', id: 31 }, { description: 'Cat', id: 32 }, { description: 'Dog', id: 33 }] },
+  { description: 'Food', id: 4, values: [{ description: 'Steak', id: 41 }, { description: 'Duck', id: 42 }, { description: 'Salad', id: 43 }] },
+  { description: 'Something', id: 5, values: [{ description: 'Knedlik', id: 51 }, { description: 'Daenerys Stormborn of the House Targaryen, First of Her Name,...and Mother of Dragons', id: 52 }] },
+];
 
-function a() { return { taggingApp: { setTags: { tagCategory: "Name", tagValue: "Pepa" }}}}
+const newAssignedTags = [{ tagCategory: { description: 'Name', id: 1 }, tagValues: [{ description: 'Pepa', id: 11 }]}];
+
+const assignedTags = [{ tagCategory: "Name", tagValue: "Pepa" }];
+const defaultState = { tags: newTags, assignedTags: newAssignedTags };
+
 export default function renderApp() {
 
-  const store = createStore(taggingApp, defaultState);
+  const store = createStore(taggingApp);
+  store.dispatch(loadState(defaultState));
   ReactDOM.render(
     <Provider store={store}>
-      <TaggingConnected />
+      <TaggingWithButtonsConnected multiValue={true}/>
     </Provider>,
     document.getElementById('demo-app'),
   );
