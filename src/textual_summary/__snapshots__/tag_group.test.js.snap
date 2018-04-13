@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagGroup renders just fine 1`] = `
+<table
+  className="table table-bordered table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan="2"
+      >
+        Smart Management
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className="label"
+      >
+        Managed by Zone
+      </td>
+      <td>
+        <i
+          className="pficon pficon-zone"
+          title={null}
+        />
+        default
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="label"
+        rowSpan={2}
+      >
+        My Company X Tags
+      </td>
+      <td>
+        <i
+          className="fa fa-tag"
+          title={null}
+        />
+        <span>
+          Dan Test
+          : 
+          Test 1
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <i
+          className="fa fa-tag"
+          title={null}
+        />
+        <span>
+          Demo bla
+          : 
+          Policy
+          <b>
+             | 
+          </b>
+          2
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

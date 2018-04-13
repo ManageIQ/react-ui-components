@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simple Table renders just fine... 1`] = `
+<table
+  className="table table-bordered table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan={6}
+      >
+        Firewall Rules
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          Network Protocol
+        </strong>
+      </td>
+      <td>
+        <strong>
+          Host Protocol
+        </strong>
+      </td>
+      <td>
+        <strong>
+          Direction
+        </strong>
+      </td>
+      <td>
+        <strong>
+          Port
+        </strong>
+      </td>
+      <td>
+        <strong>
+          End Port
+        </strong>
+      </td>
+      <td>
+        <strong>
+          Source
+        </strong>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td />
+      <td>
+        -1
+      </td>
+      <td>
+        outbound
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0
+      </td>
+      <td>
+        0.0.0.0/0
+      </td>
+    </tr>
+    <tr>
+      <td />
+      <td>
+        TCP
+      </td>
+      <td>
+        inbound
+      </td>
+      <td>
+        22
+      </td>
+      <td>
+        22
+      </td>
+      <td>
+        0.0.0.0/0
+      </td>
+    </tr>
+    <tr>
+      <td />
+      <td>
+        TCP
+      </td>
+      <td>
+        inbound
+      </td>
+      <td>
+        80
+      </td>
+      <td>
+        80
+      </td>
+      <td>
+        0.0.0.0/0
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

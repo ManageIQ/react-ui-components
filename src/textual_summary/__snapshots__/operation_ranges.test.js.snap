@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Operation Ranges renders just fine... 1`] = `
+<table
+  className="table table-bordered table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan="3"
+      >
+        Operation Ranges
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        rowSpan={5}
+      >
+        CPU
+      </td>
+      <th>
+         
+      </th>
+      <th>
+         
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Max
+      </td>
+      <td>
+        Not Available
+      </td>
+    </tr>
+    <tr>
+      <td>
+        High
+      </td>
+      <td>
+        0 MHz
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Average
+      </td>
+      <td>
+        0 MHz
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Low
+      </td>
+      <td>
+        0 MHz
+      </td>
+    </tr>
+    <tr>
+      <td
+        rowSpan={5}
+      >
+        CPU Usage
+      </td>
+      <th>
+         
+      </th>
+      <th>
+         
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Max
+      </td>
+      <td>
+        Not Available
+      </td>
+    </tr>
+    <tr>
+      <td>
+        High
+      </td>
+      <td>
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Average
+      </td>
+      <td>
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Low
+      </td>
+      <td>
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

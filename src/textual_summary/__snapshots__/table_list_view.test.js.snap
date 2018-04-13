@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableListView renders just fine... 1`] = `
+<table
+  className="table table-bordered table-hover table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan={2}
+      >
+        Tables with the Most Rows
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Rows
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      onClick={[Function]}
+    >
+      <td
+        title="View the table"
+      />
+      <td
+        title="View the table"
+      >
+        676,150
+      </td>
+    </tr>
+    <tr
+      onClick={[Function]}
+    >
+      <td
+        title="View the table"
+      />
+      <td
+        title="View the table"
+      >
+        280,848
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
