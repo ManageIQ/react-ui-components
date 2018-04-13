@@ -1,4 +1,4 @@
-const fileTypes = ['scss', 'ts', 'js'];
+const fileTypes = ['scss', 'ts', 'js', 'jsx'];
 const ROOT_FOLDER = 'src';
 const FILE_NAMES = ['index', 'style', 'styles', 'vendor'];
 const react = {
