@@ -11,7 +11,7 @@
     "test": "jest",
     "doc": "react-docgen",
     "storybook": "start-storybook -c scripts/storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -c scripts/storybook -o .out"
   },
   "engines": {
     "node": ">= 6.0.0",

@@ -42,6 +42,7 @@ dist/*
 *.iws
 *.iml
 
+.out
 coverage
 yarn.lock
 package-lock.json
