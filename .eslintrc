@@ -23,5 +23,9 @@
   "globals": {
     "window": true,
     "document": true
-  }
+  },
+  "env": {
+    "node": true,
+    "jest": true,
+    }
 }
