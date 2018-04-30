@@ -102,6 +102,7 @@
 >>>>>>> Review changes
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-final-form": "^3.4.0",
     "react-props": "0.0.3",
