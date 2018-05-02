@@ -1,0 +1,13 @@
+/* custom table style from manageiq-ui-classic */
+
+.table-summary-screen .label {
+  color: #333;
+  cursor: default;
+  display: table-cell;
+  font: normal 12px OpenSansSemibold, Arial, Helvetica, sans-serif;
+  min-width: 200px;
+  padding-top: 6px;
+  text-align: left;
+  white-space: normal;
+  width: 20% !important;
+}

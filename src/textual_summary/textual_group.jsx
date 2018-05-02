@@ -9,15 +9,14 @@ import TableListView from './table_list_view';
 import EmptyGroup from './empty_group';
 
 const renderComponent = (props) => {
-  switch (props.group.partial) {
-    case 'shared/summary/textual':
+  switch (props.group.component) {
+    case 'GenericGroup':
       return (
         <GenericGroup onClick={props.onClick} items={props.group.items} title={props.group.title} />
       );
-    case 'shared/summary/textual_tags':
+    case 'TagGroup':
       return <TagGroup items={props.group.items} title={props.group.title} />;
-    case 'shared/summary/textual_table':
-    case 'shared/summary/textual_multilabel':
+    case 'SimpleTable':
       return (
         <SimpleTable
           labels={props.group.labels}
@@ -25,9 +24,9 @@ const renderComponent = (props) => {
           title={props.group.title}
         />
       );
-    case 'shared/summary/textual_normal_operating_ranges':
+    case 'OperationRanges':
       return <OperationRanges items={props.group.items} title={props.group.title} />;
-    case 'shared/summary/multilink_table':
+    case 'MultilinkTable':
       return (
         <MultilinkTable
           onClick={props.onClick}
@@ -35,9 +34,10 @@ const renderComponent = (props) => {
           title={props.group.title}
         />
       );
-    case 'shared/summary/textual_listview':
+    case 'TableListView':
       return (
         <TableListView
+          rowLabel={props.group.rowLabel}
           onClick={props.onClick}
           title={props.group.title}
           headers={props.group.headers}
@@ -45,7 +45,7 @@ const renderComponent = (props) => {
           colOrder={props.group.colOrder}
         />
       );
-    case 'empty':
+    case 'EmptyGroup':
       return <EmptyGroup title={props.group.title} text={props.group.text} />;
     default:
       return <span>Error: Unknown summary group type.</span>;
@@ -54,7 +54,7 @@ const renderComponent = (props) => {
 
 export default function TextualGroup(props) {
   return (
-    <div className="col-md-12 col-lg-6">
+    <div className="col-md-11 col-lg-6">
       {renderComponent(props)}
     </div>
   );
@@ -63,10 +63,11 @@ export default function TextualGroup(props) {
 renderComponent.propTypes = {
   group: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    partial: PropTypes.string.isRequired,
+    component: PropTypes.string.isRequired,
     items: PropTypes.any,
     labels: PropTypes.any,
     rows: PropTypes.any,
+    rowLabel: PropTypes.string,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };

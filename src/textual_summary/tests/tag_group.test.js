@@ -1,8 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
-import TagGroup from './tag_group';
-import IconOrImage from './icon_or_image';
+import TagGroup from '../tag_group';
+import { tagGroupData } from '../data/tag_group';
+import IconOrImage from '../icon_or_image';
 
 describe('TagGroup', () => {
   /*
@@ -15,27 +16,7 @@ describe('TagGroup', () => {
    *      values joined with "<b>&nbsp;|..."
    */
   it('renders just fine', () => {
-    const tagData = {
-      items: [
-        {
-          label: 'Managed by Zone',
-          icon: 'pficon pficon-zone',
-          value: 'default',
-          hoverClass: 'no-hover',
-        },
-        {
-          label: 'My Company X Tags',
-          value: [
-            { icon: 'fa fa-tag', label: 'Dan Test', value: ['Test 1'] },
-            { icon: 'fa fa-tag', label: 'Demo bla', value: ['Policy', '2'] },
-          ],
-          hoverClass: 'no-hover',
-        },
-      ],
-      title: 'Smart Management',
-    };
-
-    const component = renderer.create(<TagGroup items={tagData.items} title={tagData.title} />);
+    const component = renderer.create(<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
     const image = component.toJSON();
     expect(image).toMatchSnapshot();
   });

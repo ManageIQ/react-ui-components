@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import IconOrImage from './icon_or_image';
+import IconOrImage from '../icon_or_image';
 
 describe('Icon or Image', () => {
   it('renders image with title and alt if image is passed in', () => {

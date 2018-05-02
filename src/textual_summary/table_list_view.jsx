@@ -7,18 +7,14 @@ const simpleRow = (row, i, colOrder) => (
   </tr>
 );
 
-const clickableRow = (row, i, colOrder, onClick) => {
-  const label = 'View the table';
-  // const label = __('View the table'); FIXME
-  return (
-    <tr key={i} onClick={e => onClick(row, e)}>
-      {colOrder.map((col, j) => <td key={j} title={label}>{row[col]}</td>)}
-    </tr>
-  );
-};
+const clickableRow = (row, i, colOrder, rowLabel, onClick) => (
+  <tr key={i} onClick={e => onClick(row, e)}>
+    {colOrder.map((col, j) => <td key={j} title={rowLabel}>{row[col]}</td>)}
+  </tr>
+);
 
-const renderRow = (row, i, colOrder, onClick) => (
-  row.link ? clickableRow(row, i, colOrder, onClick) : simpleRow(row, i, colOrder)
+const renderRow = (row, i, colOrder, rowLabel, onClick) => (
+  row.link ? clickableRow(row, i, colOrder, rowLabel, onClick) : simpleRow(row, i, colOrder)
 );
 
 export default function TableListView(props) {
@@ -33,7 +29,7 @@ export default function TableListView(props) {
         </tr>
       </thead>
       <tbody>
-        {props.values.map((row, i) => renderRow(row, i, props.colOrder, props.onClick))}
+        {props.values.map((row, i) => renderRow(row, i, props.colOrder, props.rowLabel, props.onClick))}
       </tbody>
     </table>
   );
@@ -44,5 +40,6 @@ TableListView.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   values: PropTypes.arrayOf(PropTypes.object).isRequired,
   colOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rowLabel: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };

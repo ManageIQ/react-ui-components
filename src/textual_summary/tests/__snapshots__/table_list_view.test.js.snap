@@ -28,7 +28,9 @@ exports[`TableListView renders just fine... 1`] = `
     >
       <td
         title="View the table"
-      />
+      >
+        vim_performance_states
+      </td>
       <td
         title="View the table"
       >
@@ -40,7 +42,9 @@ exports[`TableListView renders just fine... 1`] = `
     >
       <td
         title="View the table"
-      />
+      >
+        miq_report_result_details
+      </td>
       <td
         title="View the table"
       >
