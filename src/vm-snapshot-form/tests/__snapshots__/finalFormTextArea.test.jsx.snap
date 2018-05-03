@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Final form textarea component Should render correctly 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <textarea
+      className="form-control"
+      id={undefined}
+      name="testInput"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      type={undefined}
+    />
+  </div>
+</div>
+`;
+
+exports[`Final form textarea component Should render with error message 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <textarea
+      className="form-control"
+      id={undefined}
+      name="testInput"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      type={undefined}
+    />
+    <span
+      className="help-block"
+    >
+      Error message
+    </span>
+  </div>
+</div>
+`;

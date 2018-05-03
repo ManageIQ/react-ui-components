@@ -1,0 +1,374 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Final form input component Should render correctly 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input name
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <input
+            className="form-control"
+            id={undefined}
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input description
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <textarea
+            className="form-control"
+            id={undefined}
+            name="description"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type={undefined}
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Snap memory
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <div
+            className="checkbox"
+            style={undefined}
+          >
+            <label
+              title=""
+            >
+              <input
+                checked={false}
+                disabled={false}
+                name="snap_memory"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="checkbox"
+                value=""
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="pull-right btn-group"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          id="snap-form-submit"
+          onClick={[Function]}
+          type="button"
+        >
+          Create
+        </button>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          id="snap-form-cancel"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Final form input component Should render with description required 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input name
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <input
+            className="form-control"
+            id={undefined}
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="form-group has-error"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input description
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <textarea
+            className="form-control"
+            id={undefined}
+            name="description"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type={undefined}
+            value=""
+          />
+          <span
+            className="help-block"
+          >
+            Description required
+          </span>
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Snap memory
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <div
+            className="checkbox"
+            style={undefined}
+          >
+            <label
+              title=""
+            >
+              <input
+                checked={false}
+                disabled={false}
+                name="snap_memory"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="checkbox"
+                value=""
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="pull-right btn-group"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={true}
+          id="snap-form-submit"
+          onClick={[Function]}
+          type="button"
+        >
+          Create
+        </button>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          id="snap-form-cancel"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Final form input component Should render with name required 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="form-group has-error"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input name
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <input
+            className="form-control"
+            id={undefined}
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder=""
+            type="text"
+            value=""
+          />
+          <span
+            className="help-block"
+          >
+            Name required
+          </span>
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Input description
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <textarea
+            className="form-control"
+            id={undefined}
+            name="description"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type={undefined}
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label col-xs-2"
+        >
+          Snap memory
+        </label>
+        <div
+          className="col-xs-8"
+        >
+          <div
+            className="checkbox"
+            style={undefined}
+          >
+            <label
+              title=""
+            >
+              <input
+                checked={false}
+                disabled={false}
+                name="snap_memory"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="checkbox"
+                value=""
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div
+      className="col-xs-12"
+    >
+      <div
+        className="pull-right btn-group"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={true}
+          id="snap-form-submit"
+          onClick={[Function]}
+          type="button"
+        >
+          Create
+        </button>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          id="snap-form-cancel"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+`;

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Final form input component Should render correctly 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <input
+      className="form-control"
+      id={undefined}
+      name="testInput"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      placeholder=""
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Final form input component Should render with error message 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <input
+      className="form-control"
+      id={undefined}
+      name="testInput"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      placeholder=""
+      type="text"
+    />
+    <span
+      className="help-block"
+    >
+      Error message
+    </span>
+  </div>
+</div>
+`;
