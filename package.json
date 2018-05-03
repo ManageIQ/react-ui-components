@@ -38,12 +38,15 @@
     ],
     "roots": [
       "<rootDir>/src/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-actions": "^3.3.13",
     "@storybook/addon-info": "^3.3.13",
     "@storybook/addon-links": "^3.3.12",
     "@storybook/addon-options": "^3.3.13",
@@ -74,6 +77,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.2.1",
     "jquery": "^3.3.1",
     "mkdir": "0.0.2",
@@ -91,15 +95,21 @@
   "dependencies": {
     "final-form": "^4.6.1",
     "lodash": "^4.17.4",
+<<<<<<< HEAD
     "patternfly-react": "^1.16.0",
+=======
+    "patternfly-react": "^1.16.4",
+>>>>>>> Review changes
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-final-form": "^3.4.0",
     "react-props": "0.0.3",
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "redux": "^3.7.2",
-    "redux-form-validators": "^2.4.3"
+    "redux-form-validators": "^2.4.3",
+    "redux-mock-store": "^1.5.1"
   }
 }
