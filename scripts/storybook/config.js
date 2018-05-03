@@ -4,7 +4,7 @@ import '../../dist/vendor';
 import '../../dist/vendor.css';
 
 // automatically import all files ending in *.stories.js
-const req = require.context('../../src', true, /stories\/.*stories\.js$/);
+const req = require.context('../../src', true, /stories\/.*stories\.(js|jsx)$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
