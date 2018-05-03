@@ -8,6 +8,7 @@
     "import/prefer-default-export": "off",
     "no-console": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "max-len": [2, 150, 2, {
       "ignoreUrls": true,
       "ignoreComments": false
@@ -26,6 +27,6 @@
   },
   "env": {
     "node": true,
-    "jest": true,
-    }
+    "jest": true
+  }
 }

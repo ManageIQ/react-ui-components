@@ -1,0 +1,7 @@
+extends: relaxed
+
+rules:
+  indentation:
+    indent-sequences: false
+  line-length:
+    max: 1000
