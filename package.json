@@ -95,11 +95,7 @@
   "dependencies": {
     "final-form": "^4.6.1",
     "lodash": "^4.17.4",
-<<<<<<< HEAD
-    "patternfly-react": "^1.16.0",
-=======
     "patternfly-react": "^1.16.4",
->>>>>>> Review changes
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
