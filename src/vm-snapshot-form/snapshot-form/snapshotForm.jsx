@@ -8,7 +8,19 @@ import FinalFormField from '../finalFormField';
 import FinalFormTextArea from '../finalFormTextArea';
 import FinalFormCheckBox from '../finalFormCheckBox';
 
-export const SnapshotForm = ({
+const renderTextField = (input, meta, label) => (
+  <FinalFormField input={input} meta={meta} label={label} />
+);
+
+const renderTextArea = (input, meta, label) => (
+  <FinalFormTextArea input={input} meta={meta} label={label} />
+);
+
+const renderCheckBox = (input, meta, label) => (
+  <FinalFormCheckBox input={input} meta={meta} label={label} />
+);
+
+export const VmSnapshotForm = ({
   onSubmit,
   errorMessages,
   hideName,
@@ -28,20 +40,20 @@ export const SnapshotForm = ({
                 validate={nameRequired && required({ msg: errorMessages.name })}
                 name="name"
                 id="name"
-                render={({ input, meta }) => <FinalFormField input={input} meta={meta} label={labels.name} />}
+                render={({ input, meta }) => renderTextField(input, meta, labels.name)}
               />
             }
             <Field
               name="description"
               id="description"
               validate={descriptionRequired && required({ msg: errorMessages.description })}
-              render={({ input, meta }) => <FinalFormTextArea input={input} meta={meta} label={labels.description} />}
+              render={({ input, meta }) => renderTextArea(input, meta, labels.description)}
             />
             <Field
               name="snap_memory"
               id="snap_memory"
               type="checkbox"
-              render={({ input, meta }) => <FinalFormCheckBox input={input} meta={meta} label={labels.snapMemory} />}
+              render={({ input, meta }) => renderCheckBox(input, meta, labels.snapMemory)}
             />
             <hr />
           </Col>
@@ -57,7 +69,7 @@ export const SnapshotForm = ({
   />
 );
 
-SnapshotForm.propTypes = {
+VmSnapshotForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   errorMessages: PropTypes.shape({
@@ -76,7 +88,7 @@ SnapshotForm.propTypes = {
   descriptionRequired: PropTypes.bool,
 };
 
-SnapshotForm.defaultProps = {
+VmSnapshotForm.defaultProps = {
   hideName: false,
   nameRequired: false,
   descriptionRequired: false,
