@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simple Table renders multi-value just fine... 1`] = `
+<tr
+  className=""
+  onClick={[Function]}
+  title="Show Network Manager 'Amazon East Network Manager'"
+>
+  <td
+    className="label"
+  >
+    Network Manager
+  </td>
+  <td>
+    <img
+      alt="Show Network Manager 'Amazon East Network Manager'"
+      src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+      title="Show Network Manager 'Amazon East Network Manager'"
+    />
+    <table
+      cellPadding="0"
+      cellSpacing="0"
+    >
+      <tbody>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title="Amazon East Network Manager"
+        >
+          <td
+            style={
+              Object {
+                "border": 0,
+                "margin": 0,
+                "padding": 0,
+              }
+            }
+          >
+            
+            foobar
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title="Amazon West Network Manager"
+        >
+          <td
+            style={
+              Object {
+                "border": 0,
+                "margin": 0,
+                "padding": 0,
+              }
+            }
+          >
+            
+            boofar
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+`;
+
+exports[`Simple Table renders simple value just fine... 1`] = `
+<tr
+  className=""
+  onClick={[Function]}
+  title="Show Network Manager 'Amazon East Network Manager'"
+>
+  <td
+    className="label"
+  >
+    Network Manager
+  </td>
+  <td>
+    <img
+      alt="Show Network Manager 'Amazon East Network Manager'"
+      src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+      title="Show Network Manager 'Amazon East Network Manager'"
+    />
+    <span>
+       
+      Amazon East Network Manager
+    </span>
+  </td>
+</tr>
+`;
