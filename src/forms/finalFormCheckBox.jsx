@@ -3,7 +3,7 @@ import { FormGroup, HelpBlock, Checkbox, Col } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import { inputObjectProps, metaObjectProps } from './finalFormPropTypes';
 
-const FinalFormCheckBox = ({
+export const FinalFormCheckBox = ({
   meta,
   input,
   label,
@@ -30,5 +30,3 @@ FinalFormCheckBox.propTypes = {
 FinalFormCheckBox.defaultProps = {
   type: 'checkbox',
 };
-
-export default FinalFormCheckBox;
