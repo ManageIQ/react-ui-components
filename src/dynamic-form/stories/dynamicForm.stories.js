@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withInfo } from '@storybook/addon-info';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
 import { required } from 'redux-form-validators';
@@ -11,7 +13,7 @@ const renderTextField = (input, meta, label) => (
   <FinalFormField input={input} meta={meta} label={label} />
 );
 
-storiesOf('Dynamic forms', module).add('Dynamic form decorator', () => {
+storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() => {
   const FormFragment = () => (
     <Fragment>
       <Field
@@ -33,7 +35,7 @@ storiesOf('Dynamic forms', module).add('Dynamic form decorator', () => {
               <Field
                 name="included"
                 id="included"
-                render={({ input, meta }) => renderTextField(input, meta, 'Type a to show input')}
+                render={({ input, meta }) => renderTextField(input, meta, 'Type "a" to show input')}
               />
             </Col>
             <Col xs={12}>
@@ -60,10 +62,12 @@ storiesOf('Dynamic forms', module).add('Dynamic form decorator', () => {
     <Grid>
       <h1>Dynamic form</h1>
       <DynamicFormComponent
-        onSave={(allValues, registeredValues, formApi) => {
-          console.log('allValues: ', allValues, 'registered values: ', registeredValues, 'formApi: ', formApi);
-        }}
+        onSave={action((allValues, registeredValues, formApi) => console.log(
+          'All values: ', allValues,
+          'Visible values: ', registeredValues,
+          'form API: ', formApi,
+        ))}
       />
     </Grid>
   );
-});
+}));

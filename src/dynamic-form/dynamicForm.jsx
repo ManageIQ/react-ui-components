@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getRegisteredValues } from './formFragmentHelper';
 
 export const dynamicForm = (Component) => {
-  const C = (props) => {
+  const DynamicForm = (props) => {
     const { wrappedComponentRef, onSave, ...remainingProps } = props;
     return (
       <Component
@@ -14,10 +14,10 @@ export const dynamicForm = (Component) => {
     );
   };
 
-  C.propTypes = {
+  DynamicForm.propTypes = {
     wrappedComponentRef: PropTypes.func,
-    onSave: PropTypes.func,
+    onSave: PropTypes.func.isRequired,
   };
 
-  return C;
+  return DynamicForm;
 };
