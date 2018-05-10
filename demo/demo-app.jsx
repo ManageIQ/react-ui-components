@@ -5,7 +5,11 @@ import Form from '../src/dynamic-form';
 const wrapperComponent = () => (
   <div>
     <h1>Dynamic form</h1>
-    <Form onSave={registeredValues => console.log('registered values: ', registeredValues)} />
+    <Form
+      onSave={(allValues, registeredValues, formApi) => {
+        console.log('allValues: ', allValues, 'registered values: ', registeredValues, 'formApi: ', formApi);
+      }}
+    />
   </div>
 );
 

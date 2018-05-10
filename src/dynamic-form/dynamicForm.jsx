@@ -7,7 +7,7 @@ const dynamicForm = (Component) => {
     const { wrappedComponentRef, onSave, ...remainingProps } = props;
     return (
       <Component
-        onSave={(values, formApi) => onSave(getRegisteredValues(values, formApi))}
+        onSave={(values, formApi) => onSave.apply(this, Object.values(getRegisteredValues(values, formApi)))}
         {...remainingProps}
         ref={wrappedComponentRef}
       />
