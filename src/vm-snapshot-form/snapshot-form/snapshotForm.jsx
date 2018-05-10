@@ -4,9 +4,7 @@ import { Form as PfForm, Button, Col, Row, ButtonGroup } from 'patternfly-react'
 import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
 
-import FinalFormField from '../finalFormField';
-import FinalFormTextArea from '../finalFormTextArea';
-import FinalFormCheckBox from '../finalFormCheckBox';
+import { FinalFormField, FinalFormTextArea, FinalFormCheckBox } from '../../forms/';
 
 const renderTextField = (input, meta, label) => (
   <FinalFormField input={input} meta={meta} label={label} />
