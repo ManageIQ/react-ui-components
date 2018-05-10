@@ -26,20 +26,20 @@ export const VmSnapshotForm = ({
                 validate={nameRequired && required({ msg: errorMessages.name })}
                 name="name"
                 id="name"
-                render={({ input, meta }) => renderFinalFormField(input, meta, labels.name)}
+                render={({ input, meta }) => renderFinalFormField(input, meta, labels.name, true)}
               />
             }
             <Field
               name="description"
               id="description"
               validate={descriptionRequired && required({ msg: errorMessages.description })}
-              render={({ input, meta }) => renderFinalFormTextArea(input, meta, labels.description)}
+              render={({ input, meta }) => renderFinalFormTextArea(input, meta, labels.description, true)}
             />
             <Field
               name="snap_memory"
               id="snap_memory"
               type="checkbox"
-              render={({ input, meta }) => renderFinalFormCheckBox(input, meta, labels.snapMemory)}
+              render={({ input, meta }) => renderFinalFormCheckBox(input, meta, labels.snapMemory, true)}
             />
             <hr />
           </Col>

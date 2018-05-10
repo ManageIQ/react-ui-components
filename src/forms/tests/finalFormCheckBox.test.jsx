@@ -1,30 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
+
 import { FinalFormCheckBox } from '../finalFormCheckBox';
+import { fieldInputProp, fieldMetaProps } from './mocks';
 
 describe('Final form checkbox component', () => {
   const initialProps = {};
   beforeEach(() => {
-    initialProps.meta = {
-      active: false,
-      dirty: false,
-      dirtySinceLastSubmit: false,
-      invalid: false,
-      pristine: true,
-      submitFailed: false,
-      submitSucceeded: false,
-      touched: false,
-      valid: true,
-      visited: false,
-    };
-    initialProps.input = {
-      name: 'testInput',
-      onBlur: jest.fn(),
-      onChange: jest.fn(),
-      onFocus: jest.fn(),
-    };
+    initialProps.meta = { ...fieldMetaProps };
+    initialProps.input = { ...fieldInputProp };
     initialProps.label = 'foo';
+    initialProps.validateOnMount = true;
   });
 
   it('Should render correctly', () => {

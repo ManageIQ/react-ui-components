@@ -15,12 +15,13 @@ exports[`Final form input component Should render correctly 1`] = `
     <input
       className="form-control"
       id={undefined}
-      name="testInput"
+      name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       placeholder=""
       type="text"
+      value=""
     />
   </div>
 </div>
@@ -41,12 +42,13 @@ exports[`Final form input component Should render with error message 1`] = `
     <input
       className="form-control"
       id={undefined}
-      name="testInput"
+      name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       placeholder=""
       type="text"
+      value=""
     />
     <span
       className="help-block"
