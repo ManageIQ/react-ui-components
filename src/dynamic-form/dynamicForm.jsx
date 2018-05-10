@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getRegisteredValues } from './formFragmentHelper';
 
-const dynamicForm = (Component) => {
+export const dynamicForm = (Component) => {
   const C = (props) => {
     const { wrappedComponentRef, onSave, ...remainingProps } = props;
     return (
@@ -21,5 +21,3 @@ const dynamicForm = (Component) => {
 
   return C;
 };
-
-export default dynamicForm;
