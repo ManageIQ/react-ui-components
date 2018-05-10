@@ -4,19 +4,7 @@ import { Form as PfForm, Button, Col, Row, ButtonGroup } from 'patternfly-react'
 import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
 
-import { FinalFormField, FinalFormTextArea, FinalFormCheckBox } from '../../forms/';
-
-const renderTextField = (input, meta, label) => (
-  <FinalFormField input={input} meta={meta} label={label} />
-);
-
-const renderTextArea = (input, meta, label) => (
-  <FinalFormTextArea input={input} meta={meta} label={label} />
-);
-
-const renderCheckBox = (input, meta, label) => (
-  <FinalFormCheckBox input={input} meta={meta} label={label} />
-);
+import { renderFinalFormField, renderFinalFormTextArea, renderFinalFormCheckBox } from '../../forms/';
 
 export const VmSnapshotForm = ({
   onSubmit,
@@ -38,20 +26,20 @@ export const VmSnapshotForm = ({
                 validate={nameRequired && required({ msg: errorMessages.name })}
                 name="name"
                 id="name"
-                render={({ input, meta }) => renderTextField(input, meta, labels.name)}
+                render={({ input, meta }) => renderFinalFormField(input, meta, labels.name)}
               />
             }
             <Field
               name="description"
               id="description"
               validate={descriptionRequired && required({ msg: errorMessages.description })}
-              render={({ input, meta }) => renderTextArea(input, meta, labels.description)}
+              render={({ input, meta }) => renderFinalFormTextArea(input, meta, labels.description)}
             />
             <Field
               name="snap_memory"
               id="snap_memory"
               type="checkbox"
-              render={({ input, meta }) => renderCheckBox(input, meta, labels.snapMemory)}
+              render={({ input, meta }) => renderFinalFormCheckBox(input, meta, labels.snapMemory)}
             />
             <hr />
           </Col>
