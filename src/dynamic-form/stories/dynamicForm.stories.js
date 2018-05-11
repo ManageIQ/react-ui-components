@@ -7,11 +7,7 @@ import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
 import { required } from 'redux-form-validators';
 import PropTypes from 'prop-types';
 import { dynamicForm } from '../';
-import { FinalFormField } from '../../forms/';
-
-const renderTextField = (input, meta, label) => (
-  <FinalFormField input={input} meta={meta} label={label} />
-);
+import { renderFinalFormField } from '../../forms/';
 
 storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() => {
   const FormFragment = () => (
@@ -20,7 +16,7 @@ storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() =
         name="partial"
         id="partial"
         validate={required({ msg: 'required message' })}
-        render={({ input, meta }) => renderTextField(input, meta, 'Conditional input')}
+        render={({ input, meta }) => renderFinalFormField(input, meta, 'Conditional input')}
       />
     </Fragment>
   );
@@ -35,7 +31,7 @@ storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() =
               <Field
                 name="included"
                 id="included"
-                render={({ input, meta }) => renderTextField(input, meta, 'Type "a" to show input')}
+                render={({ input, meta }) => renderFinalFormField(input, meta, 'Type "a" to show input')}
               />
             </Col>
             <Col xs={12}>
