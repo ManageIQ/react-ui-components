@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React select component Should render correctly 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    test select
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="Select  final-form-select Select--single"
+      style={undefined}
+    >
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-2--value"
+        >
+          <div
+            className="Select-placeholder"
+          >
+            Select
+          </div>
+          <div
+            aria-activedescendant="react-select-2--value"
+            aria-disabled="false"
+            aria-expanded={false}
+            aria-label={undefined}
+            aria-labelledby={undefined}
+            aria-owns=""
+            className="Select-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            role="combobox"
+            style={
+              Object {
+                "border": 0,
+                "display": "inline-block",
+                "width": 1,
+              }
+            }
+            tabIndex={0}
+          />
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`React select component Should render correctly in error state 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    test select
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="Select has-error final-form-select Select--single"
+      style={undefined}
+    >
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-3--value"
+        >
+          <div
+            className="Select-placeholder"
+          >
+            Select
+          </div>
+          <div
+            aria-activedescendant="react-select-3--value"
+            aria-disabled="false"
+            aria-expanded={false}
+            aria-label={undefined}
+            aria-labelledby={undefined}
+            aria-owns=""
+            className="Select-input"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            role="combobox"
+            style={
+              Object {
+                "border": 0,
+                "display": "inline-block",
+                "width": 1,
+              }
+            }
+            tabIndex={0}
+          />
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+    <span
+      className="help-block"
+    >
+      Required
+    </span>
+  </div>
+</div>
+`;
