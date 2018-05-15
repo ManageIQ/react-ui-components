@@ -11,6 +11,7 @@
   }
   .Select-placeholder {
     line-height: 25px;
+    padding: 0 6px;
   }
   .Select-input {
     height: 20px;
@@ -18,8 +19,12 @@
   .Select-control > *:last-child {
     padding-top: 2px;
   }
-  .Select-value {
-    line-height: 25px !important;
+  &.Select--single {
+    .Select-value {
+      line-height: 25px;
+      padding-left: 6px;
+      padding-right: 6px;
+    }
   }
 }
 

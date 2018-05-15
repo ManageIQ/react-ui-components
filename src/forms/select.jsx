@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
-import './styles.scss';
-
 
 const Select = (props) => {
   const {

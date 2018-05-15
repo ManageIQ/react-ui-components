@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormGroup, HelpBlock, Col } from 'patternfly-react';
 import Select from './select';
 import { inputObjectProps, metaObjectProps } from './finalFormPropTypes';
+import './finalFormSelectStyle.scss';
 
 const FinalFormSelect = ({
   input,
