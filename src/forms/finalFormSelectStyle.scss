@@ -1,0 +1,56 @@
+@import '~patternfly/dist/sass/patternfly/variables';
+$input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+.final-form-select {
+  .Select-control {
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    box-shadow: $input-default-box-shadow;
+    border-radius: 0;
+    height: 20px;
+    padding: 2px 6px;
+    line-height: 20px;
+  }
+  .Select-placeholder {
+    line-height: 25px;
+    padding: 0 6px;
+  }
+  .Select-input {
+    height: 20px;
+  }
+  .Select-control > *:last-child {
+    padding-top: 2px;
+  }
+  &.Select--single {
+    .Select-value {
+      line-height: 25px;
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+  }
+}
+
+.final-form-select.has-error {
+  .Select-control {
+    border-color: $color-pf-red-100;
+  }
+}
+
+.final-form-select.has-error.is-fosuced {
+  .Select-control {
+    border-color: darken($color-pf-red-100, 10%);
+  }
+}
+
+.final-form-select.is-focused:not(.is-open), .final-form-select.is-pseudo-focused:not(.is-open) {
+  .Select-control {
+    border-color: $color-pf-blue-400;
+    outline: 0;
+    box-shadow: $input-default-box-shadow, 0 0 8px rgba(0, 136, 206, 0.6);
+  }
+  &.has-error {
+    .Select-control {
+      border-color: $color-pf-red-100;
+      box-shadow: $input-default-box-shadow, 0 0 8px rgba(204, 0, 0, 0.8);
+    }
+  }
+}

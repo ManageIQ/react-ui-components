@@ -1,24 +1,55 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { VmSnapshotForm } from '../src/vm-snapshot-form/';
+import { Form, Field } from 'react-final-form';
+import { Form as PfForm, Col, Row } from 'patternfly-react';
+import { required } from 'redux-form-validators';
+import { FinalFormField, FinalFormSelect } from '../src/forms';
+
+const options = [{
+  value: 1,
+  label: 'One',
+}, {
+  value: 2,
+  label: 'Two',
+}];
+
+const onSubmit = values => console.log('onSubmit: ', values);
 
 const wrapperComponent = () => (
   <div>
-    <h1>Dynamic form</h1>
-    <VmSnapshotForm
-      onSubmit={values => console.log('form values: ', values)}
-      onCancel={() => console.log('form canceled')}
-      nameRequired
-      labels={{
-        name: 'Name',
-        description: 'Description',
-        snapMemory: 'Vm snap memory',
-        create: 'Create',
-        cancel: 'Cancel',
-      }}
-      errorMessages={{
-        name: 'Name required',
-      }}
+    <h1>Select</h1>
+    <Form
+      onSubmit={onSubmit}
+      render={({ handleSubmit }) => (
+        <PfForm
+          horizontal
+          onSubmit={handleSubmit}
+        >
+          <Row>
+            <Col xs={12}>
+              <Field
+                validate={required({ msg: 'Select required' })}
+                name="test"
+                id="test"
+                render={({ input, meta }) => (<FinalFormSelect
+                  placeholder="Some placehoder"
+                  input={input}
+                  meta={meta}
+                  options={options}
+                  label="test select"
+                />)
+              }
+              />
+              <Field
+                validate={required({ msg: 'Compare input' })}
+                name="compared"
+                id="compared"
+                render={({ input, meta }) => <FinalFormField input={input} meta={meta} label="compared" />}
+              />
+            </Col>
+          </Row>
+        </PfForm>
+      )}
     />
   </div>
 );
