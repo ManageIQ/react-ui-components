@@ -8,7 +8,7 @@ describe('Final form component reder functions', () => {
   it('Should return final form text field', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
-    const field = renderFinalFormField(input, meta, 'Text field');
+    const field = renderFinalFormField(input, meta, 'Text field', true);
     const tree = renderer.create(field).toJSON();
     expect(tree).toMatchSnapshot();
 
@@ -19,7 +19,7 @@ describe('Final form component reder functions', () => {
   it('Should return final form number input', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
-    const field = renderFinalFormField(input, meta, 'Number field', 'number');
+    const field = renderFinalFormField(input, meta, 'Number field', true, 'number');
     const tree = renderer.create(field).toJSON();
     expect(tree).toMatchSnapshot();
 
@@ -30,7 +30,7 @@ describe('Final form component reder functions', () => {
   it('Should return final form password input', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
-    const field = renderFinalFormField(input, meta, 'Number field', 'password');
+    const field = renderFinalFormField(input, meta, 'Number field', true, 'password');
     const tree = renderer.create(field).toJSON();
     expect(tree).toMatchSnapshot();
 
@@ -41,7 +41,7 @@ describe('Final form component reder functions', () => {
   it('Should return final form textarea', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
-    const field = renderFinalFormTextArea(input, meta, 'Text area');
+    const field = renderFinalFormTextArea(input, meta, 'Text area', true);
     const tree = renderer.create(field).toJSON();
     expect(tree).toMatchSnapshot();
 
@@ -52,7 +52,7 @@ describe('Final form component reder functions', () => {
   it('Should return final form checkbox', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
-    const field = renderFinalFormCheckBox(input, meta, 'check box');
+    const field = renderFinalFormCheckBox(input, meta, 'check box', true);
     const tree = renderer.create(field).toJSON();
     expect(tree).toMatchSnapshot();
 

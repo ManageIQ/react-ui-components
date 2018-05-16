@@ -19,6 +19,7 @@ describe('Final form input component', () => {
       name: 'Name required',
       description: 'Description required',
     };
+    initialProps.validateOnMount = true;
   });
 
   it('Should render correctly', () => {

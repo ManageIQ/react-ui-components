@@ -15,11 +15,12 @@ exports[`Final form textarea component Should render correctly 1`] = `
     <textarea
       className="form-control"
       id={undefined}
-      name="testInput"
+      name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       type={undefined}
+      value=""
     />
   </div>
 </div>
@@ -40,11 +41,12 @@ exports[`Final form textarea component Should render with error message 1`] = `
     <textarea
       className="form-control"
       id={undefined}
-      name="testInput"
+      name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       type={undefined}
+      value=""
     />
     <span
       className="help-block"
