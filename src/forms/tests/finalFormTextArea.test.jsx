@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { FinalFormTextArea } from '../finalFormTextArea';
+import { FinalFormTextArea } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
 
 describe('Final form textarea component', () => {

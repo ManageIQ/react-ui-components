@@ -19,6 +19,7 @@ exports[`Final form textarea component Should render correctly 1`] = `
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
+      placeholder=""
       type={undefined}
       value=""
     />
@@ -45,6 +46,7 @@ exports[`Final form textarea component Should render with error message 1`] = `
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
+      placeholder=""
       type={undefined}
       value=""
     />

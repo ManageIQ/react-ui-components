@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import { FinalFormCheckBox } from '../finalFormCheckBox';
+import { FinalFormCheckBox } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
 
 describe('Final form checkbox component', () => {

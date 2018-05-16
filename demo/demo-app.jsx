@@ -37,6 +37,7 @@ const wrapperComponent = () => (
                   meta={meta}
                   options={options}
                   label="test select"
+                  validateOnMount
                 />)
               }
               />
@@ -44,7 +45,7 @@ const wrapperComponent = () => (
                 validate={required({ msg: 'Compare input' })}
                 name="compared"
                 id="compared"
-                render={({ input, meta }) => <FinalFormField input={input} meta={meta} label="compared" />}
+                render={({ input, meta }) => <FinalFormField validateOnMount input={input} meta={meta} label="compared" />}
               />
             </Col>
           </Row>
