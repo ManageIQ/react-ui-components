@@ -134,6 +134,7 @@ exports[`Final form component reder functions Should return final form textarea 
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
+      placeholder=""
       type={undefined}
       value=""
     />
