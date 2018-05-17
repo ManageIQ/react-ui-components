@@ -11,14 +11,16 @@ export const FinalFormComponentWrapper = ({
   label,
   children,
   validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
 }) => {
   const invalid = validationError(meta, validateOnMount);
   return (
     <FormGroup validationState={invalid ? 'error' : null}>
-      <Col xs={2} componentClass="label" className="control-label">
+      <Col xs={labelColumnSize} componentClass="label" className="control-label">
         {label}
       </Col>
-      <Col xs={8}>
+      <Col xs={inputColumnSize}>
         {children}
         {invalid && <HelpBlock>{meta.error}</HelpBlock>}
       </Col>
@@ -34,10 +36,14 @@ FinalFormComponentWrapper.propTypes = {
     PropTypes.node,
   ]).isRequired,
   validateOnMount: PropTypes.bool,
+  inputColumnSize: PropTypes.number,
+  labelColumnSize: PropTypes.number,
 };
 
 FinalFormComponentWrapper.defaultProps = {
   validateOnMount: false,
+  inputColumnSize: 8,
+  labelColumnSize: 2,
 };
 
 const genericFieldPropTypes = {
@@ -45,6 +51,8 @@ const genericFieldPropTypes = {
   meta: metaObjectProps,
   label: PropTypes.string.isRequired,
   validateOnMount: PropTypes.bool,
+  inputColumnSize: PropTypes.number,
+  labelColumnSize: PropTypes.number,
 };
 
 export const FinalFormField = ({
@@ -54,8 +62,16 @@ export const FinalFormField = ({
   label,
   type,
   validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
 }) => (
-  <FinalFormComponentWrapper meta={meta} label={label} validateOnMount={validateOnMount}>
+  <FinalFormComponentWrapper
+    meta={meta}
+    label={label}
+    validateOnMount={validateOnMount}
+    inputColumnSize={inputColumnSize}
+    labelColumnSize={labelColumnSize}
+  >
     <FormControl type={type} {...input} placeholder={placeholder} />
   </FinalFormComponentWrapper>
 );
@@ -77,8 +93,16 @@ export const FinalFormCheckBox = ({
   label,
   type,
   validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
 }) => (
-  <FinalFormComponentWrapper meta={meta} label={label} validateOnMount={validateOnMount}>
+  <FinalFormComponentWrapper
+    meta={meta}
+    label={label}
+    validateOnMount={validateOnMount}
+    inputColumnSize={inputColumnSize}
+    labelColumnSize={labelColumnSize}
+  >
     <Checkbox type={type} {...input} />
   </FinalFormComponentWrapper>
 );
@@ -98,8 +122,16 @@ export const FinalFormTextArea = ({
   label,
   placeholder,
   validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
 }) => (
-  <FinalFormComponentWrapper meta={meta} label={label} validateOnMount={validateOnMount}>
+  <FinalFormComponentWrapper
+    meta={meta}
+    label={label}
+    validateOnMount={validateOnMount}
+    inputColumnSize={inputColumnSize}
+    labelColumnSize={labelColumnSize}
+  >
     <FormControl componentClass="textarea" {...input} placeholder={placeholder} />
   </FinalFormComponentWrapper>
 );
@@ -121,12 +153,20 @@ export const FinalFormSelect = ({
   placeholder,
   clearable,
   validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
   ...rest
 }) => {
   const { onChange, ...inputProps } = input;
   const invalid = validationError(meta, validateOnMount);
   return (
-    <FinalFormComponentWrapper meta={meta} label={label} validateOnMount={validateOnMount}>
+    <FinalFormComponentWrapper
+      meta={meta}
+      label={label}
+      validateOnMount={validateOnMount}
+      inputColumnSize={inputColumnSize}
+      labelColumnSize={labelColumnSize}
+    >
       <ReactSelect
         className={`${invalid ? 'has-error' : ''} final-form-select`}
         optionClassName="final-form-select-option"
