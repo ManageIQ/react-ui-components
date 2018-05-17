@@ -7,7 +7,7 @@ describe('React select component', () => {
   let initialProps = {};
   let options = [];
   beforeEach(() => {
-    initialProps = { meta: fieldMetaProps, input: fieldInputProp };
+    initialProps = { meta: fieldMetaProps, input: fieldInputProp, validateOnMount: true };
     options = [{
       label: 'option 1',
       value: 1,
