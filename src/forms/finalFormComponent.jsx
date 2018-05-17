@@ -129,6 +129,7 @@ export const FinalFormSelect = ({
     <FinalFormComponentWrapper meta={meta} label={label} validateOnMount={validateOnMount}>
       <ReactSelect
         className={`${invalid ? 'has-error' : ''} final-form-select`}
+        optionClassName="final-form-select-option"
         options={options}
         clearable={clearable}
         searchable={false}

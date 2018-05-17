@@ -4,15 +4,41 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 .final-form-select {
   .Select-control {
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    box-shadow: $input-default-box-shadow;
+    box-shadow: 0 2px 3px rgba(3, 3, 3, 0.1);
     border-radius: 0;
     height: 20px;
     padding: 2px 6px;
     line-height: 20px;
+    background-color: #f1f1f1;
+    border-color: $color-pf-black-400;
+    color: $color-pf-black-700;
+    background-image: linear-gradient(to bottom, $color-pf-black-100 0%, $color-pf-black-200 100%);
+    background-repeat: repeat-x;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 2px 6px;
+    font-size: 12px;
+    line-height: 1.66666667;
+    border-radius: 1px;
+    font-weight: 600;
+    border-color: rgb(187, 187, 187);
+    &:hover {
+      background-color: #f1f1f1;
+      background-image: none;
+      border-color: $color-pf-black-400;
+      color: $color-pf-black-700;
+    }
+    &.is-focused.has-value, &.is-focused {
+      .Select-control {
+        background-image: none;
+      }
+    }
   }
   .Select-placeholder {
     line-height: 25px;
     padding: 0 6px;
+    color: $color-pf-black-700;
   }
   .Select-input {
     height: 20px;
@@ -27,6 +53,9 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       padding-right: 6px;
     }
   }
+  .Select-menu-outer {
+    padding: 5px 0;
+  }
 }
 
 .final-form-select.has-error {
@@ -38,6 +67,14 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 .final-form-select.has-error.is-fosuced {
   .Select-control {
     border-color: darken($color-pf-red-100, 10%);
+    background-color: #f1f1f1;
+    background-image: none;
+  }
+}
+.final-form-select.is-focused.is-open, .final-form-select.is-pseudo-focused.is-open, .final-form-select.is-focused:not(.is-open), .final-form-select.is-pseudo-focused:not(.is-open) {
+  .Select-control, .Select-input {
+    background-color: #f1f1f1;
+    background-image: none;
   }
 }
 
@@ -52,5 +89,23 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       border-color: $color-pf-red-100;
       box-shadow: $input-default-box-shadow, 0 0 8px rgba(204, 0, 0, 0.8);
     }
+  }
+}
+
+.final-form-select-option {
+  background-color: $color-pf-white;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 0;
+  padding: 1px 10px;
+  &.is-focused {
+    color: $color-pf-black-700;
+    background-color: $color-pf-blue-50;
+    border-color: $color-pf-blue-100;
+  }
+  &.is-selected {
+    background-color: $color-pf-blue-400;
+    border-color: $color-pf-blue-400;
+    color: $color-pf-white;
   }
 }
