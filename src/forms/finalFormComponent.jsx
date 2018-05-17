@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, HelpBlock, Col, FormControl, Checkbox } from 'patternfly-react';
+import { FormGroup, HelpBlock, Col, FormControl, Checkbox, Radio } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
@@ -195,4 +195,29 @@ FinalFormSelect.propTypes = {
 FinalFormSelect.defaultProps = {
   placeholder: 'Select',
   clearable: false,
+};
+
+export const FinalFormRadio = ({
+  meta,
+  input,
+  label,
+  validateOnMount,
+  inputColumnSize,
+  labelColumnSize,
+}) => (
+  <FinalFormComponentWrapper
+    meta={meta}
+    label={label}
+    validateOnMount={validateOnMount}
+    inputColumnSize={inputColumnSize}
+    labelColumnSize={labelColumnSize}
+  >
+    <Radio
+      {...input}
+    />
+  </FinalFormComponentWrapper>
+);
+
+FinalFormRadio.propTypes = {
+  ...genericFieldPropTypes,
 };

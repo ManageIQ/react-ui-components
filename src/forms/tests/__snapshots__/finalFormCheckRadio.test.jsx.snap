@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Final form radio component Should render correctly 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="radio"
+      style={undefined}
+    >
+      <label
+        title=""
+      >
+        <input
+          disabled={false}
+          name="name"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onFocus={[MockFunction]}
+          type="radio"
+          value=""
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Final form radio component Should render with error message 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    foo
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="radio"
+      style={undefined}
+    >
+      <label
+        title=""
+      >
+        <input
+          disabled={false}
+          name="name"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onFocus={[MockFunction]}
+          type="radio"
+          value=""
+        />
+      </label>
+    </div>
+    <span
+      className="help-block"
+    >
+      Error message
+    </span>
+  </div>
+</div>
+`;

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row } from 'patternfly-react';
 import { required } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect } from '../src/forms';
+import { FinalFormField, FinalFormSelect, FinalFormRadio, FinalFormCheckBox } from '../src/forms';
 
 const options = [{
   value: 1,
@@ -37,7 +37,7 @@ const wrapperComponent = () => (
                   meta={meta}
                   options={options}
                   label="test select"
-                  validateOnMount
+                  validateOnMount={false}
                   inputColumnSize={5}
                 />)
               }
@@ -54,6 +54,34 @@ const wrapperComponent = () => (
                     label="compared"
                     inputColumnSize={4}
                     labelColumnSize={8}
+                  />
+                )}
+              />
+              <Field
+                name="selectOne"
+                id="selectOne1"
+                type="radio"
+                value="firstSelect"
+                render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} />}
+              />
+              <Field
+                name="selectOne"
+                id="selectOne2"
+                type="radio"
+                value="secondSelect"
+                render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} />}
+              />
+              <Field
+                validate={required({ msg: 'Check input' })}
+                name="check"
+                id="check"
+                type="checkbox"
+                render={({ input, meta }) => (
+                  <FinalFormCheckBox
+                    validateOnMount
+                    input={input}
+                    meta={meta}
+                    label="Checkbox"
                   />
                 )}
               />
