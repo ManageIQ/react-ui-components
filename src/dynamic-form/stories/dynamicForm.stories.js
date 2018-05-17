@@ -7,9 +7,9 @@ import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
 import { required } from 'redux-form-validators';
 import PropTypes from 'prop-types';
 import { dynamicForm } from '../';
-import { renderFinalFormField } from '../../forms/';
+import { renderFinalFormField, Condition } from '../../forms/';
 
-storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() => {
+storiesOf('Form', module).add('Dynamic form decorator', withInfo()(() => {
   const FormFragment = () => (
     <Fragment>
       <Field
@@ -24,18 +24,20 @@ storiesOf('Dynamic forms', module).add('Dynamic form decorator', withInfo()(() =
   const FormComponent = ({ onSave }) => (
     <FinalForm
       onSubmit={onSave}
-      render={({ handleSubmit, values }) => (
+      render={({ handleSubmit }) => (
         <PfForm horizontal onSubmit={handleSubmit}>
           <Row>
             <Col xs={12}>
               <Field
                 name="included"
                 id="included"
-                render={({ input, meta }) => renderFinalFormField(input, meta, 'Type "a" to show input')}
+                render={({ input, meta }) => renderFinalFormField(input, meta, 'Type "show" to show input')}
               />
             </Col>
             <Col xs={12}>
-              {values.included === 'a' && <FormFragment />}
+              <Condition when="included" is="show">
+                <FormFragment />
+              </Condition>
             </Col>
           </Row>
           <Row>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'react-final-form';
 import { FormGroup, HelpBlock, Col, FormControl, Checkbox, Radio } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
@@ -220,4 +221,19 @@ export const FinalFormRadio = ({
 
 FinalFormRadio.propTypes = {
   ...genericFieldPropTypes,
+};
+
+export const Condition = ({ when, is, children }) => (
+  <Field name={when} subscription={{ value: true }}>
+    {({ input: { value } }) => (value === is ? children : null)}
+  </Field>
+);
+
+Condition.propTypes = {
+  when: PropTypes.string.isRequired,
+  is: PropTypes.any,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
