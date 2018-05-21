@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Grid, Button } from 'patternfly-react';
 import { required, email } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, Condition, composeValidators } from '../';
+import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, Condition, composeValidators } from '../';
 
 const minValue = min => (value) => {
   return Number.isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
@@ -129,6 +129,13 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                   render={({ input, meta }) => <FinalFormField validateOnMount input={input} meta={meta} label="Conditional field 2" />}
                 />
               </Condition>
+            </Col>
+            <Col xs={12}>
+              <Field
+                name="textArea"
+                id="textArea"
+                render={({ input, meta }) => <FinalFormTextArea input={input} meta={meta} label="Text area component" />}
+              />
             </Col>
             <Col xs={12}>
               <Button type="submit" bsStyle="primary">Submit</Button>
