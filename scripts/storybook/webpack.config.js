@@ -32,6 +32,11 @@ module.exports = {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
         loader: 'url-loader?limit=20480&name=static/[name].[ext]',
       },
+      {
+        test: /\.stories\.(js|jsx)$/,
+        loaders: [require.resolve('@storybook/addon-storysource/loader')],
+        enforce: 'pre',
+      },
     ],
   },
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'react-final-form';
 import { FormGroup, HelpBlock, Col, FormControl, Checkbox, Radio } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
@@ -6,218 +7,115 @@ import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
 import './finalFormSelectStyle.scss';
 
-export const FinalFormComponentWrapper = ({
+const componentSwitch = (componentType, props) => ({
+  textfield: <FormControl type={props.type} {...props.input} placeholder={props.placeholder} />,
+  radio: <Radio {...props.input} />,
+  checkbox: <Checkbox {...props.input} />,
+  textarea: <FormControl componentClass="textarea" {...props.input} placeholder={props.placeholder} />,
+  select: <ReactSelect
+    className={`${props.invalid ? 'has-error' : ''} final-form-select`}
+    optionClassName="final-form-select-option"
+    options={props.options}
+    clearable={props.clearable}
+    searchable={false}
+    placeholder={props.placeholder}
+    {...props.input}
+    onChange={({ value }) => props.input.onChange(value)}
+  />,
+})[componentType];
+
+const FinalFormComponent = ({
   meta,
+  input,
   label,
-  children,
   validateOnMount,
   inputColumnSize,
   labelColumnSize,
+  options,
+  clearable,
+  componentType,
+  placeholder,
+  ...rest
 }) => {
   const invalid = validationError(meta, validateOnMount);
+  const inputProps = {
+    meta,
+    input,
+    options,
+    clearable,
+    placeholder,
+    ...rest,
+  };
   return (
     <FormGroup validationState={invalid ? 'error' : null}>
       <Col xs={labelColumnSize} componentClass="label" className="control-label">
         {label}
       </Col>
       <Col xs={inputColumnSize}>
-        {children}
+        {componentSwitch(componentType, inputProps)}
         {invalid && <HelpBlock>{meta.error}</HelpBlock>}
       </Col>
     </FormGroup>
   );
 };
 
-FinalFormComponentWrapper.propTypes = {
+const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield'];
+
+const componentTypeProp = (props, propName, componentName) => {
+  if (!componentTypes.includes(props[propName])) {
+    return new Error(`Invalid value supplied to ${propName}. Please choose one of ${JSON.stringify(componentTypes)}. Validation failed`);
+  }
+  if (props.componentType === 'select' && !props.options) {
+    return new Error(`Missing prop OPTIONS in select component ${componentName}. Validation failed`);
+  }
+  return undefined;
+};
+
+FinalFormComponent.propTypes = {
   meta: metaObjectProps,
+  input: inputObjectProps,
   label: PropTypes.string.isRequired,
+  validateOnMount: PropTypes.bool,
+  inputColumnSize: PropTypes.number,
+  labelColumnSize: PropTypes.number,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.any.isRequired,
+    label: PropTypes.string.isRequired,
+  })),
+  clearable: PropTypes.bool,
+  componentType: componentTypeProp,
+  placeholder: PropTypes.string,
+};
+
+FinalFormComponent.defaultProps = {
+  validateOnMount: false,
+  inputColumnSize: 8,
+  labelColumnSize: 2,
+  placeholder: '',
+  componentType: 'textfield',
+};
+
+export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;
+
+export const FinalFormCheckBox = props => <FinalFormComponent componentType="checkbox" {...props} />;
+
+export const FinalFormTextArea = props => <FinalFormComponent componentType="textarea" {...props} />;
+
+export const FinalFormSelect = props => <FinalFormComponent componentType="select" {...props} />;
+
+export const FinalFormRadio = props => <FinalFormComponent componentType="radio" {...props} />;
+
+export const Condition = ({ when, is, children }) => (
+  <Field name={when} subscription={{ value: true }}>
+    {({ input: { value } }) => (value === is ? children : null)}
+  </Field>
+);
+
+Condition.propTypes = {
+  when: PropTypes.string.isRequired,
+  is: PropTypes.any,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  validateOnMount: PropTypes.bool,
-  inputColumnSize: PropTypes.number,
-  labelColumnSize: PropTypes.number,
-};
-
-FinalFormComponentWrapper.defaultProps = {
-  validateOnMount: false,
-  inputColumnSize: 8,
-  labelColumnSize: 2,
-};
-
-const genericFieldPropTypes = {
-  input: inputObjectProps,
-  meta: metaObjectProps,
-  label: PropTypes.string.isRequired,
-  validateOnMount: PropTypes.bool,
-  inputColumnSize: PropTypes.number,
-  labelColumnSize: PropTypes.number,
-};
-
-export const FinalFormField = ({
-  input,
-  meta,
-  placeholder,
-  label,
-  type,
-  validateOnMount,
-  inputColumnSize,
-  labelColumnSize,
-}) => (
-  <FinalFormComponentWrapper
-    meta={meta}
-    label={label}
-    validateOnMount={validateOnMount}
-    inputColumnSize={inputColumnSize}
-    labelColumnSize={labelColumnSize}
-  >
-    <FormControl type={type} {...input} placeholder={placeholder} />
-  </FinalFormComponentWrapper>
-);
-
-FinalFormField.propTypes = {
-  ...genericFieldPropTypes,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-};
-
-FinalFormField.defaultProps = {
-  placeholder: '',
-  type: 'text',
-};
-
-export const FinalFormCheckBox = ({
-  meta,
-  input,
-  label,
-  type,
-  validateOnMount,
-  inputColumnSize,
-  labelColumnSize,
-}) => (
-  <FinalFormComponentWrapper
-    meta={meta}
-    label={label}
-    validateOnMount={validateOnMount}
-    inputColumnSize={inputColumnSize}
-    labelColumnSize={labelColumnSize}
-  >
-    <Checkbox type={type} {...input} />
-  </FinalFormComponentWrapper>
-);
-
-FinalFormCheckBox.propTypes = {
-  ...genericFieldPropTypes,
-  type: PropTypes.string,
-};
-
-FinalFormCheckBox.defaultProps = {
-  type: 'checkbox',
-};
-
-export const FinalFormTextArea = ({
-  meta,
-  input,
-  label,
-  placeholder,
-  validateOnMount,
-  inputColumnSize,
-  labelColumnSize,
-}) => (
-  <FinalFormComponentWrapper
-    meta={meta}
-    label={label}
-    validateOnMount={validateOnMount}
-    inputColumnSize={inputColumnSize}
-    labelColumnSize={labelColumnSize}
-  >
-    <FormControl componentClass="textarea" {...input} placeholder={placeholder} />
-  </FinalFormComponentWrapper>
-);
-
-FinalFormTextArea.propTypes = {
-  ...genericFieldPropTypes,
-  placeholder: PropTypes.string,
-};
-
-FinalFormTextArea.defaultProps = {
-  placeholder: '',
-};
-
-export const FinalFormSelect = ({
-  input,
-  meta,
-  label,
-  options,
-  placeholder,
-  clearable,
-  validateOnMount,
-  inputColumnSize,
-  labelColumnSize,
-  ...rest
-}) => {
-  const { onChange, ...inputProps } = input;
-  const invalid = validationError(meta, validateOnMount);
-  return (
-    <FinalFormComponentWrapper
-      meta={meta}
-      label={label}
-      validateOnMount={validateOnMount}
-      inputColumnSize={inputColumnSize}
-      labelColumnSize={labelColumnSize}
-    >
-      <ReactSelect
-        className={`${invalid ? 'has-error' : ''} final-form-select`}
-        optionClassName="final-form-select-option"
-        options={options}
-        clearable={clearable}
-        searchable={false}
-        placeholder={placeholder}
-        onChange={({ value }) => input.onChange(value)}
-        {...inputProps}
-        {...rest}
-      />
-    </FinalFormComponentWrapper>
-  );
-};
-
-FinalFormSelect.propTypes = {
-  ...genericFieldPropTypes,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
-  placeholder: PropTypes.string,
-  clearable: PropTypes.bool,
-};
-
-FinalFormSelect.defaultProps = {
-  placeholder: 'Select',
-  clearable: false,
-};
-
-export const FinalFormRadio = ({
-  meta,
-  input,
-  label,
-  validateOnMount,
-  inputColumnSize,
-  labelColumnSize,
-}) => (
-  <FinalFormComponentWrapper
-    meta={meta}
-    label={label}
-    validateOnMount={validateOnMount}
-    inputColumnSize={inputColumnSize}
-    labelColumnSize={labelColumnSize}
-  >
-    <Radio
-      {...input}
-    />
-  </FinalFormComponentWrapper>
-);
-
-FinalFormRadio.propTypes = {
-  ...genericFieldPropTypes,
 };
