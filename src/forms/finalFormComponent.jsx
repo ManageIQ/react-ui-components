@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field } from 'react-final-form';
-import { FormGroup, HelpBlock, Col, FormControl, Checkbox, Radio } from 'patternfly-react';
+import { FormGroup, HelpBlock, Col, FormControl, Checkbox, Radio, Switch } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
 import './finalFormSelectStyle.scss';
 
-const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield'];
+const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
 
@@ -26,6 +26,7 @@ const componentSelect = (componentType, props) => ({
     {...props.input}
     onChange={({ value }) => props.input.onChange(value)}
   />,
+  switch: <Switch {...props.input} value={!!props.input.value} onChange={(elem, state) => props.input.onChange(state)} />,
 })[componentType];
 
 const isSwitchInput = componentType => switchComponents.includes(componentType);
@@ -134,6 +135,8 @@ export const FinalFormTextArea = props => <FinalFormComponent componentType="tex
 export const FinalFormSelect = props => <FinalFormComponent componentType="select" {...props} />;
 
 export const FinalFormRadio = props => <FinalFormComponent componentType="radio" {...props} />;
+
+export const FinalFormSwitch = props => <FinalFormComponent componentType="switch" {...props} />;
 
 export const Condition = ({ when, is, children }) => (
   <Field name={when} subscription={{ value: true }}>

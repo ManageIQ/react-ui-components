@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Grid, Button } from 'patternfly-react';
 import { required, email } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, Condition, FieldGroup, composeValidators } from '../';
+import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, FinalFormSwitch, Condition, FieldGroup, composeValidators } from '../';
 
 const minValue = min => (value) => {
   return (Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`;
@@ -28,6 +28,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
       </Col>
     </Row>
     <Form
+      initialValues={{
+        switch: false,
+      }}
       onSubmit={action(values => console.log('Form values: ', values))}
       render={({ handleSubmit, values }) => (
         <PfForm horizontal onSubmit={handleSubmit}>
@@ -128,6 +131,13 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="textArea"
                 id="textArea"
                 render={({ input, meta }) => <FinalFormTextArea input={input} meta={meta} label="Text area component" />}
+              />
+            </Col>
+            <Col xs={12}>
+              <Field
+                name="switch"
+                id="switch"
+                render={({ input, meta }) => <FinalFormSwitch input={input} meta={meta} label="Switch label" />}
               />
             </Col>
             <Col xs={12}>
