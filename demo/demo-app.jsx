@@ -1,22 +1,14 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Form as PfForm, Col, Row } from 'patternfly-react';
+import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
 import { required } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormRadio, FinalFormCheckBox } from '../src/forms';
-
-const options = [{
-  value: 1,
-  label: 'One',
-}, {
-  value: 2,
-  label: 'Two',
-}];
+import { FinalFormRadio, FieldGroup, FinalFormField, FinalFormCheckBox } from '../src/forms';
 
 const onSubmit = values => console.log('onSubmit: ', values);
 
 const wrapperComponent = () => (
-  <div>
+  <Grid>
     <h1>Select</h1>
     <Form
       onSubmit={onSubmit}
@@ -26,71 +18,53 @@ const wrapperComponent = () => (
           onSubmit={handleSubmit}
         >
           <Row>
-            <Col xs={12}>
+            <FieldGroup label="Field group" name="radioGroup" validateOnMount>
               <Field
-                validate={required({ msg: 'Select required' })}
-                name="test"
-                id="test"
-                render={({ input, meta }) => (<FinalFormSelect
-                  placeholder="Some placehoder"
-                  input={input}
-                  meta={meta}
-                  options={options}
-                  label="test select"
-                  validateOnMount={false}
-                  inputColumnSize={5}
-                />)
-              }
-              />
-              <Field
-                validate={required({ msg: 'Compare input' })}
-                name="compared"
-                id="compared"
-                render={({ input, meta }) => (
-                  <FinalFormField
-                    validateOnMount
-                    input={input}
-                    meta={meta}
-                    label="compared"
-                    inputColumnSize={4}
-                    labelColumnSize={8}
-                  />
-                )}
-              />
-              <Field
-                name="selectOne"
+                name="radioGroup"
                 id="selectOne1"
                 type="radio"
-                value="firstSelect"
-                render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} />}
+                value="First radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} {...rest} />}
               />
               <Field
-                name="selectOne"
+                name="radioGroup"
                 id="selectOne2"
                 type="radio"
-                value="secondSelect"
-                render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} />}
+                value="Second radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} {...rest} />}
               />
+            </FieldGroup>
+            <Col xs={12}>
+              <Field
+                validate={required({ msg: 'Check input' })}
+                name="text1"
+                id="text1"
+                render={({ input, meta }) => <FinalFormField validateOnMount meta={meta} input={input} label="Some text field" />}
+              />
+            </Col>
+            <Col xs={12}>
               <Field
                 validate={required({ msg: 'Check input' })}
                 name="check"
                 id="check"
                 type="checkbox"
                 render={({ input, meta }) => (
-                  <FinalFormCheckBox
-                    validateOnMount
-                    input={input}
-                    meta={meta}
-                    label="Checkbox"
-                  />
+                  <FinalFormCheckBox validateOnMount input={input} meta={meta} label="Checkbox" />
                 )}
               />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <Button type="submit">Submit</Button>
             </Col>
           </Row>
         </PfForm>
       )}
     />
-  </div>
+  </Grid>
 );
 
 export default function renderApp() {

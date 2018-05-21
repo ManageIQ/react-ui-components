@@ -6,10 +6,10 @@ import { action } from '@storybook/addon-actions';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Grid, Button } from 'patternfly-react';
 import { required, email } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, Condition, composeValidators } from '../';
+import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, Condition, FieldGroup, composeValidators } from '../';
 
 const minValue = min => (value) => {
-  return Number.isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
+  return (Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`;
 };
 
 const options = [{
@@ -73,7 +73,7 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
               }
               />
             </Col>
-            <Col xs={12}>
+            <FieldGroup label="Field group" name="checkboxGroup">
               <Field
                 validate={required({ msg: 'Check input' })}
                 name="check"
@@ -88,32 +88,25 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                   />
                 )}
               />
-            </Col>
-            <Col xs={12}>
-              <Row>
-                <Col xs={2}>
-                  <span>Radio group</span>
-                </Col>
-                <Col xs={10}>
-                  <Field
-                    name="radioGroup"
-                    id="selectOne1"
-                    type="radio"
-                    value="First radio"
-                    validate={required({ msg: 'Please select one option' })}
-                    render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} />}
-                  />
-                  <Field
-                    name="radioGroup"
-                    id="selectOne2"
-                    type="radio"
-                    value="Second radio"
-                    validate={required({ msg: 'Please select one option' })}
-                    render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} />}
-                  />
-                </Col>
-              </Row>
-            </Col>
+            </FieldGroup>
+            <FieldGroup label="Field group" name="radioGroup">
+              <Field
+                name="radioGroup"
+                id="selectOne1"
+                type="radio"
+                value="First radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} {...rest} />}
+              />
+              <Field
+                name="radioGroup"
+                id="selectOne2"
+                type="radio"
+                value="Second radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} {...rest} />}
+              />
+            </FieldGroup>
             <Col xs={12}>
               <Condition when="radioGroup" is="Second radio">
                 <Field

@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Final form FieldGroup component Should render correctly 1`] = `
+<div
+  className="field-group col-xs-12"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    Field group
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="field-group form-group"
+    >
+      <div
+        className=""
+      >
+        <div
+          className="radio"
+          style={undefined}
+        >
+          <label
+            title=""
+          >
+            <input
+              checked={false}
+              disabled={false}
+              name="radioGroup"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="First radio"
+            />
+            Radio button 1
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="field-group form-group"
+    >
+      <div
+        className=""
+      >
+        <div
+          className="radio"
+          style={undefined}
+        >
+          <label
+            title=""
+          >
+            <input
+              checked={false}
+              disabled={false}
+              name="radioGroup"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="Second radio"
+            />
+            Radio button 2
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="has-error col-xs-10 col-xs-offset-2"
+  />
+</div>
+`;
+
+exports[`Final form FieldGroup component Should render correctly with error state 1`] = `
+<div
+  className="field-group col-xs-12"
+>
+  <label
+    className="control-label col-xs-2"
+  >
+    Field group
+  </label>
+  <div
+    className="col-xs-8"
+  >
+    <div
+      className="field-group form-group"
+    >
+      <div
+        className=""
+      >
+        <div
+          className="radio"
+          style={undefined}
+        >
+          <label
+            title=""
+          >
+            <input
+              checked={false}
+              disabled={false}
+              name="radioGroup"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="First radio"
+            />
+            Radio button 1
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="field-group form-group"
+    >
+      <div
+        className=""
+      >
+        <div
+          className="radio"
+          style={undefined}
+        >
+          <label
+            title=""
+          >
+            <input
+              checked={false}
+              disabled={false}
+              name="radioGroup"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="Second radio"
+            />
+            Radio button 2
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="has-error col-xs-10 col-xs-offset-2"
+  />
+</div>
+`;

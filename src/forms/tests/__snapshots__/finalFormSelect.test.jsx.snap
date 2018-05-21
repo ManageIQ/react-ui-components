@@ -32,7 +32,7 @@ exports[`React select component Should render correctly 1`] = `
           <div
             className="Select-placeholder"
           >
-            Select
+            
           </div>
           <div
             aria-activedescendant="react-select-2--value"
@@ -83,7 +83,7 @@ exports[`React select component Should render correctly in error state 1`] = `
     className="col-xs-8"
   >
     <div
-      className="Select has-error final-form-select Select--single"
+      className="Select  final-form-select Select--single"
       style={undefined}
     >
       <div
@@ -102,7 +102,7 @@ exports[`React select component Should render correctly in error state 1`] = `
           <div
             className="Select-placeholder"
           >
-            Select
+            
           </div>
           <div
             aria-activedescendant="react-select-3--value"

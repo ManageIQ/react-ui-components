@@ -2,15 +2,10 @@
 
 exports[`Final form checkbox component Should render correctly 1`] = `
 <div
-  className="form-group"
+  className="field-group form-group"
 >
-  <label
-    className="control-label col-xs-2"
-  >
-    foo
-  </label>
   <div
-    className="col-xs-8"
+    className=""
   >
     <div
       className="checkbox"
@@ -28,6 +23,7 @@ exports[`Final form checkbox component Should render correctly 1`] = `
           type="checkbox"
           value=""
         />
+        foo
       </label>
     </div>
   </div>
@@ -36,15 +32,10 @@ exports[`Final form checkbox component Should render correctly 1`] = `
 
 exports[`Final form checkbox component Should render with error message 1`] = `
 <div
-  className="form-group has-error"
+  className="field-group form-group has-error"
 >
-  <label
-    className="control-label col-xs-2"
-  >
-    foo
-  </label>
   <div
-    className="col-xs-8"
+    className=""
   >
     <div
       className="checkbox"
@@ -62,13 +53,9 @@ exports[`Final form checkbox component Should render with error message 1`] = `
           type="checkbox"
           value=""
         />
+        foo
       </label>
     </div>
-    <span
-      className="help-block"
-    >
-      Error message
-    </span>
   </div>
 </div>
 `;
