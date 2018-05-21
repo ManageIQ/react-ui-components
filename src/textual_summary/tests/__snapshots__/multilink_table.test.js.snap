@@ -1,0 +1,522 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultilinkTable renders just fine 1`] = `
+<table
+  className="table table-bordered table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        colSpan="100"
+      >
+        Some OpenStack Stuff
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Aodh
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Aodh"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Aodh"
+        />
+        Running (3)
+      </td>
+      <td
+        title="Show list of failed Aodh"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Aodh"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Aodh"
+        />
+        All (3)
+      </td>
+      <td
+        title="Show list of configuration files of Aodh"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Aodh"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Ceilometer
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Ceilometer"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Ceilometer"
+        />
+        Running (3)
+      </td>
+      <td
+        title="Show list of failed Ceilometer"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Ceilometer"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Ceilometer"
+        />
+        All (3)
+      </td>
+      <td
+        title="Show list of configuration files of Ceilometer"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Ceilometer"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Cinder
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Cinder"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Cinder"
+        />
+        Running (3)
+      </td>
+      <td
+        title="Show list of failed Cinder"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Cinder"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Cinder"
+        />
+        All (3)
+      </td>
+      <td
+        title="Show list of configuration files of Cinder"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Cinder"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Glance
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Glance"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Glance"
+        />
+        Running (2)
+      </td>
+      <td
+        title="Show list of failed Glance"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Glance"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Glance"
+        />
+        All (2)
+      </td>
+      <td
+        title="Show list of configuration files of Glance"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Glance"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Gnocchi
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Gnocchi"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Gnocchi"
+        />
+        Running (2)
+      </td>
+      <td
+        title="Show list of failed Gnocchi"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Gnocchi"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Gnocchi"
+        />
+        All (2)
+      </td>
+      <td
+        title="Show list of configuration files of Gnocchi"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Gnocchi"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Heat
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Heat"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Heat"
+        />
+        Running (4)
+      </td>
+      <td
+        title="Show list of failed Heat"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Heat"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Heat"
+        />
+        All (4)
+      </td>
+      <td
+        title="Show list of configuration files of Heat"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Heat"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Keystone
+      </td>
+      <td
+        title="Show list of running Keystone"
+      >
+        
+        Running (0)
+      </td>
+      <td
+        title="Show list of failed Keystone"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Keystone"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Keystone"
+        />
+        All (1)
+      </td>
+      <td
+        title="Show list of configuration files of Keystone"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Keystone"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Nova
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Nova"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Nova"
+        />
+        Running (5)
+      </td>
+      <td
+        title="Show list of failed Nova"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Nova"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Nova"
+        />
+        All (10)
+      </td>
+      <td
+        title="Show list of configuration files of Nova"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Nova"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+    <tr
+      className="no-hover"
+    >
+      <td
+        className="hover"
+      >
+        
+        Swift
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of running Swift"
+      >
+        <i
+          className="pficon pficon-ok"
+          title="Show list of running Swift"
+        />
+        Running (14)
+      </td>
+      <td
+        title="Show list of failed Swift"
+      >
+        
+        Failed (0)
+      </td>
+      <td
+        className="hover"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer, hand",
+          }
+        }
+        title="Show list of all Swift"
+      >
+        <i
+          className="pficon pficon-service"
+          title="Show list of all Swift"
+        />
+        All (14)
+      </td>
+      <td
+        title="Show list of configuration files of Swift"
+      >
+        <i
+          className="fa fa-file-o"
+          title="Show list of configuration files of Swift"
+        />
+        Configuration (0)
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
