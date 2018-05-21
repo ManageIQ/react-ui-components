@@ -40,7 +40,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="textField"
                 id="textField"
                 validate={required({ msg: 'Error message' })}
-                render={({ input, meta }) => <FinalFormField validateOnMount input={input} meta={meta} label="Text field" />}
+                component={FinalFormField}
+                label="Text field"
+                validateOnMount
               />
             </Col>
             <Col xs={12}>
@@ -48,7 +50,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="email"
                 id="email"
                 validate={composeValidators(required({ msg: 'Email is required' }), email({ msg: 'This is not a valid email address' }))}
-                render={({ input, meta }) => <FinalFormField type="email" input={input} meta={meta} label="Email field" />}
+                component={FinalFormField}
+                type="email"
+                label="Email field"
               />
             </Col>
             <Col xs={12}>
@@ -56,7 +60,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="password"
                 id="password"
                 validate={minValue(33)}
-                render={({ input, meta }) => <FinalFormField type="password" input={input} meta={meta} label="Password field" />}
+                component={FinalFormField}
+                type="password"
+                label="Password field"
               />
             </Col>
             <Col xs={12}>
