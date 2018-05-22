@@ -2,15 +2,10 @@
 
 exports[`Final form component reder functions Should return final form checkbox 1`] = `
 <div
-  className="form-group"
+  className="field-group form-group"
 >
-  <label
-    className="control-label col-xs-2"
-  >
-    check box
-  </label>
   <div
-    className="col-xs-8"
+    className=""
   >
     <div
       className="checkbox"
@@ -28,6 +23,7 @@ exports[`Final form component reder functions Should return final form checkbox 
           type="checkbox"
           value=""
         />
+        check box
       </label>
     </div>
   </div>

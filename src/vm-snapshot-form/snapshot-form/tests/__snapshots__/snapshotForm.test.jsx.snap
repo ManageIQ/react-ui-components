@@ -59,15 +59,10 @@ exports[`Final form input component Should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="form-group"
+        className="field-group form-group"
       >
-        <label
-          className="control-label col-xs-2"
-        >
-          Snap memory
-        </label>
         <div
-          className="col-xs-8"
+          className=""
         >
           <div
             className="checkbox"
@@ -86,6 +81,7 @@ exports[`Final form input component Should render correctly 1`] = `
                 type="checkbox"
                 value=""
               />
+              Snap memory
             </label>
           </div>
         </div>
@@ -186,15 +182,10 @@ exports[`Final form input component Should render with description required 1`] 
         </div>
       </div>
       <div
-        className="form-group"
+        className="field-group form-group"
       >
-        <label
-          className="control-label col-xs-2"
-        >
-          Snap memory
-        </label>
         <div
-          className="col-xs-8"
+          className=""
         >
           <div
             className="checkbox"
@@ -213,6 +204,7 @@ exports[`Final form input component Should render with description required 1`] 
                 type="checkbox"
                 value=""
               />
+              Snap memory
             </label>
           </div>
         </div>
@@ -313,15 +305,10 @@ exports[`Final form input component Should render with name required 1`] = `
         </div>
       </div>
       <div
-        className="form-group"
+        className="field-group form-group"
       >
-        <label
-          className="control-label col-xs-2"
-        >
-          Snap memory
-        </label>
         <div
-          className="col-xs-8"
+          className=""
         >
           <div
             className="checkbox"
@@ -340,6 +327,7 @@ exports[`Final form input component Should render with name required 1`] = `
                 type="checkbox"
                 value=""
               />
+              Snap memory
             </label>
           </div>
         </div>

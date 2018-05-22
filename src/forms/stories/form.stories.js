@@ -6,10 +6,20 @@ import { action } from '@storybook/addon-actions';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Grid, Button } from 'patternfly-react';
 import { required, email } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, Condition, composeValidators } from '../';
+import {
+  FinalFormField,
+  FinalFormSelect,
+  FinalFormCheckBox,
+  FinalFormRadio,
+  FinalFormTextArea,
+  FinalFormSwitch,
+  Condition,
+  FieldGroup,
+  composeValidators,
+} from '../';
 
 const minValue = min => (value) => {
-  return Number.isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
+  return (Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`;
 };
 
 const options = [{
@@ -28,6 +38,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
       </Col>
     </Row>
     <Form
+      initialValues={{
+        switch: false,
+      }}
       onSubmit={action(values => console.log('Form values: ', values))}
       render={({ handleSubmit, values }) => (
         <PfForm horizontal onSubmit={handleSubmit}>
@@ -37,7 +50,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="textField"
                 id="textField"
                 validate={required({ msg: 'Error message' })}
-                render={({ input, meta }) => <FinalFormField validateOnMount input={input} meta={meta} label="Text field" />}
+                component={FinalFormField}
+                label="Text field"
+                validateOnMount
               />
             </Col>
             <Col xs={12}>
@@ -45,7 +60,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="email"
                 id="email"
                 validate={composeValidators(required({ msg: 'Email is required' }), email({ msg: 'This is not a valid email address' }))}
-                render={({ input, meta }) => <FinalFormField type="email" input={input} meta={meta} label="Email field" />}
+                component={FinalFormField}
+                type="email"
+                label="Email field"
               />
             </Col>
             <Col xs={12}>
@@ -53,7 +70,9 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="password"
                 id="password"
                 validate={minValue(33)}
-                render={({ input, meta }) => <FinalFormField type="password" input={input} meta={meta} label="Password field" />}
+                component={FinalFormField}
+                type="password"
+                label="Password field"
               />
             </Col>
             <Col xs={12}>
@@ -73,7 +92,7 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
               }
               />
             </Col>
-            <Col xs={12}>
+            <FieldGroup label="Field group" name="checkboxGroup">
               <Field
                 validate={required({ msg: 'Check input' })}
                 name="check"
@@ -88,32 +107,25 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                   />
                 )}
               />
-            </Col>
-            <Col xs={12}>
-              <Row>
-                <Col xs={2}>
-                  <span>Radio group</span>
-                </Col>
-                <Col xs={10}>
-                  <Field
-                    name="radioGroup"
-                    id="selectOne1"
-                    type="radio"
-                    value="First radio"
-                    validate={required({ msg: 'Please select one option' })}
-                    render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} />}
-                  />
-                  <Field
-                    name="radioGroup"
-                    id="selectOne2"
-                    type="radio"
-                    value="Second radio"
-                    validate={required({ msg: 'Please select one option' })}
-                    render={({ input, meta }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} />}
-                  />
-                </Col>
-              </Row>
-            </Col>
+            </FieldGroup>
+            <FieldGroup label="Field group" name="radioGroup">
+              <Field
+                name="radioGroup"
+                id="selectOne1"
+                type="radio"
+                value="First radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 1" meta={meta} {...rest} />}
+              />
+              <Field
+                name="radioGroup"
+                id="selectOne2"
+                type="radio"
+                value="Second radio"
+                validate={required({ msg: 'Please select one option' })}
+                render={({ input, meta, ...rest }) => <FinalFormRadio input={input} label="Radio button 2" meta={meta} {...rest} />}
+              />
+            </FieldGroup>
             <Col xs={12}>
               <Condition when="radioGroup" is="Second radio">
                 <Field
@@ -135,6 +147,13 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 name="textArea"
                 id="textArea"
                 render={({ input, meta }) => <FinalFormTextArea input={input} meta={meta} label="Text area component" />}
+              />
+            </Col>
+            <Col xs={12}>
+              <Field
+                name="switch"
+                id="switch"
+                render={({ input, meta }) => <FinalFormSwitch input={input} meta={meta} label="Switch label" />}
               />
             </Col>
             <Col xs={12}>
