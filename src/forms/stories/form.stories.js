@@ -6,7 +6,17 @@ import { action } from '@storybook/addon-actions';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Grid, Button } from 'patternfly-react';
 import { required, email } from 'redux-form-validators';
-import { FinalFormField, FinalFormSelect, FinalFormCheckBox, FinalFormRadio, FinalFormTextArea, FinalFormSwitch, Condition, FieldGroup, composeValidators } from '../';
+import {
+  FinalFormField,
+  FinalFormSelect,
+  FinalFormCheckBox,
+  FinalFormRadio,
+  FinalFormTextArea,
+  FinalFormSwitch,
+  Condition,
+  FieldGroup,
+  composeValidators,
+} from '../';
 
 const minValue = min => (value) => {
   return (Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`;
