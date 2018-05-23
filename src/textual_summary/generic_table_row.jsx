@@ -47,7 +47,9 @@ GenericTableRow.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     icon: PropTypes.string,
-    value: PropTypes.any,
+    label: PropTypes.any,
+    value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
+

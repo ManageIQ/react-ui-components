@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericGroup renders just fine 1`] = `
+<table
+  className="table table-bordered table-hover table-striped table-summary-screen"
+>
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan="2"
+      >
+        Foo Bar
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      className="bar"
+      onClick={[Function]}
+      title={undefined}
+    >
+      <td
+        className="label"
+      >
+        foo
+      </td>
+      <td>
+        
+        <span>
+           
+          bar
+        </span>
+      </td>
+    </tr>
+    <tr
+      className="bar"
+      onClick={[Function]}
+      title={undefined}
+    >
+      <td
+        className="label"
+      >
+        mrkef?
+      </td>
+      <td>
+        
+        <span>
+           
+          v zime!
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

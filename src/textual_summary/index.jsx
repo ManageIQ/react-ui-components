@@ -7,19 +7,32 @@ import TextualRow from './textual_row';
  *
  * Outer array elements are rows, inner array elements are groups.
  */
-export default function TextualSummary(props) {
-  return (
-    <React.Fragment>
-      {
-        props.summary.map((bigGroup, i) => (
-          <TextualRow onClick={props.onClick} key={i} groups={bigGroup} />
-        ))
-      }
-    </React.Fragment>
-  );
-}
+export const TextualSummary = props => (
+  <React.Fragment>
+    {
+      props.summary.map((bigGroup, i) => (
+        <TextualRow onClick={props.onClick} key={i} groups={bigGroup} />
+      ))
+    }
+  </React.Fragment>
+);
 
 TextualSummary.propTypes = {
   summary: PropTypes.arrayOf(PropTypes.any).isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
+/**
+ * Render a single group of Tags.
+ */
+export { default as TagGroup } from './tag_group';
+
+/**
+ * Render a list based group.
+ */
+export { default as TableListView } from './table_list_view';
+
+/**
+ * Render a single generic group of properties.
+ */
+export { default as GenericGroup } from './generic_group';

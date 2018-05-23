@@ -33,7 +33,7 @@ export default function MultilinkTable(props) {
         <IconOrImage icon={item.icon} image={item.image} title={item.title} />
         {item.value}
       </td>
-      {item.sub_item.map((subitem, i) => renderLinkOrNolink(subitem, i))}
+      {item.sub_items.map((subitem, i) => renderLinkOrNolink(subitem, i))}
     </tr>
   );
 
