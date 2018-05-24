@@ -58,6 +58,67 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
 
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.final-form-select.Select--multi{
+  .Select-control {
+    width: 100%;
+    display: table;
+    height: auto;
+  }
+
+  .Select-multi-value-wrapper {
+    width: calc(100% - 25px);
+    .Select-value {
+      float: left;
+    }
+  }
+
+  .Select-value {
+      animation: 0.3s ease-out 0s 1 fadeIn;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      border: none;
+      border-radius: 0;
+      margin-right: 5px;
+      margin-left: 0px;
+      .Select-value-icon, .Select-value-label {
+        background-color: $color-pf-blue-400;
+        color: white;
+        border: none;
+        border-radius: 0;
+      }
+      .Select-value-icon {
+        float: right;
+        &:hover {
+          background-color: $color-pf-blue-300;
+        }
+      }
+  }
+}
+
+.final-form-select.Select--multi.has-value,
+.final-form-select.Select--multi.is-open.has-value,
+.final-form-select.Select--multi.is-open.is-focused.has-value,
+.final-form-select.Select--multi.is-focused.has-value {
+  .Select-control {
+    background-image: none;
+    background-color: white;
+  }
+
+  .Select-input {
+    background-color: white;
+  }
+}
+
 .final-form-select.has-error {
   .Select-control {
     border-color: $color-pf-red-100;
