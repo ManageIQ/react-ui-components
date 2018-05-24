@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import RbacUserForm from '../src/rbac-forms/addNewUserForm';
+import RbacUserForm from '../src/rbac-forms/rbacUserForm';
 
 const onSubmit = values => console.log('onSubmit: ', values);
 const onCancel = () => console.log('cancel');

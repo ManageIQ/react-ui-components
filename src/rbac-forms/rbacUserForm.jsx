@@ -60,7 +60,10 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
               <Field
                 name="email"
                 type="email"
-                validate={email({ msg: 'This is not a valid email addres' })}
+                validate={email({
+                  msg: 'This is not a valid email addres',
+                  allowBlank: true,
+                })}
                 component={FinalFormField}
                 label="Email"
               />
@@ -80,7 +83,7 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
           <Row>
             <Col xs={10}>
               <ButtonGroup className="pull-right">
-                <Button bsStyle="primary" disabled={invalid} type="button" onClick={handleSubmit}>Add</Button>
+                <Button id="user-submit" bsStyle="primary" disabled={invalid} type="button" onClick={handleSubmit}>Add</Button>
                 <Button onClick={onCancel}>Cancel</Button>
               </ButtonGroup>
             </Col>
