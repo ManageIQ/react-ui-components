@@ -97,6 +97,31 @@ const inputTypeProp = (props, propName) => {
   return undefined;
 };
 
+const optionsPropType = (props, propName, componentName) => {
+  if (props.componentType === 'select') {
+    if (!Array.isArray(props.options)) {
+      return new Error(`Expected options to be array, received ${typeof props.options}. Validation failed in ${componentName}!`);
+    }
+
+    // eslint-disable-next-line
+    props.options.forEach((option, index) => {
+      if (typeof option !== 'object') {
+        return new Error(`Select option must be an object, ${typeof option} received at index ${index}. Validation failed in ${componentName}!`);
+      }
+
+      if (!option[props.valueKey]) {
+        return new Error(`Option must have ${props.valueKey} attribute. Validation failed in ${componentName}!`);
+      }
+
+      if (!option[props.labelKey]) {
+        return new Error(`Option must have ${props.valueKey} attribute. Validation failed in ${componentName}!`);
+      }
+    });
+  }
+
+  return undefined;
+};
+
 FinalFormComponent.propTypes = {
   meta: metaObjectProps,
   input: inputObjectProps,
@@ -104,10 +129,7 @@ FinalFormComponent.propTypes = {
   validateOnMount: PropTypes.bool,
   inputColumnSize: PropTypes.number,
   labelColumnSize: PropTypes.number,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
+  options: optionsPropType,
   clearable: PropTypes.bool,
   componentType: componentTypeProp,
   placeholder: PropTypes.string,
