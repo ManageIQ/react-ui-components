@@ -28,6 +28,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
 })[componentType];
 
 const isSwitchInput = componentType => switchComponents.includes(componentType);
+const normalizeInputValues = values => (values.id ? values : { ...values, id: values.name });
 
 const FinalFormComponent = ({
   meta,
@@ -46,7 +47,7 @@ const FinalFormComponent = ({
   const invalid = validationError(meta, validateOnMount);
   const inputProps = {
     meta,
-    input,
+    input: normalizeInputValues(input),
     options,
     clearable,
     placeholder,

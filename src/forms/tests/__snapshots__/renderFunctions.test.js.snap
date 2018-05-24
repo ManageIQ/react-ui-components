@@ -16,6 +16,7 @@ exports[`Final form component reder functions Should return final form checkbox 
       >
         <input
           disabled={false}
+          id="name"
           name="name"
           onBlur={[MockFunction]}
           onChange={[MockFunction]}
@@ -44,7 +45,7 @@ exports[`Final form component reder functions Should return final form number in
   >
     <input
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -71,7 +72,7 @@ exports[`Final form component reder functions Should return final form password 
   >
     <input
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -98,7 +99,7 @@ exports[`Final form component reder functions Should return final form text fiel
   >
     <input
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -125,7 +126,7 @@ exports[`Final form component reder functions Should return final form textarea 
   >
     <textarea
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
