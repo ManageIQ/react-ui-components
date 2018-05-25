@@ -8,13 +8,13 @@ import TextualRow from './textual_row';
  * Outer array elements are rows, inner array elements are groups.
  */
 export const TextualSummary = props => (
-  <React.Fragment>
+  <div className="row">
     {
       props.summary.map((bigGroup, i) => (
         <TextualRow onClick={props.onClick} key={i} groups={bigGroup} />
       ))
     }
-  </React.Fragment>
+  </div>
 );
 
 TextualSummary.propTypes = {

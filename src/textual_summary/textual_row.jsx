@@ -4,7 +4,7 @@ import TextualGroup from './textual_group';
 
 export default function TextualRow(props) {
   return (
-    <div className="row">
+    <div className="col-md-12 col-lg-6">
       {
         props.groups.map(group => (
           <TextualGroup onClick={props.onClick} key={group.title} group={group} />
