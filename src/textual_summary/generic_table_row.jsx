@@ -11,7 +11,7 @@ const renderMultivalue = function renderMultivalue(values, onClick) {
             <tr onClick={e => onClick(item, e)} key={i} className={item.link ? '' : 'no-hover'} title={item.title}>
               <td style={{ border: 0, margin: 0, padding: 0 }}>
                 <IconOrImage icon={item.icon} image={item.image} title={item.title} />
-                {item.value}
+                {`${item.value}`}
               </td>
             </tr>
           ))
@@ -22,7 +22,7 @@ const renderMultivalue = function renderMultivalue(values, onClick) {
 };
 
 const renderValue = function renderValue(value, onClick) {
-  return Array.isArray(value) ? renderMultivalue(value, onClick) : <span> {value}</span>;
+  return Array.isArray(value) ? renderMultivalue(value, onClick) : <span> {`${value}`}</span>;
 };
 
 export default function GenericTableRow(props) {
@@ -48,7 +48,7 @@ GenericTableRow.propTypes = {
     image: PropTypes.string,
     icon: PropTypes.string,
     label: PropTypes.any,
-    value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+    value: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.number, PropTypes.bool]),
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
