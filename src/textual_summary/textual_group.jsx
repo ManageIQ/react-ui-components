@@ -53,11 +53,7 @@ const renderComponent = (props) => {
 };
 
 export default function TextualGroup(props) {
-  return (
-    <div className="col-md-11 col-lg-6">
-      {renderComponent(props)}
-    </div>
-  );
+  return renderComponent(props);
 }
 
 renderComponent.propTypes = {
