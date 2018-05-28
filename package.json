@@ -101,11 +101,11 @@
   "dependencies": {
     "final-form": "^4.6.1",
     "patternfly-react": "^1.16.4",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-final-form": "^3.4.0",
-    "react-props": "0.0.3",
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "redux": "^3.7.2",
