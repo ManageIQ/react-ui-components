@@ -10,7 +10,8 @@ import './finalFormStyle.scss';
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
-const selectValue = (option, multi) => (multi ? option.sort((a, b) => (a.label.toLowerCase() > b.label.toLowerCase())) : option.value);
+const selectValue = (option, multi, labelKey) =>
+  (multi ? option.sort((a, b) => (a[labelKey].toLowerCase() > b[labelKey].toLowerCase())) : option.value);
 
 const componentSelect = (componentType, { input, meta, ...rest }) => ({
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
@@ -21,7 +22,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
     optionClassName="final-form-select-option"
     {...input}
-    onChange={({ value }) => input.onChange(selectValue(option, props.multi))}
+    onChange={({ option }) => input.onChange(selectValue(option, rest.multi))}
     {...rest}
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
@@ -120,7 +121,6 @@ const optionsPropType = (props, propName, componentName) => {
       }
     });
   }
-
   return undefined;
 };
 
@@ -138,6 +138,8 @@ FinalFormComponent.propTypes = {
   type: inputTypeProp,
   searchable: PropTypes.bool,
   multi: PropTypes.bool,
+  labelKey: PropTypes.string,
+  valueKey: PropTypes.string,
 };
 
 FinalFormComponent.defaultProps = {
@@ -149,6 +151,8 @@ FinalFormComponent.defaultProps = {
   clearable: false,
   searchable: false,
   multi: false,
+  labelKey: 'label',
+  valueKey: 'value',
 };
 
 export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;
