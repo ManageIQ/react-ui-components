@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
 import { FinalFormSwitch } from '../src/forms';
+import { translate, sprintf } from '../src/global-functions';
 
 const onSubmit = values => console.log('onSubmit: ', values);
 
@@ -30,7 +31,7 @@ const wrapperComponent = () => (
           </Row>
           <Row>
             <Col xs={12}>
-              <Button type="submit">Submit</Button>
+              <Button type="submit">{translate(sprintf('Mask $d'), 21)}</Button>
             </Col>
           </Row>
         </PfForm>

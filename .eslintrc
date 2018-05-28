@@ -5,6 +5,7 @@
     "react"
   ],
   "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["__"] }],
     "import/prefer-default-export": "off",
     "no-console": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": true}],
@@ -26,7 +27,9 @@
   },
   "globals": {
     "window": true,
-    "document": true
+    "document": true,
+    "__": true,
+    "sprintf": true
   },
   "env": {
     "node": true,
