@@ -18,9 +18,7 @@ import {
   composeValidators,
 } from '../';
 
-const minValue = min => (value) => {
-  return (Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`;
-};
+const minValue = min => value => ((Number.isNaN(value) || value >= min) ? undefined : `Should be greater than ${min}`);
 
 const options = [{
   value: 1,
@@ -29,6 +27,49 @@ const options = [{
   value: 2,
   label: 'Second option',
 }];
+
+const multiOptions = [
+  {
+    value: '5b0c05b7384a00fa99036602',
+    label: 'Hope',
+  },
+  {
+    value: '5b0c05b741f3d83c1a5f2a5f',
+    label: 'Christa',
+  },
+  {
+    value: '5b0c05b742c419e1b4ec3d63',
+    label: 'Tania',
+  },
+  {
+    value: '5b0c05b784180d77f84964c0',
+    label: 'Mcintyre',
+  },
+  {
+    value: '5b0c05b75bcf1e7d8f5023f5',
+    label: 'Tonya',
+  },
+  {
+    value: '5b0c05b701be9dd08b0e5d55',
+    label: 'Marcie',
+  },
+  {
+    value: '5b0c05b765787d0818542285',
+    label: 'Cara',
+  },
+  {
+    value: '5b0c05b7bbe383a94d47d3a1',
+    label: 'Becker',
+  },
+  {
+    value: '5b0c05b72477f8139bd1d352',
+    label: 'Foley',
+  },
+  {
+    value: '5b0c05b7cba617c4b72e0bb4',
+    label: 'Perkins',
+  },
+];
 
 storiesOf('Form', module).add('Form components', withInfo()(() => (
   <Grid>
@@ -90,6 +131,18 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                   inputColumnSize={5}
                 />)
               }
+              />
+            </Col>
+            <Col xs={12}>
+              <Field
+                name="multi"
+                id="multi"
+                component={FinalFormSelect}
+                placeholder="Select one or more options"
+                options={multiOptions}
+                label="Multi select"
+                validateOnMount={false}
+                multi
               />
             </Col>
             <FieldGroup label="Field group" name="checkboxGroup">

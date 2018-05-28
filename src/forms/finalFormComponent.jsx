@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
-import './finalFormSelectStyle.scss';
+import './finalFormStyle.scss';
 
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];

@@ -90,6 +90,7 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       border-radius: 0;
       margin-right: 5px;
       margin-left: 0px;
+      font-size: 12px;
       .Select-value-icon, .Select-value-label {
         background-color: $color-pf-blue-400;
         color: white;
@@ -98,6 +99,7 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       }
       .Select-value-icon {
         float: right;
+        padding: 2px 7px 2px;
         &:hover {
           background-color: $color-pf-blue-300;
         }
