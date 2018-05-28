@@ -2,6 +2,9 @@
 logs/
 *.log
 
+# Demo
+demo/demo-app.jsx
+
 # Runtime data
 pids
 *.pid
