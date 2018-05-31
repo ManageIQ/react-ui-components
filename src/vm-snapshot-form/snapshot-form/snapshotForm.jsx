@@ -47,6 +47,8 @@ export const VmSnapshotForm = ({
               id="snap_memory"
               component={FinalFormSwitch}
               label={labels.snapMemory}
+              onText="Yes"
+              offText="No"
             />
             <hr />
           </Col>

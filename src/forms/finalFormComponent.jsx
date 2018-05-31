@@ -11,22 +11,19 @@ const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
 
-const componentSelect = (componentType, props) => ({
-  textfield: <FormControl type={props.type || 'text'} {...props.input} placeholder={props.placeholder} />,
-  radio: <Radio {...props.input} >{props.label}</Radio>,
-  checkbox: <Checkbox {...props.input}>{props.label}</Checkbox>,
-  textarea: <FormControl componentClass="textarea" {...props.input} placeholder={props.placeholder} />,
+const componentSelect = (componentType, { input, meta, ...rest }) => ({
+  textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
+  radio: <Radio {...input} >{rest.label}</Radio>,
+  checkbox: <Checkbox {...input}>{rest.label}</Checkbox>,
+  textarea: <FormControl componentClass="textarea" {...input} placeholder={rest.placeholder} />,
   select: <ReactSelect
-    className={`${props.invalid ? 'has-error' : ''} final-form-select`}
+    className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
     optionClassName="final-form-select-option"
-    options={props.options}
-    clearable={props.clearable}
-    searchable={false}
-    placeholder={props.placeholder}
-    {...props.input}
-    onChange={({ value }) => props.input.onChange(value)}
+    {...input}
+    onChange={({ value }) => input.onChange(value)}
+    {...rest}
   />,
-  switch: <Switch {...props.input} value={!!props.input.value} onChange={(elem, state) => props.input.onChange(state)} />,
+  switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
 
 const isSwitchInput = componentType => switchComponents.includes(componentType);
@@ -115,6 +112,7 @@ FinalFormComponent.propTypes = {
   componentType: componentTypeProp,
   placeholder: PropTypes.string,
   type: inputTypeProp,
+  searchable: PropTypes.bool,
 };
 
 FinalFormComponent.defaultProps = {
@@ -124,6 +122,7 @@ FinalFormComponent.defaultProps = {
   placeholder: '',
   componentType: 'textfield',
   clearable: false,
+  searchable: false,
 };
 
 export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;

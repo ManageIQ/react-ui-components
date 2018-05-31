@@ -130,6 +130,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -271,6 +272,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -343,6 +345,8 @@ exports[`Final form input component Should render correctly 1`] = `
                   id="snap_memory"
                   label="Snap memory"
                   name="snap_memory"
+                  offText="No"
+                  onText="Yes"
                   parse={[Function]}
                 >
                   <FinalFormSwitch
@@ -375,6 +379,8 @@ exports[`Final form input component Should render correctly 1`] = `
                         "visited": false,
                       }
                     }
+                    offText="No"
+                    onText="Yes"
                   >
                     <FinalFormComponent
                       clearable={false}
@@ -410,7 +416,10 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      offText="No"
+                      onText="Yes"
                       placeholder=""
+                      searchable={false}
                       validateOnMount={false}
                     >
                       <FormGroup
@@ -444,27 +453,32 @@ exports[`Final form input component Should render correctly 1`] = `
                                 animate={true}
                                 baseClass="bootstrap-switch"
                                 bsSize={null}
+                                clearable={false}
                                 defaultValue={true}
                                 disabled={false}
                                 handleWidth="auto"
+                                id="snap_memory"
                                 inverse={false}
+                                label="Snap memory"
                                 labelText=" "
                                 labelWidth="auto"
                                 name="snap_memory"
                                 offColor="default"
-                                offText="OFF"
+                                offText="No"
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 onColor="primary"
                                 onFocus={[Function]}
-                                onText="ON"
+                                onText="Yes"
+                                placeholder=""
                                 readonly={false}
+                                searchable={false}
                                 tristate={false}
                                 value={false}
                                 wrapperClass="wrapper"
                               >
                                 <div
-                                  className="bootstrap-switch wrapper bootstrap-switch-off"
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory"
                                   onBlur={[Function]}
                                   onFocus={[Function]}
                                   onKeyDown={[Function]}
@@ -493,7 +507,7 @@ exports[`Final form input component Should render correctly 1`] = `
                                         }
                                       }
                                     >
-                                      ON
+                                      Yes
                                     </span>
                                     <span
                                       className="bootstrap-switch-label"
@@ -521,7 +535,7 @@ exports[`Final form input component Should render correctly 1`] = `
                                         }
                                       }
                                     >
-                                      OFF
+                                      No
                                     </span>
                                   </div>
                                 </div>
@@ -734,6 +748,7 @@ exports[`Final form input component Should render with description required 1`] 
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -875,6 +890,7 @@ exports[`Final form input component Should render with description required 1`] 
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -956,6 +972,8 @@ exports[`Final form input component Should render with description required 1`] 
                   id="snap_memory"
                   label="Snap memory"
                   name="snap_memory"
+                  offText="No"
+                  onText="Yes"
                   parse={[Function]}
                 >
                   <FinalFormSwitch
@@ -988,6 +1006,8 @@ exports[`Final form input component Should render with description required 1`] 
                         "visited": false,
                       }
                     }
+                    offText="No"
+                    onText="Yes"
                   >
                     <FinalFormComponent
                       clearable={false}
@@ -1023,7 +1043,10 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      offText="No"
+                      onText="Yes"
                       placeholder=""
+                      searchable={false}
                       validateOnMount={false}
                     >
                       <FormGroup
@@ -1057,27 +1080,32 @@ exports[`Final form input component Should render with description required 1`] 
                                 animate={true}
                                 baseClass="bootstrap-switch"
                                 bsSize={null}
+                                clearable={false}
                                 defaultValue={true}
                                 disabled={false}
                                 handleWidth="auto"
+                                id="snap_memory"
                                 inverse={false}
+                                label="Snap memory"
                                 labelText=" "
                                 labelWidth="auto"
                                 name="snap_memory"
                                 offColor="default"
-                                offText="OFF"
+                                offText="No"
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 onColor="primary"
                                 onFocus={[Function]}
-                                onText="ON"
+                                onText="Yes"
+                                placeholder=""
                                 readonly={false}
+                                searchable={false}
                                 tristate={false}
                                 value={false}
                                 wrapperClass="wrapper"
                               >
                                 <div
-                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-animate"
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
                                   onFocus={[Function]}
                                   onKeyDown={[Function]}
@@ -1106,7 +1134,7 @@ exports[`Final form input component Should render with description required 1`] 
                                         }
                                       }
                                     >
-                                      ON
+                                      Yes
                                     </span>
                                     <span
                                       className="bootstrap-switch-label"
@@ -1134,7 +1162,7 @@ exports[`Final form input component Should render with description required 1`] 
                                         }
                                       }
                                     >
-                                      OFF
+                                      No
                                     </span>
                                   </div>
                                 </div>
@@ -1347,6 +1375,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -1497,6 +1526,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         }
                       }
                       placeholder=""
+                      searchable={false}
                       validateOnMount={true}
                     >
                       <FormGroup
@@ -1569,6 +1599,8 @@ exports[`Final form input component Should render with name required 1`] = `
                   id="snap_memory"
                   label="Snap memory"
                   name="snap_memory"
+                  offText="No"
+                  onText="Yes"
                   parse={[Function]}
                 >
                   <FinalFormSwitch
@@ -1601,6 +1633,8 @@ exports[`Final form input component Should render with name required 1`] = `
                         "visited": false,
                       }
                     }
+                    offText="No"
+                    onText="Yes"
                   >
                     <FinalFormComponent
                       clearable={false}
@@ -1636,7 +1670,10 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      offText="No"
+                      onText="Yes"
                       placeholder=""
+                      searchable={false}
                       validateOnMount={false}
                     >
                       <FormGroup
@@ -1670,27 +1707,32 @@ exports[`Final form input component Should render with name required 1`] = `
                                 animate={true}
                                 baseClass="bootstrap-switch"
                                 bsSize={null}
+                                clearable={false}
                                 defaultValue={true}
                                 disabled={false}
                                 handleWidth="auto"
+                                id="snap_memory"
                                 inverse={false}
+                                label="Snap memory"
                                 labelText=" "
                                 labelWidth="auto"
                                 name="snap_memory"
                                 offColor="default"
-                                offText="OFF"
+                                offText="No"
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 onColor="primary"
                                 onFocus={[Function]}
-                                onText="ON"
+                                onText="Yes"
+                                placeholder=""
                                 readonly={false}
+                                searchable={false}
                                 tristate={false}
                                 value={false}
                                 wrapperClass="wrapper"
                               >
                                 <div
-                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-animate"
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
                                   onFocus={[Function]}
                                   onKeyDown={[Function]}
@@ -1719,7 +1761,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                         }
                                       }
                                     >
-                                      ON
+                                      Yes
                                     </span>
                                     <span
                                       className="bootstrap-switch-label"
@@ -1747,7 +1789,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                         }
                                       }
                                     >
-                                      OFF
+                                      No
                                     </span>
                                   </div>
                                 </div>
