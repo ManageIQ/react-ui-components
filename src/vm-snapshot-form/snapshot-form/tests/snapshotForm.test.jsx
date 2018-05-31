@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
-import { VmSnapshotForm } from '../snapshotForm';
+import toJson from 'enzyme-to-json';
+import { VmSnapshotForm } from '../../';
 
 describe('Final form input component', () => {
   const initialProps = {};
@@ -23,18 +23,18 @@ describe('Final form input component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<VmSnapshotForm {...initialProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<VmSnapshotForm {...initialProps} />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render with name required', () => {
-    const tree = renderer.create(<VmSnapshotForm {...initialProps} nameRequired />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<VmSnapshotForm {...initialProps} nameRequired />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render with description required', () => {
-    const tree = renderer.create(<VmSnapshotForm {...initialProps} descriptionRequired />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<VmSnapshotForm {...initialProps} descriptionRequired />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Submit button should be disabled', () => {
