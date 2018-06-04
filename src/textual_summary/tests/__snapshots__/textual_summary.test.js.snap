@@ -1,0 +1,496 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextualSummary renders just fine 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-md-12 col-lg-6"
+  >
+    <table
+      className="table table-bordered table-hover table-striped table-summary-screen"
+    >
+      <thead>
+        <tr>
+          <th
+            align="left"
+            colSpan="2"
+          >
+            Properties
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Region
+          </td>
+          <td>
+            
+            <span>
+               
+              US East (N. Virginia)
+            </span>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Type
+          </td>
+          <td>
+            
+            <span>
+               
+              Amazon EC2 Network
+            </span>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Management Engine GUID
+          </td>
+          <td>
+            
+            <span>
+               
+              null
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      className="table table-bordered table-hover table-striped table-summary-screen"
+    >
+      <thead>
+        <tr>
+          <th
+            align="left"
+            colSpan="2"
+          >
+            Status
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title="Ok"
+        >
+          <td
+            className="label"
+          >
+            Default Credentials
+          </td>
+          <td>
+            
+            <span>
+               
+              Valid
+            </span>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title="Ok"
+        >
+          <td
+            className="label"
+          >
+            SmartState Docker Credentials
+          </td>
+          <td>
+            
+            <span>
+               
+              Valid
+            </span>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={null}
+        >
+          <td
+            className="label"
+          >
+            Last Refresh
+          </td>
+          <td>
+            
+            <table
+              cellPadding="0"
+              cellSpacing="0"
+            >
+              <tbody>
+                <tr
+                  className="no-hover"
+                  onClick={[Function]}
+                  title={undefined}
+                >
+                  <td
+                    style={
+                      Object {
+                        "border": 0,
+                        "margin": 0,
+                        "padding": 0,
+                      }
+                    }
+                  >
+                    
+                    Success - 4 Months Ago
+                  </td>
+                </tr>
+                <tr
+                  className="no-hover"
+                  onClick={[Function]}
+                  title={undefined}
+                >
+                  <td
+                    style={
+                      Object {
+                        "border": 0,
+                        "margin": 0,
+                        "padding": 0,
+                      }
+                    }
+                  >
+                    
+                    null
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Last Refresh Date
+          </td>
+          <td>
+            
+            <span>
+               
+              2018-01-20T23:35:50.908Z
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    className="col-md-12 col-lg-6"
+  >
+    <table
+      className="table table-bordered table-hover table-striped table-summary-screen"
+    >
+      <thead>
+        <tr>
+          <th
+            align="left"
+            colSpan="2"
+          >
+            Relationships
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Parent Cloud Provider
+          </td>
+          <td>
+            
+            <span>
+               
+              [object Object]
+            </span>
+          </td>
+        </tr>
+        <tr
+          className="no-hover"
+          onClick={[Function]}
+          title={undefined}
+        >
+          <td
+            className="label"
+          >
+            Cloud Tenants
+          </td>
+          <td>
+            <i
+              className="pficon pficon-cloud-tenant"
+              title={null}
+            />
+            <span>
+               
+              0
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Cloud Networks"
+        >
+          <td
+            className="label"
+          >
+            Cloud Networks
+          </td>
+          <td>
+            <i
+              className="ff ff-cloud-network"
+              title="Show all Cloud Networks"
+            />
+            <span>
+               
+              1
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Cloud Subnets"
+        >
+          <td
+            className="label"
+          >
+            Cloud Subnets
+          </td>
+          <td>
+            <i
+              className="pficon pficon-network"
+              title="Show all Cloud Subnets"
+            />
+            <span>
+               
+              6
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Network Routers"
+        >
+          <td
+            className="label"
+          >
+            Network Routers
+          </td>
+          <td>
+            <i
+              className="pficon pficon-route"
+              title="Show all Network Routers"
+            />
+            <span>
+               
+              1
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Security Groups"
+        >
+          <td
+            className="label"
+          >
+            Security Groups
+          </td>
+          <td>
+            <i
+              className="pficon pficon-cloud-security"
+              title="Show all Security Groups"
+            />
+            <span>
+               
+              18
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Floating IPs"
+        >
+          <td
+            className="label"
+          >
+            Floating IPs
+          </td>
+          <td>
+            <i
+              className="ff ff-floating-ip"
+              title="Show all Floating IPs"
+            />
+            <span>
+               
+              14
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Network Ports"
+        >
+          <td
+            className="label"
+          >
+            Network Ports
+          </td>
+          <td>
+            <i
+              className="ff ff-network-port"
+              title="Show all Network Ports"
+            />
+            <span>
+               
+              26
+            </span>
+          </td>
+        </tr>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show all Load Balancers"
+        >
+          <td
+            className="label"
+          >
+            Load Balancers
+          </td>
+          <td>
+            <i
+              className="ff ff-load-balancer"
+              title="Show all Load Balancers"
+            />
+            <span>
+               
+              2
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      className="table table-bordered table-hover table-striped table-summary-screen"
+    >
+      <thead>
+        <tr>
+          <th
+            align="left"
+            colSpan="2"
+          >
+            Overview
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className=""
+          onClick={[Function]}
+          title="Show topology"
+        >
+          <td
+            className="label"
+          >
+            Topology
+          </td>
+          <td>
+            <i
+              className="pficon pficon-topology"
+              title="Show topology"
+            />
+            <span>
+               
+              undefined
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      className="table table-bordered table-striped table-summary-screen"
+    >
+      <thead>
+        <tr>
+          <th
+            align="left"
+            colSpan="2"
+          >
+            Smart Management
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="label"
+          >
+            Managed by Zone
+          </td>
+          <td>
+            <i
+              className="pficon pficon-zone"
+              title={null}
+            />
+            Amazon Zone
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="label"
+          >
+            My Company Tags
+          </td>
+          <td>
+            <i
+              className="fa fa-tag"
+              title={null}
+            />
+            No My Company Tags have been assigned
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
