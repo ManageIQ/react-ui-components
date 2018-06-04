@@ -71,7 +71,7 @@ exports[`TextualSummary renders just fine 1`] = `
             
             <span>
                
-              null
+              
             </span>
           </td>
         </tr>
@@ -177,7 +177,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     }
                   >
                     
-                    null
+                    
                   </td>
                 </tr>
               </tbody>
@@ -222,24 +222,6 @@ exports[`TextualSummary renders just fine 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr
-          className="no-hover"
-          onClick={[Function]}
-          title={undefined}
-        >
-          <td
-            className="label"
-          >
-            Parent Cloud Provider
-          </td>
-          <td>
-            
-            <span>
-               
-              [object Object]
-            </span>
-          </td>
-        </tr>
         <tr
           className="no-hover"
           onClick={[Function]}
@@ -441,7 +423,7 @@ exports[`TextualSummary renders just fine 1`] = `
             />
             <span>
                
-              undefined
+              
             </span>
           </td>
         </tr>

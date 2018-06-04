@@ -2,6 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import IconOrImage from './icon_or_image';
 
+const filterValue = val => val == null ? '' : String(val);
+
 const renderMultivalue = function renderMultivalue(values, onClick) {
   return (
     <table cellPadding="0" cellSpacing="0">
@@ -11,7 +13,7 @@ const renderMultivalue = function renderMultivalue(values, onClick) {
             <tr onClick={e => onClick(item, e)} key={i} className={item.link ? '' : 'no-hover'} title={item.title}>
               <td style={{ border: 0, margin: 0, padding: 0 }}>
                 <IconOrImage icon={item.icon} image={item.image} title={item.title} />
-                {`${item.value}`}
+                {filterValue(item.value)}
               </td>
             </tr>
           ))
@@ -22,7 +24,7 @@ const renderMultivalue = function renderMultivalue(values, onClick) {
 };
 
 const renderValue = function renderValue(value, onClick) {
-  return Array.isArray(value) ? renderMultivalue(value, onClick) : <span> {`${value}`}</span>;
+  return Array.isArray(value) ? renderMultivalue(value, onClick) : <span> {filterValue(value)}</span>;
 };
 
 export default function GenericTableRow(props) {
