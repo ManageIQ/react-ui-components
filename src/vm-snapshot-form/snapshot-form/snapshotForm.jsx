@@ -4,7 +4,7 @@ import { Form as PfForm, Button, Col, Row, ButtonGroup } from 'patternfly-react'
 import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
 
-import { renderFinalFormField, renderFinalFormTextArea, renderFinalFormCheckBox } from '../../forms/';
+import { renderFinalFormField, renderFinalFormTextArea, FinalFormSwitch } from '../../forms/';
 
 export const VmSnapshotForm = ({
   onSubmit,
@@ -17,6 +17,9 @@ export const VmSnapshotForm = ({
 }) => (
   <Form
     onSubmit={onSubmit}
+    initialValues={{
+      snap_memory: false,
+    }}
     render={({ invalid, values, handleSubmit }) => (
       <PfForm horizontal>
         <Row>
@@ -29,17 +32,23 @@ export const VmSnapshotForm = ({
                 render={({ input, meta }) => renderFinalFormField(input, meta, labels.name, true)}
               />
             }
+          </Col>
+          <Col xs={12}>
             <Field
               name="description"
               id="description"
               validate={descriptionRequired && required({ msg: errorMessages.description })}
               render={({ input, meta }) => renderFinalFormTextArea(input, meta, labels.description, true)}
             />
+          </Col>
+          <Col xs={12}>
             <Field
               name="snap_memory"
               id="snap_memory"
-              type="checkbox"
-              render={({ input, meta }) => renderFinalFormCheckBox(input, meta, labels.snapMemory, true)}
+              component={FinalFormSwitch}
+              label={labels.snapMemory}
+              onText="Yes"
+              offText="No"
             />
             <hr />
           </Col>
