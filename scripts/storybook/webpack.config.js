@@ -5,7 +5,7 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('mini-css-extract-plugin');
 const plugins = require('../plugins');
 
 module.exports = {
@@ -15,18 +15,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'resolve-url-loader',
-            {
-              loader: 'sass-loader',
+        test: /\.stories\.js$/,
+        loaders: [
+          {
+            loader: require.resolve('@storybook/addon-storysource/loader'),
+            options: {
+              prettierConfig: {
+                parser: 'babylon',
+              },
             },
-          ],
-        }),
+          },
+        ],
+        enforce: 'pre',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: [
+          ExtractTextPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'resolve-url-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
