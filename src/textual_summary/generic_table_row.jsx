@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import IconOrImage from './icon_or_image';
 
-const filterValue = val => val == null ? '' : String(val);
+const filterValue = val => (val == null ? '' : String(val));
 
 const renderMultivalue = function renderMultivalue(values, onClick) {
   return (
@@ -54,4 +54,3 @@ GenericTableRow.propTypes = {
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
-
