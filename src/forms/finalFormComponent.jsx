@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
-import './finalFormStyle.scss';
+import './style.scss';
 
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
@@ -22,7 +22,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
     optionClassName="final-form-select-option"
     {...input}
-    onChange={({ option }) => input.onChange(selectValue(option, rest.multi))}
+    onChange={option => input.onChange(selectValue(option, rest.multi, rest.labelKey))}
     {...rest}
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
