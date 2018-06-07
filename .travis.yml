@@ -14,4 +14,6 @@ script:
 - npm install
 - npm t
 
-after_success: npm run coverage
+after_success:
+- npm run coverage
+- npm run release
