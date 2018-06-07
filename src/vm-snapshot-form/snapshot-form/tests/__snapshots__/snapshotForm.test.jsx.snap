@@ -42,56 +42,9 @@ exports[`Final form input component Should render correctly 1`] = `
       <form
         className="form-horizontal"
       >
-        <label
-          className="control-label col-xs-2"
-        >
-          Input name
-        </label>
-        <div
-          className="col-xs-8"
-        >
-          <input
-            className="form-control"
-            id="name"
-            name="name"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder=""
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          className="control-label col-xs-2"
-        >
-          Input description
-        </label>
-        <div
-          className="col-xs-8"
-        >
-          <textarea
-            className="form-control"
-            id="description"
-            name="description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder=""
-            type={undefined}
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        className="field-group form-group"
-      >
-        <div
-          className=""
+        <Row
+          bsClass="row"
+          componentClass="div"
         >
           <div
             className="row"
@@ -158,6 +111,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       inputColumnSize={8}
                       label="Input name"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -176,9 +130,11 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -210,6 +166,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                id="name"
                                 name="name"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -220,6 +177,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               >
                                 <input
                                   className="form-control"
+                                  id="name"
                                   name="name"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -300,6 +258,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       inputColumnSize={8}
                       label="Input description"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -318,9 +277,11 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -352,6 +313,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                id="description"
                                 name="description"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -361,6 +323,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               >
                                 <textarea
                                   className="form-control"
+                                  id="description"
                                   name="description"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -445,6 +408,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       inputColumnSize={8}
                       label="Snap memory"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -463,11 +427,13 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
                       placeholder=""
                       searchable={false}
                       validateOnMount={false}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -507,8 +473,10 @@ exports[`Final form input component Should render correctly 1`] = `
                                 id="snap_memory"
                                 inverse={false}
                                 label="Snap memory"
+                                labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
+                                multi={false}
                                 name="snap_memory"
                                 offColor="default"
                                 offText="No"
@@ -522,6 +490,7 @@ exports[`Final form input component Should render correctly 1`] = `
                                 searchable={false}
                                 tristate={false}
                                 value={false}
+                                valueKey="value"
                                 wrapperClass="wrapper"
                               >
                                 <div
@@ -571,7 +540,7 @@ exports[`Final form input component Should render correctly 1`] = `
                                         }
                                       }
                                     >
-
+                                       
                                     </span>
                                     <span
                                       className="bootstrap-switch-handle-off bootstrap-switch-default"
@@ -776,6 +745,7 @@ exports[`Final form input component Should render with description required 1`] 
                       inputColumnSize={8}
                       label="Input name"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -794,9 +764,11 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -828,6 +800,7 @@ exports[`Final form input component Should render with description required 1`] 
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                id="name"
                                 name="name"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -838,6 +811,7 @@ exports[`Final form input component Should render with description required 1`] 
                               >
                                 <input
                                   className="form-control"
+                                  id="name"
                                   name="name"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -918,6 +892,7 @@ exports[`Final form input component Should render with description required 1`] 
                       inputColumnSize={8}
                       label="Input description"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -936,9 +911,11 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -970,6 +947,7 @@ exports[`Final form input component Should render with description required 1`] 
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                id="description"
                                 name="description"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -979,6 +957,7 @@ exports[`Final form input component Should render with description required 1`] 
                               >
                                 <textarea
                                   className="form-control"
+                                  id="description"
                                   name="description"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1072,6 +1051,7 @@ exports[`Final form input component Should render with description required 1`] 
                       inputColumnSize={8}
                       label="Snap memory"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1090,11 +1070,13 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
                       placeholder=""
                       searchable={false}
                       validateOnMount={false}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -1134,8 +1116,10 @@ exports[`Final form input component Should render with description required 1`] 
                                 id="snap_memory"
                                 inverse={false}
                                 label="Snap memory"
+                                labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
+                                multi={false}
                                 name="snap_memory"
                                 offColor="default"
                                 offText="No"
@@ -1149,6 +1133,7 @@ exports[`Final form input component Should render with description required 1`] 
                                 searchable={false}
                                 tristate={false}
                                 value={false}
+                                valueKey="value"
                                 wrapperClass="wrapper"
                               >
                                 <div
@@ -1198,7 +1183,7 @@ exports[`Final form input component Should render with description required 1`] 
                                         }
                                       }
                                     >
-
+                                       
                                     </span>
                                     <span
                                       className="bootstrap-switch-handle-off bootstrap-switch-default"
@@ -1331,64 +1316,12 @@ exports[`Final form input component Should render with name required 1`] = `
       horizontal={true}
       inline={false}
     >
-      <div
-        className="form-group has-error"
+      <form
+        className="form-horizontal"
       >
-        <label
-          className="control-label col-xs-2"
-        >
-          Input name
-        </label>
-        <div
-          className="col-xs-8"
-        >
-          <input
-            className="form-control"
-            id="name"
-            name="name"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder=""
-            type="text"
-            value=""
-          />
-          <span
-            className="help-block"
-          >
-            Name required
-          </span>
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          className="control-label col-xs-2"
-        >
-          Input description
-        </label>
-        <div
-          className="col-xs-8"
-        >
-          <textarea
-            className="form-control"
-            id="description"
-            name="description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder=""
-            type={undefined}
-            value=""
-          />
-        </div>
-      </div>
-      <div
-        className="field-group form-group"
-      >
-        <div
-          className=""
+        <Row
+          bsClass="row"
+          componentClass="div"
         >
           <div
             className="row"
@@ -1455,6 +1388,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       inputColumnSize={8}
                       label="Input name"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1473,9 +1407,11 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -1507,6 +1443,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                id="name"
                                 name="name"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1517,6 +1454,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               >
                                 <input
                                   className="form-control"
+                                  id="name"
                                   name="name"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1606,6 +1544,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       inputColumnSize={8}
                       label="Input description"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1624,9 +1563,11 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       placeholder=""
                       searchable={false}
                       validateOnMount={true}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -1658,6 +1599,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                id="description"
                                 name="description"
                                 onBlur={[Function]}
                                 onChange={[Function]}
@@ -1667,6 +1609,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               >
                                 <textarea
                                   className="form-control"
+                                  id="description"
                                   name="description"
                                   onBlur={[Function]}
                                   onChange={[Function]}
@@ -1751,6 +1694,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       inputColumnSize={8}
                       label="Snap memory"
                       labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1769,11 +1713,13 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
                       placeholder=""
                       searchable={false}
                       validateOnMount={false}
+                      valueKey="value"
                     >
                       <FormGroup
                         bsClass="form-group"
@@ -1813,8 +1759,10 @@ exports[`Final form input component Should render with name required 1`] = `
                                 id="snap_memory"
                                 inverse={false}
                                 label="Snap memory"
+                                labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
+                                multi={false}
                                 name="snap_memory"
                                 offColor="default"
                                 offText="No"
@@ -1828,6 +1776,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                 searchable={false}
                                 tristate={false}
                                 value={false}
+                                valueKey="value"
                                 wrapperClass="wrapper"
                               >
                                 <div
@@ -1877,7 +1826,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                         }
                                       }
                                     >
-
+                                       
                                     </span>
                                     <span
                                       className="bootstrap-switch-handle-off bootstrap-switch-default"
