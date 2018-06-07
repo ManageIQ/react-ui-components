@@ -1,6 +1,6 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import TagGroup from '../tag_group';
 import { tagGroupData } from '../data/tag_group';
 import IconOrImage from '../icon_or_image';
@@ -16,9 +16,8 @@ describe('TagGroup', () => {
    *      values joined with "<b>&nbsp;|..."
    */
   it('renders just fine', () => {
-    const component = renderer.create(<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
-    const image = component.toJSON();
-    expect(image).toMatchSnapshot();
+    const image = mount(<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
+    expect(toJson(image)).toMatchSnapshot();
   });
 
   it('rendered array row with icon and values joined with "<b>&nbsp;|&nbsp;</b>")', () => {

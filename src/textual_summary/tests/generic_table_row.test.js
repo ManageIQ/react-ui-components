@@ -1,5 +1,6 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import GenericTableRow from '../generic_table_row';
 
 describe('Simple Table', () => {
@@ -24,17 +25,16 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const component = renderer.create(<GenericTableRow item={item} onClick={(e) => null}/>);
-    const row = component.toJSON();
-    expect(row).toMatchSnapshot();
+    const row = mount(<GenericTableRow item={item} onClick={() => null} />);
+    expect(toJson(row)).toMatchSnapshot();
   });
 
   it('renders multi-value just fine...', () => {
     const item = {
       label: 'Network Manager',
       value: [
-        {title: 'Amazon East Network Manager', icon: null, value: 'foobar'},
-        {title: 'Amazon West Network Manager', icon: null, value: 'boofar'},
+        { title: 'Amazon East Network Manager', icon: null, value: 'foobar' },
+        { title: 'Amazon West Network Manager', icon: null, value: 'boofar' },
       ],
       icon: null,
       image: 'http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg',
@@ -43,9 +43,7 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const component = renderer.create(<GenericTableRow item={item} onClick={(e) => null}/>);
-    const row = component.toJSON();
-    expect(row).toMatchSnapshot();
+    const row = mount(<GenericTableRow item={item} onClick={() => null} />);
+    expect(toJson(row)).toMatchSnapshot();
   });
 });
-
