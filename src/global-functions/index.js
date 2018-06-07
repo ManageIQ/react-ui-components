@@ -1,4 +1,4 @@
-export function translate(translateThis) {
+export function __(translateThis) {
   if (window.__) {
     return window.__(translateThis);
   }

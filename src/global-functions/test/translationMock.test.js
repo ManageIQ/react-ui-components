@@ -1,4 +1,4 @@
-import { translate, sprintf } from '../';
+import { __, sprintf } from '../';
 
 describe('Should provide correct translation functions', () => {
   afterEach(() => {
@@ -8,7 +8,7 @@ describe('Should provide correct translation functions', () => {
 
   it('Translate should not translate string ', () => {
     const foo = 'Some string';
-    expect(translate(foo)).toEqual(foo);
+    expect(__(foo)).toEqual(foo);
   });
 
   it('Translate should provide string transformation if __ fuction is on window', () => {
@@ -23,7 +23,7 @@ describe('Should provide correct translation functions', () => {
     const mask = 'Some mask %d';
     const parameters = 10;
     expect(sprintf(mask, parameters)).toEqual(mask);
-    expect(sprintf(translate(mask), 'foo', 'bar')).toEqual(mask);
+    expect(sprintf(__(mask), 'foo', 'bar')).toEqual(mask);
   });
 
   it('Sprintf should transform string if sprintf function is on window', () => {
