@@ -1,5 +1,6 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { FinalFormSelect } from '../';
 import { fieldMetaProps, fieldInputProp } from './mocks';
 
@@ -18,23 +19,23 @@ describe('React select component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<FinalFormSelect
+    const tree = shallow(<FinalFormSelect
       label="test select"
       options={options}
       {...initialProps}
-    />).toJSON();
-    expect(tree).toMatchSnapshot();
+    />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render correctly in error state', () => {
     const meta = { ...fieldMetaProps };
     meta.error = 'Required';
     initialProps = { ...initialProps, meta };
-    const tree = renderer.create(<FinalFormSelect
+    const tree = shallow(<FinalFormSelect
       label="test select"
       options={options}
       {...initialProps}
-    />).toJSON();
-    expect(tree).toMatchSnapshot();
+    />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 });

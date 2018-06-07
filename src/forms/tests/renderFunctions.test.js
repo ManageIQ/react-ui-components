@@ -1,5 +1,5 @@
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { mount, shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { renderFinalFormField, renderFinalFormTextArea, renderFinalFormCheckBox } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
 
@@ -9,8 +9,8 @@ describe('Final form component reder functions', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
     const field = renderFinalFormField(input, meta, 'Text field', true);
-    const tree = renderer.create(field).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(field).dive();
+    expect(toJson(tree)).toMatchSnapshot();
 
     const wrapper = mount(field);
     expect(wrapper.find('input[type="text"]').length).toEqual(1);
@@ -20,8 +20,8 @@ describe('Final form component reder functions', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
     const field = renderFinalFormField(input, meta, 'Number field', true, 'number');
-    const tree = renderer.create(field).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(field).dive();
+    expect(toJson(tree)).toMatchSnapshot();
 
     const wrapper = mount(field);
     expect(wrapper.find('input[type="number"]').length).toEqual(1);
@@ -31,8 +31,8 @@ describe('Final form component reder functions', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
     const field = renderFinalFormField(input, meta, 'Number field', true, 'password');
-    const tree = renderer.create(field).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(field).dive();
+    expect(toJson(tree)).toMatchSnapshot();
 
     const wrapper = mount(field);
     expect(wrapper.find('input[type="password"]').length).toEqual(1);
@@ -42,8 +42,8 @@ describe('Final form component reder functions', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
     const field = renderFinalFormTextArea(input, meta, 'Text area', true);
-    const tree = renderer.create(field).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(field).dive();
+    expect(toJson(tree)).toMatchSnapshot();
 
     const wrapper = mount(field);
     expect(wrapper.find('textarea').length).toEqual(1);
@@ -53,8 +53,8 @@ describe('Final form component reder functions', () => {
     const input = { ...fieldInputProp };
     const meta = { ...fieldMetaProps };
     const field = renderFinalFormCheckBox(input, meta, 'check box', true);
-    const tree = renderer.create(field).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(field).dive();
+    expect(toJson(tree)).toMatchSnapshot();
 
     const wrapper = mount(field);
     expect(wrapper.find('input[type="checkbox"]').length).toEqual(1);

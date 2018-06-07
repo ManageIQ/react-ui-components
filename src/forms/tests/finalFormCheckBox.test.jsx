@@ -1,7 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
-
+import { shallow, mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { FinalFormCheckBox } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
 
@@ -15,14 +14,14 @@ describe('Final form checkbox component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<FinalFormCheckBox {...initialProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(<FinalFormCheckBox {...initialProps} />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render with error message', () => {
     const props = { ...initialProps, meta: { ...initialProps.meta, error: 'Error message' } };
-    const tree = renderer.create(<FinalFormCheckBox {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(<FinalFormCheckBox {...props} />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should call onChange event', () => {

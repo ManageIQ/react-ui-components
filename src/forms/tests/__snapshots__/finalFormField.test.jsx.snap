@@ -1,20 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Final form input component Should render correctly 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     foo
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <input
-      className="form-control"
-      id="name"
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -23,25 +29,31 @@ exports[`Final form input component Should render correctly 1`] = `
       type="text"
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form input component Should render with error message 1`] = `
-<div
-  className="form-group has-error"
+<FormGroup
+  bsClass="form-group"
+  validationState="error"
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     foo
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <input
-      className="form-control"
-      id="name"
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -50,11 +62,11 @@ exports[`Final form input component Should render with error message 1`] = `
       type="text"
       value=""
     />
-    <span
-      className="help-block"
+    <HelpBlock
+      bsClass="help-block"
     >
       Error message
-    </span>
-  </div>
-</div>
+    </HelpBlock>
+  </Col>
+</FormGroup>
 `;

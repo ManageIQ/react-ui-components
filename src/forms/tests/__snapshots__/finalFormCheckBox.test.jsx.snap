@@ -1,63 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Final form checkbox component Should render correctly 1`] = `
-<div
-  className="field-group form-group"
+<FormGroup
+  bsClass="form-group"
+  className="field-group"
+  validationState={null}
 >
-  <div
-    className=""
+  <Col
+    bsClass="col"
+    componentClass="div"
   >
-    <div
-      className="checkbox"
-      style={undefined}
+    <Checkbox
+      bsClass="checkbox"
+      disabled={false}
+      inline={false}
+      name="name"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      title=""
+      value=""
     >
-      <label
-        title=""
-      >
-        <input
-          disabled={false}
-          id="name"
-          name="name"
-          onBlur={[MockFunction]}
-          onChange={[MockFunction]}
-          onFocus={[MockFunction]}
-          type="checkbox"
-          value=""
-        />
-        foo
-      </label>
-    </div>
-  </div>
-</div>
+      foo
+    </Checkbox>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form checkbox component Should render with error message 1`] = `
-<div
-  className="field-group form-group has-error"
+<FormGroup
+  bsClass="form-group"
+  className="field-group"
+  validationState="error"
 >
-  <div
-    className=""
+  <Col
+    bsClass="col"
+    componentClass="div"
   >
-    <div
-      className="checkbox"
-      style={undefined}
+    <Checkbox
+      bsClass="checkbox"
+      disabled={false}
+      inline={false}
+      name="name"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      title=""
+      value=""
     >
-      <label
-        title=""
-      >
-        <input
-          disabled={false}
-          id="name"
-          name="name"
-          onBlur={[MockFunction]}
-          onChange={[MockFunction]}
-          onFocus={[MockFunction]}
-          type="checkbox"
-          value=""
-        />
-        foo
-      </label>
-    </div>
-  </div>
-</div>
+      foo
+    </Checkbox>
+  </Col>
+</FormGroup>
 `;
