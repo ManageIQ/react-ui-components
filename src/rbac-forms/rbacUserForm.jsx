@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { required, email } from 'redux-form-validators';
 
 import { Form as PfForm, Col, Row, Grid, Button, ButtonGroup } from 'patternfly-react';
-import { FinalFormField, FinalFormSelect } from '../forms';
+import { FinalFormField, FinalFormSelect, composeValidators } from '../forms';
 
 const mapMultiSelectValues = (values, keyName) => Array.from(values, item => item[keyName]);
+const validateEmpty = values => (values.length === 0 ? 'A User must be assigned to a Group' : undefined);
 
 const RbacUserForm = ({ onSave, groups, onCancel }) => (
   <Form
@@ -71,7 +72,7 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
             <Col xs={12}>
               <Field
                 name="chosen_group"
-                validate={required({ msg: 'A User must be assigned to a Group' })}
+                validate={composeValidators(required({ msg: 'A User must be assigned to a Group' }), validateEmpty)}
                 component={FinalFormSelect}
                 label="Available groups multi"
                 options={groups}
