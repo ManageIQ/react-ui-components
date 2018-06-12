@@ -2,12 +2,13 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { required, email } from 'redux-form-validators';
-
 import { Form as PfForm, Col, Row, Grid, Button, ButtonGroup } from 'patternfly-react';
+
 import { FinalFormField, FinalFormSelect, composeValidators } from '../forms';
+import { __ } from '../global-functions';
 
 const mapMultiSelectValues = (values, keyName) => Array.from(values, item => item[keyName]);
-const validateEmpty = values => (values.length === 0 ? 'A User must be assigned to a Group' : undefined);
+const validateEmpty = values => (values.length === 0 ? __('A User must be assigned to a Group') : undefined);
 
 const RbacUserForm = ({ onSave, groups, onCancel }) => (
   <Form
@@ -15,7 +16,7 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
     validate={(values) => {
       const errors = {};
       if (values.password !== values.verify) {
-        errors.verify = 'Password/Verify Password do not match';
+        errors.verify = __('Password/Verify Password do not match');
       }
       return errors;
     }}
@@ -26,35 +27,35 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
             <Col xs={12}>
               <Field
                 name="name"
-                validate={required({ msg: 'Required' })}
+                validate={required({ msg: __('Required') })}
                 component={FinalFormField}
-                label="Full name"
+                label={__('Full Name')}
               />
             </Col>
             <Col xs={12}>
               <Field
                 name="userid"
-                validate={required({ msg: 'Required' })}
+                validate={required({ msg: __('Required') })}
                 component={FinalFormField}
-                label="Username"
+                label={__('Username')}
               />
             </Col>
             <Col xs={12}>
               <Field
                 name="password"
                 type="password"
-                validate={required({ msg: 'Required' })}
+                validate={required({ msg: __('Required') })}
                 component={FinalFormField}
-                label="Password"
+                label={__('Password')}
               />
             </Col>
             <Col xs={12}>
               <Field
                 name="verify"
                 type="password"
-                validate={required({ msg: 'Required' })}
+                validate={required({ msg: __('Required') })}
                 component={FinalFormField}
-                label="Confirm password"
+                label={__('Confirm password')}
               />
             </Col>
             <Col xs={12}>
@@ -62,21 +63,21 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
                 name="email"
                 type="email"
                 validate={email({
-                  msg: 'This is not a valid email addres',
+                  msg: __('Email must be a valid email address'),
                   allowBlank: true,
                 })}
                 component={FinalFormField}
-                label="Email"
+                label={__('Email Address')}
               />
             </Col>
             <Col xs={12}>
               <Field
                 name="chosen_group"
-                validate={composeValidators(required({ msg: 'A User must be assigned to a Group' }), validateEmpty)}
+                validate={composeValidators(required({ msg: __('A User must be assigned to a Group') }), validateEmpty)}
                 component={FinalFormSelect}
-                label="Available groups multi"
+                label={__('Available Groups')}
                 options={groups}
-                placeholder="Choose one or more group"
+                placeholder={__('Choose one or more Groups')}
                 multi
               />
             </Col>
@@ -84,8 +85,8 @@ const RbacUserForm = ({ onSave, groups, onCancel }) => (
           <Row>
             <Col xs={10}>
               <ButtonGroup className="pull-right">
-                <Button id="user-submit" bsStyle="primary" disabled={invalid} type="button" onClick={handleSubmit}>Add</Button>
-                <Button onClick={onCancel}>Cancel</Button>
+                <Button id="user-submit" bsStyle="primary" disabled={invalid} type="button" onClick={handleSubmit}>{__('Add')}</Button>
+                <Button onClick={onCancel}>{__('Cancel')}</Button>
               </ButtonGroup>
             </Col>
           </Row>

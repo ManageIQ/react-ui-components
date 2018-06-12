@@ -19,7 +19,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
           <label
             className="control-label col-xs-2"
           >
-            Full name
+            Full Name
           </label>
           <div
             className="col-xs-8"
@@ -131,7 +131,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
           <label
             className="control-label col-xs-2"
           >
-            Email
+            Email Address
           </label>
           <div
             className="col-xs-8"
@@ -159,7 +159,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
           <label
             className="control-label col-xs-2"
           >
-            Available groups multi
+            Available Groups
           </label>
           <div
             className="col-xs-8"
@@ -184,7 +184,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                   <div
                     className="Select-placeholder"
                   >
-                    Choose one or more group
+                    Choose one or more Groups
                   </div>
                   <div
                     aria-activedescendant="react-select-2--value"
