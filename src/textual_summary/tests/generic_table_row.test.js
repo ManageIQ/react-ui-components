@@ -25,7 +25,11 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const row = mount(<GenericTableRow item={item} onClick={() => null} />);
+    const row = mount(<table>
+      <tbody>
+        <GenericTableRow item={item} onClick={() => null} />
+      </tbody>
+    </table>);
     expect(toJson(row)).toMatchSnapshot();
   });
 
@@ -43,7 +47,11 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const row = mount(<GenericTableRow item={item} onClick={() => null} />);
+    const row = mount(<table>
+      <tbody>
+        <GenericTableRow item={item} onClick={() => null} />
+      </tbody>
+    </table>);
     expect(toJson(row)).toMatchSnapshot();
   });
 });
