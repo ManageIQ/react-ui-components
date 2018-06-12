@@ -106,10 +106,28 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
 
+.final-form-select.is-searchable{
+  .Select-input {
+    padding-left: 0;
+    margin-left: 0;
+    input {
+      padding: 0;
+    }
+  }
+  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
+  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
+  &.is-open.Select--single .Select-placeholder {
+    color: $color-pf-black-600;
+  }
+}
+
+
 .final-form-select.Select--multi.has-value,
 .final-form-select.Select--multi.is-open.has-value,
 .final-form-select.Select--multi.is-open.is-focused.has-value,
-.final-form-select.Select--multi.is-focused.has-value {
+.final-form-select.Select--multi.is-focused.has-value,
+.final-form-select.is-searchable.is-focused.is-open,
+.final-form-select.is-searchable.is-focused  {
   .Select-control {
     background-image: none;
     background-color: white;
