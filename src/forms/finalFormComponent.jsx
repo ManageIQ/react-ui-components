@@ -10,8 +10,8 @@ import './style.scss';
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
-const selectValue = (option, multi, labelKey) =>
-  (multi ? option.sort((a, b) => (a[labelKey].toLowerCase() > b[labelKey].toLowerCase())) : option.value);
+const selectValue = (option, labelKey) =>
+  option.sort((a, b) => (a[labelKey].toLowerCase() > b[labelKey].toLowerCase()));
 
 const componentSelect = (componentType, { input, meta, ...rest }) => ({
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
@@ -22,7 +22,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
     optionClassName="final-form-select-option"
     {...input}
-    onChange={option => input.onChange(selectValue(option, rest.multi, rest.labelKey))}
+    onChange={option => input.onChange(rest.multi ? selectValue(option, rest.labelKey) : option)}
     {...rest}
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,

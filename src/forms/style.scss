@@ -45,6 +45,9 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   .Select-input {
     height: 20px;
   }
+  .Select-clear-zone {
+    line-height: 0.7;
+  }
   .Select-control > *:last-child {
     padding-top: 2px;
   }
@@ -127,7 +130,8 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 .final-form-select.Select--multi.is-open.is-focused.has-value,
 .final-form-select.Select--multi.is-focused.has-value,
 .final-form-select.is-searchable.is-focused.is-open,
-.final-form-select.is-searchable.is-focused  {
+.final-form-select.is-searchable.is-focused,
+.final-form-select.is-searchable.is-focused:not(.is-open) {
   .Select-control {
     background-image: none;
     background-color: white;
