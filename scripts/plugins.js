@@ -6,12 +6,8 @@ const extractTextPlugin = new ExtractTextPlugin('[name].css');
 
 const providePlugin = new ProvidePlugin({
   react: 'react',
-  $: 'jquery',
-  jQuery: 'jquery',
-  'window.jQuery': 'jquery',
   'react-dom': 'react-dom',
   'patternfly-react': 'patternfly-react',
-  _: 'lodash',
 });
 
 const htmlPlugin = new HtmlWebpackPlugin({
