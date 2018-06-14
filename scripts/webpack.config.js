@@ -1,7 +1,8 @@
 const { resolve } = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('mini-css-extract-plugin');
 const { fileEntries, buildExternals, FILE_NAMES } = require('./helper-functions');
 
+const devMode = process.env.NODE_ENV !== 'production';
 const plugins = require('./plugins');
 
 module.exports = (env) => {
@@ -10,7 +11,7 @@ module.exports = (env) => {
   const isServer = env && env.server;
   const entries = Object.assign(
     fileEntries(FILE_NAMES, !isBuild),
-    isServer ? fileEntries(FILE_NAMES, false, 'demo') : {}
+    isServer ? fileEntries(FILE_NAMES, false, 'demo') : {},
   );
 
   return {
@@ -49,16 +50,18 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              'css-loader',
-              'resolve-url-loader',
-              {
-                loader: 'sass-loader',
-              },
-            ],
-          }),
+          use: [
+            ExtractTextPlugin.loader,
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'resolve-url-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
         },
       ],
     },
@@ -74,5 +77,6 @@ module.exports = (env) => {
       hot: true,
       clientLogLevel: 'none',
     },
+    mode: devMode ? 'development' : 'production',
   };
 };
