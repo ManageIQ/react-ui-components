@@ -17,32 +17,37 @@ export default function SimpleTable(props) {
     return label;
   };
 
-  const renderValue = (value, j) => {
+  const renderValue = (value, j, onClick) => {
     if ((value != null) && (typeof value === 'object') && value.expandable) {
+      // expandable value
       return (
         <td key={j}>
           <div className="pull-left expand">{value.value}</div>
           <div className="pull-right" />
         </td>
       );
+    } else if ((value != null) && (typeof value === 'object') && value.link) {
+      // value with a link
+      return <td onClick={e => onClick(value, e)} key={j}>{value.value}</td>;
     }
-    return <td key={j}>{value}</td>;
+    // simple value
+    return <td className='no-hover' key={j}>{value}</td>;
   };
 
-  const renderRow = (row, i) => <tr key={i}>{row.map((value, j) => renderValue(value, j))}</tr>;
+  const renderRow = (row, i, onClick) => <tr key={i}>{row.map((value, j) => renderValue(value, j, onClick))}</tr>;
 
   return (
-    <table className="table table-bordered table-striped table-summary-screen">
+    <table className="table table-bordered table-hover table-striped table-summary-screen">
       <thead>
         <tr>
           <th colSpan={props.labels.length} align="left">{props.title}</th>
         </tr>
         <tr>
-          {props.labels.map((label, i) => <td key={i}><strong>{renderLabel(label)}</strong></td>)}
+          {props.labels.map((label, i) => <td style={{ wordBreak: 'initial' }} key={i}><strong>{renderLabel(label)}</strong></td>)}
         </tr>
       </thead>
       <tbody>
-        {props.rows.map((row, i) => renderRow(row, i))}
+        {props.rows.map((row, i) => renderRow(row, i, props.onClick))}
       </tbody>
     </table>
   );
@@ -52,4 +57,5 @@ SimpleTable.propTypes = {
   title: PropTypes.string.isRequired,
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
