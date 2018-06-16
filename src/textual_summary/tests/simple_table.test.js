@@ -18,6 +18,7 @@ describe('Simple Table', () => {
       title={simpleTableData.title}
       labels={simpleTableData.labels}
       rows={simpleTableData.rows}
+      onClick={e => null}
     />);
     const table = component.toJSON();
     expect(table).toMatchSnapshot();
