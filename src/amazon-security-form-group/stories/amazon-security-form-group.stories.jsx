@@ -5,7 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 
 import AmazonSecurityFormGroup from '../amazon-security-form-group';
 
-const securityGroupRules = [
+const vpcIds = [
   {
     value: 0,
     label: 'Davidson',
@@ -67,74 +67,11 @@ const securityGroupRules = [
     label: 'Cheryl',
   },
 ];
-const securityGroupRulesEgress = [
-  {
-    value: 0,
-    label: 'Dillard',
-  },
-  {
-    value: 1,
-    label: 'Cantrell',
-  },
-  {
-    value: 2,
-    label: 'Owen',
-  },
-  {
-    value: 3,
-    label: 'Hahn',
-  },
-  {
-    value: 4,
-    label: 'Wong',
-  },
-  {
-    value: 5,
-    label: 'Farmer',
-  },
-  {
-    value: 6,
-    label: 'Cohen',
-  },
-  {
-    value: 7,
-    label: 'Silva',
-  },
-  {
-    value: 8,
-    label: 'Schwartz',
-  },
-  {
-    value: 9,
-    label: 'Donaldson',
-  },
-  {
-    value: 10,
-    label: 'Houston',
-  },
-  {
-    value: 11,
-    label: 'Bailey',
-  },
-  {
-    value: 12,
-    label: 'Ferrell',
-  },
-  {
-    value: 13,
-    label: 'Potts',
-  },
-  {
-    value: 14,
-    label: 'Gaines',
-  },
-];
 
 storiesOf('Amazon Security forms', module).add('Amazon Security form group', withInfo()(() => (
   <AmazonSecurityFormGroup
-    onSubmit={action('onSubmit')}
+    onSave={action('onSubmit')}
     onCancel={action('onCancel')}
-    securityGroupRules={securityGroupRules}
-    securityGroupRulesEgress={securityGroupRulesEgress}
+    vpcIds={vpcIds}
   />
 )));
