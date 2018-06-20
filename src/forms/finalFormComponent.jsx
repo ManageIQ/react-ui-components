@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
-import './finalFormSelectStyle.scss';
+import './style.scss';
 
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
+const selectValue = (option, labelKey) =>
+  option.sort((a, b) => (a[labelKey].toLowerCase() > b[labelKey].toLowerCase()));
 
 const componentSelect = (componentType, { input, meta, ...rest }) => ({
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
@@ -20,13 +22,14 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
     optionClassName="final-form-select-option"
     {...input}
-    onChange={({ value }) => input.onChange(value)}
+    onChange={option => input.onChange(rest.multi ? selectValue(option, rest.labelKey) : option)}
     {...rest}
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
 
 const isSwitchInput = componentType => switchComponents.includes(componentType);
+const normalizeInputValues = values => (values.id ? values : { ...values, id: values.name });
 
 const FinalFormComponent = ({
   meta,
@@ -45,7 +48,7 @@ const FinalFormComponent = ({
   const invalid = validationError(meta, validateOnMount);
   const inputProps = {
     meta,
-    input,
+    input: normalizeInputValues(input),
     options,
     clearable,
     placeholder,
@@ -97,6 +100,30 @@ const inputTypeProp = (props, propName) => {
   return undefined;
 };
 
+const optionsPropType = (props, propName, componentName) => {
+  if (props.componentType === 'select') {
+    if (!Array.isArray(props.options)) {
+      return new Error(`Expected options to be array, received ${typeof props.options}. Validation failed in ${componentName}!`);
+    }
+
+    // eslint-disable-next-line
+    props.options.forEach((option, index) => {
+      if (typeof option !== 'object') {
+        return new Error(`Select option must be an object, ${typeof option} received at index ${index}. Validation failed in ${componentName}!`);
+      }
+
+      if (!option[props.valueKey]) {
+        return new Error(`Option must have ${props.valueKey} attribute. Validation failed in ${componentName}!`);
+      }
+
+      if (!option[props.labelKey]) {
+        return new Error(`Option must have ${props.valueKey} attribute. Validation failed in ${componentName}!`);
+      }
+    });
+  }
+  return undefined;
+};
+
 FinalFormComponent.propTypes = {
   meta: metaObjectProps,
   input: inputObjectProps,
@@ -104,15 +131,15 @@ FinalFormComponent.propTypes = {
   validateOnMount: PropTypes.bool,
   inputColumnSize: PropTypes.number,
   labelColumnSize: PropTypes.number,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.any.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
+  options: optionsPropType,
   clearable: PropTypes.bool,
   componentType: componentTypeProp,
   placeholder: PropTypes.string,
   type: inputTypeProp,
   searchable: PropTypes.bool,
+  multi: PropTypes.bool,
+  labelKey: PropTypes.string,
+  valueKey: PropTypes.string,
 };
 
 FinalFormComponent.defaultProps = {
@@ -123,6 +150,9 @@ FinalFormComponent.defaultProps = {
   componentType: 'textfield',
   clearable: false,
   searchable: false,
+  multi: false,
+  labelKey: 'label',
+  valueKey: 'value',
 };
 
 export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;
