@@ -22,6 +22,7 @@ const renderComponent = (props) => {
           labels={props.group.labels}
           rows={props.group.rows}
           title={props.group.title}
+          onClick={props.onClick}
         />
       );
     case 'OperationRanges':

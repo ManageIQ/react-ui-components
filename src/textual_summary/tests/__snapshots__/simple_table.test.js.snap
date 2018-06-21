@@ -2,7 +2,7 @@
 
 exports[`Simple Table renders just fine... 1`] = `
 <table
-  className="table table-bordered table-striped table-summary-screen"
+  className="table table-bordered table-hover table-striped table-summary-screen"
 >
   <thead>
     <tr>
@@ -14,32 +14,68 @@ exports[`Simple Table renders just fine... 1`] = `
       </th>
     </tr>
     <tr>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           Network Protocol
         </strong>
       </td>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           Host Protocol
         </strong>
       </td>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           Direction
         </strong>
       </td>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           Port
         </strong>
       </td>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           End Port
         </strong>
       </td>
-      <td>
+      <td
+        style={
+          Object {
+            "wordBreak": "initial",
+          }
+        }
+      >
         <strong>
           Source
         </strong>
@@ -48,56 +84,92 @@ exports[`Simple Table renders just fine... 1`] = `
   </thead>
   <tbody>
     <tr>
-      <td />
-      <td>
+      <td
+        className="no-hover"
+      />
+      <td
+        className="no-hover"
+      >
         -1
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         outbound
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         0
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         0
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         0.0.0.0/0
       </td>
     </tr>
     <tr>
-      <td />
-      <td>
+      <td
+        className="no-hover"
+      />
+      <td
+        className="no-hover"
+      >
         TCP
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         inbound
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         22
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         22
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         0.0.0.0/0
       </td>
     </tr>
     <tr>
-      <td />
-      <td>
+      <td
+        className="no-hover"
+      />
+      <td
+        className="no-hover"
+      >
         TCP
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         inbound
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         80
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         80
       </td>
-      <td>
+      <td
+        className="no-hover"
+      >
         0.0.0.0/0
       </td>
     </tr>
