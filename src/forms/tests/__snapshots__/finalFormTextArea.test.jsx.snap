@@ -14,7 +14,7 @@ exports[`Final form textarea component Should render correctly 1`] = `
   >
     <textarea
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -41,7 +41,7 @@ exports[`Final form textarea component Should render with error message 1`] = `
   >
     <textarea
       className="form-control"
-      id={undefined}
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}

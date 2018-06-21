@@ -1,4 +1,6 @@
 @import '~patternfly/dist/sass/patternfly/variables';
+@import "~react-select/dist/react-select.css";
+
 $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 
 .final-form-select {
@@ -43,6 +45,9 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   .Select-input {
     height: 20px;
   }
+  .Select-clear-zone {
+    line-height: 0.7;
+  }
   .Select-control > *:last-child {
     padding-top: 2px;
   }
@@ -53,8 +58,87 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
       padding-right: 6px;
     }
   }
-  .Select-menu-outer {
-    padding: 5px 0;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.final-form-select.Select--multi{
+  .Select-control {
+    width: 100%;
+    display: table;
+    height: auto;
+  }
+
+  .Select-multi-value-wrapper {
+    width: calc(100% - 25px);
+    .Select-value {
+      float: left;
+    }
+  }
+
+  .Select-value {
+      animation: 0.3s ease-out 0s 1 fadeIn;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      border: none;
+      border-radius: 0;
+      margin-right: 5px;
+      margin-left: 0px;
+      font-size: 12px;
+      .Select-value-icon, .Select-value-label {
+        background-color: $color-pf-blue-400;
+        color: white;
+        border: none;
+        border-radius: 0;
+      }
+      .Select-value-icon {
+        float: right;
+        padding: 2px 7px 2px;
+        &:hover {
+          background-color: $color-pf-blue-300;
+        }
+      }
+  }
+}
+
+.final-form-select.is-searchable{
+  .Select-input {
+    padding-left: 0;
+    margin-left: 0;
+    input {
+      padding: 0;
+    }
+  }
+  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
+  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
+  &.is-open.Select--single .Select-placeholder {
+    color: $color-pf-black-600;
+  }
+}
+
+
+.final-form-select.Select--multi.has-value,
+.final-form-select.Select--multi.is-open.has-value,
+.final-form-select.Select--multi.is-open.is-focused.has-value,
+.final-form-select.Select--multi.is-focused.has-value,
+.final-form-select.is-searchable.is-focused.is-open,
+.final-form-select.is-searchable.is-focused,
+.final-form-select.is-searchable.is-focused:not(.is-open) {
+  .Select-control {
+    background-image: none;
+    background-color: white;
+  }
+
+  .Select-input {
+    background-color: white;
   }
 }
 
@@ -64,18 +148,25 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
 
-.final-form-select.has-error.is-fosuced {
-  .Select-control {
-    border-color: darken($color-pf-red-100, 10%);
-    background-color: #f1f1f1;
-    background-image: none;
-  }
-}
-.final-form-select.is-focused.is-open, .final-form-select.is-pseudo-focused.is-open, .final-form-select.is-focused:not(.is-open), .final-form-select.is-pseudo-focused:not(.is-open) {
+.final-form-select.is-open,
+.final-form-select.is-focused.is-open,
+.final-form-select.is-pseudo-focused.is-open,
+.final-form-select.is-focused:not(.is-open),
+.final-form-select.is-pseudo-focused:not(.is-open) {
   .Select-control, .Select-input {
     background-color: #f1f1f1;
     background-image: none;
   }
+}
+
+.form-group.has-error .final-form-select.is-fosuced,
+.form-group.has-error .final-form-select,
+.final-form-select.has-error.is-fosuced {
+    .Select-control {
+      border-color: $color-pf-red-100;
+      background-color: #f1f1f1;
+      background-image: none;
+    }
 }
 
 .final-form-select.is-focused:not(.is-open), .final-form-select.is-pseudo-focused:not(.is-open) {
@@ -92,7 +183,7 @@ $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
 
-.final-form-select-option {
+.final-form-select-option.Select-option {
   background-color: $color-pf-white;
   border-color: transparent;
   border-style: solid;

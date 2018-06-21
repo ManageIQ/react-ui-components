@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RbacUserForm component Should render correctly 1`] = `
+<form
+  className="form-horizontal"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Full Name
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <input
+              className="form-control"
+              id="name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Username
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <input
+              className="form-control"
+              id="userid"
+              name="userid"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Password
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <input
+              className="form-control"
+              id="password"
+              name="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder=""
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Confirm password
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <input
+              className="form-control"
+              id="verify"
+              name="verify"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder=""
+              type="password"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Email Address
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <input
+              className="form-control"
+              id="email"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder=""
+              type="email"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label col-xs-2"
+          >
+            Available Groups
+          </label>
+          <div
+            className="col-xs-8"
+          >
+            <div
+              className="Select  final-form-select Select--multi"
+              style={undefined}
+            >
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                style={undefined}
+              >
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-2--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Choose one or more Groups
+                  </div>
+                  <div
+                    aria-activedescendant="react-select-2--value"
+                    aria-disabled="false"
+                    aria-expanded={false}
+                    aria-label={undefined}
+                    aria-labelledby={undefined}
+                    aria-owns=""
+                    className="Select-input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    role="combobox"
+                    style={
+                      Object {
+                        "border": 0,
+                        "display": "inline-block",
+                        "width": 1,
+                      }
+                    }
+                    tabIndex={0}
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-10"
+      >
+        <div
+          className="pull-right btn-group"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={true}
+            id="user-submit"
+            onClick={[Function]}
+            type="button"
+          >
+            Add
+          </button>
+          <button
+            className="btn btn-default"
+            disabled={false}
+            onClick={[MockFunction]}
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
