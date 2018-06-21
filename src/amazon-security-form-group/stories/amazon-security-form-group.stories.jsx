@@ -68,10 +68,14 @@ const vpcIds = [
   },
 ];
 
+const simulateRequest = () => new Promise((resolve) => {
+  setTimeout(() => resolve(vpcIds), 1500);
+});
+
 storiesOf('Amazon Security forms', module).add('Amazon Security form group', withInfo()(() => (
   <AmazonSecurityFormGroup
     onSave={action('onSubmit')}
     onCancel={action('onCancel')}
-    vpcIds={vpcIds}
+    loadData={simulateRequest}
   />
 )));

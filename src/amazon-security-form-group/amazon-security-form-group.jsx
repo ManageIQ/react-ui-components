@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
-import { Form as PfForm, Grid, Button, Col, Row } from 'patternfly-react';
+import { Form as PfForm, Grid, Button, Col, Row, Spinner } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
 
@@ -11,8 +11,13 @@ class AmazonSecurityFormGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      vpcIds: null,
       groups: 1,
     };
+  }
+
+  componentDidMount() {
+    this.props.loadData().then(vpcIds => this.setState({ vpcIds }));
   }
 
   parseValues = (values, groupsCount) => {
@@ -46,8 +51,9 @@ class AmazonSecurityFormGroup extends Component {
   }
 
   render() {
-    const { onSave, onCancel, vpcIds } = this.props;
-    const { groups } = this.state;
+    const { onSave, onCancel } = this.props;
+    const { groups, vpcIds } = this.state;
+    if (!vpcIds) return <Spinner loading size="lg" />;
     return (
       <Form
         onSubmit={values => onSave(this.parseValues(values, groups))}
@@ -108,7 +114,7 @@ class AmazonSecurityFormGroup extends Component {
 AmazonSecurityFormGroup.propTypes = {
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  vpcIds: PropTypes.array.isRequired,
+  loadData: PropTypes.func.isRequired,
 };
 
 export default AmazonSecurityFormGroup;
