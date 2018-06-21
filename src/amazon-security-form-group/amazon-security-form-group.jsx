@@ -29,13 +29,19 @@ class AmazonSecurityFormGroup extends Component {
     } = values;
     const groups = [];
     for (let i = 0; i < groupsCount; i += 1) {
-      groups.push(Object.keys(rest).filter(key => key.match(new RegExp(`.*-${i}$`))).map(key => ({ [key.replace(/-[0-9]+$/, '')]: rest[key] })));
+      const groupKeys = Object.keys(rest)
+        .filter(key => key.match(new RegExp(`.*-${i}$`)));
+      const group = {};
+      groupKeys.forEach((key) => {
+        group[key.replace(/-[0-9]+$/, '')] = rest[key];
+      });
+      groups.push(group);
     }
     return {
-      vpc_id,
+      vpc_id: vpc_id.value,
       security_group_description,
       security_group_name,
-      groups,
+      security_group_rules: groups,
     };
   }
 
