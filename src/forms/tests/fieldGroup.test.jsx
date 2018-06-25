@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
 import { Field, Form } from 'react-final-form';
 import { required } from 'redux-form-validators';
 import PropTypes from 'prop-types';
+import toJson from 'enzyme-to-json';
 
 import { FieldGroup, FinalFormRadio } from '../';
 
@@ -39,12 +39,12 @@ describe('Final form FieldGroup component', () => {
   };
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<Group />);
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<Group />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render correctly with error state', () => {
-    const tree = renderer.create(<Group validateOnMount />);
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<Group validateOnMount />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 });

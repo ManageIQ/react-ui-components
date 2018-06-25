@@ -1,50 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Final form component reder functions Should return final form checkbox 1`] = `
-<div
-  className="field-group form-group"
+<FormGroup
+  bsClass="form-group"
+  className="field-group"
+  validationState={null}
 >
-  <div
-    className=""
+  <Col
+    bsClass="col"
+    componentClass="div"
   >
-    <div
-      className="checkbox"
-      style={undefined}
+    <Checkbox
+      bsClass="checkbox"
+      disabled={false}
+      id="name"
+      inline={false}
+      name="name"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      onFocus={[MockFunction]}
+      title=""
+      value=""
     >
-      <label
-        title=""
-      >
-        <input
-          disabled={false}
-          id="name"
-          name="name"
-          onBlur={[MockFunction]}
-          onChange={[MockFunction]}
-          onFocus={[MockFunction]}
-          type="checkbox"
-          value=""
-        />
-        check box
-      </label>
-    </div>
-  </div>
-</div>
+      check box
+    </Checkbox>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form component reder functions Should return final form number input 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     Number field
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <input
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -54,24 +58,31 @@ exports[`Final form component reder functions Should return final form number in
       type="number"
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form component reder functions Should return final form password input 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     Number field
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <input
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -81,24 +92,31 @@ exports[`Final form component reder functions Should return final form password 
       type="password"
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form component reder functions Should return final form text field 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     Text field
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <input
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="input"
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -108,33 +126,39 @@ exports[`Final form component reder functions Should return final form text fiel
       type="text"
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form component reder functions Should return final form textarea 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     Text area
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <textarea
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="textarea"
       id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       placeholder=""
-      type={undefined}
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;

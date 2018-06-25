@@ -1,5 +1,6 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import toJson from 'enzyme-to-json';
+import { mount } from 'enzyme';
 import SimpleTable from '../simple_table';
 import { simpleTableData } from '../data/simple_table';
 
@@ -14,13 +15,12 @@ describe('Simple Table', () => {
      *     a) simple
      *     b) object {expandable: true} TODO
      */
-    const component = renderer.create(<SimpleTable
+    const table = mount(<SimpleTable
       title={simpleTableData.title}
       labels={simpleTableData.labels}
       rows={simpleTableData.rows}
       onClick={e => null}
     />);
-    const table = component.toJSON();
-    expect(table).toMatchSnapshot();
+    expect(toJson(table)).toMatchSnapshot();
   });
 });

@@ -1,146 +1,182 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`React select component Should render correctly 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     test select
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <div
-      className="Select  final-form-select Select--single"
-      style={undefined}
-    >
-      <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        style={undefined}
-      >
-        <span
-          className="Select-multi-value-wrapper"
-          id="react-select-2--value"
-        >
-          <div
-            className="Select-placeholder"
-          >
-            
-          </div>
-          <div
-            aria-activedescendant="react-select-2--value"
-            aria-disabled="false"
-            aria-expanded={false}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            aria-owns=""
-            className="Select-input"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            role="combobox"
-            style={
-              Object {
-                "border": 0,
-                "display": "inline-block",
-                "width": 1,
-              }
-            }
-            tabIndex={0}
-          />
-        </span>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+    <Select
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      className=" final-form-select"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={false}
+      closeOnSelect={true}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      id="name"
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      label="test select"
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      name="name"
+      noResultsText="No results found"
+      onBlur={[MockFunction]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      onFocus={[MockFunction]}
+      onSelectResetsInput={true}
+      openOnClick={true}
+      optionClassName="final-form-select-option"
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "option 1",
+            "value": 1,
+          },
+          Object {
+            "label": "option 2",
+            "value": 2,
+          },
+        ]
+      }
+      pageSize={5}
+      placeholder=""
+      removeSelected={true}
+      required={false}
+      rtl={false}
+      scrollMenuIntoView={true}
+      searchable={false}
+      simpleValue={false}
+      tabSelectsValue={true}
+      trimFilter={true}
+      value=""
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+  </Col>
+</FormGroup>
 `;
 
 exports[`React select component Should render correctly in error state 1`] = `
-<div
-  className="form-group has-error"
+<FormGroup
+  bsClass="form-group"
+  validationState="error"
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     test select
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <div
-      className="Select  final-form-select Select--single"
-      style={undefined}
-    >
-      <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        style={undefined}
-      >
-        <span
-          className="Select-multi-value-wrapper"
-          id="react-select-3--value"
-        >
-          <div
-            className="Select-placeholder"
-          >
-            
-          </div>
-          <div
-            aria-activedescendant="react-select-3--value"
-            aria-disabled="false"
-            aria-expanded={false}
-            aria-label={undefined}
-            aria-labelledby={undefined}
-            aria-owns=""
-            className="Select-input"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            role="combobox"
-            style={
-              Object {
-                "border": 0,
-                "display": "inline-block",
-                "width": 1,
-              }
-            }
-            tabIndex={0}
-          />
-        </span>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
-      </div>
-    </div>
-    <span
-      className="help-block"
+    <Select
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      className=" final-form-select"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={false}
+      closeOnSelect={true}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      id="name"
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      label="test select"
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      name="name"
+      noResultsText="No results found"
+      onBlur={[MockFunction]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      onFocus={[MockFunction]}
+      onSelectResetsInput={true}
+      openOnClick={true}
+      optionClassName="final-form-select-option"
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "option 1",
+            "value": 1,
+          },
+          Object {
+            "label": "option 2",
+            "value": 2,
+          },
+        ]
+      }
+      pageSize={5}
+      placeholder=""
+      removeSelected={true}
+      required={false}
+      rtl={false}
+      scrollMenuIntoView={true}
+      searchable={false}
+      simpleValue={false}
+      tabSelectsValue={true}
+      trimFilter={true}
+      value=""
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+    <HelpBlock
+      bsClass="help-block"
     >
       Required
-    </span>
-  </div>
-</div>
+    </HelpBlock>
+  </Col>
+</FormGroup>
 `;

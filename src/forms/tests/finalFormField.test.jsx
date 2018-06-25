@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { mount, shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { FinalFormField } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
 
@@ -14,14 +14,14 @@ describe('Final form input component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<FinalFormField {...initialProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(<FinalFormField {...initialProps} />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render with error message', () => {
     const props = { ...initialProps, meta: { ...initialProps.meta, error: 'Error message' } };
-    const tree = renderer.create(<FinalFormField {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(<FinalFormField {...props} />).dive();
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should call onChange event', () => {

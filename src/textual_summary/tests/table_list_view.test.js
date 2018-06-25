@@ -1,20 +1,19 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import toJson from 'enzyme-to-json';
+import { mount } from 'enzyme';
 import TableListView from '../table_list_view';
 import { tableListViewData } from '../data/table_list_view';
 
 describe('TableListView', () => {
   it('renders just fine...', () => {
-    const component = renderer.create(<TableListView
+    const row = mount(<TableListView
       title={tableListViewData.title}
       headers={tableListViewData.headers}
       values={tableListViewData.values}
       colOrder={tableListViewData.colOrder}
-      rowLabel='View the table'
-      onClick={(e) => null}
+      rowLabel="View the table"
+      onClick={() => null}
     />);
-
-    const row = component.toJSON();
-    expect(row).toMatchSnapshot();
+    expect(toJson(row)).toMatchSnapshot();
   });
 });

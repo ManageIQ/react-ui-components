@@ -1,60 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Final form textarea component Should render correctly 1`] = `
-<div
-  className="form-group"
+<FormGroup
+  bsClass="form-group"
+  validationState={null}
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     foo
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <textarea
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="textarea"
       id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       placeholder=""
-      type={undefined}
       value=""
     />
-  </div>
-</div>
+  </Col>
+</FormGroup>
 `;
 
 exports[`Final form textarea component Should render with error message 1`] = `
-<div
-  className="form-group has-error"
+<FormGroup
+  bsClass="form-group"
+  validationState="error"
 >
-  <label
-    className="control-label col-xs-2"
+  <Col
+    bsClass="col"
+    className="control-label"
+    componentClass="label"
+    xs={2}
   >
     foo
-  </label>
-  <div
-    className="col-xs-8"
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    xs={8}
   >
-    <textarea
-      className="form-control"
+    <FormControl
+      bsClass="form-control"
+      componentClass="textarea"
       id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
       onFocus={[MockFunction]}
       placeholder=""
-      type={undefined}
       value=""
     />
-    <span
-      className="help-block"
+    <HelpBlock
+      bsClass="help-block"
     >
       Error message
-    </span>
-  </div>
-</div>
+    </HelpBlock>
+  </Col>
+</FormGroup>
 `;
