@@ -31,7 +31,7 @@ export default function SimpleTable(props) {
       return <td onClick={e => onClick(value, e)} key={j}>{value.value}</td>;
     }
     // simple value
-    return <td className='no-hover' key={j}>{value}</td>;
+    return <td className="no-hover" key={j}>{value}</td>;
   };
 
   const renderRow = (row, i, onClick) => <tr key={i}>{row.map((value, j) => renderValue(value, j, onClick))}</tr>;
