@@ -21,6 +21,7 @@ exports[`Final form input component Should render correctly 1`] = `
     <FormControl
       bsClass="form-control"
       componentClass="input"
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}
@@ -54,6 +55,7 @@ exports[`Final form input component Should render with error message 1`] = `
     <FormControl
       bsClass="form-control"
       componentClass="input"
+      id="name"
       name="name"
       onBlur={[MockFunction]}
       onChange={[MockFunction]}

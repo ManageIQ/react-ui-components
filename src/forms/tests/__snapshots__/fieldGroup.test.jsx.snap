@@ -102,6 +102,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                     inputColumnSize={8}
                     label="Radio button 1"
                     labelColumnSize={2}
+                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -120,10 +121,12 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "visited": false,
                       }
                     }
+                    multi={false}
                     placeholder=""
                     searchable={false}
                     type="radio"
                     validateOnMount={false}
+                    valueKey="value"
                   >
                     <FormGroup
                       bsClass="form-group"
@@ -144,6 +147,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                               bsClass="radio"
                               checked={false}
                               disabled={false}
+                              id="radioGroup"
                               inline={false}
                               name="radioGroup"
                               onBlur={[Function]}
@@ -161,6 +165,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                                   <input
                                     checked={false}
                                     disabled={false}
+                                    id="radioGroup"
                                     name="radioGroup"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -239,6 +244,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                     inputColumnSize={8}
                     label="Radio button 2"
                     labelColumnSize={2}
+                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -257,10 +263,12 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "visited": false,
                       }
                     }
+                    multi={false}
                     placeholder=""
                     searchable={false}
                     type="radio"
                     validateOnMount={false}
+                    valueKey="value"
                   >
                     <FormGroup
                       bsClass="form-group"
@@ -281,6 +289,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                               bsClass="radio"
                               checked={false}
                               disabled={false}
+                              id="radioGroup"
                               inline={false}
                               name="radioGroup"
                               onBlur={[Function]}
@@ -298,6 +307,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                                   <input
                                     checked={false}
                                     disabled={false}
+                                    id="radioGroup"
                                     name="radioGroup"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -458,6 +468,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                     inputColumnSize={8}
                     label="Radio button 1"
                     labelColumnSize={2}
+                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -476,10 +487,12 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "visited": false,
                       }
                     }
+                    multi={false}
                     placeholder=""
                     searchable={false}
                     type="radio"
                     validateOnMount={false}
+                    valueKey="value"
                   >
                     <FormGroup
                       bsClass="form-group"
@@ -500,6 +513,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                               bsClass="radio"
                               checked={false}
                               disabled={false}
+                              id="radioGroup"
                               inline={false}
                               name="radioGroup"
                               onBlur={[Function]}
@@ -517,6 +531,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                                   <input
                                     checked={false}
                                     disabled={false}
+                                    id="radioGroup"
                                     name="radioGroup"
                                     onBlur={[Function]}
                                     onChange={[Function]}
@@ -595,6 +610,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                     inputColumnSize={8}
                     label="Radio button 2"
                     labelColumnSize={2}
+                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -613,10 +629,12 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "visited": false,
                       }
                     }
+                    multi={false}
                     placeholder=""
                     searchable={false}
                     type="radio"
                     validateOnMount={false}
+                    valueKey="value"
                   >
                     <FormGroup
                       bsClass="form-group"
@@ -637,6 +655,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                               bsClass="radio"
                               checked={false}
                               disabled={false}
+                              id="radioGroup"
                               inline={false}
                               name="radioGroup"
                               onBlur={[Function]}
@@ -654,6 +673,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                                   <input
                                     checked={false}
                                     disabled={false}
+                                    id="radioGroup"
                                     name="radioGroup"
                                     onBlur={[Function]}
                                     onChange={[Function]}

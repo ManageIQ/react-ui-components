@@ -13,6 +13,7 @@ exports[`Final form radio component Should render correctly 1`] = `
     <Radio
       bsClass="radio"
       disabled={false}
+      id="name"
       inline={false}
       name="name"
       onBlur={[MockFunction]}
@@ -40,6 +41,7 @@ exports[`Final form radio component Should render with error message 1`] = `
     <Radio
       bsClass="radio"
       disabled={false}
+      id="name"
       inline={false}
       name="name"
       onBlur={[MockFunction]}
