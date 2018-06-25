@@ -5,15 +5,14 @@ import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
 
 import { renderFinalFormField, renderFinalFormTextArea, FinalFormSwitch } from '../../forms/';
+import { __ } from '../../global-functions';
 
 export const VmSnapshotForm = ({
   onSubmit,
-  errorMessages,
   hideName,
   onCancel,
   nameRequired,
   descriptionRequired,
-  labels,
 }) => (
   <Form
     onSubmit={onSubmit}
@@ -26,10 +25,10 @@ export const VmSnapshotForm = ({
           <Col xs={12}>
             {!hideName &&
               <Field
-                validate={nameRequired && required({ msg: errorMessages.name })}
+                validate={nameRequired && required({ msg: __('Required') })}
                 name="name"
                 id="name"
-                render={({ input, meta }) => renderFinalFormField(input, meta, labels.name, true)}
+                render={({ input, meta }) => renderFinalFormField(input, meta, __('Name'), true)}
               />
             }
           </Col>
@@ -37,8 +36,8 @@ export const VmSnapshotForm = ({
             <Field
               name="description"
               id="description"
-              validate={descriptionRequired && required({ msg: errorMessages.description })}
-              render={({ input, meta }) => renderFinalFormTextArea(input, meta, labels.description, true)}
+              validate={descriptionRequired && required({ msg: __('Required') })}
+              render={({ input, meta }) => renderFinalFormTextArea(input, meta, __('Description'), true)}
             />
           </Col>
           <Col xs={12}>
@@ -46,16 +45,16 @@ export const VmSnapshotForm = ({
               name="snap_memory"
               id="snap_memory"
               component={FinalFormSwitch}
-              label={labels.snapMemory}
-              onText="Yes"
-              offText="No"
+              label={__('Snapshot VM memory')}
+              onText={__('Yes')}
+              offText={__('No')}
             />
             <hr />
           </Col>
           <Col xs={12}>
             <ButtonGroup className="pull-right">
-              <Button id="snap-form-submit" onClick={() => handleSubmit(values)} disabled={invalid} bsStyle="primary">{labels.create}</Button>
-              <Button id="snap-form-cancel" onClick={onCancel}>{labels.cancel}</Button>
+              <Button id="snap-form-submit" onClick={() => handleSubmit(values)} disabled={invalid} bsStyle="primary">{__('Create')}</Button>
+              <Button id="snap-form-cancel" onClick={onCancel}>{__('Cancel')}</Button>
             </ButtonGroup>
           </Col>
         </Row>
@@ -67,17 +66,6 @@ export const VmSnapshotForm = ({
 VmSnapshotForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  errorMessages: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-  }),
-  labels: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    snapMemory: PropTypes.string.isRequired,
-    create: PropTypes.string.isRequired,
-    cancel: PropTypes.string.isRequired,
-  }).isRequired,
   hideName: PropTypes.bool,
   nameRequired: PropTypes.bool,
   descriptionRequired: PropTypes.bool,

@@ -8,17 +8,6 @@ describe('Final form input component', () => {
   beforeEach(() => {
     initialProps.onSubmit = jest.fn();
     initialProps.onCancel = jest.fn();
-    initialProps.labels = {
-      name: 'Input name',
-      description: 'Input description',
-      snapMemory: 'Snap memory',
-      create: 'Create',
-      cancel: 'Cancel',
-    };
-    initialProps.errorMessages = {
-      name: 'Name required',
-      description: 'Description required',
-    };
     initialProps.validateOnMount = true;
   });
 

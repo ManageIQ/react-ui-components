@@ -3,22 +3,7 @@
 exports[`Final form input component Should render correctly 1`] = `
 <VmSnapshotForm
   descriptionRequired={false}
-  errorMessages={
-    Object {
-      "description": "Description required",
-      "name": "Name required",
-    }
-  }
   hideName={false}
-  labels={
-    Object {
-      "cancel": "Cancel",
-      "create": "Create",
-      "description": "Input description",
-      "name": "Input name",
-      "snapMemory": "Snap memory",
-    }
-  }
   nameRequired={false}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
@@ -75,7 +60,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         "value": "",
                       }
                     }
-                    label="Input name"
+                    label="Name"
                     meta={
                       Object {
                         "active": false,
@@ -109,7 +94,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Input name"
+                      label="Name"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -152,7 +137,7 @@ exports[`Final form input component Should render correctly 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input name
+                              Name
                             </label>
                           </Col>
                           <Col
@@ -222,7 +207,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         "value": "",
                       }
                     }
-                    label="Input description"
+                    label="Description"
                     meta={
                       Object {
                         "active": false,
@@ -256,7 +241,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Input description"
+                      label="Description"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -299,7 +284,7 @@ exports[`Final form input component Should render correctly 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input description
+                              Description
                             </label>
                           </Col>
                           <Col
@@ -353,7 +338,7 @@ exports[`Final form input component Should render correctly 1`] = `
                   component={[Function]}
                   format={[Function]}
                   id="snap_memory"
-                  label="Snap memory"
+                  label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
@@ -370,7 +355,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         "value": false,
                       }
                     }
-                    label="Snap memory"
+                    label="Snapshot VM memory"
                     meta={
                       Object {
                         "active": false,
@@ -406,7 +391,7 @@ exports[`Final form input component Should render correctly 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Snap memory"
+                      label="Snapshot VM memory"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -451,7 +436,7 @@ exports[`Final form input component Should render correctly 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Snap memory
+                              Snapshot VM memory
                             </label>
                           </Col>
                           <Col
@@ -472,7 +457,7 @@ exports[`Final form input component Should render correctly 1`] = `
                                 handleWidth="auto"
                                 id="snap_memory"
                                 inverse={false}
-                                label="Snap memory"
+                                label="Snapshot VM memory"
                                 labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
@@ -637,22 +622,7 @@ exports[`Final form input component Should render correctly 1`] = `
 exports[`Final form input component Should render with description required 1`] = `
 <VmSnapshotForm
   descriptionRequired={true}
-  errorMessages={
-    Object {
-      "description": "Description required",
-      "name": "Name required",
-    }
-  }
   hideName={false}
-  labels={
-    Object {
-      "cancel": "Cancel",
-      "create": "Create",
-      "description": "Input description",
-      "name": "Input name",
-      "snapMemory": "Snap memory",
-    }
-  }
   nameRequired={false}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
@@ -709,7 +679,7 @@ exports[`Final form input component Should render with description required 1`] 
                         "value": "",
                       }
                     }
-                    label="Input name"
+                    label="Name"
                     meta={
                       Object {
                         "active": false,
@@ -743,7 +713,7 @@ exports[`Final form input component Should render with description required 1`] 
                         }
                       }
                       inputColumnSize={8}
-                      label="Input name"
+                      label="Name"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -786,7 +756,7 @@ exports[`Final form input component Should render with description required 1`] 
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input name
+                              Name
                             </label>
                           </Col>
                           <Col
@@ -856,14 +826,14 @@ exports[`Final form input component Should render with description required 1`] 
                         "value": "",
                       }
                     }
-                    label="Input description"
+                    label="Description"
                     meta={
                       Object {
                         "active": false,
                         "data": Object {},
                         "dirty": false,
                         "dirtySinceLastSubmit": false,
-                        "error": "Description required",
+                        "error": "Required",
                         "initial": undefined,
                         "invalid": true,
                         "pristine": true,
@@ -890,7 +860,7 @@ exports[`Final form input component Should render with description required 1`] 
                         }
                       }
                       inputColumnSize={8}
-                      label="Input description"
+                      label="Description"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -899,7 +869,7 @@ exports[`Final form input component Should render with description required 1`] 
                           "data": Object {},
                           "dirty": false,
                           "dirtySinceLastSubmit": false,
-                          "error": "Description required",
+                          "error": "Required",
                           "initial": undefined,
                           "invalid": true,
                           "pristine": true,
@@ -933,7 +903,7 @@ exports[`Final form input component Should render with description required 1`] 
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input description
+                              Description
                             </label>
                           </Col>
                           <Col
@@ -972,7 +942,7 @@ exports[`Final form input component Should render with description required 1`] 
                                 <span
                                   className="help-block"
                                 >
-                                  Description required
+                                  Required
                                 </span>
                               </HelpBlock>
                             </div>
@@ -996,7 +966,7 @@ exports[`Final form input component Should render with description required 1`] 
                   component={[Function]}
                   format={[Function]}
                   id="snap_memory"
-                  label="Snap memory"
+                  label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
@@ -1013,7 +983,7 @@ exports[`Final form input component Should render with description required 1`] 
                         "value": false,
                       }
                     }
-                    label="Snap memory"
+                    label="Snapshot VM memory"
                     meta={
                       Object {
                         "active": false,
@@ -1049,7 +1019,7 @@ exports[`Final form input component Should render with description required 1`] 
                         }
                       }
                       inputColumnSize={8}
-                      label="Snap memory"
+                      label="Snapshot VM memory"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -1094,7 +1064,7 @@ exports[`Final form input component Should render with description required 1`] 
                             <label
                               className="control-label col-xs-2"
                             >
-                              Snap memory
+                              Snapshot VM memory
                             </label>
                           </Col>
                           <Col
@@ -1115,7 +1085,7 @@ exports[`Final form input component Should render with description required 1`] 
                                 handleWidth="auto"
                                 id="snap_memory"
                                 inverse={false}
-                                label="Snap memory"
+                                label="Snapshot VM memory"
                                 labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
@@ -1280,22 +1250,7 @@ exports[`Final form input component Should render with description required 1`] 
 exports[`Final form input component Should render with name required 1`] = `
 <VmSnapshotForm
   descriptionRequired={false}
-  errorMessages={
-    Object {
-      "description": "Description required",
-      "name": "Name required",
-    }
-  }
   hideName={false}
-  labels={
-    Object {
-      "cancel": "Cancel",
-      "create": "Create",
-      "description": "Input description",
-      "name": "Input name",
-      "snapMemory": "Snap memory",
-    }
-  }
   nameRequired={true}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
@@ -1352,14 +1307,14 @@ exports[`Final form input component Should render with name required 1`] = `
                         "value": "",
                       }
                     }
-                    label="Input name"
+                    label="Name"
                     meta={
                       Object {
                         "active": false,
                         "data": Object {},
                         "dirty": false,
                         "dirtySinceLastSubmit": false,
-                        "error": "Name required",
+                        "error": "Required",
                         "initial": undefined,
                         "invalid": true,
                         "pristine": true,
@@ -1386,7 +1341,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Input name"
+                      label="Name"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -1395,7 +1350,7 @@ exports[`Final form input component Should render with name required 1`] = `
                           "data": Object {},
                           "dirty": false,
                           "dirtySinceLastSubmit": false,
-                          "error": "Name required",
+                          "error": "Required",
                           "initial": undefined,
                           "invalid": true,
                           "pristine": true,
@@ -1429,7 +1384,7 @@ exports[`Final form input component Should render with name required 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input name
+                              Name
                             </label>
                           </Col>
                           <Col
@@ -1470,7 +1425,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                 <span
                                   className="help-block"
                                 >
-                                  Name required
+                                  Required
                                 </span>
                               </HelpBlock>
                             </div>
@@ -1508,7 +1463,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         "value": "",
                       }
                     }
-                    label="Input description"
+                    label="Description"
                     meta={
                       Object {
                         "active": false,
@@ -1542,7 +1497,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Input description"
+                      label="Description"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -1585,7 +1540,7 @@ exports[`Final form input component Should render with name required 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Input description
+                              Description
                             </label>
                           </Col>
                           <Col
@@ -1639,7 +1594,7 @@ exports[`Final form input component Should render with name required 1`] = `
                   component={[Function]}
                   format={[Function]}
                   id="snap_memory"
-                  label="Snap memory"
+                  label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
@@ -1656,7 +1611,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         "value": false,
                       }
                     }
-                    label="Snap memory"
+                    label="Snapshot VM memory"
                     meta={
                       Object {
                         "active": false,
@@ -1692,7 +1647,7 @@ exports[`Final form input component Should render with name required 1`] = `
                         }
                       }
                       inputColumnSize={8}
-                      label="Snap memory"
+                      label="Snapshot VM memory"
                       labelColumnSize={2}
                       labelKey="label"
                       meta={
@@ -1737,7 +1692,7 @@ exports[`Final form input component Should render with name required 1`] = `
                             <label
                               className="control-label col-xs-2"
                             >
-                              Snap memory
+                              Snapshot VM memory
                             </label>
                           </Col>
                           <Col
@@ -1758,7 +1713,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                 handleWidth="auto"
                                 id="snap_memory"
                                 inverse={false}
-                                label="Snap memory"
+                                label="Snapshot VM memory"
                                 labelKey="label"
                                 labelText=" "
                                 labelWidth="auto"
