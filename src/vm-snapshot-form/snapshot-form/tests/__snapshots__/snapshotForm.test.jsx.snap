@@ -1137,7 +1137,7 @@ exports[`Final form input component Should render with description required 1`] 
                                 wrapperClass="wrapper"
                               >
                                 <div
-                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory"
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
                                   onFocus={[Function]}
                                   onKeyDown={[Function]}
@@ -1232,13 +1232,13 @@ exports[`Final form input component Should render with description required 1`] 
                       block={false}
                       bsClass="btn"
                       bsStyle="primary"
-                      disabled={false}
+                      disabled={true}
                       id="snap-form-submit"
                       onClick={[Function]}
                     >
                       <button
                         className="btn btn-primary"
-                        disabled={false}
+                        disabled={true}
                         id="snap-form-submit"
                         onClick={[Function]}
                         type="button"
@@ -1780,7 +1780,7 @@ exports[`Final form input component Should render with name required 1`] = `
                                 wrapperClass="wrapper"
                               >
                                 <div
-                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory"
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
                                   onFocus={[Function]}
                                   onKeyDown={[Function]}
@@ -1875,13 +1875,13 @@ exports[`Final form input component Should render with name required 1`] = `
                       block={false}
                       bsClass="btn"
                       bsStyle="primary"
-                      disabled={false}
+                      disabled={true}
                       id="snap-form-submit"
                       onClick={[Function]}
                     >
                       <button
                         className="btn btn-primary"
-                        disabled={false}
+                        disabled={true}
                         id="snap-form-submit"
                         onClick={[Function]}
                         type="button"
