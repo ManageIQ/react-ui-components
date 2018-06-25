@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Checkbox, Icon } from 'patternfly-react';
+import PropTypes from 'prop-types';
 import './styles.scss';
 
 const headerFormat = value => <Table.Heading>{value}</Table.Heading>;
@@ -24,124 +25,51 @@ class RbacUsersTable extends Component {
     this.state = {
       sortableColumnPropery: null,
       sortOrderAsc: true,
-      rows: [
-        {
-          id: 100,
-          fullname: 'John Doe',
-          username: 'Admin',
-          email: 'email@neco.com',
-          currentgroup: 'Some group',
-          role: 'Admin role',
-          lastlogon: '06/25/18 06:58:14 UTC',
-          lastlogoff: '06/30/18 06:58:14 UTC',
-        },
-        {
-          id: 101,
-          fullname: 'Pepa Jandak',
-          username: 'Killer',
-          email: 'email@jandak.com',
-          currentgroup: 'Shit group',
-          role: 'Shot role',
-          lastlogon: '01/25/18 06:58:14 UTC',
-          lastlogoff: '06/30/18 06:58:14 UTC',
-        },
-      ],
-      columns: [
-        {
-          propery: 'select',
-          header: {
-            label: '',
-            formatters: [headerFormat],
-          },
-          cell: {
-            formatters: [
-              (value, { rowData }) => (
-                <Table.Cell style={{ textAlign: 'center' }}>
-                  <Checkbox style={checkboxStyle} checked={rowData.selected} onClick={() => this.handleSelected(rowData)} />
-                </Table.Cell>
-              ),
-            ],
-          },
-        }, {
-          propery: 'icon',
-          header: {
-            label: '',
-            formatters: [headerFormat],
-          },
-          cell: {
-            formatters: [celliconFormat],
-          },
-        }, {
-          property: 'fullname',
-          props: {
-            sort: true,
-            index: 0,
-          },
-          header: {
-            label: 'Full Name',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'username',
-          header: {
-            label: 'Username',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'email',
-          header: {
-            label: 'E-mail',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'currentgroup',
-          header: {
-            label: 'Current Group',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'role',
-          header: {
-            label: 'Role',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'lastlogon',
-          header: {
-            label: 'Last Logon',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        }, {
-          property: 'lastlogoff',
-          header: {
-            label: 'Last Logoff',
-            formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-          },
-          cell: {
-            formatters: [cellFormat],
-          },
-        },
-      ],
+      rows: props.rows,
+      columns: this.createColumns(props.columns),
     };
   }
+
+  createColumns = columns => [
+    {
+      propery: 'select',
+      header: {
+        label: '',
+        formatters: [headerFormat],
+      },
+      cell: {
+        formatters: [
+          (value, { rowData }) => (
+            <Table.Cell style={{ textAlign: 'center' }} onClick={event => event.stopPropagation()}>
+              <Checkbox
+                style={checkboxStyle}
+                checked={!!rowData.selected}
+                onChange={() => this.handleSelected(rowData)}
+              />
+            </Table.Cell>
+          ),
+        ],
+      },
+    }, {
+      propery: 'icon',
+      header: {
+        label: '',
+        formatters: [headerFormat],
+      },
+      cell: {
+        formatters: [celliconFormat],
+      },
+    },
+    ...columns.map(({ property, label }) => ({
+      property,
+      header: {
+        label,
+        formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
+      },
+      cell: {
+        formatters: [cellFormat],
+      },
+    }))];
 
   sortableHeaderFormater = (value, columnProps) => sortableHeaderFormat(
     this.sortColumn,
@@ -150,8 +78,8 @@ class RbacUsersTable extends Component {
     this.state.sortableColumnPropery === columnProps.column.property,
   );
 
-  handleSelected = ({ id }) => this.setState(prevState => ({
-    rows: prevState.rows.map((item) => {
+  handleSelected = ({ id }) => this.setState((prevState) => {
+    const rows = prevState.rows.map((item) => {
       if (item.id !== id) {
         return item;
       }
@@ -159,8 +87,10 @@ class RbacUsersTable extends Component {
         ...item,
         selected: !item.selected,
       };
-    }),
-  }))
+    });
+    this.props.userSelect(rows.filter(item => item.selected));
+    return { rows };
+  })
 
   sortColumn = property => this.setState((prevState) => {
     const asc = prevState.sortableColumnPropery === property ? !prevState.sortOrderAsc : true;
@@ -188,7 +118,7 @@ class RbacUsersTable extends Component {
           <Body
             rows={rows.map(row => row)}
             rowKey="id"
-            onRow={row => ({ onClick: () => console.log('row: ', row) })}
+            onRow={row => ({ onClick: () => this.props.rowClick(row) })}
           />
         </PfProvider>
       </div>
@@ -196,5 +126,23 @@ class RbacUsersTable extends Component {
   }
 }
 
+RbacUsersTable.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    property: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })).isRequired,
+  rows: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    fullname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    currentgroup: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    lastlogon: PropTypes.string.isRequired,
+    lastlogoff: PropTypes.string.isRequired,
+  })).isRequired,
+  rowClick: PropTypes.func.isRequired,
+  userSelect: PropTypes.func.isRequired,
+};
 
 export default RbacUsersTable;
