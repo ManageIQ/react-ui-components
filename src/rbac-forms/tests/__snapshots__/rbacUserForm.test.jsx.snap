@@ -119,16 +119,12 @@ exports[`RbacUserForm component Should render correctly 1`] = `
           <div
             className="container"
           >
-            <div
-              className="Select  final-form-select Select--multi"
+            <Row
+              bsClass="row"
+              componentClass="div"
             >
               <div
-                className="Select-control"
-                onKeyDown={[Function]}
-                onMouseDown={[Function]}
-                onTouchEnd={[Function]}
-                onTouchMove={[Function]}
-                onTouchStart={[Function]}
+                className="row"
               >
                 <Col
                   bsClass="col"
