@@ -2,51 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-
 import { RbacUserForm, RbacUserPreview } from '../';
+import { GenericPreviewTable } from '../../table/';
+import { groups, usersTableColumns, usersTableRows } from './data';
 
-const groups = [
-  {
-    value: 1,
-    label: 'Hope',
-  },
-  {
-    value: 2,
-    label: 'Christa',
-  },
-  {
-    value: 3,
-    label: 'Tania',
-  },
-  {
-    value: 4,
-    label: 'Mcintyre',
-  },
-  {
-    value: 5,
-    label: 'Tonya',
-  },
-  {
-    value: 6,
-    label: 'Marcie',
-  },
-  {
-    value: 7,
-    label: 'Cara',
-  },
-  {
-    value: 8,
-    label: 'Becker',
-  },
-  {
-    value: 9,
-    label: 'Foley',
-  },
-  {
-    value: 10,
-    label: 'Perkins',
-  },
-];
 const user = {
   name: 'Administrator',
   userid: 'Admin',
@@ -71,6 +30,7 @@ const user = {
     onClick: () => action('Current role click'),
   },
 };
+
 storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
   <RbacUserForm
     groups={groups}
@@ -79,4 +39,17 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
   />
 ))).add('Rbac user preview', withInfo()(() => (
   <RbacUserPreview user={user} />
+))).add('Rbac users table', withInfo()(() => (
+  <GenericPreviewTable
+    rows={usersTableRows}
+    columns={usersTableColumns}
+    rowClick={action('Row clicked')}
+    rowSelect={action('User selected')}
+    showIcon
+    showSelect
+    icon={{
+      type: 'pf',
+      name: 'user',
+    }}
+  />
 )));
