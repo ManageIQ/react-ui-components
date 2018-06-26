@@ -1,15 +1,25 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import Tag from '../components/InnerComponents/Tag';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import Tag from '../components/tag';
 
 const tagCategory = { description: 'animal', id: 1 };
 const tagValue = { description: 'duck', id: 1 };
-const onDelete = x => x;
+function onDelete(x) {
+  return x;
+}
 
 describe('Tag Component', () => {
   it('match snapshot', () => {
-    const tree = mount(<Tag tagCategory={tagCategory} tagValue={tagValue} onTagDeleteClick={onDelete} />);
-    expect(toJson(tree)).toMatchSnapshot();
+    const component = shallow(
+      <Tag
+        tagCategory={tagCategory}
+        tagValue={tagValue}
+        onTagDeleteClick={onDelete}
+        truncate={jest.fn()}
+      />
+    );
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
   });
 });

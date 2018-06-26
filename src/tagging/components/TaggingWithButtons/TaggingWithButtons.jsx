@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Row, ButtonGroup, Button } from 'patternfly-react';
 import { ButtonToolbar } from 'react-bootstrap';
-import Tagging from './tagging';
+import Tagging from '../Tagging/Tagging';
+import TaggingPropTypes from '../TaggingPropTypes';
 
 class TaggingWithButtons extends React.Component {
   onTagCategoryChange = selectedTagCategory => this.props.onTagCategoryChange(selectedTagCategory);
@@ -63,30 +64,21 @@ class TaggingWithButtons extends React.Component {
 }
 
 TaggingWithButtons.propTypes = {
-  selectedTagCategory: PropTypes.object.isRequired,
-  selectedTagValue: PropTypes.object.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.object),
-  assignedTags: PropTypes.arrayOf(PropTypes.object),
+  selectedTagCategory: TaggingPropTypes.category,
+  selectedTagValue: TaggingPropTypes.value,
+  tags: TaggingPropTypes.tags,
+  assignedTags: TaggingPropTypes.tags,
   onTagDeleteClick: PropTypes.func.isRequired,
   onTagCategoryChange: PropTypes.func.isRequired,
   onTagValueChange: PropTypes.func.isRequired,
   onTagMultiValueChange: PropTypes.func,
   showReset: PropTypes.bool,
-  cancelButton: PropTypes.object,
-  resetButton: PropTypes.object,
-  saveButton: PropTypes.object,
+  cancelButton: TaggingPropTypes.button,
+  resetButton: TaggingPropTypes.button,
+  saveButton: TaggingPropTypes.button,
 };
 
 TaggingWithButtons.defaultProps = {
-  cancelButton: {
-    onClick: () => {}, href: '', type: 'button', disabled: false, description: 'Cancel',
-  },
-  resetButton: {
-    onClick: () => {}, href: '', type: 'reset', disabled: false, description: 'Reset',
-  },
-  saveButton: {
-    onClick: () => {}, href: '', type: 'submit', disabled: false, description: 'Save',
-  },
   showReset: true,
   onTagMultiValueChange: () => {},
 };

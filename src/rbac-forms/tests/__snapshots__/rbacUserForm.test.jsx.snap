@@ -166,7 +166,6 @@ exports[`RbacUserForm component Should render correctly 1`] = `
           >
             <div
               className="Select  final-form-select Select--multi"
-              style={undefined}
             >
               <div
                 className="Select-control"
@@ -175,7 +174,6 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                 onTouchEnd={[Function]}
                 onTouchMove={[Function]}
                 onTouchStart={[Function]}
-                style={undefined}
               >
                 <span
                   className="Select-multi-value-wrapper"
@@ -190,8 +188,6 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                     aria-activedescendant="react-select-2--value"
                     aria-disabled="false"
                     aria-expanded={false}
-                    aria-label={undefined}
-                    aria-labelledby={undefined}
                     aria-owns=""
                     className="Select-input"
                     onBlur={[Function]}

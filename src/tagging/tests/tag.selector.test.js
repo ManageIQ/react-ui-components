@@ -1,8 +1,14 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import TagSelector from '../components/InnerComponents/TagSelector';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import TagSelector from '../components/tagSelector';
 
+const tagCategories = [
+  { description: 'Name', id: 1 },
+  { description: 'Number', id: 2 }
+];
+const selectedTagValue = { description: 'Homer', id: 1 };
+const onTagCategoryChange = jest.fn();
 
 describe('Tagging modifier', () => {
   const tagCategories = [
@@ -16,7 +22,7 @@ describe('Tagging modifier', () => {
   });
 
   it('match snapshot', () => {
-    const tree = mount(<TagSelector
+    const tree = shallow(<TagSelector
       tagCategories={tagCategories}
       onTagCategoryChange={onTagCategoryChange}
       selectedOption={selectedTagValue}
@@ -25,13 +31,14 @@ describe('Tagging modifier', () => {
   });
 
   it('should call methods', () => {
-    onTagCategoryChange = jest.fn();
-    const wrapper = shallow(<TagSelector
-      tagCategories={tagCategories}
-      onTagCategoryChange={onTagCategoryChange}
-      selectedOption={selectedTagValue}
-    />);
+    const wrapper = shallow(
+      <TagSelector
+        tagCategories={tagCategories}
+        onTagCategoryChange={onTagCategoryChange}
+        selectedOption={selectedTagValue}
+      />
+    );
     wrapper.instance().handleChange({ label: 'Name', value: 1 });
-    expect(onTagCategoryChange.mock.calls.length).toEqual(1);
+    expect(onTagCategoryChange.mock.calls).toHaveLength(1);
   });
 });

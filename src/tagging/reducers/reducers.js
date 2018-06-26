@@ -1,36 +1,39 @@
 import * as actionsConstants from '../actions/actions';
 // state = state.assignedTags
 function deleteAssignedTag(state, actionTag) {
-  const filteredState = state.filter(tag => (tag.tagCategory.id !== actionTag.tagCategory.id));
-  const selectedItem = state.find(tag => (tag.tagCategory.id === actionTag.tagCategory.id));
-  const filteredTagValues = selectedItem.tagValues.filter(value => (value.id !== actionTag.tagValue.id));
+  const filteredState = state.filter(tag => (tag.id !== actionTag.tagCategory.id));
+  const selectedItem = state.find(tag => (tag.id === actionTag.tagCategory.id));
+  const filteredTagValues = selectedItem.values.filter(value => (value.id !== actionTag.tagValue.id));
   return [...filteredState,
     {
-      tagCategory: actionTag.tagCategory,
-      tagValues: [...filteredTagValues],
+      description: actionTag.tagCategory.description,
+      id: actionTag.tagCategory.id,
+      values: [...filteredTagValues],
     },
-  ].filter(tag => (tag.tagValues.length !== 0));
+  ].filter(tag => (tag.values.length !== 0));
 }
 
 function changeAssignedTag(state, actionTag) {
-  const filteredState = state.filter(tag => (tag.tagCategory.id !== actionTag.tagCategory.id));
+  const filteredState = state.filter(tag => (tag.id !== actionTag.tagCategory.id));
   return [
     ...filteredState,
     {
-      tagCategory: actionTag.tagCategory,
-      tagValues: [actionTag.tagValue],
+      description: actionTag.tagCategory.description,
+      id: actionTag.tagCategory.id,
+      values: [actionTag.tagValue],
     },
   ];
 }
 
 function addAssignedTag(state, actionTag) {
-  const filteredState = state.filter(tag => (tag.tagCategory.id !== actionTag.tagCategory.id));
-  const selectedItem = state.find(tag => (tag.tagCategory.id === actionTag.tagCategory.id)) || { tagValues: [] };
-  const oldValues = selectedItem.tagValues.filter(tagValue => (tagValue.id !== actionTag.tagValue.id));
+  const filteredState = state.filter(tag => (tag.id !== actionTag.tagCategory.id));
+  const selectedItem = state.find(tag => (tag.id === actionTag.tagCategory.id)) || { values: [] };
+  const oldValues = selectedItem.values.filter(tagValue => (tagValue.id !== actionTag.tagValue.id));
   return [...filteredState,
     {
-      tagCategory: { description: actionTag.tagCategory.description, id: actionTag.tagCategory.id },
-      tagValues: [...oldValues].concat([actionTag.tagValue]),
+      description: actionTag.tagCategory.description,
+      id: actionTag.tagCategory.id,
+      values: [...oldValues].concat([actionTag.tagValue]),
     }];
 }
 
