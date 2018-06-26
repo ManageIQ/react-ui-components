@@ -3,7 +3,7 @@ import { Table, Checkbox, Icon } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-class RbacUsersTable extends Component {
+class GenericPreviewTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,7 +107,7 @@ class RbacUsersTable extends Component {
         selected: !item.selected,
       };
     });
-    this.props.userSelect(rows.filter(item => item.selected));
+    this.props.rowSelect(rows.filter(item => item.selected));
     return { rows };
   })
 
@@ -130,7 +130,7 @@ class RbacUsersTable extends Component {
         columns={columns}
         dataTable
         hover
-        className="rbac-table"
+        className="generic-preview-table"
       >
         <Header />
         <Body
@@ -166,7 +166,7 @@ const tableIconProp = (props, propName, componentName) => {
   return undefined;
 };
 
-const userSelectProp = (props, propName, componentName) => {
+const rowSelectProp = (props, propName, componentName) => {
   if (props.showSelect && !props[propName]) {
     return new Error(`Prop validation failed in component ${componentName}. Prop ${propName} is required when user selecting is enabled`);
   }
@@ -178,7 +178,7 @@ const userSelectProp = (props, propName, componentName) => {
   return undefined;
 };
 
-RbacUsersTable.propTypes = {
+GenericPreviewTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     property: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
@@ -194,15 +194,15 @@ RbacUsersTable.propTypes = {
     lastlogoff: PropTypes.string,
   })).isRequired,
   rowClick: PropTypes.func.isRequired,
-  userSelect: userSelectProp,
+  rowSelect: rowSelectProp,
   showSelect: PropTypes.bool,
   showIcon: PropTypes.bool,
   icon: tableIconProp,
 };
 
-RbacUsersTable.defaultProps = {
+GenericPreviewTable.defaultProps = {
   showSelect: false,
   showIcon: false,
 };
 
-export default RbacUsersTable;
+export default GenericPreviewTable;

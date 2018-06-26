@@ -1,16 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import RbacUsersTable from '../rbacUsersTable';
+import GenericPreviewTable from '../genericPreviewTable';
 
 describe('RbacUsersTable component', () => {
   let columns = [];
   let rows = [];
   let rowClick;
-  let userSelect;
+  let rowSelect;
+  let initialProps = {};
   beforeEach(() => {
     rowClick = jest.fn();
-    userSelect = jest.fn();
+    rowSelect = jest.fn();
     columns = [{
       property: 'fullname',
       label: 'Full Name',
@@ -66,16 +67,28 @@ describe('RbacUsersTable component', () => {
         lastlogoff: '010/30/18 06:58:14 UTC',
       },
     ];
+    initialProps = {
+      rows,
+      columns,
+      rowClick,
+      rowSelect,
+      showIcon: true,
+      showSelect: true,
+      icon: {
+        type: 'pf',
+        name: 'user',
+      },
+    };
   });
 
   it('Should render correctly', () => {
-    const tree = mount(<RbacUsersTable rowClick={rowClick} userSelect={userSelect} rows={rows} columns={columns} />);
+    const tree = mount(<GenericPreviewTable {...initialProps} />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should return clicked row data', () => {
     const cellClick = jest.fn();
-    const wrapper = mount(<RbacUsersTable rowClick={cellClick} userSelect={userSelect} rows={rows} columns={columns} />);
+    const wrapper = mount(<GenericPreviewTable {...initialProps} rowClick={cellClick} />);
     const row = wrapper.find('tr').at(1);
     const expectedPayload = {
       currentgroup: 'Some group',
@@ -105,7 +118,7 @@ describe('RbacUsersTable component', () => {
   });
 
   it('Should sort data correctly', () => {
-    const wrapper = mount(<RbacUsersTable rowClick={rowClick} userSelect={userSelect} rows={rows} columns={columns} />);
+    const wrapper = mount(<GenericPreviewTable {...initialProps} />);
     const header = wrapper.find('tr').first();
     const originalData = [...rows];
     let cell = header.find('TableHeading').at(0);

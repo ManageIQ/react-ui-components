@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RbacUsersTable component Should render correctly 1`] = `
-<RbacUsersTable
+<GenericPreviewTable
   columns={
     Array [
       Object {
@@ -34,7 +34,14 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
       },
     ]
   }
+  icon={
+    Object {
+      "name": "user",
+      "type": "pf",
+    }
+  }
   rowClick={[MockFunction]}
+  rowSelect={[MockFunction]}
   rows={
     Array [
       Object {
@@ -69,11 +76,12 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
       },
     ]
   }
-  userSelect={[MockFunction]}
+  showIcon={true}
+  showSelect={true}
 >
   <TablePfProvider
     bordered={true}
-    className="rbac-table"
+    className="generic-preview-table"
     columns={
       Array [
         Object {
@@ -222,7 +230,7 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
     striped={true}
   >
     <Provider
-      className="table dataTable table-striped table-bordered table-hover rbac-table"
+      className="table dataTable table-striped table-bordered table-hover generic-preview-table"
       columns={
         Array [
           Object {
@@ -367,7 +375,7 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
       role="grid"
     >
       <table
-        className="table dataTable table-striped table-bordered table-hover rbac-table"
+        className="table dataTable table-striped table-bordered table-hover generic-preview-table"
         role="grid"
       >
         <Header>
@@ -1707,5 +1715,5 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
       </table>
     </Provider>
   </TablePfProvider>
-</RbacUsersTable>
+</GenericPreviewTable>
 `;
