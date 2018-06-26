@@ -1,0 +1,441 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RbacUserPreview component Should render correctly 1`] = `
+<RbacUserPreview
+  user={
+    Object {
+      "current_group": Object {
+        "label": "EvmGroup-super_administrator",
+        "onClick": [Function],
+      },
+      "email": "mail@mail.com",
+      "groups": Array [
+        Object {
+          "groupId": 1,
+          "icon": "group",
+          "label": "Cloud-Operators",
+          "onClick": [Function],
+        },
+        Object {
+          "groupId": 2,
+          "icon": "group",
+          "label": "Cloud-Users",
+          "onClick": [Function],
+        },
+      ],
+      "name": "Administrator",
+      "role": Object {
+        "label": "Cloud-Users",
+        "onClick": [Function],
+      },
+      "userid": "Admin",
+    }
+  }
+>
+  <div
+    className="form-horizontal rbac-user-preview"
+  >
+    <Grid
+      bsClass="container"
+      componentClass="div"
+      fluid={false}
+    >
+      <div
+        className="container"
+      >
+        <PreviewRow
+          label="Full Name"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      Full Name
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                      >
+                        Administrator
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+        <PreviewRow
+          label="Username"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      Username
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                      >
+                        Admin
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+        <PreviewRow
+          label="E-mail Address"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      E-mail Address
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                      >
+                        mail@mail.com
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+        <PreviewRow
+          label="Current group"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      Current group
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                      >
+                        <Icon
+                          name="group"
+                          type="fa"
+                        >
+                          <FontAwesome
+                            name="group"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-group"
+                            />
+                          </FontAwesome>
+                        </Icon>
+                        <a
+                          className="pointer"
+                          href="#"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "marginLeft": 5,
+                            }
+                          }
+                        >
+                          EvmGroup-super_administrator
+                        </a>
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+        <PreviewRow
+          label="Groups"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      Groups
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                        key="1"
+                      >
+                        <Icon
+                          name="group"
+                          type="fa"
+                        >
+                          <FontAwesome
+                            name="group"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-group"
+                            />
+                          </FontAwesome>
+                        </Icon>
+                        <a
+                          className="pointer"
+                          href="#"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "marginLeft": 5,
+                            }
+                          }
+                        >
+                          Cloud-Operators
+                        </a>
+                      </p>
+                      <p
+                        className="form-control-static"
+                        key="2"
+                      >
+                        <Icon
+                          name="group"
+                          type="fa"
+                        >
+                          <FontAwesome
+                            name="group"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-group"
+                            />
+                          </FontAwesome>
+                        </Icon>
+                        <a
+                          className="pointer"
+                          href="#"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "marginLeft": 5,
+                            }
+                          }
+                        >
+                          Cloud-Users
+                        </a>
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+        <PreviewRow
+          label="Role"
+        >
+          <Row
+            bsClass="row"
+            componentClass="div"
+          >
+            <div
+              className="row"
+            >
+              <FormGroup
+                bsClass="form-group"
+              >
+                <div
+                  className="form-group"
+                >
+                  <Col
+                    bsClass="col"
+                    className="control-label"
+                    componentClass="label"
+                    md={2}
+                  >
+                    <label
+                      className="control-label col-md-2"
+                    >
+                      Role
+                    </label>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    md={8}
+                  >
+                    <div
+                      className="col-md-8"
+                    >
+                      <p
+                        className="form-control-static"
+                      >
+                        <Icon
+                          name="user"
+                          type="fa"
+                        >
+                          <FontAwesome
+                            name="user"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-user"
+                            />
+                          </FontAwesome>
+                        </Icon>
+                        <a
+                          className="pointer"
+                          href="#"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "marginLeft": 5,
+                            }
+                          }
+                        >
+                          Cloud-Users
+                        </a>
+                      </p>
+                    </div>
+                  </Col>
+                </div>
+              </FormGroup>
+            </div>
+          </Row>
+        </PreviewRow>
+      </div>
+    </Grid>
+  </div>
+</RbacUserPreview>
+`;

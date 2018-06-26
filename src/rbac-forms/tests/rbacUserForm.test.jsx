@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import toJson from 'enzyme-to-json';
 import { mount } from 'enzyme';
 import { Form } from 'react-final-form';
 import Select from 'react-select';
@@ -39,8 +39,8 @@ describe('RbacUserForm component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = renderer.create(<RbacUserForm {...initialProps} />);
-    expect(tree).toMatchSnapshot();
+    const tree = mount(<RbacUserForm {...initialProps} />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should not call submit function', () => {
