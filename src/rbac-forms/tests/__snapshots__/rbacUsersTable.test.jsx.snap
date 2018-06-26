@@ -1,0 +1,1711 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RbacUsersTable component Should render correctly 1`] = `
+<RbacUsersTable
+  columns={
+    Array [
+      Object {
+        "label": "Full Name",
+        "property": "fullname",
+      },
+      Object {
+        "label": "Username",
+        "property": "username",
+      },
+      Object {
+        "label": "E-mail",
+        "property": "email",
+      },
+      Object {
+        "label": "Current Group",
+        "property": "currentgroup",
+      },
+      Object {
+        "label": "Role",
+        "property": "role",
+      },
+      Object {
+        "label": "Last Logon",
+        "property": "lastlogon",
+      },
+      Object {
+        "label": "Last Logoff",
+        "property": "lastlogoff",
+      },
+    ]
+  }
+  rowClick={[MockFunction]}
+  rows={
+    Array [
+      Object {
+        "currentgroup": "Some group",
+        "email": "email@neco.com",
+        "fullname": "Adam the first",
+        "id": 100,
+        "lastlogoff": "06/30/18 06:58:14 UTC",
+        "lastlogon": "06/25/18 06:58:14 UTC",
+        "role": "Admin role",
+        "username": "Admin",
+      },
+      Object {
+        "currentgroup": "Mediocre group",
+        "email": "email@jandak.com",
+        "fullname": "Marge the middle",
+        "id": 101,
+        "lastlogoff": "06/30/18 06:58:14 UTC",
+        "lastlogon": "01/25/18 06:58:14 UTC",
+        "role": "Shot role",
+        "username": "La transparenza della qualita",
+      },
+      Object {
+        "currentgroup": "Super group",
+        "email": "email@jandak.com",
+        "fullname": "Zlatko the last",
+        "id": 102,
+        "lastlogoff": "010/30/18 06:58:14 UTC",
+        "lastlogon": "08/25/18 06:58:14 UTC",
+        "role": "Shot role",
+        "username": "Peligro",
+      },
+    ]
+  }
+  userSelect={[MockFunction]}
+>
+  <TablePfProvider
+    bordered={true}
+    className="rbac-table"
+    columns={
+      Array [
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "",
+          },
+          "propery": "select",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "",
+          },
+          "propery": "icon",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Full Name",
+          },
+          "property": "fullname",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Username",
+          },
+          "property": "username",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "E-mail",
+          },
+          "property": "email",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Current Group",
+          },
+          "property": "currentgroup",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Role",
+          },
+          "property": "role",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Last Logon",
+          },
+          "property": "lastlogon",
+        },
+        Object {
+          "cell": Object {
+            "formatters": Array [
+              [Function],
+            ],
+          },
+          "header": Object {
+            "formatters": Array [
+              [Function],
+            ],
+            "label": "Last Logoff",
+          },
+          "property": "lastlogoff",
+        },
+      ]
+    }
+    components={
+      Object {
+        "body": Object {
+          "cell": [Function],
+          "row": [Function],
+        },
+        "header": Object {
+          "cell": [Function],
+        },
+      }
+    }
+    condensed={false}
+    dataTable={true}
+    hover={true}
+    inlineEdit={false}
+    striped={true}
+  >
+    <Provider
+      className="table dataTable table-striped table-bordered table-hover rbac-table"
+      columns={
+        Array [
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "",
+            },
+            "propery": "select",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "",
+            },
+            "propery": "icon",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Full Name",
+            },
+            "property": "fullname",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Username",
+            },
+            "property": "username",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "E-mail",
+            },
+            "property": "email",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Current Group",
+            },
+            "property": "currentgroup",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Role",
+            },
+            "property": "role",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Last Logon",
+            },
+            "property": "lastlogon",
+          },
+          Object {
+            "cell": Object {
+              "formatters": Array [
+                [Function],
+              ],
+            },
+            "header": Object {
+              "formatters": Array [
+                [Function],
+              ],
+              "label": "Last Logoff",
+            },
+            "property": "lastlogoff",
+          },
+        ]
+      }
+      renderers={
+        Object {
+          "body": Object {
+            "cell": [Function],
+            "row": [Function],
+          },
+          "header": Object {
+            "cell": [Function],
+          },
+        }
+      }
+      role="grid"
+    >
+      <table
+        className="table dataTable table-striped table-bordered table-hover rbac-table"
+        role="grid"
+      >
+        <Header>
+          <thead>
+            <HeaderRow
+              key="0-header-row"
+              onRow={[Function]}
+              renderers={
+                Object {
+                  "cell": [Function],
+                  "row": "tr",
+                  "wrapper": "thead",
+                }
+              }
+              rowData={
+                Array [
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "select",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "icon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Full Name",
+                    },
+                    "property": "fullname",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Username",
+                    },
+                    "property": "username",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "E-mail",
+                    },
+                    "property": "email",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Current Group",
+                    },
+                    "property": "currentgroup",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Role",
+                    },
+                    "property": "role",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logon",
+                    },
+                    "property": "lastlogon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logoff",
+                    },
+                    "property": "lastlogoff",
+                  },
+                ]
+              }
+              rowIndex={0}
+            >
+              <tr>
+                <headerCell
+                  key="0-header"
+                >
+                  <TableHeading
+                    align=""
+                    className=""
+                    sort={false}
+                    sortDirection=""
+                  >
+                    <th
+                      className=""
+                    />
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="1-header"
+                >
+                  <TableHeading
+                    align=""
+                    className=""
+                    sort={false}
+                    sortDirection=""
+                  >
+                    <th
+                      className=""
+                    />
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="2-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Full Name
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="3-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Username
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="4-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      E-mail
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="5-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Current Group
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="6-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Role
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="7-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Last Logon
+                    </th>
+                  </TableHeading>
+                </headerCell>
+                <headerCell
+                  key="8-header"
+                >
+                  <TableHeading
+                    align=""
+                    className="clickable"
+                    onClick={[Function]}
+                    sort={false}
+                    sortDirection="asc"
+                  >
+                    <th
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      Last Logoff
+                    </th>
+                  </TableHeading>
+                </headerCell>
+              </tr>
+            </HeaderRow>
+          </thead>
+        </Header>
+        <Body
+          onRow={[Function]}
+          rowKey="id"
+          rows={
+            Array [
+              Object {
+                "currentgroup": "Some group",
+                "email": "email@neco.com",
+                "fullname": "Adam the first",
+                "id": 100,
+                "lastlogoff": "06/30/18 06:58:14 UTC",
+                "lastlogon": "06/25/18 06:58:14 UTC",
+                "role": "Admin role",
+                "username": "Admin",
+              },
+              Object {
+                "currentgroup": "Mediocre group",
+                "email": "email@jandak.com",
+                "fullname": "Marge the middle",
+                "id": 101,
+                "lastlogoff": "06/30/18 06:58:14 UTC",
+                "lastlogon": "01/25/18 06:58:14 UTC",
+                "role": "Shot role",
+                "username": "La transparenza della qualita",
+              },
+              Object {
+                "currentgroup": "Super group",
+                "email": "email@jandak.com",
+                "fullname": "Zlatko the last",
+                "id": 102,
+                "lastlogoff": "010/30/18 06:58:14 UTC",
+                "lastlogon": "08/25/18 06:58:14 UTC",
+                "role": "Shot role",
+                "username": "Peligro",
+              },
+            ]
+          }
+        >
+          <tbody>
+            <BodyRow
+              columns={
+                Array [
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "select",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "icon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Full Name",
+                    },
+                    "property": "fullname",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Username",
+                    },
+                    "property": "username",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "E-mail",
+                    },
+                    "property": "email",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Current Group",
+                    },
+                    "property": "currentgroup",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Role",
+                    },
+                    "property": "role",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logon",
+                    },
+                    "property": "lastlogon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logoff",
+                    },
+                    "property": "lastlogoff",
+                  },
+                ]
+              }
+              key="100-row"
+              onRow={[Function]}
+              renderers={
+                Object {
+                  "cell": [Function],
+                  "row": [Function],
+                  "wrapper": "tbody",
+                }
+              }
+              rowData={
+                Object {
+                  "currentgroup": "Some group",
+                  "email": "email@neco.com",
+                  "fullname": "Adam the first",
+                  "id": 100,
+                  "lastlogoff": "06/30/18 06:58:14 UTC",
+                  "lastlogon": "06/25/18 06:58:14 UTC",
+                  "role": "Admin role",
+                  "username": "Admin",
+                }
+              }
+              rowIndex={0}
+              rowKey="100-row"
+            >
+              <tableRow
+                onClick={[Function]}
+              >
+                <tr
+                  onClick={[Function]}
+                >
+                  <tableCell
+                    key="0-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      <td
+                        className="clickable"
+                        onClick={[Function]}
+                      >
+                        <Checkbox
+                          bsClass="checkbox"
+                          checked={false}
+                          className="cell-middle"
+                          disabled={false}
+                          inline={false}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          title=""
+                        >
+                          <div
+                            className="cell-middle checkbox"
+                          >
+                            <label
+                              title=""
+                            >
+                              <input
+                                checked={false}
+                                disabled={false}
+                                onChange={[Function]}
+                                onClick={[Function]}
+                                type="checkbox"
+                              />
+                            </label>
+                          </div>
+                        </Checkbox>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="1-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="cell-middle clickable"
+                    >
+                      <td
+                        className="cell-middle clickable"
+                      >
+                        <Icon
+                          name="user"
+                          type="pf"
+                        >
+                          <PatternflyIcon
+                            className=""
+                            name="user"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="pficon pficon-user"
+                            />
+                          </PatternflyIcon>
+                        </Icon>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="2-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Adam the first
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="3-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Admin
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="4-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        email@neco.com
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="5-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Some group
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="6-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Admin role
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="7-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        06/25/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="8-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        06/30/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                </tr>
+              </tableRow>
+            </BodyRow>
+            <BodyRow
+              columns={
+                Array [
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "select",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "icon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Full Name",
+                    },
+                    "property": "fullname",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Username",
+                    },
+                    "property": "username",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "E-mail",
+                    },
+                    "property": "email",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Current Group",
+                    },
+                    "property": "currentgroup",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Role",
+                    },
+                    "property": "role",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logon",
+                    },
+                    "property": "lastlogon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logoff",
+                    },
+                    "property": "lastlogoff",
+                  },
+                ]
+              }
+              key="101-row"
+              onRow={[Function]}
+              renderers={
+                Object {
+                  "cell": [Function],
+                  "row": [Function],
+                  "wrapper": "tbody",
+                }
+              }
+              rowData={
+                Object {
+                  "currentgroup": "Mediocre group",
+                  "email": "email@jandak.com",
+                  "fullname": "Marge the middle",
+                  "id": 101,
+                  "lastlogoff": "06/30/18 06:58:14 UTC",
+                  "lastlogon": "01/25/18 06:58:14 UTC",
+                  "role": "Shot role",
+                  "username": "La transparenza della qualita",
+                }
+              }
+              rowIndex={1}
+              rowKey="101-row"
+            >
+              <tableRow
+                onClick={[Function]}
+              >
+                <tr
+                  onClick={[Function]}
+                >
+                  <tableCell
+                    key="0-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      <td
+                        className="clickable"
+                        onClick={[Function]}
+                      >
+                        <Checkbox
+                          bsClass="checkbox"
+                          checked={false}
+                          className="cell-middle"
+                          disabled={false}
+                          inline={false}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          title=""
+                        >
+                          <div
+                            className="cell-middle checkbox"
+                          >
+                            <label
+                              title=""
+                            >
+                              <input
+                                checked={false}
+                                disabled={false}
+                                onChange={[Function]}
+                                onClick={[Function]}
+                                type="checkbox"
+                              />
+                            </label>
+                          </div>
+                        </Checkbox>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="1-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="cell-middle clickable"
+                    >
+                      <td
+                        className="cell-middle clickable"
+                      >
+                        <Icon
+                          name="user"
+                          type="pf"
+                        >
+                          <PatternflyIcon
+                            className=""
+                            name="user"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="pficon pficon-user"
+                            />
+                          </PatternflyIcon>
+                        </Icon>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="2-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Marge the middle
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="3-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        La transparenza della qualita
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="4-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        email@jandak.com
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="5-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Mediocre group
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="6-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Shot role
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="7-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        01/25/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="8-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        06/30/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                </tr>
+              </tableRow>
+            </BodyRow>
+            <BodyRow
+              columns={
+                Array [
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "select",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "",
+                    },
+                    "propery": "icon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Full Name",
+                    },
+                    "property": "fullname",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Username",
+                    },
+                    "property": "username",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "E-mail",
+                    },
+                    "property": "email",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Current Group",
+                    },
+                    "property": "currentgroup",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Role",
+                    },
+                    "property": "role",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logon",
+                    },
+                    "property": "lastlogon",
+                  },
+                  Object {
+                    "cell": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                    },
+                    "header": Object {
+                      "formatters": Array [
+                        [Function],
+                      ],
+                      "label": "Last Logoff",
+                    },
+                    "property": "lastlogoff",
+                  },
+                ]
+              }
+              key="102-row"
+              onRow={[Function]}
+              renderers={
+                Object {
+                  "cell": [Function],
+                  "row": [Function],
+                  "wrapper": "tbody",
+                }
+              }
+              rowData={
+                Object {
+                  "currentgroup": "Super group",
+                  "email": "email@jandak.com",
+                  "fullname": "Zlatko the last",
+                  "id": 102,
+                  "lastlogoff": "010/30/18 06:58:14 UTC",
+                  "lastlogon": "08/25/18 06:58:14 UTC",
+                  "role": "Shot role",
+                  "username": "Peligro",
+                }
+              }
+              rowIndex={2}
+              rowKey="102-row"
+            >
+              <tableRow
+                onClick={[Function]}
+              >
+                <tr
+                  onClick={[Function]}
+                >
+                  <tableCell
+                    key="0-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                      onClick={[Function]}
+                    >
+                      <td
+                        className="clickable"
+                        onClick={[Function]}
+                      >
+                        <Checkbox
+                          bsClass="checkbox"
+                          checked={false}
+                          className="cell-middle"
+                          disabled={false}
+                          inline={false}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          title=""
+                        >
+                          <div
+                            className="cell-middle checkbox"
+                          >
+                            <label
+                              title=""
+                            >
+                              <input
+                                checked={false}
+                                disabled={false}
+                                onChange={[Function]}
+                                onClick={[Function]}
+                                type="checkbox"
+                              />
+                            </label>
+                          </div>
+                        </Checkbox>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="1-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="cell-middle clickable"
+                    >
+                      <td
+                        className="cell-middle clickable"
+                      >
+                        <Icon
+                          name="user"
+                          type="pf"
+                        >
+                          <PatternflyIcon
+                            className=""
+                            name="user"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="pficon pficon-user"
+                            />
+                          </PatternflyIcon>
+                        </Icon>
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="2-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Zlatko the last
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="3-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Peligro
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="4-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        email@jandak.com
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="5-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Super group
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="6-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        Shot role
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="7-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        08/25/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                  <tableCell
+                    key="8-cell"
+                  >
+                    <TableCell
+                      align=""
+                      className="clickable"
+                    >
+                      <td
+                        className="clickable"
+                      >
+                        010/30/18 06:58:14 UTC
+                      </td>
+                    </TableCell>
+                  </tableCell>
+                </tr>
+              </tableRow>
+            </BodyRow>
+          </tbody>
+        </Body>
+      </table>
+    </Provider>
+  </TablePfProvider>
+</RbacUsersTable>
+`;
