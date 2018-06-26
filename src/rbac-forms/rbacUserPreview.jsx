@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Row, Col, FormGroup, Icon } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import { __ } from '../global-functions';
+import { emailPattern } from '../manageiq-validators';
 import './styles.scss';
 
 const previewLink = (value, icon, onClick, key) => (
@@ -68,10 +69,6 @@ const RbacUserPreview = ({ user }) => (
     </Grid>
   </div>
 );
-
-// eslint-disable-next-line
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 
 RbacUserPreview.propTypes = {
   user: PropTypes.shape({
