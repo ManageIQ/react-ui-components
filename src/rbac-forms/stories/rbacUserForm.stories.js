@@ -2,8 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { RbacUserForm, RbacUserPreview } from '../';
-import { groups } from './data';
+
+import { RbacUserForm, RbacUsersTable, RbacUserPreview } from '../';
+import { groups, usersTableColumns, usersTableRows } from './data';
 
 const user = {
   name: 'Administrator',
@@ -38,4 +39,11 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
   />
 ))).add('Rbac user preview', withInfo()(() => (
   <RbacUserPreview user={user} />
+))).add('Rbac users table', withInfo()(() => (
+  <RbacUsersTable
+    rows={usersTableRows}
+    columns={usersTableColumns}
+    rowClick={action('Row clicked')}
+    userSelect={action('User selected')}
+  />
 )));
