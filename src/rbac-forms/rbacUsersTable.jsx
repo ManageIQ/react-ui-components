@@ -3,22 +3,6 @@ import { Table, Checkbox, Icon } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const headerFormat = value => <Table.Heading>{value}</Table.Heading>;
-const sortableHeaderFormat = (onSort, { column: { header: { label }, property } }, sortOrderAsc, isSorted) => (
-  <Table.Heading
-    onClick={() => onSort(property)}
-    sort={isSorted}
-    sortDirection={sortOrderAsc ? 'asc' : 'desc'}
-    style={{ cursor: 'pointer' }}
-  >
-    {label}
-  </Table.Heading>);
-const cellFormat = value => <Table.Cell>{value}</Table.Cell>;
-const celliconFormat = () => <Table.Cell style={{ textAlign: 'center' }}><Icon type="pf" name="user" /></Table.Cell>;
-const checkboxStyle = {
-  margin: 0,
-};
-
 class RbacUsersTable extends Component {
   constructor(props) {
     super(props);
@@ -29,21 +13,41 @@ class RbacUsersTable extends Component {
       columns: this.createColumns(props.columns),
     };
   }
+  headerFormat = value => <Table.Heading>{value}</Table.Heading>;
+  sortableHeaderFormat = (onSort, { column: { header: { label }, property } }, sortOrderAsc, isSorted) => (
+    <Table.Heading
+      onClick={() => onSort(property)}
+      sort={isSorted}
+      sortDirection={sortOrderAsc ? 'asc' : 'desc'}
+      className="clickable"
+    >
+      {label}
+    </Table.Heading>);
+  cellFormat = value => <Table.Cell className="clickable">{value}</Table.Cell>;
+  celliconFormat = () => <Table.Cell className="cell-middle clickable"><Icon type="pf" name="user" /></Table.Cell>;
+
 
   createColumns = columns => [
     {
       propery: 'select',
       header: {
         label: '',
-        formatters: [headerFormat],
+        formatters: [this.headerFormat],
       },
       cell: {
         formatters: [
           (value, { rowData }) => (
-            <Table.Cell style={{ textAlign: 'center' }} onClick={event => event.stopPropagation()}>
+            <Table.Cell
+              onClick={(event) => {
+                event.stopPropagation();
+                this.handleSelected(rowData);
+              }}
+              className="clickable"
+            >
               <Checkbox
-                style={checkboxStyle}
+                className="cell-middle"
                 checked={!!rowData.selected}
+                onClick={event => event.stopPropagation()}
                 onChange={() => this.handleSelected(rowData)}
               />
             </Table.Cell>
@@ -54,10 +58,10 @@ class RbacUsersTable extends Component {
       propery: 'icon',
       header: {
         label: '',
-        formatters: [headerFormat],
+        formatters: [this.headerFormat],
       },
       cell: {
-        formatters: [celliconFormat],
+        formatters: [this.celliconFormat],
       },
     },
     ...columns.map(({ property, label }) => ({
@@ -67,11 +71,11 @@ class RbacUsersTable extends Component {
         formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
       },
       cell: {
-        formatters: [cellFormat],
+        formatters: [this.cellFormat],
       },
     }))];
 
-  sortableHeaderFormater = (value, columnProps) => sortableHeaderFormat(
+  sortableHeaderFormater = (value, columnProps) => this.sortableHeaderFormat(
     this.sortColumn,
     columnProps,
     this.state.sortOrderAsc,
@@ -105,23 +109,21 @@ class RbacUsersTable extends Component {
     const { PfProvider, Body, Header } = Table;
     const { rows, columns } = this.state;
     return (
-      <div>
-        <h1>Table</h1>
-        <PfProvider
-          striped
-          bordered
-          columns={columns}
-          dataTable
-          hover
-        >
-          <Header />
-          <Body
-            rows={rows.map(row => row)}
-            rowKey="id"
-            onRow={row => ({ onClick: () => this.props.rowClick(row) })}
-          />
-        </PfProvider>
-      </div>
+      <PfProvider
+        striped
+        bordered
+        columns={columns}
+        dataTable
+        hover
+        className="rbac-table"
+      >
+        <Header />
+        <Body
+          rows={[...rows]}
+          rowKey="id"
+          onRow={row => ({ onClick: () => this.props.rowClick(row) })}
+        />
+      </PfProvider>
     );
   }
 }
