@@ -13,69 +13,48 @@ const previewLink = (value, icon, onClick, key) => (
 
 const renderGroups = groups => groups.map(group => previewLink(group.label, group.icon, group.onClick, group.groupId));
 
+const PreviewRow = ({ label, children }) => (
+  <Row>
+    <FormGroup>
+      <Col md={2} componentClass="label" className="control-label">
+        {label}
+      </Col>
+      <Col md={8}>
+        {children}
+      </Col>
+    </FormGroup>
+  </Row>
+);
+
+PreviewRow.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
 const RbacUserPreview = ({ user }) => (
   <div className="form-horizontal rbac-user-preview">
     <Grid>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('Full Name')}
-          </Col>
-          <Col md={8}>
-            <p className="form-control-static">{user.name}</p>
-          </Col>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('Username')}
-          </Col>
-          <Col md={8}>
-            <p className="form-control-static">{user.userid}</p>
-          </Col>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('E-mail Address')}
-          </Col>
-          <Col md={8}>
-            <p className="form-control-static">{user.email}</p>
-          </Col>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('Current Group')}
-          </Col>
-          <Col md={8}>
-            {previewLink(user.current_group, 'group', () => console.log('Test'))}
-          </Col>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('Groups')}
-          </Col>
-          <Col md={8}>
-            {renderGroups(user.groups, 'group', () => console.log('Test'))}
-          </Col>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup>
-          <Col md={2} componentClass="label" className="control-label">
-            {__('Role')}
-          </Col>
-          <Col md={8}>
-            {previewLink(user.role, 'user', () => console.log('Test'))}
-          </Col>
-        </FormGroup>
-      </Row>
+      <PreviewRow label={__('Full Name')}>
+        <p className="form-control-static">{user.name}</p>
+      </PreviewRow>
+      <PreviewRow label={__('Username')}>
+        <p className="form-control-static">{user.userid}</p>
+      </PreviewRow>
+      <PreviewRow label={__('E-mail Address')}>
+        <p className="form-control-static">{user.email}</p>
+      </PreviewRow>
+      <PreviewRow label={__('Current group')}>
+        {previewLink(user.current_group.label, 'group', user.current_group.onClick)}
+      </PreviewRow>
+      <PreviewRow label={__('Groups')}>
+        {renderGroups(user.groups)}
+      </PreviewRow>
+      <PreviewRow label={__('Role')}>
+        {previewLink(user.role.label, 'user', user.role.onClick)}
+      </PreviewRow>
     </Grid>
   </div>
 );
@@ -93,8 +72,20 @@ RbacUserPreview.propTypes = {
         ? undefined
         : new Error(`Invalid prop  ${propName} supplied to ${componentName} Validation failed. Expect email address.`)
     ),
-    current_group: PropTypes.string,
-    grousp: PropTypes.array,
+    current_group: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      onClick: PropTypes.func.isRequired,
+    }),
+    groups: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      groupId: PropTypes.number.isRequired,
+      onClick: PropTypes.func.isRequired,
+    })),
+    role: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      onClick: PropTypes.func.isRequired,
+    }),
   }).isRequired,
 };
 

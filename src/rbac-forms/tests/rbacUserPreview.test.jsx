@@ -9,19 +9,25 @@ describe('RbacUserPreview component', () => {
     name: 'Administrator',
     userid: 'Admin',
     email: 'mail@mail.com',
-    current_group: 'EvmGroup-super_administrator',
+    current_group: {
+      label: 'EvmGroup-super_administrator',
+      onClick: () => console.log('Current group clicked'),
+    },
     groups: [{
       label: 'Cloud-Operators',
       icon: 'group',
       groupId: 1,
-      onClick: () => jest.fn(),
+      onClick: () => console.log('Group click'),
     }, {
       label: 'Cloud-Users',
       icon: 'group',
       groupId: 2,
-      onClick: () => jest.fn(),
+      onClick: () => console.log('Group click'),
     }],
-    role: 'Cloud-Users',
+    role: {
+      label: 'Cloud-Users',
+      onClick: () => console.log('Current role click'),
+    },
   };
 
   it('Should render correctly', () => {
