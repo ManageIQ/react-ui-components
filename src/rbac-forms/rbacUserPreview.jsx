@@ -7,7 +7,17 @@ import './styles.scss';
 const previewLink = (value, icon, onClick, key) => (
   <p className="form-control-static" key={key}>
     <Icon type="fa" name={icon} />
-    <a style={{ marginLeft: 5 }} className="pointer" onClick={onClick} href="#">{value}</a>
+    <a
+      style={{ marginLeft: 5 }}
+      className="pointer"
+      onClick={(event) => {
+        event.preventDefault();
+        onClick();
+      }}
+      href="#"
+    >
+      {value}
+    </a>
   </p>
 );
 
