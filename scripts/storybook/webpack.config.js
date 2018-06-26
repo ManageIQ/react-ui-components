@@ -5,8 +5,8 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
-const ExtractTextPlugin = require('mini-css-extract-plugin');
 const plugins = require('../plugins');
+const rules = require('../rules');
 
 module.exports = {
   plugins: [
@@ -14,6 +14,7 @@ module.exports = {
   ],
   module: {
     rules: [
+      ...rules,
       {
         test: /\.stories\.js$/,
         loaders: [
@@ -29,30 +30,11 @@ module.exports = {
         enforce: 'pre',
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        exclude: /node_modules/,
-        use: [
-          ExtractTextPlugin.loader,
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'resolve-url-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif|svg|woff|ttf|eot)/,
-        loader: 'url-loader?limit=20480&name=static/[name].[ext]',
-      },
-      {
         test: /\.stories\.(js|jsx)$/,
         loaders: [require.resolve('@storybook/addon-storysource/loader')],
         enforce: 'pre',
       },
     ],
   },
+  resolve: { extensions: ['.js', '.jsx'] },
 };
