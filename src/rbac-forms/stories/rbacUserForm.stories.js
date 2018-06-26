@@ -45,5 +45,11 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
     columns={usersTableColumns}
     rowClick={action('Row clicked')}
     userSelect={action('User selected')}
+    showIcon
+    showSelect
+    icon={{
+      type: 'pf',
+      name: 'user',
+    }}
   />
 )));

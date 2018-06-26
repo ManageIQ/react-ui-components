@@ -10,7 +10,7 @@ class RbacUsersTable extends Component {
       sortableColumnPropery: null,
       sortOrderAsc: true,
       rows: props.rows,
-      columns: this.createColumns(props.columns),
+      columns: this.createColumns(props.showIcon, props.showSelect, props.columns),
     };
   }
   headerFormat = value => <Table.Heading>{value}</Table.Heading>;
@@ -24,56 +24,71 @@ class RbacUsersTable extends Component {
       {label}
     </Table.Heading>);
   cellFormat = value => <Table.Cell className="clickable">{value}</Table.Cell>;
-  celliconFormat = () => <Table.Cell className="cell-middle clickable"><Icon type="pf" name="user" /></Table.Cell>;
+  celliconFormat = () => <Table.Cell className="cell-middle clickable"><Icon type={this.props.icon.type} name={this.props.icon.name} /></Table.Cell>;
 
 
-  createColumns = columns => [
-    {
-      propery: 'select',
-      header: {
-        label: '',
-        formatters: [this.headerFormat],
+  createColumns = (showIcon, showSelect, columns) => {
+    let result = [];
+    if (showIcon) {
+      result = [{
+        propery: 'icon',
+        header: {
+          label: '',
+          formatters: [this.headerFormat],
+        },
+        cell: {
+          formatters: [this.celliconFormat],
+        },
       },
-      cell: {
-        formatters: [
-          (value, { rowData }) => (
-            <Table.Cell
-              onClick={(event) => {
-                event.stopPropagation();
-                this.handleSelected(rowData);
-              }}
-              className="clickable"
-            >
-              <Checkbox
-                className="cell-middle"
-                checked={!!rowData.selected}
-                onClick={event => event.stopPropagation()}
-                onChange={() => this.handleSelected(rowData)}
-              />
-            </Table.Cell>
-          ),
-        ],
-      },
-    }, {
-      propery: 'icon',
-      header: {
-        label: '',
-        formatters: [this.headerFormat],
-      },
-      cell: {
-        formatters: [this.celliconFormat],
-      },
-    },
-    ...columns.map(({ property, label }) => ({
-      property,
-      header: {
-        label,
-        formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
-      },
-      cell: {
-        formatters: [this.cellFormat],
-      },
-    }))];
+      ...result];
+    }
+    if (showSelect) {
+      result = [
+        {
+          propery: 'select',
+          header: {
+            label: '',
+            formatters: [this.headerFormat],
+          },
+          cell: {
+            formatters: [
+              (value, { rowData }) => (
+                <Table.Cell
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    this.handleSelected(rowData);
+                  }}
+                  className="clickable"
+                >
+                  <Checkbox
+                    className="cell-middle"
+                    checked={!!rowData.selected}
+                    onClick={event => event.stopPropagation()}
+                    onChange={() => this.handleSelected(rowData)}
+                  />
+                </Table.Cell>
+              ),
+            ],
+          },
+        },
+        ...result,
+      ];
+    }
+    result = [
+      ...result,
+      ...columns.map(({ property, label }) => ({
+        property,
+        header: {
+          label,
+          formatters: [(value, columnProps) => this.sortableHeaderFormater(value, columnProps)],
+        },
+        cell: {
+          formatters: [this.cellFormat],
+        },
+      })),
+    ];
+    return result;
+  };
 
   sortableHeaderFormater = (value, columnProps) => this.sortableHeaderFormat(
     this.sortColumn,
@@ -128,6 +143,41 @@ class RbacUsersTable extends Component {
   }
 }
 
+const tableIconProp = (props, propName, componentName) => {
+  if (!props.showIcon) {
+    return undefined;
+  }
+
+  if (!props[propName]) {
+    return new Error(`Prop validation failed in component ${componentName}. Prop ${propName} is required`);
+  }
+
+  if (typeof props[propName] !== 'object') {
+    return new Error(`Prop validation failed in component ${componentName}. Expected ${propName} to be object, ${typeof props[propName]} given.`);
+  }
+
+  if (!props[propName].type) {
+    return new Error(`Prop validation failed in component ${componentName}. Attribute 'type' in ${propName} is required`);
+  }
+
+  if (!props[propName].name) {
+    return new Error(`Prop validation failed in component ${componentName}. Attribute 'name' in ${propName} is required`);
+  }
+  return undefined;
+};
+
+const userSelectProp = (props, propName, componentName) => {
+  if (props.showSelect && !props[propName]) {
+    return new Error(`Prop validation failed in component ${componentName}. Prop ${propName} is required when user selecting is enabled`);
+  }
+
+  if (typeof props[propName] !== 'function') {
+    return new Error(`Prop validation failed in component ${componentName}. Expected ${propName} to be function, ${typeof props[propName]} given.`);
+  }
+
+  return undefined;
+};
+
 RbacUsersTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     property: PropTypes.string.isRequired,
@@ -144,7 +194,15 @@ RbacUsersTable.propTypes = {
     lastlogoff: PropTypes.string,
   })).isRequired,
   rowClick: PropTypes.func.isRequired,
-  userSelect: PropTypes.func.isRequired,
+  userSelect: userSelectProp,
+  showSelect: PropTypes.bool,
+  showIcon: PropTypes.bool,
+  icon: tableIconProp,
+};
+
+RbacUsersTable.defaultProps = {
+  showSelect: false,
+  showIcon: false,
 };
 
 export default RbacUsersTable;
