@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
-import { RbacUserForm } from '../';
+import { RbacUserForm, RbacUserPreview } from '../';
 
 const groups = [
   {
@@ -47,11 +47,30 @@ const groups = [
     label: 'Perkins',
   },
 ];
-
+const user = {
+  name: 'Administrator',
+  userid: 'Admin',
+  email: 'mail@mail.com',
+  current_group: 'EvmGroup-super_administrator',
+  groups: [{
+    label: 'Cloud-Operators',
+    icon: 'group',
+    groupId: 1,
+    onClick: () => jest.fn(),
+  }, {
+    label: 'Cloud-Users',
+    icon: 'group',
+    groupId: 2,
+    onClick: () => jest.fn(),
+  }],
+  role: 'Cloud-Users',
+};
 storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
   <RbacUserForm
     groups={groups}
     onSave={action('onSave')}
     onCancel={action('onCancel')}
   />
+))).add('Rbac user preview', withInfo()(() => (
+  <RbacUserPreview user={user} />
 )));

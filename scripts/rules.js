@@ -7,7 +7,7 @@ const rules = [
     exclude: [
       /node_modules/,
       /\/data\//,
-      /\/stories\/|/,
+      /\/stories\//,
       /vendor.js/,
     ],
     loader: 'eslint-loader',
