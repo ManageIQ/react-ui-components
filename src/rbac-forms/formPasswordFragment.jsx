@@ -24,6 +24,7 @@ export default class PasswordFragment extends PureComponent {
         <Fragment>
           <Col xs={12}>
             <Field
+              id="password"
               name="password"
               type="password"
               validate={required({ msg: __('Required') })}
@@ -34,6 +35,7 @@ export default class PasswordFragment extends PureComponent {
                 isEditing &&
                 <Col md={2}>
                   <button
+                    id="password-change-disabler"
                     tabIndex="-1"
                     type="button"
                     className="button-link"
@@ -50,6 +52,7 @@ export default class PasswordFragment extends PureComponent {
           </Col>
           <Col xs={12}>
             <Field
+              id="password-verify"
               name="verify"
               type="password"
               validate={required({ msg: __('Required') })}
@@ -71,7 +74,7 @@ export default class PasswordFragment extends PureComponent {
           placeholder="●●●●●●●●"
         >
           <Col md={2}>
-            <button tabIndex="-1" type="button" className="button-link" onClick={this.handleChangeEdit}>
+            <button id="password-change-enabler" tabIndex="-1" type="button" className="button-link" onClick={this.handleChangeEdit}>
               {__('Change stored password')}
             </button>
           </Col>

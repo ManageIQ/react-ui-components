@@ -440,6 +440,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                       <Field
                         component={[Function]}
                         format={[Function]}
+                        id="password"
                         label="Password"
                         name="password"
                         parse={[Function]}
@@ -484,6 +485,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                             clearable={false}
                             componentType="textfield"
                             disabled={false}
+                            id="password"
                             input={
                               Object {
                                 "name": "password",
@@ -604,6 +606,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                       <Field
                         component={[Function]}
                         format={[Function]}
+                        id="password-verify"
                         label="Confirm password"
                         name="verify"
                         parse={[Function]}
@@ -648,6 +651,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                             clearable={false}
                             componentType="textfield"
                             disabled={false}
+                            id="password-verify"
                             input={
                               Object {
                                 "name": "verify",
@@ -1555,6 +1559,1485 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                             type="button"
                           >
                             Add
+                          </button>
+                        </Button>
+                        <Button
+                          active={false}
+                          block={false}
+                          bsClass="btn"
+                          bsStyle="default"
+                          disabled={false}
+                          onClick={[MockFunction]}
+                        >
+                          <button
+                            className="btn btn-default"
+                            disabled={false}
+                            onClick={[MockFunction]}
+                            type="button"
+                          >
+                            Cancel
+                          </button>
+                        </Button>
+                      </div>
+                    </ButtonGroup>
+                  </div>
+                </Col>
+              </div>
+            </Row>
+          </div>
+        </Grid>
+      </form>
+    </Form>
+  </ReactFinalForm>
+</RbacUserForm>
+`;
+
+exports[`RbacUserForm component Should render editing version 1`] = `
+<RbacUserForm
+  editDisabled={false}
+  editEnabled={true}
+  groups={
+    Array [
+      Object {
+        "label": "ckeller",
+        "value": 10000000000029,
+      },
+      Object {
+        "label": "Cloud-Operators",
+        "value": 10000000000025,
+      },
+      Object {
+        "label": "Cloud-Users",
+        "value": 10000000000026,
+      },
+      Object {
+        "label": "EvmGroup-administrator",
+        "value": 10000000000005,
+      },
+      Object {
+        "label": "EvmGroup-approver",
+        "value": 10000000000006,
+      },
+      Object {
+        "label": "EvmGroup-auditor",
+        "value": 10000000000007,
+      },
+      Object {
+        "label": "EvmGroup-consumption_administrator",
+        "value": 10000000000016,
+      },
+      Object {
+        "label": "EvmGroup-container_administrator",
+        "value": 10000000000017,
+      },
+      Object {
+        "label": "EvmGroup-container_operator",
+        "value": 10000000000018,
+      },
+      Object {
+        "label": "EvmGroup-desktop",
+        "value": 10000000000011,
+      },
+      Object {
+        "label": "EvmGroup-operator",
+        "value": 10000000000003,
+      },
+      Object {
+        "label": "EvmGroup-reader",
+        "value": 10000000000036,
+      },
+      Object {
+        "label": "EvmGroup-security",
+        "value": 10000000000010,
+      },
+      Object {
+        "label": "EvmGroup-super_administrator",
+        "value": 10000000000002,
+      },
+      Object {
+        "label": "EvmGroup-support",
+        "value": 10000000000008,
+      },
+      Object {
+        "label": "EvmGroup-tenant_administrator",
+        "value": 10000000000014,
+      },
+      Object {
+        "label": "EvmGroup-tenant_quota_administrator",
+        "value": 10000000000015,
+      },
+      Object {
+        "label": "EvmGroup-user",
+        "value": 10000000000004,
+      },
+      Object {
+        "label": "EvmGroup-user_limited_self_service",
+        "value": 10000000000013,
+      },
+      Object {
+        "label": "EvmGroup-user_self_service",
+        "value": 10000000000012,
+      },
+      Object {
+        "label": "EvmGroup-vm_user",
+        "value": 10000000000009,
+      },
+      Object {
+        "label": "loic Group",
+        "value": 10000000000034,
+      },
+    ]
+  }
+  initialValues={
+    Object {
+      "email": "email@mail.com",
+      "group": Array [
+        10000000000026,
+        10000000000016,
+      ],
+      "name": "User name",
+      "userid": "User id",
+    }
+  }
+  onCancel={[MockFunction]}
+  onSave={[MockFunction]}
+>
+  <ReactFinalForm
+    initialValues={
+      Object {
+        "email": "email@mail.com",
+        "group": Array [
+          10000000000026,
+          10000000000016,
+        ],
+        "name": "User name",
+        "userid": "User id",
+      }
+    }
+    onSubmit={[Function]}
+    render={[Function]}
+    validate={[Function]}
+  >
+    <Form
+      bsClass="form"
+      componentClass="form"
+      horizontal={true}
+      inline={false}
+    >
+      <form
+        className="form-horizontal"
+      >
+        <Grid
+          bsClass="container"
+          componentClass="div"
+          fluid={false}
+        >
+          <div
+            className="container"
+          >
+            <Row
+              bsClass="row"
+              componentClass="div"
+            >
+              <div
+                className="row"
+              >
+                <Col
+                  bsClass="col"
+                  componentClass="div"
+                  xs={12}
+                >
+                  <div
+                    className="col-xs-12"
+                  >
+                    <Field
+                      component={[Function]}
+                      disabled={false}
+                      format={[Function]}
+                      label="Full Name"
+                      name="name"
+                      parse={[Function]}
+                      validate={[Function]}
+                    >
+                      <FinalFormField
+                        disabled={false}
+                        input={
+                          Object {
+                            "name": "name",
+                            "onBlur": [Function],
+                            "onChange": [Function],
+                            "onFocus": [Function],
+                            "value": "User name",
+                          }
+                        }
+                        label="Full Name"
+                        meta={
+                          Object {
+                            "active": false,
+                            "data": Object {},
+                            "dirty": false,
+                            "dirtySinceLastSubmit": false,
+                            "error": undefined,
+                            "initial": "User name",
+                            "invalid": false,
+                            "pristine": true,
+                            "submitError": undefined,
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "touched": false,
+                            "valid": true,
+                            "visited": false,
+                          }
+                        }
+                      >
+                        <FinalFormComponent
+                          clearable={false}
+                          componentType="textfield"
+                          disabled={false}
+                          input={
+                            Object {
+                              "name": "name",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "User name",
+                            }
+                          }
+                          inputColumnSize={8}
+                          label="Full Name"
+                          labelColumnSize={2}
+                          labelKey="label"
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": undefined,
+                              "initial": "User name",
+                              "invalid": false,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "touched": false,
+                              "valid": true,
+                              "visited": false,
+                            }
+                          }
+                          multi={false}
+                          placeholder=""
+                          searchable={false}
+                          validateOnMount={false}
+                          valueKey="value"
+                        >
+                          <FormGroup
+                            bsClass="form-group"
+                            validationState={null}
+                          >
+                            <div
+                              className="form-group"
+                            >
+                              <Col
+                                bsClass="col"
+                                className="control-label"
+                                componentClass="label"
+                                xs={2}
+                              >
+                                <label
+                                  className="control-label col-xs-2"
+                                >
+                                  Full Name
+                                </label>
+                              </Col>
+                              <Col
+                                bsClass="col"
+                                componentClass="div"
+                                xs={8}
+                              >
+                                <div
+                                  className="col-xs-8"
+                                >
+                                  <FormControl
+                                    bsClass="form-control"
+                                    componentClass="input"
+                                    disabled={false}
+                                    id="name"
+                                    name="name"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    placeholder=""
+                                    type="text"
+                                    value="User name"
+                                  >
+                                    <input
+                                      className="form-control"
+                                      disabled={false}
+                                      id="name"
+                                      name="name"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder=""
+                                      type="text"
+                                      value="User name"
+                                    />
+                                  </FormControl>
+                                </div>
+                              </Col>
+                            </div>
+                          </FormGroup>
+                        </FinalFormComponent>
+                      </FinalFormField>
+                    </Field>
+                  </div>
+                </Col>
+                <Col
+                  bsClass="col"
+                  componentClass="div"
+                  xs={12}
+                >
+                  <div
+                    className="col-xs-12"
+                  >
+                    <Field
+                      component={[Function]}
+                      disabled={false}
+                      format={[Function]}
+                      label="Username"
+                      name="userid"
+                      parse={[Function]}
+                      validate={[Function]}
+                    >
+                      <FinalFormField
+                        disabled={false}
+                        input={
+                          Object {
+                            "name": "userid",
+                            "onBlur": [Function],
+                            "onChange": [Function],
+                            "onFocus": [Function],
+                            "value": "User id",
+                          }
+                        }
+                        label="Username"
+                        meta={
+                          Object {
+                            "active": false,
+                            "data": Object {},
+                            "dirty": false,
+                            "dirtySinceLastSubmit": false,
+                            "error": undefined,
+                            "initial": "User id",
+                            "invalid": false,
+                            "pristine": true,
+                            "submitError": undefined,
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "touched": false,
+                            "valid": true,
+                            "visited": false,
+                          }
+                        }
+                      >
+                        <FinalFormComponent
+                          clearable={false}
+                          componentType="textfield"
+                          disabled={false}
+                          input={
+                            Object {
+                              "name": "userid",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "User id",
+                            }
+                          }
+                          inputColumnSize={8}
+                          label="Username"
+                          labelColumnSize={2}
+                          labelKey="label"
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": undefined,
+                              "initial": "User id",
+                              "invalid": false,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "touched": false,
+                              "valid": true,
+                              "visited": false,
+                            }
+                          }
+                          multi={false}
+                          placeholder=""
+                          searchable={false}
+                          validateOnMount={false}
+                          valueKey="value"
+                        >
+                          <FormGroup
+                            bsClass="form-group"
+                            validationState={null}
+                          >
+                            <div
+                              className="form-group"
+                            >
+                              <Col
+                                bsClass="col"
+                                className="control-label"
+                                componentClass="label"
+                                xs={2}
+                              >
+                                <label
+                                  className="control-label col-xs-2"
+                                >
+                                  Username
+                                </label>
+                              </Col>
+                              <Col
+                                bsClass="col"
+                                componentClass="div"
+                                xs={8}
+                              >
+                                <div
+                                  className="col-xs-8"
+                                >
+                                  <FormControl
+                                    bsClass="form-control"
+                                    componentClass="input"
+                                    disabled={false}
+                                    id="userid"
+                                    name="userid"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    placeholder=""
+                                    type="text"
+                                    value="User id"
+                                  >
+                                    <input
+                                      className="form-control"
+                                      disabled={false}
+                                      id="userid"
+                                      name="userid"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder=""
+                                      type="text"
+                                      value="User id"
+                                    />
+                                  </FormControl>
+                                </div>
+                              </Col>
+                            </div>
+                          </FormGroup>
+                        </FinalFormComponent>
+                      </FinalFormField>
+                    </Field>
+                  </div>
+                </Col>
+                <PasswordFragment
+                  changeValue={[Function]}
+                  isEditing={true}
+                >
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    xs={12}
+                  >
+                    <div
+                      className="col-xs-12"
+                    >
+                      <Field
+                        component={[Function]}
+                        disabled={true}
+                        format={[Function]}
+                        label="Password"
+                        name="password"
+                        parse={[Function]}
+                        placeholder="●●●●●●●●"
+                        type="password"
+                      >
+                        <FinalFormField
+                          disabled={true}
+                          input={
+                            Object {
+                              "name": "password",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "",
+                            }
+                          }
+                          label="Password"
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": undefined,
+                              "initial": undefined,
+                              "invalid": false,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "touched": false,
+                              "valid": true,
+                              "visited": false,
+                            }
+                          }
+                          placeholder="●●●●●●●●"
+                          type="password"
+                        >
+                          <FinalFormComponent
+                            clearable={false}
+                            componentType="textfield"
+                            disabled={true}
+                            input={
+                              Object {
+                                "name": "password",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            inputColumnSize={8}
+                            label="Password"
+                            labelColumnSize={2}
+                            labelKey="label"
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": undefined,
+                                "initial": undefined,
+                                "invalid": false,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "touched": false,
+                                "valid": true,
+                                "visited": false,
+                              }
+                            }
+                            multi={false}
+                            placeholder="●●●●●●●●"
+                            searchable={false}
+                            type="password"
+                            validateOnMount={false}
+                            valueKey="value"
+                          >
+                            <FormGroup
+                              bsClass="form-group"
+                              validationState={null}
+                            >
+                              <div
+                                className="form-group"
+                              >
+                                <Col
+                                  bsClass="col"
+                                  className="control-label"
+                                  componentClass="label"
+                                  xs={2}
+                                >
+                                  <label
+                                    className="control-label col-xs-2"
+                                  >
+                                    Password
+                                  </label>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  xs={8}
+                                >
+                                  <div
+                                    className="col-xs-8"
+                                  >
+                                    <FormControl
+                                      bsClass="form-control"
+                                      componentClass="input"
+                                      disabled={true}
+                                      id="password"
+                                      name="password"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder="●●●●●●●●"
+                                      type="password"
+                                      value=""
+                                    >
+                                      <input
+                                        className="form-control"
+                                        disabled={true}
+                                        id="password"
+                                        name="password"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        placeholder="●●●●●●●●"
+                                        type="password"
+                                        value=""
+                                      />
+                                    </FormControl>
+                                  </div>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  md={2}
+                                >
+                                  <div
+                                    className="col-md-2"
+                                  >
+                                    <button
+                                      className="button-link"
+                                      id="password-change-enabler"
+                                      onClick={[Function]}
+                                      tabIndex="-1"
+                                      type="button"
+                                    >
+                                      Change stored password
+                                    </button>
+                                  </div>
+                                </Col>
+                              </div>
+                            </FormGroup>
+                          </FinalFormComponent>
+                        </FinalFormField>
+                      </Field>
+                    </div>
+                  </Col>
+                </PasswordFragment>
+                <Col
+                  bsClass="col"
+                  componentClass="div"
+                  xs={12}
+                >
+                  <div
+                    className="col-xs-12"
+                  >
+                    <Field
+                      component={[Function]}
+                      format={[Function]}
+                      label="Email Address"
+                      name="email"
+                      parse={[Function]}
+                      type="email"
+                      validate={[Function]}
+                    >
+                      <FinalFormField
+                        input={
+                          Object {
+                            "name": "email",
+                            "onBlur": [Function],
+                            "onChange": [Function],
+                            "onFocus": [Function],
+                            "value": "email@mail.com",
+                          }
+                        }
+                        label="Email Address"
+                        meta={
+                          Object {
+                            "active": false,
+                            "data": Object {},
+                            "dirty": false,
+                            "dirtySinceLastSubmit": false,
+                            "error": undefined,
+                            "initial": "email@mail.com",
+                            "invalid": false,
+                            "pristine": true,
+                            "submitError": undefined,
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "touched": false,
+                            "valid": true,
+                            "visited": false,
+                          }
+                        }
+                        type="email"
+                      >
+                        <FinalFormComponent
+                          clearable={false}
+                          componentType="textfield"
+                          disabled={false}
+                          input={
+                            Object {
+                              "name": "email",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "email@mail.com",
+                            }
+                          }
+                          inputColumnSize={8}
+                          label="Email Address"
+                          labelColumnSize={2}
+                          labelKey="label"
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": undefined,
+                              "initial": "email@mail.com",
+                              "invalid": false,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "touched": false,
+                              "valid": true,
+                              "visited": false,
+                            }
+                          }
+                          multi={false}
+                          placeholder=""
+                          searchable={false}
+                          type="email"
+                          validateOnMount={false}
+                          valueKey="value"
+                        >
+                          <FormGroup
+                            bsClass="form-group"
+                            validationState={null}
+                          >
+                            <div
+                              className="form-group"
+                            >
+                              <Col
+                                bsClass="col"
+                                className="control-label"
+                                componentClass="label"
+                                xs={2}
+                              >
+                                <label
+                                  className="control-label col-xs-2"
+                                >
+                                  Email Address
+                                </label>
+                              </Col>
+                              <Col
+                                bsClass="col"
+                                componentClass="div"
+                                xs={8}
+                              >
+                                <div
+                                  className="col-xs-8"
+                                >
+                                  <FormControl
+                                    bsClass="form-control"
+                                    componentClass="input"
+                                    disabled={false}
+                                    id="email"
+                                    name="email"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    placeholder=""
+                                    type="email"
+                                    value="email@mail.com"
+                                  >
+                                    <input
+                                      className="form-control"
+                                      disabled={false}
+                                      id="email"
+                                      name="email"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder=""
+                                      type="email"
+                                      value="email@mail.com"
+                                    />
+                                  </FormControl>
+                                </div>
+                              </Col>
+                            </div>
+                          </FormGroup>
+                        </FinalFormComponent>
+                      </FinalFormField>
+                    </Field>
+                  </div>
+                </Col>
+                <Col
+                  bsClass="col"
+                  componentClass="div"
+                  xs={12}
+                >
+                  <div
+                    className="col-xs-12"
+                  >
+                    <Field
+                      component={[Function]}
+                      format={[Function]}
+                      label="Available Groups"
+                      multi={true}
+                      name="chosen_group"
+                      options={
+                        Array [
+                          Object {
+                            "label": "ckeller",
+                            "value": 10000000000029,
+                          },
+                          Object {
+                            "label": "Cloud-Operators",
+                            "value": 10000000000025,
+                          },
+                          Object {
+                            "label": "Cloud-Users",
+                            "value": 10000000000026,
+                          },
+                          Object {
+                            "label": "EvmGroup-administrator",
+                            "value": 10000000000005,
+                          },
+                          Object {
+                            "label": "EvmGroup-approver",
+                            "value": 10000000000006,
+                          },
+                          Object {
+                            "label": "EvmGroup-auditor",
+                            "value": 10000000000007,
+                          },
+                          Object {
+                            "label": "EvmGroup-consumption_administrator",
+                            "value": 10000000000016,
+                          },
+                          Object {
+                            "label": "EvmGroup-container_administrator",
+                            "value": 10000000000017,
+                          },
+                          Object {
+                            "label": "EvmGroup-container_operator",
+                            "value": 10000000000018,
+                          },
+                          Object {
+                            "label": "EvmGroup-desktop",
+                            "value": 10000000000011,
+                          },
+                          Object {
+                            "label": "EvmGroup-operator",
+                            "value": 10000000000003,
+                          },
+                          Object {
+                            "label": "EvmGroup-reader",
+                            "value": 10000000000036,
+                          },
+                          Object {
+                            "label": "EvmGroup-security",
+                            "value": 10000000000010,
+                          },
+                          Object {
+                            "label": "EvmGroup-super_administrator",
+                            "value": 10000000000002,
+                          },
+                          Object {
+                            "label": "EvmGroup-support",
+                            "value": 10000000000008,
+                          },
+                          Object {
+                            "label": "EvmGroup-tenant_administrator",
+                            "value": 10000000000014,
+                          },
+                          Object {
+                            "label": "EvmGroup-tenant_quota_administrator",
+                            "value": 10000000000015,
+                          },
+                          Object {
+                            "label": "EvmGroup-user",
+                            "value": 10000000000004,
+                          },
+                          Object {
+                            "label": "EvmGroup-user_limited_self_service",
+                            "value": 10000000000013,
+                          },
+                          Object {
+                            "label": "EvmGroup-user_self_service",
+                            "value": 10000000000012,
+                          },
+                          Object {
+                            "label": "EvmGroup-vm_user",
+                            "value": 10000000000009,
+                          },
+                          Object {
+                            "label": "loic Group",
+                            "value": 10000000000034,
+                          },
+                        ]
+                      }
+                      parse={[Function]}
+                      placeholder="Choose one or more Groups"
+                      validate={[Function]}
+                    >
+                      <FinalFormSelect
+                        input={
+                          Object {
+                            "name": "chosen_group",
+                            "onBlur": [Function],
+                            "onChange": [Function],
+                            "onFocus": [Function],
+                            "value": "",
+                          }
+                        }
+                        label="Available Groups"
+                        meta={
+                          Object {
+                            "active": false,
+                            "data": Object {},
+                            "dirty": false,
+                            "dirtySinceLastSubmit": false,
+                            "error": "A User must be assigned to a Group",
+                            "initial": undefined,
+                            "invalid": true,
+                            "pristine": true,
+                            "submitError": undefined,
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "touched": false,
+                            "valid": false,
+                            "visited": false,
+                          }
+                        }
+                        multi={true}
+                        options={
+                          Array [
+                            Object {
+                              "label": "ckeller",
+                              "value": 10000000000029,
+                            },
+                            Object {
+                              "label": "Cloud-Operators",
+                              "value": 10000000000025,
+                            },
+                            Object {
+                              "label": "Cloud-Users",
+                              "value": 10000000000026,
+                            },
+                            Object {
+                              "label": "EvmGroup-administrator",
+                              "value": 10000000000005,
+                            },
+                            Object {
+                              "label": "EvmGroup-approver",
+                              "value": 10000000000006,
+                            },
+                            Object {
+                              "label": "EvmGroup-auditor",
+                              "value": 10000000000007,
+                            },
+                            Object {
+                              "label": "EvmGroup-consumption_administrator",
+                              "value": 10000000000016,
+                            },
+                            Object {
+                              "label": "EvmGroup-container_administrator",
+                              "value": 10000000000017,
+                            },
+                            Object {
+                              "label": "EvmGroup-container_operator",
+                              "value": 10000000000018,
+                            },
+                            Object {
+                              "label": "EvmGroup-desktop",
+                              "value": 10000000000011,
+                            },
+                            Object {
+                              "label": "EvmGroup-operator",
+                              "value": 10000000000003,
+                            },
+                            Object {
+                              "label": "EvmGroup-reader",
+                              "value": 10000000000036,
+                            },
+                            Object {
+                              "label": "EvmGroup-security",
+                              "value": 10000000000010,
+                            },
+                            Object {
+                              "label": "EvmGroup-super_administrator",
+                              "value": 10000000000002,
+                            },
+                            Object {
+                              "label": "EvmGroup-support",
+                              "value": 10000000000008,
+                            },
+                            Object {
+                              "label": "EvmGroup-tenant_administrator",
+                              "value": 10000000000014,
+                            },
+                            Object {
+                              "label": "EvmGroup-tenant_quota_administrator",
+                              "value": 10000000000015,
+                            },
+                            Object {
+                              "label": "EvmGroup-user",
+                              "value": 10000000000004,
+                            },
+                            Object {
+                              "label": "EvmGroup-user_limited_self_service",
+                              "value": 10000000000013,
+                            },
+                            Object {
+                              "label": "EvmGroup-user_self_service",
+                              "value": 10000000000012,
+                            },
+                            Object {
+                              "label": "EvmGroup-vm_user",
+                              "value": 10000000000009,
+                            },
+                            Object {
+                              "label": "loic Group",
+                              "value": 10000000000034,
+                            },
+                          ]
+                        }
+                        placeholder="Choose one or more Groups"
+                      >
+                        <FinalFormComponent
+                          clearable={false}
+                          componentType="select"
+                          disabled={false}
+                          input={
+                            Object {
+                              "name": "chosen_group",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "",
+                            }
+                          }
+                          inputColumnSize={8}
+                          label="Available Groups"
+                          labelColumnSize={2}
+                          labelKey="label"
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": "A User must be assigned to a Group",
+                              "initial": undefined,
+                              "invalid": true,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "touched": false,
+                              "valid": false,
+                              "visited": false,
+                            }
+                          }
+                          multi={true}
+                          options={
+                            Array [
+                              Object {
+                                "label": "ckeller",
+                                "value": 10000000000029,
+                              },
+                              Object {
+                                "label": "Cloud-Operators",
+                                "value": 10000000000025,
+                              },
+                              Object {
+                                "label": "Cloud-Users",
+                                "value": 10000000000026,
+                              },
+                              Object {
+                                "label": "EvmGroup-administrator",
+                                "value": 10000000000005,
+                              },
+                              Object {
+                                "label": "EvmGroup-approver",
+                                "value": 10000000000006,
+                              },
+                              Object {
+                                "label": "EvmGroup-auditor",
+                                "value": 10000000000007,
+                              },
+                              Object {
+                                "label": "EvmGroup-consumption_administrator",
+                                "value": 10000000000016,
+                              },
+                              Object {
+                                "label": "EvmGroup-container_administrator",
+                                "value": 10000000000017,
+                              },
+                              Object {
+                                "label": "EvmGroup-container_operator",
+                                "value": 10000000000018,
+                              },
+                              Object {
+                                "label": "EvmGroup-desktop",
+                                "value": 10000000000011,
+                              },
+                              Object {
+                                "label": "EvmGroup-operator",
+                                "value": 10000000000003,
+                              },
+                              Object {
+                                "label": "EvmGroup-reader",
+                                "value": 10000000000036,
+                              },
+                              Object {
+                                "label": "EvmGroup-security",
+                                "value": 10000000000010,
+                              },
+                              Object {
+                                "label": "EvmGroup-super_administrator",
+                                "value": 10000000000002,
+                              },
+                              Object {
+                                "label": "EvmGroup-support",
+                                "value": 10000000000008,
+                              },
+                              Object {
+                                "label": "EvmGroup-tenant_administrator",
+                                "value": 10000000000014,
+                              },
+                              Object {
+                                "label": "EvmGroup-tenant_quota_administrator",
+                                "value": 10000000000015,
+                              },
+                              Object {
+                                "label": "EvmGroup-user",
+                                "value": 10000000000004,
+                              },
+                              Object {
+                                "label": "EvmGroup-user_limited_self_service",
+                                "value": 10000000000013,
+                              },
+                              Object {
+                                "label": "EvmGroup-user_self_service",
+                                "value": 10000000000012,
+                              },
+                              Object {
+                                "label": "EvmGroup-vm_user",
+                                "value": 10000000000009,
+                              },
+                              Object {
+                                "label": "loic Group",
+                                "value": 10000000000034,
+                              },
+                            ]
+                          }
+                          placeholder="Choose one or more Groups"
+                          searchable={false}
+                          validateOnMount={false}
+                          valueKey="value"
+                        >
+                          <FormGroup
+                            bsClass="form-group"
+                            validationState={null}
+                          >
+                            <div
+                              className="form-group"
+                            >
+                              <Col
+                                bsClass="col"
+                                className="control-label"
+                                componentClass="label"
+                                xs={2}
+                              >
+                                <label
+                                  className="control-label col-xs-2"
+                                >
+                                  Available Groups
+                                </label>
+                              </Col>
+                              <Col
+                                bsClass="col"
+                                componentClass="div"
+                                xs={8}
+                              >
+                                <div
+                                  className="col-xs-8"
+                                >
+                                  <Select
+                                    arrowRenderer={[Function]}
+                                    autosize={true}
+                                    backspaceRemoves={true}
+                                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                                    className=" final-form-select"
+                                    clearAllText="Clear all"
+                                    clearRenderer={[Function]}
+                                    clearValueText="Clear value"
+                                    clearable={false}
+                                    closeOnSelect={true}
+                                    deleteRemoves={true}
+                                    delimiter=","
+                                    disabled={false}
+                                    escapeClearsValue={true}
+                                    filterOptions={[Function]}
+                                    id="chosen_group"
+                                    ignoreAccents={true}
+                                    ignoreCase={true}
+                                    inputProps={Object {}}
+                                    isLoading={false}
+                                    joinValues={false}
+                                    label="Available Groups"
+                                    labelKey="label"
+                                    matchPos="any"
+                                    matchProp="any"
+                                    menuBuffer={0}
+                                    menuRenderer={[Function]}
+                                    multi={true}
+                                    name="chosen_group"
+                                    noResultsText="No results found"
+                                    onBlur={[Function]}
+                                    onBlurResetsInput={true}
+                                    onChange={[Function]}
+                                    onCloseResetsInput={true}
+                                    onFocus={[Function]}
+                                    onSelectResetsInput={true}
+                                    openOnClick={true}
+                                    optionClassName="final-form-select-option"
+                                    optionComponent={[Function]}
+                                    options={
+                                      Array [
+                                        Object {
+                                          "label": "ckeller",
+                                          "value": 10000000000029,
+                                        },
+                                        Object {
+                                          "label": "Cloud-Operators",
+                                          "value": 10000000000025,
+                                        },
+                                        Object {
+                                          "label": "Cloud-Users",
+                                          "value": 10000000000026,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-administrator",
+                                          "value": 10000000000005,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-approver",
+                                          "value": 10000000000006,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-auditor",
+                                          "value": 10000000000007,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-consumption_administrator",
+                                          "value": 10000000000016,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-container_administrator",
+                                          "value": 10000000000017,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-container_operator",
+                                          "value": 10000000000018,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-desktop",
+                                          "value": 10000000000011,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-operator",
+                                          "value": 10000000000003,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-reader",
+                                          "value": 10000000000036,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-security",
+                                          "value": 10000000000010,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-super_administrator",
+                                          "value": 10000000000002,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-support",
+                                          "value": 10000000000008,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-tenant_administrator",
+                                          "value": 10000000000014,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-tenant_quota_administrator",
+                                          "value": 10000000000015,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-user",
+                                          "value": 10000000000004,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-user_limited_self_service",
+                                          "value": 10000000000013,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-user_self_service",
+                                          "value": 10000000000012,
+                                        },
+                                        Object {
+                                          "label": "EvmGroup-vm_user",
+                                          "value": 10000000000009,
+                                        },
+                                        Object {
+                                          "label": "loic Group",
+                                          "value": 10000000000034,
+                                        },
+                                      ]
+                                    }
+                                    pageSize={5}
+                                    placeholder="Choose one or more Groups"
+                                    removeSelected={true}
+                                    required={false}
+                                    rtl={false}
+                                    scrollMenuIntoView={true}
+                                    searchable={false}
+                                    simpleValue={false}
+                                    tabSelectsValue={true}
+                                    trimFilter={true}
+                                    value=""
+                                    valueComponent={[Function]}
+                                    valueKey="value"
+                                  >
+                                    <div
+                                      className="Select  final-form-select Select--multi"
+                                    >
+                                      <div
+                                        className="Select-control"
+                                        onKeyDown={[Function]}
+                                        onMouseDown={[Function]}
+                                        onTouchEnd={[Function]}
+                                        onTouchMove={[Function]}
+                                        onTouchStart={[Function]}
+                                      >
+                                        <span
+                                          className="Select-multi-value-wrapper"
+                                          id="react-select-3--value"
+                                        >
+                                          <div
+                                            className="Select-placeholder"
+                                          >
+                                            Choose one or more Groups
+                                          </div>
+                                          <div
+                                            aria-activedescendant="react-select-3--value"
+                                            aria-disabled="false"
+                                            aria-expanded={false}
+                                            aria-owns=""
+                                            className="Select-input"
+                                            onBlur={[Function]}
+                                            onFocus={[Function]}
+                                            role="combobox"
+                                            style={
+                                              Object {
+                                                "border": 0,
+                                                "display": "inline-block",
+                                                "width": 1,
+                                              }
+                                            }
+                                            tabIndex={0}
+                                          />
+                                        </span>
+                                        <span
+                                          className="Select-arrow-zone"
+                                          onMouseDown={[Function]}
+                                        >
+                                          <span
+                                            className="Select-arrow"
+                                            onMouseDown={[Function]}
+                                          />
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </Select>
+                                </div>
+                              </Col>
+                            </div>
+                          </FormGroup>
+                        </FinalFormComponent>
+                      </FinalFormSelect>
+                    </Field>
+                  </div>
+                </Col>
+              </div>
+            </Row>
+            <Row
+              bsClass="row"
+              componentClass="div"
+            >
+              <div
+                className="row"
+              >
+                <Col
+                  bsClass="col"
+                  componentClass="div"
+                  xs={10}
+                >
+                  <div
+                    className="col-xs-10"
+                  >
+                    <ButtonGroup
+                      block={false}
+                      bsClass="btn-group"
+                      className="pull-right"
+                      justified={false}
+                      vertical={false}
+                    >
+                      <div
+                        className="pull-right btn-group"
+                      >
+                        <Button
+                          active={false}
+                          block={false}
+                          bsClass="btn"
+                          bsStyle="primary"
+                          disabled={true}
+                          id="user-submit"
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <button
+                            className="btn btn-primary"
+                            disabled={true}
+                            id="user-submit"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Save
+                          </button>
+                        </Button>
+                        <Button
+                          active={false}
+                          block={false}
+                          bsClass="btn"
+                          bsStyle="default"
+                          disabled={true}
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <button
+                            className="btn btn-default"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Reset
                           </button>
                         </Button>
                         <Button

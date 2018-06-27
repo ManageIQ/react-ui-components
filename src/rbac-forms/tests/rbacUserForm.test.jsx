@@ -8,6 +8,12 @@ import { RbacUserForm } from '../';
 
 describe('RbacUserForm component', () => {
   const initialProps = {};
+  const user = {
+    name: 'User name',
+    userid: 'User id',
+    email: 'email@mail.com',
+    group: [10000000000026, 10000000000016],
+  };
 
   beforeEach(() => {
     initialProps.groups = [
@@ -40,6 +46,11 @@ describe('RbacUserForm component', () => {
 
   it('Should render correctly', () => {
     const tree = mount(<RbacUserForm {...initialProps} />);
+    expect(toJson(tree)).toMatchSnapshot();
+  });
+
+  it('Should render editing version', () => {
+    const tree = mount(<RbacUserForm {...initialProps} initialValues={user} editEnabled />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
@@ -89,5 +100,21 @@ describe('RbacUserForm component', () => {
 
     wrapper.find('button#user-submit').simulate('click');
     expect(onSave).toHaveBeenCalled();
+  });
+
+  it('Should add input to change password and then hide', () => {
+    const wrapper = mount(<RbacUserForm {...initialProps} initialValues={user} editEnabled />);
+    const enabler = wrapper.find('#password-change-enabler');
+    let verify = wrapper.find('#password-verify');
+
+    expect(verify.length).toBe(0);
+    enabler.simulate('click');
+    verify = wrapper.find('#password-verify');
+    expect(verify).toBeTruthy();
+
+    const disabler = wrapper.find('#password-change-disabler');
+    disabler.simulate('click');
+    verify = wrapper.find('#password-verify');
+    expect(verify.length).toBe(0);
   });
 });
