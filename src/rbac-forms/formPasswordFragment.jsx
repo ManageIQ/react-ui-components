@@ -41,6 +41,7 @@ export default class PasswordFragment extends PureComponent {
                     className="button-link"
                     onClick={() => {
                       changeValue('password', null);
+                      changeValue('verify', null);
                       this.handleChangeEdit();
                     }}
                   >

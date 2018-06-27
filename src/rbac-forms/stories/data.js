@@ -1,3 +1,5 @@
+import { action } from '@storybook/addon-actions';
+
 export const groups = [
   {
     value: 1,
@@ -40,6 +42,12 @@ export const groups = [
     label: 'Perkins',
   },
 ];
+
+export const editedUser = {
+  name: 'Users full name',
+  userid: 'admin jiny',
+  chosen_group: [5, 7],
+};
 
 export const usersTableColumns = [{
   property: 'fullname',
@@ -96,3 +104,28 @@ export const usersTableRows = [
     lastlogoff: '010/30/18 06:58:14 UTC',
   },
 ];
+
+export const user = {
+  name: 'Administrator',
+  userid: 'Admin',
+  email: 'mail@mail.com',
+  current_group: {
+    label: 'EvmGroup-super_administrator',
+    onClick: () => action('Current group clicked'),
+  },
+  groups: [{
+    label: 'Cloud-Operators',
+    icon: 'group',
+    groupId: 1,
+    onClick: () => action('Group click'),
+  }, {
+    label: 'Cloud-Users',
+    icon: 'group',
+    groupId: 2,
+    onClick: () => action('Group click'),
+  }],
+  role: {
+    label: 'Cloud-Users',
+    onClick: () => action('Current role click'),
+  },
+};
