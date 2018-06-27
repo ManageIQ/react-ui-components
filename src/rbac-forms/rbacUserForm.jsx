@@ -1,10 +1,11 @@
-import React, { Fragment, PureComponent } from 'react';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { required, email } from 'redux-form-validators';
 import { Form as PfForm, Col, Row, Grid, Button, ButtonGroup } from 'patternfly-react';
 
 import { FinalFormField, FinalFormSelect, composeValidators } from '../forms';
+import PasswordFragment from './formPasswordFragment';
 import { __ } from '../global-functions';
 import { emailPropType } from '../manageiq-validators';
 import './styles.scss';
@@ -102,90 +103,6 @@ const RbacUserForm = ({
     )}
   />
 );
-
-class PasswordFragment extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editEnabled: false,
-    };
-  }
-
-  handleChangeEdit = () => this.setState(prevState => ({ editEnabled: !prevState.editEnabled }));
-
-  render() {
-    const { isEditing, changeValue } = this.props;
-    const { editEnabled } = this.state;
-    if (!isEditing || editEnabled) {
-      return (
-        <Fragment>
-          <Col xs={12}>
-            <Field
-              name="password"
-              type="password"
-              validate={required({ msg: __('Required') })}
-              component={FinalFormField}
-              label={__('Password')}
-            >
-              {
-                isEditing &&
-                <Col md={2}>
-                  <button
-                    tabIndex="-1"
-                    type="button"
-                    className="button-link"
-                    onClick={() => {
-                      changeValue('password', null);
-                      this.handleChangeEdit();
-                    }}
-                  >
-                    {__('Cancel password change')}
-                  </button>
-                </Col>
-              }
-            </Field>
-          </Col>
-          <Col xs={12}>
-            <Field
-              name="verify"
-              type="password"
-              validate={required({ msg: __('Required') })}
-              component={FinalFormField}
-              label={__('Confirm password')}
-            />
-          </Col>
-        </Fragment>
-      );
-    }
-    return (
-      <Col xs={12}>
-        <Field
-          name="password"
-          type="password"
-          component={FinalFormField}
-          label={__('Password')}
-          disabled
-          placeholder="●●●●●●●●"
-        >
-          <Col md={2}>
-            <button tabIndex="-1" type="button" className="button-link" onClick={this.handleChangeEdit}>
-              {__('Change stored password')}
-            </button>
-          </Col>
-        </Field>
-      </Col>
-    );
-  }
-}
-
-PasswordFragment.propTypes = {
-  isEditing: PropTypes.bool,
-  changeValue: PropTypes.func.isRequired,
-};
-
-PasswordFragment.defaultProps = {
-  isEditing: false,
-};
 
 RbacUserForm.propTypes = {
   onSave: PropTypes.func.isRequired,
