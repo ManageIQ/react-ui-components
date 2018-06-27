@@ -45,6 +45,7 @@ const FinalFormComponent = ({
   placeholder,
   type,
   maxLength,
+  children,
   disabled,
   ...rest
 }) => {
@@ -77,6 +78,7 @@ const FinalFormComponent = ({
         {componentSelect(componentType, inputProps)}
         {invalid && <HelpBlock>{meta.error}</HelpBlock>}
       </Col>
+      {children}
     </FormGroup>
   );
 };
@@ -144,6 +146,10 @@ FinalFormComponent.propTypes = {
   labelKey: PropTypes.string,
   valueKey: PropTypes.string,
   maxLength: PropTypes.number,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   disabled: PropTypes.bool,
 };
 

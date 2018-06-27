@@ -2,6 +2,7 @@
 
 exports[`RbacUserForm component Should render correctly 1`] = `
 <RbacUserForm
+  editDisabled={false}
   groups={
     Array [
       Object {
@@ -424,53 +425,26 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                     </Field>
                   </div>
                 </Col>
-                <Col
-                  bsClass="col"
-                  componentClass="div"
-                  xs={12}
+                <PasswordFragment
+                  changeValue={[Function]}
+                  isEditing={false}
                 >
-                  <div
-                    className="col-xs-12"
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    xs={12}
                   >
-                    <Field
-                      component={[Function]}
-                      format={[Function]}
-                      label="Password"
-                      name="password"
-                      parse={[Function]}
-                      type="password"
-                      validate={[Function]}
+                    <div
+                      className="col-xs-12"
                     >
-                      <FinalFormField
-                        input={
-                          Object {
-                            "name": "password",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
+                      <Field
+                        component={[Function]}
+                        format={[Function]}
                         label="Password"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": "Required",
-                            "initial": undefined,
-                            "invalid": true,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "touched": false,
-                            "valid": false,
-                            "visited": false,
-                          }
-                        }
+                        name="password"
+                        parse={[Function]}
                         type="password"
+                        validate={[Function]}
                       >
                         <FinalFormComponent
                           clearable={false}
@@ -485,10 +459,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                               "value": "",
                             }
                           }
-                          inputColumnSize={8}
                           label="Password"
-                          labelColumnSize={2}
-                          labelKey="label"
                           meta={
                             Object {
                               "active": false,
@@ -507,39 +478,73 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                               "visited": false,
                             }
                           }
-                          multi={false}
-                          placeholder=""
-                          searchable={false}
                           type="password"
-                          validateOnMount={false}
-                          valueKey="value"
                         >
-                          <FormGroup
-                            bsClass="form-group"
-                            validationState={null}
+                          <FinalFormComponent
+                            clearable={false}
+                            componentType="textfield"
+                            disabled={false}
+                            input={
+                              Object {
+                                "name": "password",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            inputColumnSize={8}
+                            label="Password"
+                            labelColumnSize={2}
+                            labelKey="label"
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": "Required",
+                                "initial": undefined,
+                                "invalid": true,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "touched": false,
+                                "valid": false,
+                                "visited": false,
+                              }
+                            }
+                            multi={false}
+                            placeholder=""
+                            searchable={false}
+                            type="password"
+                            validateOnMount={false}
+                            valueKey="value"
                           >
-                            <div
-                              className="form-group"
+                            <FormGroup
+                              bsClass="form-group"
+                              validationState={null}
                             >
-                              <Col
-                                bsClass="col"
-                                className="control-label"
-                                componentClass="label"
-                                xs={2}
+                              <div
+                                className="form-group"
                               >
-                                <label
-                                  className="control-label col-xs-2"
+                                <Col
+                                  bsClass="col"
+                                  className="control-label"
+                                  componentClass="label"
+                                  xs={2}
                                 >
-                                  Password
-                                </label>
-                              </Col>
-                              <Col
-                                bsClass="col"
-                                componentClass="div"
-                                xs={8}
-                              >
-                                <div
-                                  className="col-xs-8"
+                                  <label
+                                    className="control-label col-xs-2"
+                                  >
+                                    Password
+                                  </label>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  xs={8}
                                 >
                                   <FormControl
                                     bsClass="form-control"
@@ -565,64 +570,45 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                       placeholder=""
                                       type="password"
                                       value=""
-                                    />
-                                  </FormControl>
-                                </div>
-                              </Col>
-                            </div>
-                          </FormGroup>
-                        </FinalFormComponent>
-                      </FinalFormField>
-                    </Field>
-                  </div>
-                </Col>
-                <Col
-                  bsClass="col"
-                  componentClass="div"
-                  xs={12}
-                >
-                  <div
-                    className="col-xs-12"
+                                    >
+                                      <input
+                                        className="form-control"
+                                        disabled={false}
+                                        id="password"
+                                        name="password"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        placeholder=""
+                                        type="password"
+                                        value=""
+                                      />
+                                    </FormControl>
+                                  </div>
+                                </Col>
+                              </div>
+                            </FormGroup>
+                          </FinalFormComponent>
+                        </FinalFormField>
+                      </Field>
+                    </div>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    componentClass="div"
+                    xs={12}
                   >
-                    <Field
-                      component={[Function]}
-                      format={[Function]}
-                      label="Confirm password"
-                      name="verify"
-                      parse={[Function]}
-                      type="password"
-                      validate={[Function]}
+                    <div
+                      className="col-xs-12"
                     >
-                      <FinalFormField
-                        input={
-                          Object {
-                            "name": "verify",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
+                      <Field
+                        component={[Function]}
+                        format={[Function]}
                         label="Confirm password"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": "Required",
-                            "initial": undefined,
-                            "invalid": true,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "touched": false,
-                            "valid": false,
-                            "visited": false,
-                          }
-                        }
+                        name="verify"
+                        parse={[Function]}
                         type="password"
+                        validate={[Function]}
                       >
                         <FinalFormComponent
                           clearable={false}
@@ -637,10 +623,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                               "value": "",
                             }
                           }
-                          inputColumnSize={8}
                           label="Confirm password"
-                          labelColumnSize={2}
-                          labelKey="label"
                           meta={
                             Object {
                               "active": false,
@@ -659,39 +642,73 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                               "visited": false,
                             }
                           }
-                          multi={false}
-                          placeholder=""
-                          searchable={false}
                           type="password"
-                          validateOnMount={false}
-                          valueKey="value"
                         >
-                          <FormGroup
-                            bsClass="form-group"
-                            validationState={null}
+                          <FinalFormComponent
+                            clearable={false}
+                            componentType="textfield"
+                            disabled={false}
+                            input={
+                              Object {
+                                "name": "verify",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            inputColumnSize={8}
+                            label="Confirm password"
+                            labelColumnSize={2}
+                            labelKey="label"
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": "Required",
+                                "initial": undefined,
+                                "invalid": true,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "touched": false,
+                                "valid": false,
+                                "visited": false,
+                              }
+                            }
+                            multi={false}
+                            placeholder=""
+                            searchable={false}
+                            type="password"
+                            validateOnMount={false}
+                            valueKey="value"
                           >
-                            <div
-                              className="form-group"
+                            <FormGroup
+                              bsClass="form-group"
+                              validationState={null}
                             >
-                              <Col
-                                bsClass="col"
-                                className="control-label"
-                                componentClass="label"
-                                xs={2}
+                              <div
+                                className="form-group"
                               >
-                                <label
-                                  className="control-label col-xs-2"
+                                <Col
+                                  bsClass="col"
+                                  className="control-label"
+                                  componentClass="label"
+                                  xs={2}
                                 >
-                                  Confirm password
-                                </label>
-                              </Col>
-                              <Col
-                                bsClass="col"
-                                componentClass="div"
-                                xs={8}
-                              >
-                                <div
-                                  className="col-xs-8"
+                                  <label
+                                    className="control-label col-xs-2"
+                                  >
+                                    Confirm password
+                                  </label>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  xs={8}
                                 >
                                   <FormControl
                                     bsClass="form-control"
@@ -717,17 +734,30 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                       placeholder=""
                                       type="password"
                                       value=""
-                                    />
-                                  </FormControl>
-                                </div>
-                              </Col>
-                            </div>
-                          </FormGroup>
-                        </FinalFormComponent>
-                      </FinalFormField>
-                    </Field>
-                  </div>
-                </Col>
+                                    >
+                                      <input
+                                        className="form-control"
+                                        disabled={false}
+                                        id="verify"
+                                        name="verify"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        placeholder=""
+                                        type="password"
+                                        value=""
+                                      />
+                                    </FormControl>
+                                  </div>
+                                </Col>
+                              </div>
+                            </FormGroup>
+                          </FinalFormComponent>
+                        </FinalFormField>
+                      </Field>
+                    </div>
+                  </Col>
+                </PasswordFragment>
                 <Col
                   bsClass="col"
                   componentClass="div"
