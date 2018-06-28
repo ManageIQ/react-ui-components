@@ -105,7 +105,9 @@
     "semantic-release": "^15.5.0"
   },
   "dependencies": {
+    "connected-react-router": "^4.3.0",
     "final-form": "^4.7.3",
+    "history": "^4.7.2",
     "patternfly-react": "^2.5.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
@@ -113,9 +115,11 @@
     "react-dom": "^16.4.0",
     "react-final-form": "^3.5.1",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.3.1",
     "react-select": "^1.2.1",
     "redux": "^4.0.0",
     "redux-form-validators": "^2.7.0",
+<<<<<<< HEAD
     "redux-mock-store": "^1.5.1"
   },
   "release": {
@@ -130,5 +134,9 @@
         "message": "Release of new version: ${nextRelease.version} <no> [skip ci]"
       }
     ]
+=======
+    "redux-mock-store": "^1.5.1",
+    "redux-thunk": "^2.3.0"
+>>>>>>> Exposed react-router-dom on window.
   }
 }
