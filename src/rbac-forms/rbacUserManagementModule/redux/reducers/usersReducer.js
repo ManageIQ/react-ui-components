@@ -4,6 +4,7 @@ import {
   FETCH_DATA,
   FETCH_SUCESFULL,
   REQUEST_FAILED,
+  SAVE_USER,
 } from '../actions/actionTypes';
 
 const usersReducer = (state = { isLoaded: false, isFetching: false, isValid: true }, action) => {
@@ -13,6 +14,7 @@ const usersReducer = (state = { isLoaded: false, isFetching: false, isValid: tru
     case REQUEST_FAILED:
       return { ...state, isFetching: false, isValid: false };
     case FETCH_DATA:
+    case SAVE_USER:
       return { ...state, isFetching: true };
     case LOAD_DATA:
       return {

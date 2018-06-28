@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Provider, connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter, goBack } from 'connected-react-router';
-import { Button, Grid, Row, Col, ListGroup, ListGroupItem } from 'patternfly-react';
+import { Button, Grid, Row, Col, ListGroup, ListGroupItem, Spinner } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import { history, store } from './redux/reducers/';
 import { navigate, requestUsers, deleteUser } from './redux/actions/actions';
@@ -86,8 +86,8 @@ class App extends PureComponent {
   renderuserEdit = props => <UserEdit onSave={this.mockUserSave} {...props} />;
 
   render() {
-    if (!this.props.isLoaded) {
-      return <div>Loading</div>;
+    if (this.props.isFetching || !this.props.isLoaded) {
+      return <div><Spinner loading size="lg" /></div>;
     }
     return (
       <Grid fluid>
@@ -115,11 +115,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   loadUsersData: PropTypes.func.isRequired,
 };
 
-const mapAppToProps = ({ usersReducer: { isLoaded } }) => ({ isLoaded });
+const mapAppToProps = ({ usersReducer: { isFetching, isLoaded } }) => ({ isFetching, isLoaded });
 const mapAppToDispatch = dispatch => ({
   loadUsersData: callBack => dispatch(requestUsers(callBack)),
 });
@@ -128,7 +129,7 @@ const WrappedApp = connect(mapAppToProps, mapAppToDispatch)(App);
 
 
 const wrapper = () => (
-  <Provider store={store}>
+  <Provider store={store} >
     <WrappedApp />
   </Provider>
 );
