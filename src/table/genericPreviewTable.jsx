@@ -97,9 +97,9 @@ class GenericPreviewTable extends Component {
     this.state.sortableColumnPropery === columnProps.column.property,
   );
 
-  handleSelected = ({ id }) => this.setState((prevState) => {
+  handleSelected = row => this.setState((prevState) => {
     const rows = prevState.rows.map((item) => {
-      if (item.id !== id) {
+      if (item[this.props.rowKey] !== row[this.props.rowKey]) {
         return item;
       }
       return {
@@ -123,6 +123,7 @@ class GenericPreviewTable extends Component {
   render() {
     const { PfProvider, Body, Header } = Table;
     const { rows, columns } = this.state;
+    const { rowKey } = this.props;
     return (
       <PfProvider
         striped
@@ -135,7 +136,7 @@ class GenericPreviewTable extends Component {
         <Header />
         <Body
           rows={[...rows]}
-          rowKey="id"
+          rowKey={rowKey}
           onRow={row => ({ onClick: () => this.props.rowClick(row) })}
         />
       </PfProvider>
@@ -183,26 +184,19 @@ GenericPreviewTable.propTypes = {
     property: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
-  rows: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    fullname: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    email: PropTypes.string,
-    currentgroup: PropTypes.string,
-    role: PropTypes.string,
-    lastlogon: PropTypes.string,
-    lastlogoff: PropTypes.string,
-  })).isRequired,
+  rows: PropTypes.array.isRequired,
   rowClick: PropTypes.func.isRequired,
   rowSelect: rowSelectProp,
   showSelect: PropTypes.bool,
   showIcon: PropTypes.bool,
   icon: tableIconProp,
+  rowKey: PropTypes.string,
 };
 
 GenericPreviewTable.defaultProps = {
   showSelect: false,
   showIcon: false,
+  rowKey: 'id',
 };
 
 export default GenericPreviewTable;
