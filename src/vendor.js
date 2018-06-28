@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as PFReact from 'patternfly-react';
 import * as ReactSelect from 'react-select';
 import * as PropTypes from 'prop-types';
+import * as ReactRouterDOM from 'react-router-dom';
 
 window.ReactSelect = ReactSelect;
 window.Redux = Redux;
@@ -13,3 +14,4 @@ window.ReactDOM = ReactDOM;
 window.React = React;
 window.PFReact = PFReact;
 window.PropTypes = PropTypes;
+window.ReactRouterDOM = ReactRouterDOM;
