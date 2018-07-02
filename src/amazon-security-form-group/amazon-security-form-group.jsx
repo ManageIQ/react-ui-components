@@ -65,7 +65,7 @@ class AmazonSecurityFormGroup extends Component {
         onSubmit={values => onSave(this.parseValues(values, groups))}
         render={({ handleSubmit }) => (
           <PfForm horizontal>
-            <Grid>
+            <Grid fluid>
               <Row>
                 <Col xs={12}>
                   <Field
