@@ -10,6 +10,7 @@ import { __ } from '../../global-functions';
 export const VmSnapshotForm = ({
   onSubmit,
   hideName,
+  showMemorySwitch,
   onCancel,
   nameRequired,
   descriptionRequired,
@@ -40,18 +41,20 @@ export const VmSnapshotForm = ({
               render={({ input, meta }) => renderFinalFormTextArea(input, meta, __('Description'), true)}
             />
           </Col>
+          {showMemorySwitch &&
+            <Col xs={12}>
+              <Field
+                name="snap_memory"
+                id="snap_memory"
+                component={FinalFormSwitch}
+                label={__('Snapshot VM memory')}
+                onText={__('Yes')}
+                offText={__('No')}
+              />
+            </Col>
+          }
           <Col xs={12}>
-            <Field
-              name="snap_memory"
-              id="snap_memory"
-              component={FinalFormSwitch}
-              label={__('Snapshot VM memory')}
-              onText={__('Yes')}
-              offText={__('No')}
-            />
             <hr />
-          </Col>
-          <Col xs={12}>
             <ButtonGroup className="pull-right">
               <Button id="snap-form-submit" onClick={() => handleSubmit(values)} disabled={invalid} bsStyle="primary">{__('Create')}</Button>
               <Button id="snap-form-cancel" onClick={onCancel}>{__('Cancel')}</Button>
@@ -69,10 +72,12 @@ VmSnapshotForm.propTypes = {
   hideName: PropTypes.bool,
   nameRequired: PropTypes.bool,
   descriptionRequired: PropTypes.bool,
+  showMemorySwitch: PropTypes.bool,
 };
 
 VmSnapshotForm.defaultProps = {
   hideName: false,
   nameRequired: false,
   descriptionRequired: false,
+  showMemorySwitch: true,
 };

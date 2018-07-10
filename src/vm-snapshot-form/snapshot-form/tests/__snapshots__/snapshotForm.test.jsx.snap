@@ -7,6 +7,7 @@ exports[`Final form input component Should render correctly 1`] = `
   nameRequired={false}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
+  showMemorySwitch={true}
   validateOnMount={true}
 >
   <ReactFinalForm
@@ -548,7 +549,6 @@ exports[`Final form input component Should render correctly 1`] = `
                     </FinalFormComponent>
                   </FinalFormSwitch>
                 </Field>
-                <hr />
               </div>
             </Col>
             <Col
@@ -559,6 +559,7 @@ exports[`Final form input component Should render correctly 1`] = `
               <div
                 className="col-xs-12"
               >
+                <hr />
                 <ButtonGroup
                   block={false}
                   bsClass="btn-group"
@@ -626,6 +627,7 @@ exports[`Final form input component Should render with description required 1`] 
   nameRequired={false}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
+  showMemorySwitch={true}
   validateOnMount={true}
 >
   <ReactFinalForm
@@ -1176,7 +1178,6 @@ exports[`Final form input component Should render with description required 1`] 
                     </FinalFormComponent>
                   </FinalFormSwitch>
                 </Field>
-                <hr />
               </div>
             </Col>
             <Col
@@ -1187,6 +1188,7 @@ exports[`Final form input component Should render with description required 1`] 
               <div
                 className="col-xs-12"
               >
+                <hr />
                 <ButtonGroup
                   block={false}
                   bsClass="btn-group"
@@ -1254,6 +1256,7 @@ exports[`Final form input component Should render with name required 1`] = `
   nameRequired={true}
   onCancel={[MockFunction]}
   onSubmit={[MockFunction]}
+  showMemorySwitch={true}
   validateOnMount={true}
 >
   <ReactFinalForm
@@ -1804,7 +1807,6 @@ exports[`Final form input component Should render with name required 1`] = `
                     </FinalFormComponent>
                   </FinalFormSwitch>
                 </Field>
-                <hr />
               </div>
             </Col>
             <Col
@@ -1815,6 +1817,7 @@ exports[`Final form input component Should render with name required 1`] = `
               <div
                 className="col-xs-12"
               >
+                <hr />
                 <ButtonGroup
                   block={false}
                   bsClass="btn-group"
