@@ -10,7 +10,7 @@ const rules = [
       /\/stories\//,
       /vendor.js/,
     ],
-    loader: 'eslint-loader',
+    // loader: 'eslint-loader',
   },
   {
     test: /\.(js|jsx)$/,
