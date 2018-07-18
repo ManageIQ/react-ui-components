@@ -50,6 +50,13 @@ const reactSelect = {
   root: 'ReactSelect',
 };
 
+const propTypes = {
+  commonjs: 'prop-types',
+  commonjs2: 'prop-types',
+  amd: 'prop-types',
+  root: 'PropTypes',
+};
+
 module.exports = {
   fileTypes,
   ROOT_FOLDER,
@@ -62,5 +69,6 @@ module.exports = {
     'react-redux': reactRedux,
     'react-router-dom': reactRouterDom,
     'react-select': reactSelect,
+    'prop-types': propTypes,
   },
 };
