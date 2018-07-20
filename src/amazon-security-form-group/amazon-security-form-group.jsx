@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
 import { Form as PfForm, Grid, Button, Col, Row, Spinner } from 'patternfly-react';
 import PropTypes from 'prop-types';
 import { required } from 'redux-form-validators';
@@ -57,7 +57,12 @@ class AmazonSecurityFormGroup extends Component {
   }
 
   render() {
-    const { onSave, onCancel } = this.props;
+    const {
+      onSave,
+      onCancel,
+      updateFormState,
+      hideControls,
+    } = this.props;
     const { groups, vpcIds } = this.state;
     if (!vpcIds) return <Spinner loading size="lg" />;
     return (
@@ -65,6 +70,7 @@ class AmazonSecurityFormGroup extends Component {
         onSubmit={values => onSave(this.parseValues(values, groups))}
         render={({ handleSubmit }) => (
           <PfForm horizontal>
+            <FormSpy onChange={state => updateFormState(state)} />
             <Grid fluid>
               <Row>
                 <Col xs={12}>
@@ -103,12 +109,15 @@ class AmazonSecurityFormGroup extends Component {
                   <Button onClick={this.removeGroupRule}>Remove Group</Button>
                 </Col>
               </Row>
-              <Row>
-                <Col className="pull-right">
-                  <Button bsStyle="primary" onClick={handleSubmit}>Submit</Button>
-                  <Button onClick={onCancel}>Cancel</Button>
-                </Col>
-              </Row>
+              {
+                !hideControls &&
+                <Row>
+                  <Col className="pull-right">
+                    <Button bsStyle="primary" onClick={handleSubmit}>Submit</Button>
+                    <Button onClick={onCancel}>Cancel</Button>
+                  </Col>
+                </Row>
+              }
             </Grid>
           </PfForm>
         )}
@@ -121,6 +130,12 @@ AmazonSecurityFormGroup.propTypes = {
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   loadData: PropTypes.func.isRequired,
+  updateFormState: PropTypes.func.isRequired,
+  hideControls: PropTypes.bool,
+};
+
+AmazonSecurityFormGroup.defaultProps = {
+  hideControls: false,
 };
 
 export default AmazonSecurityFormGroup;
