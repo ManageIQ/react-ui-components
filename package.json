@@ -12,7 +12,9 @@
     "doc": "react-docgen",
     "storybook": "start-storybook -c scripts/storybook -p 6006",
     "build-storybook": "build-storybook -c scripts/storybook -o .out",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "prepublishOnly": "npm run build",
+    "release": "semantic-release"
   },
   "engines": {
     "node": ">= 6.0.0",
@@ -56,6 +58,7 @@
     "@storybook/addon-storysource": "^3.4.6",
     "@storybook/addons": "^4.0.0-alpha.0",
     "@storybook/react": "^4.0.0-alpha.0",
+    "@khala/commit-analyzer-wildcard": "^1.0.4",
     "autobind-decorator": "^2.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.1",
@@ -97,7 +100,8 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.2",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "semantic-release": "^15.5.0"
   },
   "dependencies": {
     "final-form": "^4.7.3",
@@ -112,5 +116,18 @@
     "redux": "^4.0.0",
     "redux-form-validators": "^2.7.0",
     "redux-mock-store": "^1.5.1"
+  },
+  "release": {
+    "analyzeCommits": "@khala/commit-analyzer-wildcard/analyzer",
+    "prepare": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json"
+        ],
+        "message": "Release of new version: ${nextRelease.version} <no> [skip ci]"
+      }
+    ]
   }
 }
