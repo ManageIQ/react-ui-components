@@ -11,7 +11,7 @@ UserPreview.propTypes = {
 };
 
 const mapStateToProps = ({ usersReducer: { rows } }, { match: { params } }) => ({
-  user: rows.find(user => user.id === Number.parseInt(params.userId, 10)),
+  user: rows.find(user => user.id === params.userId),
 });
 
 export default connect(mapStateToProps)(UserPreview);

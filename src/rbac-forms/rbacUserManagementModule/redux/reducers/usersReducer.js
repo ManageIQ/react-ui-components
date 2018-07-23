@@ -5,9 +5,11 @@ import {
   FETCH_SUCESFULL,
   REQUEST_FAILED,
   SAVE_USER,
+  STORE_GROUPS,
 } from '../actions/actionTypes';
 
 const usersReducer = (state = { isLoaded: false, isFetching: false, isValid: true }, action) => {
+  let newState = {};
   switch (action.type) {
     case FETCH_SUCESFULL:
       return { ...state, isFetching: false, isValid: true };
@@ -17,14 +19,19 @@ const usersReducer = (state = { isLoaded: false, isFetching: false, isValid: tru
     case SAVE_USER:
       return { ...state, isFetching: true };
     case LOAD_DATA:
-      return {
-        ...action.data,
+      newState = {
+        ...state,
+        rows: [...action.data.rows],
+        columns: action.data.columns || { ...state.columns },
         isLoaded: true,
         isFetching: false,
         isValid: true,
       };
+      return { ...newState };
     case SELECT_USERS:
       return { ...state, selectedUsers: action.selectedUsers };
+    case STORE_GROUPS:
+      return { ...state, groups: action.groups };
     default:
       return { ...state };
   }

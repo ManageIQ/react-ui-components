@@ -13,6 +13,21 @@ class GenericPreviewTable extends Component {
       columns: this.createColumns(props.showIcon, props.showSelect, props.columns),
     };
   }
+
+  componentDidUpdate({ rows }) {
+    if (this.props.rows.length !== rows.length) {
+      this.setState((prevState) => { // eslint-disable-line
+        const { sortOrderAsc, sortableColumnPropery } = prevState;
+        return {
+          rows: this.state.sortableColumnPropery ?
+            this.props.rows.sort((a, b) =>
+              (sortOrderAsc ? a[sortableColumnPropery] > b[sortableColumnPropery] : a[sortableColumnPropery] < b[sortableColumnPropery])) :
+            this.props.rows,
+        };
+      });
+    }
+  }
+
   headerFormat = value => <Table.Heading>{value}</Table.Heading>;
   sortableHeaderFormat = (onSort, { column: { header: { label }, property } }, sortOrderAsc, isSorted) => (
     <Table.Heading

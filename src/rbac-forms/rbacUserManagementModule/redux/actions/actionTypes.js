@@ -5,3 +5,6 @@ export const FETCH_DATA = '[api] Fetch data';
 export const FETCH_SUCESFULL = '[message] Fetch sucesfull';
 export const REQUEST_FAILED = '[message] Request failes';
 export const DELETE_USER = '[message] Delete user';
+export const LOAD_GROUPS = '[message] Load user groups';
+export const STORE_GROUPS = '[command] Store user groups';
+export const EDIT_USER = '[api] Edit user';

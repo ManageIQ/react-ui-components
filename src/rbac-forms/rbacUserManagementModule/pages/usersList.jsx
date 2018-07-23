@@ -12,7 +12,7 @@ const UsersList = ({
   storeSelectUsers,
 }) => (
   <GenericPreviewTable
-    rowClick={row => routerNavigate(`/preview/${row.id}`)}
+    rowClick={row => routerNavigate(`/users/preview/${row.id}`)}
     rowSelect={users => storeSelectUsers(users.length > 0 ? users : null)}
     showIcon
     showSelect
@@ -20,11 +20,11 @@ const UsersList = ({
       type: 'pf',
       name: 'user',
     }}
-    rows={rows.map(({ role, current_group, ...rest }) => ({ // eslint-disable-line camelcase
+    rows={[...rows.map(({ role, current_group, ...rest }) => ({ // eslint-disable-line camelcase
       role: role.label,
       current_group: current_group.label,
       ...rest,
-    }))}
+    }))]}
     columns={columns}
     rowKey="id"
   />

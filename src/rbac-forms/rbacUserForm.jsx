@@ -20,7 +20,7 @@ const RbacUserForm = ({
   editDisabled,
 }) => (
   <Form
-    onSubmit={values => onSave({ ...values, chosen_group: values.chosen_group.length > 0 ? values.chosen_group : null })}
+    onSubmit={values => onSave({ ...values, groups: values.groups.length > 0 ? values.groups : null })}
     validate={(values) => {
       const errors = {};
       if (values.password && values.password !== values.verify) {
@@ -71,13 +71,14 @@ const RbacUserForm = ({
             </Col>
             <Col xs={12}>
               <Field
-                name="chosen_group"
+                name="groups"
                 validate={composeValidators(required({ msg: __('A User must be assigned to a Group') }), validateEmpty)}
                 component={FinalFormSelect}
                 label={__('Available Groups')}
                 options={groups}
                 placeholder={__('Choose one or more Groups')}
                 multi
+                searchable
               />
             </Col>
           </Row>
@@ -108,13 +109,13 @@ RbacUserForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   groups: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
   })),
   onCancel: PropTypes.func.isRequired,
   initialValues: PropTypes.shape({
     name: PropTypes.string.isRequired,
     userid: PropTypes.string.isRequired,
-    chosen_group: PropTypes.arrayOf(PropTypes.number),
+    chosen_group: PropTypes.arrayOf(PropTypes.string),
     email: (props, propsName, componentName) => emailPropType({
       props,
       propsName,
