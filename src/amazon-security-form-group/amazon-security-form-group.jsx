@@ -38,7 +38,7 @@ class AmazonSecurityFormGroup extends Component {
       groups.push(group);
     }
     return {
-      vpc_id: vpc_id.value,
+      vpc_id,
       security_group_description,
       security_group_name,
       security_group_rules: groups,
@@ -70,7 +70,7 @@ class AmazonSecurityFormGroup extends Component {
         onSubmit={values => onSave(this.parseValues(values, groups))}
         render={({ handleSubmit }) => (
           <PfForm horizontal>
-            <FormSpy onChange={state => updateFormState(state)} />
+            <FormSpy onChange={state => updateFormState({ ...state, values: this.parseValues(state.values, groups) })} />
             <Grid fluid>
               <Row>
                 <Col xs={12}>
