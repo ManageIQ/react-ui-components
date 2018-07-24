@@ -77,6 +77,6 @@ storiesOf('Amazon Security forms', module).add('Amazon Security form group', wit
     onSave={action('onSubmit')}
     onCancel={action('onCancel')}
     loadData={simulateRequest}
-    updateFormState={action('State update')}
+    updateFormState={values => console.log(values)}
   />
 )));
