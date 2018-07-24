@@ -61,7 +61,7 @@
     "@khala/commit-analyzer-wildcard": "^1.0.4",
     "autobind-decorator": "^2.1.0",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^7.2.3",
     "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
