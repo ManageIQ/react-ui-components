@@ -9,7 +9,10 @@
   margin-bottom: 5px;
   font-size: 14px;
   line-height: 24px;
-  display: table;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
   float: left;
 
   li a span {
