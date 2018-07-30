@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import { goBack } from 'connected-react-router';
 import { Spinner } from 'patternfly-react';
 import { RbacUserForm } from '../../';
-import { saveUser, loadGroups } from '../redux/actions/actions';
 import { parseUserValues } from './helpers';
 
 class UserEdit extends PureComponent {
   componentDidMount() {
     if (!this.props.groups) {
-      this.props.loadGroups(this.props.getGroups);
+      this.props.loadGroups();
     }
   }
 
@@ -29,9 +28,9 @@ class UserEdit extends PureComponent {
     return (
       <RbacUserForm
         groups={groups}
-        onSave={values => onSave(parseUserValues(values))}
+        onSave={values => onSave(parseUserValues(values), values.id)}
         onCancel={onCancel}
-        initialValues={user}
+        initialValues={{ ...user, groups: user.groups.map(group => group.groupId) }}
         editDisabled={user.userid === 'admin'}
       />
     );
@@ -44,7 +43,6 @@ UserEdit.propTypes = {
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   loadGroups: PropTypes.func.isRequired,
-  getGroups: PropTypes.func.isRequired,
   isFetching: PropTypes.bool,
 };
 
@@ -59,10 +57,8 @@ const mapStateToProps = ({ usersReducer: { rows, groups, isFetching } }, { match
   isFetching,
 });
 
-const mapDispatchToProps = (dispatch, initialProps) => ({
+const mapDispatchToProps = dispatch => ({
   onCancel: () => dispatch(goBack()),
-  onSave: values => dispatch(saveUser(values, initialProps.onSave)),
-  loadGroups: callback => dispatch(loadGroups(callback)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEdit);

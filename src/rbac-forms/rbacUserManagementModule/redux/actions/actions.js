@@ -35,7 +35,12 @@ const columns = [{
   label: 'Last Logoff',
 }];
 
-export const navigate = where => dispatch => dispatch(push(where));
+export const navigate = where => (dispatch, getState) => {
+  const { pathname } = getState().router.location;
+  if (pathname !== where) {
+    dispatch(push(where));
+  }
+};
 
 export const loadUsersData = data => ({
   type: LOAD_DATA,
@@ -89,25 +94,28 @@ export const requestUsers = callBack => (dispatch) => {
     .then(() => dispatch(fetchSucesfull()));
 };
 
-export const saveUser = (user, callBackSave, callBackFind) => (dispatch) => {
+export const saveUser = (user, callBackSave, callBackFind, callBackUpdateTree) => (dispatch) => {
   dispatch(fetchData(SAVE_USER));
   return callBackSave(user)
     .then(() => dispatch(requestUsers(callBackFind)))
+    .then(() => dispatch(callBackUpdateTree))
     .then(() => dispatch(navigate('/')))
     .catch(() => dispatch(fetchFailed));
 };
 
-export const deleteUser = (userId, callBack, callBackFind) => (dispatch) => {
+export const deleteUser = (userId, callBack, callBackFind, callBackUpdateTree) => (dispatch) => {
   dispatch(fetchData(DELETE_USER));
   return callBack(userId)
     .then(() => dispatch(requestUsers(callBackFind)))
+    .then(() => dispatch(callBackUpdateTree))
     .catch(() => dispatch(fetchFailed));
 };
 
-export const editUser = (user, callBackEdit, callBackFind) => (dispatch) => {
+export const editUser = (user, userId, callBackEdit, callBackFind, callBackUpdateTree) => (dispatch) => {
   dispatch(fetchData(EDIT_USER));
-  return callBackEdit(user)
+  return callBackEdit(user, userId)
     .then(() => dispatch(requestUsers(callBackFind)))
+    .then(() => dispatch(callBackUpdateTree))
     .catch(() => dispatch(fetchFailed));
 };
 

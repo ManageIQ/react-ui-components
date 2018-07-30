@@ -18,6 +18,7 @@ const RbacUserForm = ({
   onCancel,
   initialValues,
   editDisabled,
+  newRecord,
 }) => (
   <Form
     onSubmit={values => onSave({ ...values, groups: values.groups.length > 0 ? values.groups : null })}
@@ -44,7 +45,7 @@ const RbacUserForm = ({
                 validate={required({ msg: __('Required') })}
                 component={FinalFormField}
                 label={__('Full Name')}
-                disabled={initialValues && editDisabled}
+                disabled={!newRecord && editDisabled}
               />
             </Col>
             <Col xs={12}>
@@ -53,10 +54,10 @@ const RbacUserForm = ({
                 validate={required({ msg: __('Required') })}
                 component={FinalFormField}
                 label={__('Username')}
-                disabled={initialValues && editDisabled}
+                disabled={!newRecord && editDisabled}
               />
             </Col>
-            <PasswordFragment changeValue={change} isEditing={!!initialValues} />
+            <PasswordFragment changeValue={change} isEditing={!newRecord} />
             <Col xs={12}>
               <Field
                 name="email"
@@ -92,9 +93,9 @@ const RbacUserForm = ({
                   type="button"
                   onClick={handleSubmit}
                 >
-                  {initialValues ? __('Save') : __('Add')}
+                  {newRecord ? __('Add') : __('Save')}
                 </Button>
-                {initialValues && <Button disabled={pristine} onClick={reset} type="button">{__('Reset')}</Button>}
+                {!newRecord && <Button disabled={pristine} onClick={reset} type="button">{__('Reset')}</Button>}
                 <Button onClick={onCancel}>{__('Cancel')}</Button>
               </ButtonGroup>
             </Col>
@@ -113,8 +114,8 @@ RbacUserForm.propTypes = {
   })),
   onCancel: PropTypes.func.isRequired,
   initialValues: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    userid: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    userid: PropTypes.string,
     chosen_group: PropTypes.arrayOf(PropTypes.string),
     email: (props, propsName, componentName) => emailPropType({
       props,
@@ -124,10 +125,12 @@ RbacUserForm.propTypes = {
     }),
   }),
   editDisabled: PropTypes.bool,
+  newRecord: PropTypes.bool,
 };
 
 RbacUserForm.defaultProps = {
   editDisabled: false,
+  newRecord: false,
 };
 
 export default RbacUserForm;
