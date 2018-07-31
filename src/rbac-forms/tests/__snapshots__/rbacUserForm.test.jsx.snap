@@ -1431,7 +1431,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                         onTouchMove={[Function]}
                                         onTouchStart={[Function]}
                                       >
-                                        <div
+                                        <span
                                           className="Select-multi-value-wrapper"
                                           id="react-select-2--value"
                                         >
@@ -1458,7 +1458,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                             }
                                             tabIndex={0}
                                           />
-                                        </div>
+                                        </span>
                                         <span
                                           className="Select-arrow-zone"
                                           onMouseDown={[Function]}

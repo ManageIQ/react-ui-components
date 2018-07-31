@@ -94,6 +94,7 @@ storiesOf('Form', module).add('Form components', withInfo()(() => (
                 component={FinalFormField}
                 label="Text field"
                 validateOnMount
+                maxLength={3}
               />
             </Col>
             <Col xs={12}>

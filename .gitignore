@@ -50,3 +50,6 @@ coverage
 yarn.lock
 package-lock.json
 !/scripts/plugins.js
+
+# vsCode files
+.vscode/
