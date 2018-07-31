@@ -88,6 +88,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                   <FinalFormComponent
                     clearable={false}
                     componentType="radio"
+                    disabled={false}
                     id="selectOne1"
                     input={
                       Object {
@@ -230,6 +231,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                   <FinalFormComponent
                     clearable={false}
                     componentType="radio"
+                    disabled={false}
                     id="selectOne2"
                     input={
                       Object {
@@ -454,6 +456,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                   <FinalFormComponent
                     clearable={false}
                     componentType="radio"
+                    disabled={false}
                     id="selectOne1"
                     input={
                       Object {
@@ -596,6 +599,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                   <FinalFormComponent
                     clearable={false}
                     componentType="radio"
+                    disabled={false}
                     id="selectOne2"
                     input={
                       Object {

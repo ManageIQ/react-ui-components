@@ -175,6 +175,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="textfield"
+                          disabled={false}
                           input={
                             Object {
                               "name": "name",
@@ -242,6 +243,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   <FormControl
                                     bsClass="form-control"
                                     componentClass="input"
+                                    disabled={false}
                                     id="name"
                                     name="name"
                                     onBlur={[Function]}
@@ -253,6 +255,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   >
                                     <input
                                       className="form-control"
+                                      disabled={false}
                                       id="name"
                                       name="name"
                                       onBlur={[Function]}
@@ -321,6 +324,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="textfield"
+                          disabled={false}
                           input={
                             Object {
                               "name": "userid",
@@ -388,6 +392,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   <FormControl
                                     bsClass="form-control"
                                     componentClass="input"
+                                    disabled={false}
                                     id="userid"
                                     name="userid"
                                     onBlur={[Function]}
@@ -399,6 +404,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   >
                                     <input
                                       className="form-control"
+                                      disabled={false}
                                       id="userid"
                                       name="userid"
                                       onBlur={[Function]}
@@ -469,6 +475,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="textfield"
+                          disabled={false}
                           input={
                             Object {
                               "name": "password",
@@ -537,6 +544,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   <FormControl
                                     bsClass="form-control"
                                     componentClass="input"
+                                    disabled={false}
                                     id="password"
                                     name="password"
                                     onBlur={[Function]}
@@ -548,6 +556,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   >
                                     <input
                                       className="form-control"
+                                      disabled={false}
                                       id="password"
                                       name="password"
                                       onBlur={[Function]}
@@ -618,6 +627,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="textfield"
+                          disabled={false}
                           input={
                             Object {
                               "name": "verify",
@@ -686,6 +696,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   <FormControl
                                     bsClass="form-control"
                                     componentClass="input"
+                                    disabled={false}
                                     id="verify"
                                     name="verify"
                                     onBlur={[Function]}
@@ -697,6 +708,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   >
                                     <input
                                       className="form-control"
+                                      disabled={false}
                                       id="verify"
                                       name="verify"
                                       onBlur={[Function]}
@@ -767,6 +779,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="textfield"
+                          disabled={false}
                           input={
                             Object {
                               "name": "email",
@@ -835,6 +848,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   <FormControl
                                     bsClass="form-control"
                                     componentClass="input"
+                                    disabled={false}
                                     id="email"
                                     name="email"
                                     onBlur={[Function]}
@@ -846,6 +860,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                   >
                                     <input
                                       className="form-control"
+                                      disabled={false}
                                       id="email"
                                       name="email"
                                       onBlur={[Function]}
@@ -1102,6 +1117,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                         <FinalFormComponent
                           clearable={false}
                           componentType="select"
+                          disabled={false}
                           input={
                             Object {
                               "name": "chosen_group",

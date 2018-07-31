@@ -49,6 +49,7 @@ exports[`Final form component reder functions Should return final form number in
     <FormControl
       bsClass="form-control"
       componentClass="input"
+      disabled={false}
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -83,6 +84,7 @@ exports[`Final form component reder functions Should return final form password 
     <FormControl
       bsClass="form-control"
       componentClass="input"
+      disabled={false}
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -117,6 +119,7 @@ exports[`Final form component reder functions Should return final form text fiel
     <FormControl
       bsClass="form-control"
       componentClass="input"
+      disabled={false}
       id="name"
       name="name"
       onBlur={[MockFunction]}
@@ -151,6 +154,7 @@ exports[`Final form component reder functions Should return final form textarea 
     <FormControl
       bsClass="form-control"
       componentClass="textarea"
+      disabled={false}
       id="name"
       name="name"
       onBlur={[MockFunction]}

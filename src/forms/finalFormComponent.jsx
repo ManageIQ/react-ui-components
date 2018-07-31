@@ -45,12 +45,13 @@ const FinalFormComponent = ({
   placeholder,
   type,
   maxLength,
+  disabled,
   ...rest
 }) => {
   const invalid = validationError(meta, validateOnMount);
   const inputProps = {
     meta,
-    input: { ...normalizeInputValues(input), maxLength },
+    input: { ...normalizeInputValues(input), disabled, maxLength },
     options,
     clearable,
     placeholder,
@@ -143,6 +144,7 @@ FinalFormComponent.propTypes = {
   labelKey: PropTypes.string,
   valueKey: PropTypes.string,
   maxLength: PropTypes.number,
+  disabled: PropTypes.bool,
 };
 
 FinalFormComponent.defaultProps = {
@@ -156,6 +158,7 @@ FinalFormComponent.defaultProps = {
   multi: false,
   labelKey: 'label',
   valueKey: 'value',
+  disabled: false,
 };
 
 export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;
