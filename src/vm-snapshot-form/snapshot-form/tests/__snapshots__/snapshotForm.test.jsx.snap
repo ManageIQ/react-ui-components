@@ -85,6 +85,7 @@ exports[`Final form input component Should render correctly 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -152,6 +153,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                disabled={false}
                                 id="name"
                                 name="name"
                                 onBlur={[Function]}
@@ -163,6 +165,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               >
                                 <input
                                   className="form-control"
+                                  disabled={false}
                                   id="name"
                                   name="name"
                                   onBlur={[Function]}
@@ -232,6 +235,7 @@ exports[`Final form input component Should render correctly 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -299,6 +303,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                disabled={false}
                                 id="description"
                                 name="description"
                                 onBlur={[Function]}
@@ -309,6 +314,7 @@ exports[`Final form input component Should render correctly 1`] = `
                               >
                                 <textarea
                                   className="form-control"
+                                  disabled={false}
                                   id="description"
                                   name="description"
                                   onBlur={[Function]}
@@ -381,6 +387,7 @@ exports[`Final form input component Should render correctly 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
@@ -705,6 +712,7 @@ exports[`Final form input component Should render with description required 1`] 
                     <FinalFormComponent
                       clearable={false}
                       componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -772,6 +780,7 @@ exports[`Final form input component Should render with description required 1`] 
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                disabled={false}
                                 id="name"
                                 name="name"
                                 onBlur={[Function]}
@@ -783,6 +792,7 @@ exports[`Final form input component Should render with description required 1`] 
                               >
                                 <input
                                   className="form-control"
+                                  disabled={false}
                                   id="name"
                                   name="name"
                                   onBlur={[Function]}
@@ -852,6 +862,7 @@ exports[`Final form input component Should render with description required 1`] 
                     <FinalFormComponent
                       clearable={false}
                       componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -919,6 +930,7 @@ exports[`Final form input component Should render with description required 1`] 
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                disabled={false}
                                 id="description"
                                 name="description"
                                 onBlur={[Function]}
@@ -929,6 +941,7 @@ exports[`Final form input component Should render with description required 1`] 
                               >
                                 <textarea
                                   className="form-control"
+                                  disabled={false}
                                   id="description"
                                   name="description"
                                   onBlur={[Function]}
@@ -1010,6 +1023,7 @@ exports[`Final form input component Should render with description required 1`] 
                     <FinalFormComponent
                       clearable={false}
                       componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
@@ -1334,6 +1348,7 @@ exports[`Final form input component Should render with name required 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -1401,6 +1416,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="input"
+                                disabled={false}
                                 id="name"
                                 name="name"
                                 onBlur={[Function]}
@@ -1412,6 +1428,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               >
                                 <input
                                   className="form-control"
+                                  disabled={false}
                                   id="name"
                                   name="name"
                                   onBlur={[Function]}
@@ -1490,6 +1507,7 @@ exports[`Final form input component Should render with name required 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -1557,6 +1575,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               <FormControl
                                 bsClass="form-control"
                                 componentClass="textarea"
+                                disabled={false}
                                 id="description"
                                 name="description"
                                 onBlur={[Function]}
@@ -1567,6 +1586,7 @@ exports[`Final form input component Should render with name required 1`] = `
                               >
                                 <textarea
                                   className="form-control"
+                                  disabled={false}
                                   id="description"
                                   name="description"
                                   onBlur={[Function]}
@@ -1639,6 +1659,7 @@ exports[`Final form input component Should render with name required 1`] = `
                     <FinalFormComponent
                       clearable={false}
                       componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
