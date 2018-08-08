@@ -108,6 +108,7 @@
     "connected-react-router": "^4.3.0",
     "final-form": "^4.7.3",
     "history": "^4.7.2",
+    "lodash": "^4.17.10",
     "patternfly-react": "^2.5.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
