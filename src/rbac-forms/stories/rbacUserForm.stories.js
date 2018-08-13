@@ -38,20 +38,18 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
     groups={groups}
     onSave={action('onSave')}
     onCancel={action('onCancel')}
+    newRecord
   />
-))).add('Rbac user preview', withInfo()(() => (
-  <RbacUserPreview user={user} />
-))).add('Rbac users table', withInfo()(() => (
-  <GenericPreviewTable
-    rows={usersTableRows}
-    columns={usersTableColumns}
-    rowClick={action('Row clicked')}
-    rowSelect={action('User selected')}
-    showIcon
-    showSelect
-    icon={{
-      type: 'pf',
-      name: 'user',
+))).add('Rbac edit user form', withInfo()(() => (
+  <RbacUserForm
+    groups={groups}
+    onSave={action('onSave')}
+    onCancel={action('onCancel')}
+    initialValues={{
+      name: 'User name',
+      userid: 'User id',
+      email: 'email@mail.com',
+      groups: ['1', '2', '5'],
     }}
   />
 )))
@@ -89,4 +87,21 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
         handleSave={action('Handle save')}
       />
     );
-  }));
+  }))
+  .add('Rbac user preview', withInfo()(() => (
+    <RbacUserPreview user={user} />
+  )))
+  .add('Rbac users table', withInfo()(() => (
+    <GenericPreviewTable
+      rows={usersTableRows}
+      columns={usersTableColumns}
+      rowClick={action('Row clicked')}
+      rowSelect={action('User selected')}
+      showIcon
+      showSelect
+      icon={{
+        type: 'pf',
+        name: 'user',
+      }}
+    />
+  )));
