@@ -41,6 +41,7 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
     }
   }
   rowClick={[MockFunction]}
+  rowKey="id"
   rowSelect={[MockFunction]}
   rows={
     Array [
