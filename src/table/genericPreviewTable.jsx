@@ -37,8 +37,16 @@ class GenericPreviewTable extends Component {
     >
       {label}
     </Table.Heading>);
-  cellFormat = value => <Table.Cell className="clickable">{value}</Table.Cell>;
-  celliconFormat = () => <Table.Cell className="cell-middle clickable"><Icon type={this.props.icon.type} name={this.props.icon.name} /></Table.Cell>;
+  cellFormat = (value, { rowData: { selected } }) => (
+    <Table.Cell className={`clickable ${selected ? 'selected' : ''}`}>
+      {value}
+    </Table.Cell>
+  );
+  celliconFormat = (value, { rowData: { selected } }) => (
+    <Table.Cell className={`cell-middle clickable ${selected ? 'selected' : ''}`}>
+      <Icon type={this.props.icon.type} name={this.props.icon.name} />
+    </Table.Cell>
+  );
 
 
   createColumns = (showIcon, showSelect, columns) => {
@@ -72,7 +80,7 @@ class GenericPreviewTable extends Component {
                     event.stopPropagation();
                     this.handleSelected(rowData);
                   }}
-                  className="clickable"
+                  className={`clickable ${rowData.selected ? 'selected' : ''}`}
                 >
                   <Checkbox
                     className="cell-middle"
