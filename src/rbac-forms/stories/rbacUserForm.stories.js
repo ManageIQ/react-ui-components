@@ -4,7 +4,8 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import { RbacUserForm, RbacUserPreview } from '../';
 import { GenericPreviewTable } from '../../table/';
-import { groups, usersTableColumns, usersTableRows } from './data';
+import { groups, usersTableColumns, usersTableRows, tags } from './data';
+import RbacUserTagsList from '../rbacUserTagsList';
 
 const user = {
   name: 'Administrator',
@@ -52,4 +53,7 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
       name: 'user',
     }}
   />
-)));
+)))
+  .add('Rbac user tags list', withInfo()(() => (
+    <RbacUserTagsList tags={tags} tenant="My tenant" />
+  )));
