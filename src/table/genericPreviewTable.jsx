@@ -15,7 +15,7 @@ class GenericPreviewTable extends Component {
   }
 
   componentDidUpdate({ rows }) {
-    if (this.props.rows.length !== rows.length) {
+    if (JSON.stringify(this.props.rows) !== JSON.stringify(rows)) {
       this.setState((prevState) => { // eslint-disable-line react/no-did-update-set-state
         const { sortOrderAsc, sortableColumnPropery } = prevState;
         return {

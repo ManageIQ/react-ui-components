@@ -887,11 +887,11 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                       onClick={[Function]}
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                         onClick={[Function]}
                       >
                         <Checkbox
@@ -928,10 +928,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="cell-middle clickable"
+                      className="cell-middle clickable "
                     >
                       <td
-                        className="cell-middle clickable"
+                        className="cell-middle clickable "
                       >
                         <Icon
                           name="user"
@@ -955,10 +955,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Adam the first
                       </td>
@@ -969,10 +969,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Admin
                       </td>
@@ -983,10 +983,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         email@neco.com
                       </td>
@@ -997,10 +997,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Some group
                       </td>
@@ -1011,10 +1011,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Admin role
                       </td>
@@ -1025,10 +1025,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         06/25/18 06:58:14 UTC
                       </td>
@@ -1039,10 +1039,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         06/30/18 06:58:14 UTC
                       </td>
@@ -1217,11 +1217,11 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                       onClick={[Function]}
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                         onClick={[Function]}
                       >
                         <Checkbox
@@ -1258,10 +1258,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="cell-middle clickable"
+                      className="cell-middle clickable "
                     >
                       <td
-                        className="cell-middle clickable"
+                        className="cell-middle clickable "
                       >
                         <Icon
                           name="user"
@@ -1285,10 +1285,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Marge the middle
                       </td>
@@ -1299,10 +1299,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         La transparenza della qualita
                       </td>
@@ -1313,10 +1313,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         email@jandak.com
                       </td>
@@ -1327,10 +1327,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Mediocre group
                       </td>
@@ -1341,10 +1341,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Shot role
                       </td>
@@ -1355,10 +1355,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         01/25/18 06:58:14 UTC
                       </td>
@@ -1369,10 +1369,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         06/30/18 06:58:14 UTC
                       </td>
@@ -1547,11 +1547,11 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                       onClick={[Function]}
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                         onClick={[Function]}
                       >
                         <Checkbox
@@ -1588,10 +1588,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="cell-middle clickable"
+                      className="cell-middle clickable "
                     >
                       <td
-                        className="cell-middle clickable"
+                        className="cell-middle clickable "
                       >
                         <Icon
                           name="user"
@@ -1615,10 +1615,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Zlatko the last
                       </td>
@@ -1629,10 +1629,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Peligro
                       </td>
@@ -1643,10 +1643,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         email@jandak.com
                       </td>
@@ -1657,10 +1657,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Super group
                       </td>
@@ -1671,10 +1671,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         Shot role
                       </td>
@@ -1685,10 +1685,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         08/25/18 06:58:14 UTC
                       </td>
@@ -1699,10 +1699,10 @@ exports[`RbacUsersTable component Should render correctly 1`] = `
                   >
                     <TableCell
                       align=""
-                      className="clickable"
+                      className="clickable "
                     >
                       <td
-                        className="clickable"
+                        className="clickable "
                       >
                         010/30/18 06:58:14 UTC
                       </td>
