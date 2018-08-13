@@ -17,12 +17,12 @@ const user = {
   groups: [{
     label: 'Cloud-Operators',
     icon: 'group',
-    groupId: 1,
+    groupId: '1',
     onClick: () => action('Group click'),
   }, {
     label: 'Cloud-Users',
     icon: 'group',
-    groupId: 2,
+    groupId: '2',
     onClick: () => action('Group click'),
   }],
   role: {
