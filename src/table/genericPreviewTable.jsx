@@ -122,11 +122,11 @@ class GenericPreviewTable extends Component {
   handleSelected = row => this.setState((prevState) => {
     let currentRow;
     const rows = prevState.rows.map((item) => {
-      if (item[this.props.rowKey] !== row[this.props.rowKey]) {
-        return item;
+      if (item[this.props.rowKey] === row[this.props.rowKey]) {
+        currentRow = { ...item, selected: !item.selected };
+        return { ...currentRow };
       }
-      currentRow = { ...item, selected: !item.selected };
-      return { ...currentRow };
+      return item;
     });
     this.props.rowSelect(rows.filter(item => item.selected), currentRow);
     return { rows };
