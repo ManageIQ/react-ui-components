@@ -20,13 +20,12 @@ class RbacAssignCompanyTags extends Component {
 
   componentDidMount() {
     const { users, categories } = this.props;
-    const commonTags = intersectionWith((a, b) => (a.id === b.id), ...users.map(user => user.tags));
+    const commonTags = intersectionWith((firstTag, secondTag) => (firstTag.id === secondTag.id), ...users.map(user => user.tags));
     const tagsNames = {};
     const selectedEntries = {};
     commonTags.forEach((tag) => {
-      tagsNames[tag.name.split('/')[2]] = { value: tag.id };
-    });
-    Object.keys(tagsNames).forEach((categoryName) => {
+      const categoryName = tag.name.split('/')[2];
+      tagsNames[categoryName] = { value: tag.id };
       selectedEntries[categories.find(category => category.name === categoryName).value] = { ...tagsNames[categoryName] };
     });
     if (Object.keys(selectedEntries).length > 0) this.loadInitialEntries(selectedEntries);
