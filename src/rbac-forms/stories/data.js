@@ -96,3 +96,20 @@ export const usersTableRows = [
     lastlogoff: '010/30/18 06:58:14 UTC',
   },
 ];
+
+export const tags = [{
+  name: 'Tag 1',
+  value: 'Tag value 1',
+}, {
+  name: 'Tag 2',
+  value: 'Tag value 2',
+}, {
+  name: 'Tag 3',
+  value: 'Tag value 3',
+}, {
+  name: 'Tag 4',
+  value: 'Tag value 4',
+}, {
+  name: 'Tag 5',
+  value: 'Tag value 5',
+}];
