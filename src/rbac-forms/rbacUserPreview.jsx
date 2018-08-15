@@ -75,7 +75,7 @@ RbacUserPreview.propTypes = {
     name: PropTypes.string.isRequired,
     userid: PropTypes.string.isRequired,
     email: (props, propName, componentName) => (
-      emailPattern.test(props[propName])
+      !props[propName] || emailPattern.test(props[propName])
         ? undefined
         : new Error(`Invalid prop  ${propName} supplied to ${componentName} Validation failed. Expect email address.`)
     ),
@@ -86,7 +86,7 @@ RbacUserPreview.propTypes = {
     groups: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
-      groupId: PropTypes.number.isRequired,
+      groupId: PropTypes.string.isRequired,
       onClick: PropTypes.func.isRequired,
     })),
     role: PropTypes.shape({

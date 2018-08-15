@@ -11,13 +11,13 @@ exports[`RbacUserPreview component Should render correctly 1`] = `
       "email": "mail@mail.com",
       "groups": Array [
         Object {
-          "groupId": 1,
+          "groupId": "1",
           "icon": "group",
           "label": "Cloud-Operators",
           "onClick": [Function],
         },
         Object {
-          "groupId": 2,
+          "groupId": "2",
           "icon": "group",
           "label": "Cloud-Users",
           "onClick": [Function],
