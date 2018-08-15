@@ -31,4 +31,12 @@
   .clickable {
     cursor: pointer;
   }
+
+  tr:hover > td.selected {
+    background-color: #c5eaff;
+  }
+
+  td.selected {
+    background-color: #def3ff;
+  }
 }

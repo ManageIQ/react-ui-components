@@ -13,6 +13,20 @@ class GenericPreviewTable extends Component {
       columns: this.createColumns(props.showIcon, props.showSelect, props.columns),
     };
   }
+
+  componentDidUpdate({ rows }) {
+    if (JSON.stringify(this.props.rows) !== JSON.stringify(rows)) {
+      this.setState((prevState) => { // eslint-disable-line react/no-did-update-set-state
+        const { sortOrderAsc, sortableColumnPropery } = prevState;
+        return {
+          rows: this.state.sortableColumnPropery ?
+            this.props.rows.sort((a, b) =>
+              (sortOrderAsc ? a[sortableColumnPropery] > b[sortableColumnPropery] : a[sortableColumnPropery] < b[sortableColumnPropery])) :
+            this.props.rows,
+        };
+      });
+    }
+  }
   headerFormat = value => <Table.Heading>{value}</Table.Heading>;
   sortableHeaderFormat = (onSort, { column: { header: { label }, property } }, sortOrderAsc, isSorted) => (
     <Table.Heading
@@ -23,8 +37,16 @@ class GenericPreviewTable extends Component {
     >
       {label}
     </Table.Heading>);
-  cellFormat = value => <Table.Cell className="clickable">{value}</Table.Cell>;
-  celliconFormat = () => <Table.Cell className="cell-middle clickable"><Icon type={this.props.icon.type} name={this.props.icon.name} /></Table.Cell>;
+  cellFormat = (value, { rowData: { selected } }) => (
+    <Table.Cell className={`clickable ${selected ? 'selected' : ''}`}>
+      {value}
+    </Table.Cell>
+  );
+  celliconFormat = (value, { rowData: { selected } }) => (
+    <Table.Cell className={`cell-middle clickable ${selected ? 'selected' : ''}`}>
+      <Icon type={this.props.icon.type} name={this.props.icon.name} />
+    </Table.Cell>
+  );
 
 
   createColumns = (showIcon, showSelect, columns) => {
@@ -58,7 +80,7 @@ class GenericPreviewTable extends Component {
                     event.stopPropagation();
                     this.handleSelected(rowData);
                   }}
-                  className="clickable"
+                  className={`clickable ${rowData.selected ? 'selected' : ''}`}
                 >
                   <Checkbox
                     className="cell-middle"
@@ -97,17 +119,16 @@ class GenericPreviewTable extends Component {
     this.state.sortableColumnPropery === columnProps.column.property,
   );
 
-  handleSelected = ({ id }) => this.setState((prevState) => {
+  handleSelected = row => this.setState((prevState) => {
+    let currentRow;
     const rows = prevState.rows.map((item) => {
-      if (item.id !== id) {
-        return item;
+      if (item[this.props.rowKey] === row[this.props.rowKey]) {
+        currentRow = { ...item, selected: !item.selected };
+        return { ...currentRow };
       }
-      return {
-        ...item,
-        selected: !item.selected,
-      };
+      return item;
     });
-    this.props.rowSelect(rows.filter(item => item.selected));
+    this.props.rowSelect(rows.filter(item => item.selected), currentRow);
     return { rows };
   })
 
@@ -123,6 +144,7 @@ class GenericPreviewTable extends Component {
   render() {
     const { PfProvider, Body, Header } = Table;
     const { rows, columns } = this.state;
+    const { rowKey } = this.props;
     return (
       <PfProvider
         striped
@@ -135,7 +157,7 @@ class GenericPreviewTable extends Component {
         <Header />
         <Body
           rows={[...rows]}
-          rowKey="id"
+          rowKey={rowKey}
           onRow={row => ({ onClick: () => this.props.rowClick(row) })}
         />
       </PfProvider>
@@ -183,26 +205,19 @@ GenericPreviewTable.propTypes = {
     property: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
-  rows: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    fullname: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    email: PropTypes.string,
-    currentgroup: PropTypes.string,
-    role: PropTypes.string,
-    lastlogon: PropTypes.string,
-    lastlogoff: PropTypes.string,
-  })).isRequired,
+  rows: PropTypes.arrayOf(PropTypes.object),
   rowClick: PropTypes.func.isRequired,
   rowSelect: rowSelectProp,
   showSelect: PropTypes.bool,
   showIcon: PropTypes.bool,
   icon: tableIconProp,
+  rowKey: PropTypes.string,
 };
 
 GenericPreviewTable.defaultProps = {
   showSelect: false,
   showIcon: false,
+  rowKey: 'id',
 };
 
 export default GenericPreviewTable;
