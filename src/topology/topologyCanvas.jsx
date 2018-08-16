@@ -21,7 +21,6 @@ class TopologyCanvas extends Component {
     window.d3 = d3;
 
     this.minDepth = Math.min.apply(undefined, n.map(({ depth }) => depth));
-    console.log('min depth: ', this.minDepth);
     // load icon characters from stylesheet for IE browser
     if (this.IE11) {
       console.log('is IE');
@@ -57,11 +56,19 @@ class TopologyCanvas extends Component {
 
     // find node on hover
     d3.select(this.canvas).on('mousemove', () => {
-      this.selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
+      this.hoveredNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
     });
 
     d3.select(this.canvas).on('click', () => {
-      if (this.selectedNode) this.handleNodeClicked(this.selectedNode);
+      const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
+      if (selectedNode) {
+        if (this.selectedNode && this.selectedNode.id !== selectedNode.id) {
+          this.selectedNode.selected = false;
+        }
+        selectedNode.selected = !selectedNode.selected;
+        this.selectedNode = selectedNode;
+        this.handleNodeClicked(selectedNode);
+      }
     });
 
     this.simulation.nodes(n).on('tick', this.forceTick);
@@ -198,19 +205,37 @@ class TopologyCanvas extends Component {
     this.ctx.shadowOffsetX = 1;
     this.ctx.shadowOffsetY = 2;
     this.ctx.arc(...[coords.x, coords.y], node.size, 0, 2 * Math.PI);
+    this.ctx.stroke();
+    this.ctx.fill();
+    this.ctx.shadowBlur = 0;
+    this.ctx.shadowOffsetX = 0;
+    this.ctx.shadowOffsetY = 0;
 
     // Create the circle
     this.ctx.beginPath();
     this.ctx.arc(...[coords.x, coords.y], node.size, 0, 2 * Math.PI);
-    this.ctx.fillStyle = '#FFFFFF';
-    this.ctx.strokeStyle = '#FFFFFF';
+    // render gradient for selected node
+    if (node.selected) {
+      const gradient = this.ctx.createRadialGradient(
+        coords.x,
+        coords.y,
+        5,
+        coords.x,
+        coords.y,
+        node.size,
+      );
+      gradient.addColorStop(0, '#FFFFFF');
+      gradient.addColorStop(1, '#BBBBBB');
+      this.ctx.strokeStyle = '#BBBBBB';
+      this.ctx.fillStyle = gradient;
+    } else {
+      this.ctx.fillStyle = '#FFFFFF';
+      this.ctx.strokeStyle = '#FFFFFF';
+    }
     this.ctx.stroke();
     this.ctx.fill();
 
     // remove shadow
-    this.ctx.shadowBlur = 0;
-    this.ctx.shadowOffsetX = 0;
-    this.ctx.shadowOffsetY = 0;
     if (node.fileicon) {
       this.drawImage(node, coords);
     } else {
