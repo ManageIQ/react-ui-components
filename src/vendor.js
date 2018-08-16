@@ -1,3 +1,6 @@
+import 'es6-shim';
+import 'array-includes';
+
 import * as ReactDOM from 'react-dom';
 import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
@@ -6,6 +9,7 @@ import * as PFReact from 'patternfly-react';
 import * as PFReact4 from '@patternfly/react-core';
 import * as ReactSelect from 'react-select';
 import * as PropTypes from 'prop-types';
+import lodash from 'lodash';
 
 window.ReactSelect = ReactSelect;
 window.Redux = Redux;
@@ -15,3 +19,4 @@ window.React = React;
 window.PFReact = PFReact;
 window.PFReact4 = PFReact4;
 window.PropTypes = PropTypes;
+window._ = lodash;

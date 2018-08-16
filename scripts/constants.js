@@ -63,6 +63,13 @@ const propTypes = {
   root: 'PropTypes',
 };
 
+const lodash = {
+  commonjs: 'lodash',
+  commonjs2: 'lodash',
+  amd: 'lodash',
+  root: 'lodash',
+};
+
 module.exports = {
   fileTypes,
   ROOT_FOLDER,
@@ -70,6 +77,7 @@ module.exports = {
   externals: {
     react,
     redux,
+    lodash,
     'patternfly-react': pfReact,
     '@patternfly/react-core': pfReact4,
     'react-dom': reactDom,
