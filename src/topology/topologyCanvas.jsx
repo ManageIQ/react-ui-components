@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import _ from 'lodash';
+import { Button, Icon } from 'patternfly-react';
 import './styles.scss';
 
 class TopologyCanvas extends Component {
@@ -393,8 +394,8 @@ class TopologyCanvas extends Component {
             <button>ERROR</button>
           </div>
           <div style={{ float: 'right' }}>
-            <button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(0.25)}>+</button>
-            <button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(-0.25)}>-</button>
+            <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
+            <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
           </div>
         </div>
       </div>
