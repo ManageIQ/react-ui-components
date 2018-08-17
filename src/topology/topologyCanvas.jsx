@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; // eslint-disable-line
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import _ from 'lodash';
-
-import { nodes as n, edges as e } from './data'; // eslint-disable-line
 import './styles.scss';
 
 class TopologyCanvas extends Component {
@@ -17,16 +15,38 @@ class TopologyCanvas extends Component {
     canvas.width = this.canvasWidth;
     canvas.height = this.canvasHeight;
     this.ctx = canvas.getContext('2d');
+    this.highlightedNodes = [];
     window.magix = this;
     window.d3 = d3;
 
+    const n = this.props.nodes;
+    const e = this.props.edges.map(edge => ({
+      ...edge,
+      source: n.find(({ id }) => edge.source === id),
+      targer: n.find(({ id }) => edge.target === id),
+    }));
+
     this.minDepth = Math.min.apply(undefined, n.map(({ depth }) => depth));
+    this.staticNodesCount = n.filter(({ depth }) => depth === this.minDepth).length;
     // load icon characters from stylesheet for IE browser
     if (this.IE11) {
       console.log('is IE');
       this.cssRules = this.findCssIconRules();
     }
     this.cacheIconChars(n);
+
+    // click
+    d3.select(this.canvas).on('click', () => {
+      const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
+      if (selectedNode) {
+        if (this.selectedNode && this.selectedNode.id !== selectedNode.id) {
+          this.selectedNode.selected = false;
+        }
+        selectedNode.selected = !selectedNode.selected;
+        this.selectedNode = selectedNode;
+        this.handleNodeClicked(selectedNode);
+      }
+    });
 
     // drag
     d3.select(canvas).call(d3.drag().container(canvas)
@@ -44,12 +64,13 @@ class TopologyCanvas extends Component {
     d3.select(canvas).call(this.zoom);
 
 
-    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.015);
-    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.015);
+    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.1);
+    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.1);
     // force layout
     this.simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id(node => node.id).distance(150).strength(0.9))
-      .force('collision', d3.forceCollide(d => d.size * 1.5 || 30))
+      .force('link', d3.forceLink().id(node => node.id).distance(120).strength(1)
+        .iterations(5))
+      .force('collision', d3.forceCollide(d => d.size * 2 || 30))
       .force('charge', () => 200)
       .force('x', forceX)
       .force('y', forceY);
@@ -59,20 +80,31 @@ class TopologyCanvas extends Component {
       this.hoveredNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
     });
 
-    d3.select(this.canvas).on('click', () => {
-      const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
-      if (selectedNode) {
-        if (this.selectedNode && this.selectedNode.id !== selectedNode.id) {
-          this.selectedNode.selected = false;
-        }
-        selectedNode.selected = !selectedNode.selected;
-        this.selectedNode = selectedNode;
-        this.handleNodeClicked(selectedNode);
-      }
-    });
-
     this.simulation.nodes(n).on('tick', this.forceTick);
     this.simulation.force('link').links(e);
+  }
+
+
+  componentDidUpdate(prevProps) {
+    this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
+    this.staticNodesCount = this.props.nodes.filter(({ depth }) => depth === this.minDepth).length;
+    this.simulation.nodes([...this.props.nodes]);
+    this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
+    this.simulation.force('link').links(this.props.edges.map(edge => ({
+      ...edge,
+    })));
+    if (!prevProps.isFiltering) this.overlayDelay = 0;
+    this.highlightedNodes = this.props.nodes.filter(({ highlight }) => !!highlight);
+    this.simulation.restart();
+    let x = 0;
+    // smooth animation after data update
+    const intervalID = setInterval(() => {
+      this.simulation.on('tick')();
+      x += 1;
+      if (x === 100) {
+        window.clearInterval(intervalID);
+      }
+    }, 5);
   }
 
   onDragStart = () => {
@@ -173,11 +205,18 @@ class TopologyCanvas extends Component {
         y: edge.target.y,
       },
     };
-    if (edge.source.depth === 0) {
-      coords.source = { x: 50, y: this.canvasHeight / 2 };
+    if (edge.source.depth === this.minDepth) {
+      coords.source = { x: 50, y: this.topY + this.staticEdgeRenderCount * (5 * edge.source.size) };
+      if (JSON.stringify(this.lastStaticEdge) !== JSON.stringify(edge) &&
+        this.staticEdgeRenderCount < this.staticNodesCount) this.staticEdgeRenderCount += 1;
+      this.lastStaticEdge = edge;
     }
-    if (edge.target.depth === 0) {
-      coords.target = { x: 50, y: this.canvasHeight / 2 };
+    if (edge.target.depth === this.minDepth) {
+      coords.target = { x: 50, y: this.topY + this.staticEdgeRenderCount * (5 * edge.target.size) };
+      if (
+        JSON.stringify(this.lastStaticEdge) !== JSON.stringify(edge) &&
+        this.staticEdgeRenderCount < this.staticNodesCount) this.staticEdgeRenderCount += 1;
+      this.lastStaticEdge = edge;
     }
     this.ctx.beginPath();
     this.ctx.strokeStyle = '#dcdcdc';
@@ -187,10 +226,22 @@ class TopologyCanvas extends Component {
     this.ctx.stroke();
   }
 
+  drawTooltip = ({ x, y }, { title, highlight }) => {
+    this.ctx.beginPath();
+    this.ctx.fillStyle = highlight ? '#FFFFFF' : '#72767B';
+    this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
+    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.fillText(title, x, y + 35);
+  }
+
+  isOdd = number => number % 2 === 0;
+
   drawNode = (node) => {
     if (node.depth === this.minDepth) {
       node.x = 50; // eslint-disable-line no-param-reassign
-      node.y = this.canvasHeight / 2; // eslint-disable-line no-param-reassign
+      node.y = this.topY + this.staticNodeRenderCount * (5 * node.size); // eslint-disable-line no-param-reassign
+      if (this.staticNodeRenderCount < this.staticNodesCount) this.staticNodeRenderCount += 1;
     }
     const coords = {
       x: this.transform.apply([node.x, node.y])[0],
@@ -241,6 +292,7 @@ class TopologyCanvas extends Component {
     } else {
       this.drawIcon(node, coords);
     }
+    this.drawTooltip(coords, node);
   }
 
   drawImage = ({ fileicon, size }, { x, y }) => {
@@ -287,12 +339,33 @@ class TopologyCanvas extends Component {
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     nodes.forEach(this.normalizeNode);
     links.forEach(this.drawEdge);
-    nodes.forEach(this.drawNode);
+
+    this.staticNodeRenderCount = 1;
+    this.staticEdgeRenderCount = 1;
+    this.topStatic = this.staticNodesCount * 100;
+    this.topY = (this.canvasHeight / 2) - this.topStatic;
+    nodes.forEach((node) => {
+      if (this.props.isFiltering && node.highlight) return;
+      this.drawNode(node);
+    });
+    if (this.props.isFiltering) {
+      if (this.overlayDelay < 0.5) this.overlayDelay += 0.025;
+      this.ctx.fillStyle = `rgba(0, 0, 0, ${this.overlayDelay})`;
+      this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.highlightedNodes.forEach(this.drawNode);
+    } else {
+      if (this.overlayDelay > 0) {  // eslint-disable-line
+        this.overlayDelay -= 0.025;
+        this.ctx.fillStyle = `rgba(0, 0, 0, ${this.overlayDelay})`;
+        this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.highlightedNodes.forEach(this.drawNode);
+      }
+    }
 
     if (this.transform.k !== 1) this.drawMinimap();
   }
 
-  handleNodeClicked = node => console.log('Node clicked: ', node);
+  handleNodeClicked = node => this.props.handleNodeClick(node);
 
   handleButtonZoom = value => d3.select(this.canvas).transition().duration(300).call(this.zoom.scaleTo, this.transform.k + value);
 
@@ -329,8 +402,16 @@ class TopologyCanvas extends Component {
   }
 }
 
-TopologyCanvas.propTypes = {};
+TopologyCanvas.propTypes = {
+  nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  edges: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isFiltering: PropTypes.bool,
+  handleNodeClick: PropTypes.func,
+};
 
-TopologyCanvas.defaultProps = {};
+TopologyCanvas.defaultProps = {
+  isFiltering: false,
+  handleNodeClick: () => ({}),
+};
 
 export default TopologyCanvas;
