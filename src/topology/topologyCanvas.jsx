@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import _ from 'lodash';
 import { Button, Icon } from 'patternfly-react';
+import { __ } from '../global-functions';
 import './styles.scss';
+
+const VALID = 'valid';
+const WARNING = 'warning';
+const CRITICAL = 'critical';
 
 class TopologyCanvas extends Component {
   componentDidMount() {
@@ -65,12 +70,12 @@ class TopologyCanvas extends Component {
     d3.select(canvas).call(this.zoom);
 
 
-    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.1);
-    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.1);
+    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.2);
+    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.3);
     // force layout
     this.simulation = d3.forceSimulation()
       .force('link', d3.forceLink().id(node => node.id).distance(120).strength(1)
-        .iterations(5))
+        .iterations(8))
       .force('collision', d3.forceCollide(d => d.size * 2 || 30))
       .force('charge', () => 200)
       .force('x', forceX)
@@ -139,6 +144,18 @@ class TopologyCanvas extends Component {
     this.simulation.on('tick')();
   }
 
+  getStateIcon = status => ({
+    [VALID]: this.icons['fa fa-check'],
+    [CRITICAL]: this.icons['fa fa-times'],
+    [WARNING]: this.icons['fa fa-exclamation'],
+  })[status]
+
+  getStateIconColor = status => ({
+    [VALID]: '#3F9C35',
+    [CRITICAL]: '#CC0000',
+    [WARNING]: '#EC7A08',
+  })[status];
+
   loadIcon = (fontIcon) => {
     const tmp = document.createElement('i');
     document.body.appendChild(tmp);
@@ -173,6 +190,10 @@ class TopologyCanvas extends Component {
 
   cacheIconChars = (nodes) => {
     this.icons = {};
+    this.icons['fa fa-question'] = this.loadIcon('fa fa-question');
+    this.icons['fa fa-exclamation'] = this.loadIcon('fa fa-exclamation');
+    this.icons['fa fa-times'] = this.loadIcon('fa fa-times');
+    this.icons['fa fa-check'] = this.loadIcon('fa fa-check');
     nodes.forEach(({ fonticon, fileicon }) => {
       if (fonticon && !this.icons[fonticon]) {
         this.icons[fonticon] = this.loadIcon(fonticon);
@@ -180,7 +201,6 @@ class TopologyCanvas extends Component {
         this.icons[fileicon] = this.loadImage(fileicon);
       }
     });
-    this.icons['fa fa-question'] = this.loadIcon('fa fa-question');
   }
 
   findNode = (x, y) => {
@@ -234,6 +254,71 @@ class TopologyCanvas extends Component {
     this.ctx.textBaseline = 'middle';
     this.ctx.font = 'normal normal normal 12px "Open Sans"';
     this.ctx.fillText(title, x, y + 35);
+  }
+
+  drawHealthState = ({
+    x,
+    y,
+    size,
+    status,
+  }) => {
+    this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
+    this.ctx.font = 'normal normal normal 8px FontAwesome';
+    this.ctx.beginPath();
+    this.ctx.arc(...[x + size / 1.5, y + size / 1.5], 7, 0, 2 * Math.PI);
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.strokeStyle = this.getStateIconColor(status);
+    this.ctx.lineWidth = 1;
+    this.ctx.fill();
+    this.ctx.stroke();
+    this.ctx.fillStyle = this.getStateIconColor(status);
+    this.ctx.fillText(this.getStateIcon(status), x + size / 1.5, y + size / 1.5);
+    this.ctx.strokeStyle = '#FFFFFF';
+  }
+
+  drawStateLegend = () => {
+    const y = this.canvasHeight - 10;
+    let x = 10;
+    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
+    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    let text = `${__('Health State')}: `;
+    x += this.ctx.measureText(text).width;
+    this.ctx.fillText(text, x, y);
+    x += this.ctx.measureText(text).width / 2 + 23;
+
+    this.drawHealthState({
+      x, y, size: 0, status: VALID,
+    });
+    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
+    text = __('Valid');
+    x += this.ctx.measureText(text).width;
+    this.ctx.fillText(text, x, y);
+
+    x += this.ctx.measureText(text).width + 15;
+    this.drawHealthState({
+      x, y, size: 0, status: WARNING,
+    });
+    x -= 10;
+
+    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
+    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    text = __('Warning');
+    x += this.ctx.measureText(text).width;
+    this.ctx.fillText(text, x, y);
+
+    x += this.ctx.measureText(text).width;
+    this.drawHealthState({
+      x, y, size: 0, status: CRITICAL,
+    });
+    x -= 15;
+
+    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
+    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    x += this.ctx.measureText(text).width;
+    text = __('Critical');
+    this.ctx.fillText(text, x, y);
   }
 
   isOdd = number => number % 2 === 0;
@@ -293,6 +378,8 @@ class TopologyCanvas extends Component {
     } else {
       this.drawIcon(node, coords);
     }
+    // draw node health state
+    if (this.props.healthState && node.status) this.drawHealthState({ ...node, ...coords });
     this.drawTooltip(coords, node);
   }
 
@@ -363,6 +450,7 @@ class TopologyCanvas extends Component {
       }
     }
 
+    if (this.props.healthState) this.drawStateLegend();
     if (this.transform.k !== 1) this.drawMinimap();
   }
 
@@ -388,11 +476,6 @@ class TopologyCanvas extends Component {
           }}
         />
         <div style={{ position: 'absolute', bottom: 0, width: '100%' }}>
-          <div style={{ float: 'left', position: 'absolute', bottom: 0 }}>
-            <button>OK</button>
-            <button>WARN</button>
-            <button>ERROR</button>
-          </div>
           <div style={{ float: 'right' }}>
             <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
             <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
@@ -408,11 +491,13 @@ TopologyCanvas.propTypes = {
   edges: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFiltering: PropTypes.bool,
   handleNodeClick: PropTypes.func,
+  healthState: PropTypes.bool,
 };
 
 TopologyCanvas.defaultProps = {
   isFiltering: false,
   handleNodeClick: () => ({}),
+  healthState: false,
 };
 
 export default TopologyCanvas;

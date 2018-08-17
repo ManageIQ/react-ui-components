@@ -5,6 +5,7 @@ export const nodes = [
     size: 24,
     fonticon: 'fa fa-cog',
     depth: 1,
+    status: 'valid',
   },
   {
     id: 1,
@@ -12,6 +13,7 @@ export const nodes = [
     size: 24,
     fonticon: 'fa fa-cloud',
     depth: 2,
+    status: 'warning',
   },
   {
     id: 2,
@@ -19,6 +21,7 @@ export const nodes = [
     size: 24,
     fonticon: 'fa fa-cloud',
     depth: 2,
+    status: 'critical',
   },
   {
     id: 3,
@@ -26,6 +29,7 @@ export const nodes = [
     size: 24,
     fonticon: 'fa fa-cloud',
     depth: 3,
+    status: 'valid',
   },
   {
     id: 4,
@@ -33,6 +37,7 @@ export const nodes = [
     size: 24,
     fonticon: 'fa fa-cloud',
     depth: 3,
+    status: 'valid',
   },
   {
     id: 5,
@@ -40,6 +45,7 @@ export const nodes = [
     size: 24,
     fileicon: 'https://www.svgrepo.com/show/5386/speedometer.svg',
     depth: 3,
+    status: 'warning',
   },
 ];
 export const edges = [
