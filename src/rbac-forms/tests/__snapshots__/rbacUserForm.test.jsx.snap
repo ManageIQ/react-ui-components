@@ -433,6 +433,11 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                 <PasswordFragment
                   changeValue={[Function]}
                   isEditing={true}
+                  passwordValidators={
+                    Array [
+                      [Function],
+                    ]
+                  }
                 >
                   <Col
                     bsClass="col"
@@ -1894,6 +1899,11 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                 <PasswordFragment
                   changeValue={[Function]}
                   isEditing={true}
+                  passwordValidators={
+                    Array [
+                      [Function],
+                    ]
+                  }
                 >
                   <Col
                     bsClass="col"

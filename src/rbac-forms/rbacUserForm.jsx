@@ -56,7 +56,11 @@ const RbacUserForm = ({
                 disabled={!newRecord && editDisabled}
               />
             </Col>
-            <PasswordFragment changeValue={change} isEditing={!newRecord} />
+            <PasswordFragment
+              changeValue={change}
+              isEditing={!newRecord}
+              passwordValidators={[required({ msg: __('Required') })]}
+            />
             <Col xs={12}>
               <Field
                 name="email"

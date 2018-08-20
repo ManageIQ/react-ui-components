@@ -1,9 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Field } from 'react-final-form';
-import { required } from 'redux-form-validators';
 import { Col } from 'patternfly-react';
 import PropTypes from 'prop-types';
-import { FinalFormField } from '../forms';
+import { FinalFormField, composeValidators } from '../forms';
 import { __ } from '../global-functions';
 
 export default class PasswordFragment extends PureComponent {
@@ -17,7 +16,7 @@ export default class PasswordFragment extends PureComponent {
   handleChangeEdit = () => this.setState(prevState => ({ editEnabled: !prevState.editEnabled }));
 
   render() {
-    const { isEditing, changeValue } = this.props;
+    const { isEditing, changeValue, passwordValidators } = this.props;
     const { editEnabled } = this.state;
     if (!isEditing || editEnabled) {
       return (
@@ -27,7 +26,7 @@ export default class PasswordFragment extends PureComponent {
               id="password"
               name="password"
               type="password"
-              validate={required({ msg: __('Required') })}
+              validate={composeValidators(...passwordValidators)}
               component={FinalFormField}
               label={__('Password')}
             >
@@ -36,7 +35,6 @@ export default class PasswordFragment extends PureComponent {
                 <Col md={2}>
                   <button
                     id="password-change-disabler"
-                    tabIndex="-1"
                     type="button"
                     className="button-link"
                     onClick={() => {
@@ -56,7 +54,6 @@ export default class PasswordFragment extends PureComponent {
               id="password-verify"
               name="verify"
               type="password"
-              validate={required({ msg: __('Required') })}
               component={FinalFormField}
               label={__('Confirm password')}
             />
@@ -88,8 +85,10 @@ export default class PasswordFragment extends PureComponent {
 PasswordFragment.propTypes = {
   isEditing: PropTypes.bool,
   changeValue: PropTypes.func.isRequired,
+  passwordValidators: PropTypes.arrayOf(PropTypes.func),
 };
 
 PasswordFragment.defaultProps = {
   isEditing: false,
+  passwordValidators: [],
 };
