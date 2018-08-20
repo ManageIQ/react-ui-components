@@ -77,7 +77,7 @@ class TopologyCanvas extends Component {
       .force('link', d3.forceLink().id(node => node.id).distance(120).strength(1)
         .iterations(8))
       .force('collision', d3.forceCollide(d => d.size * 2 || 30))
-      .force('charge', () => 200)
+      .force('charge', d3.forceManyBody())
       .force('x', forceX)
       .force('y', forceY);
 
@@ -94,7 +94,25 @@ class TopologyCanvas extends Component {
   componentDidUpdate(prevProps) {
     this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
     this.staticNodesCount = this.props.nodes.filter(({ depth }) => depth === this.minDepth).length;
-    this.simulation.nodes([...this.props.nodes]);
+
+    const newNodes = this.props.nodes.filter(({ id }) => !prevProps.nodes.find(node => id === node.id));
+    const connectingEdges = this.props.edges.filter(({ source }) =>
+      source === this.lastClickedNode.id);
+    // const newTargets = connectingEdges.filter(({ target }) => newNodes.find(({ id }) => id === target));
+    const oldTargets = connectingEdges.filter(({ target }) => !newNodes.find(({ id }) => id === target));
+    let maxNodeX;
+    if (oldTargets.length > 0) {
+      const prevTargets = prevProps.nodes.filter(({ id }) => oldTargets.find(({ target }) => target === id));
+      maxNodeX = Math.max.apply(undefined, prevTargets.map(({ x }) => x));
+      if (maxNodeX) {
+        newNodes.forEach((node, index) => {
+          newNodes[index].x = maxNodeX + this.canvasHeight;
+        });
+      }
+    }
+    console.log('newNodes: ', newNodes.map(({ x }) => x));
+
+    this.simulation.nodes([...this.simulation.nodes(), ...newNodes]);
     this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
     this.simulation.force('link').links(this.props.edges.map(edge => ({
       ...edge,
@@ -219,11 +237,11 @@ class TopologyCanvas extends Component {
     const coords = {
       source: {
         x: edge.source.x,
-        y: edge.source.y,
+        y: edge.source.y - edge.source.depth * this.simulation.alpha(),
       },
       target: {
         x: edge.target.x,
-        y: edge.target.y,
+        y: edge.target.y + edge.target.depth * this.simulation.alpha(),
       },
     };
     if (edge.source.depth === this.minDepth) {
@@ -454,7 +472,10 @@ class TopologyCanvas extends Component {
     if (this.transform.k !== 1) this.drawMinimap();
   }
 
-  handleNodeClicked = node => this.props.handleNodeClick(node);
+  handleNodeClicked = (node) => {
+    this.lastClickedNode = node;
+    this.props.handleNodeClick(node);
+  }
 
   handleButtonZoom = value => d3.select(this.canvas).transition().duration(300).call(this.zoom.scaleTo, this.transform.k + value);
 
