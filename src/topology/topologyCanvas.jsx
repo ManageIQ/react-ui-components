@@ -24,33 +24,22 @@ class TopologyCanvas extends Component {
     this.highlightedNodes = [];
     window.magix = this;
     window.d3 = d3;
-
-    const n = this.props.nodes;
-    const e = this.props.edges.map(edge => ({
-      ...edge,
-      source: n.find(({ id }) => edge.source === id),
-      targer: n.find(({ id }) => edge.target === id),
-    }));
-
-    this.minDepth = Math.min.apply(undefined, n.map(({ depth }) => depth));
-    this.staticNodesCount = n.filter(({ depth }) => depth === this.minDepth).length;
     // load icon characters from stylesheet for IE browser
     if (this.IE11) {
       console.log('is IE');
       this.cssRules = this.findCssIconRules();
     }
-    this.cacheIconChars(n);
 
     // click
     d3.select(this.canvas).on('click', () => {
       const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
       if (selectedNode) {
-        if (this.selectedNode && this.selectedNode.id !== selectedNode.id) {
+        if (this.selectedNode) {
           this.selectedNode.selected = false;
         }
-        selectedNode.selected = !selectedNode.selected;
+        selectedNode.selected = true;
         this.selectedNode = selectedNode;
-        this.handleNodeClicked(selectedNode);
+        this.props.handleNodeClick(selectedNode);
       }
     });
 
@@ -70,55 +59,80 @@ class TopologyCanvas extends Component {
     d3.select(canvas).call(this.zoom);
 
 
-    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.2);
-    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.3);
+    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.0125);
+    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.0125);
     // force layout
     this.simulation = d3.forceSimulation()
       .force('link', d3.forceLink().id(node => node.id).distance(120).strength(1)
-        .iterations(8))
+        .iterations(10))
       .force('collision', d3.forceCollide(d => d.size * 2 || 30))
-      .force('charge', d3.forceManyBody())
-      .force('x', forceX)
-      .force('y', forceY);
+      .force('charge', () => -5000)
+      .force('y', forceY)
+      .force('x', forceX);
 
     // find node on hover
     d3.select(this.canvas).on('mousemove', () => {
       this.hoveredNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
     });
 
+    const n = this.props.nodes.map(node => ({
+      ...node,
+      ...this.computeLevelDistance(node),
+    }));
+    const e = this.props.edges.map(edge => ({
+      ...edge,
+      source: n.find(({ id }) => edge.source === id),
+      targer: n.find(({ id }) => edge.target === id),
+    }));
+    this.cacheIconChars(n);
+    this.minDepth = Math.min.apply(undefined, n.map(({ depth }) => depth));
+    this.staticNodesCount = n.filter(({ depth }) => depth === this.minDepth).length;
+
+    // register resize event
+    window.addEventListener('resize', this.updateDimensions);
+
     this.simulation.nodes(n).on('tick', this.forceTick);
     this.simulation.force('link').links(e);
   }
 
-
   componentDidUpdate(prevProps) {
+    // resize canvas
+    const { canvas } = this;
+    this.coords = canvas.getBoundingClientRect();
+    this.canvasWidth = canvas.clientWidth;
+    this.canvasHeight = canvas.clientHeight;
+    this.transform = d3.zoomIdentity;
+    canvas.width = this.canvasWidth;
+    canvas.height = this.canvasHeight;
+    if (prevProps.resetSelected && !this.props.resetSelected) {
+      this.selectedNode = undefined;
+    }
+
     this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
     this.staticNodesCount = this.props.nodes.filter(({ depth }) => depth === this.minDepth).length;
-
-    const newNodes = this.props.nodes.filter(({ id }) => !prevProps.nodes.find(node => id === node.id));
-    const connectingEdges = this.props.edges.filter(({ source }) =>
-      source === this.lastClickedNode.id);
-    // const newTargets = connectingEdges.filter(({ target }) => newNodes.find(({ id }) => id === target));
-    const oldTargets = connectingEdges.filter(({ target }) => !newNodes.find(({ id }) => id === target));
-    let maxNodeX;
-    if (oldTargets.length > 0) {
-      const prevTargets = prevProps.nodes.filter(({ id }) => oldTargets.find(({ target }) => target === id));
-      maxNodeX = Math.max.apply(undefined, prevTargets.map(({ x }) => x));
-      if (maxNodeX) {
-        newNodes.forEach((node, index) => {
-          newNodes[index].x = maxNodeX + this.canvasHeight;
-        });
-      }
-    }
-    console.log('newNodes: ', newNodes.map(({ x }) => x));
-
-    this.simulation.nodes([...this.simulation.nodes(), ...newNodes]);
+    const newNodes = this.props.nodes.filter(({ id }) => !prevProps.nodes.find(node => id === node.id)).map(node => ({
+      ...node,
+      ...this.computeLevelDistance(node),
+    }));
+    const oldNodes = this.simulation.nodes().map(node => ({
+      ...node,
+      highlight: this.props.nodes.find(({ id }) => id === node.id).highlight,
+    }));
+    this.simulation.nodes([...oldNodes, ...newNodes]);
     this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
     this.simulation.force('link').links(this.props.edges.map(edge => ({
       ...edge,
     })));
     if (!prevProps.isFiltering) this.overlayDelay = 0;
-    this.highlightedNodes = this.props.nodes.filter(({ highlight }) => !!highlight);
+    if (this.props.isFiltering) {
+      this.highlightedNodes = [
+        ...this.simulation.nodes().filter(({ highlight }) => !!highlight),
+        ...newNodes.filter(({ highlight }) => !!highlight),
+      ];
+    } else {
+      this.highlightedNodes = [];
+    }
+    this.simulation.alphaTarget(0.3);
     this.simulation.restart();
     let x = 0;
     // smooth animation after data update
@@ -131,9 +145,13 @@ class TopologyCanvas extends Component {
     }, 5);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
   onDragStart = () => {
     if (!d3.event.active) {
-      this.simulation.alphaTarget(0.3).restart();
+      this.simulation.alphaTarget(0.1).restart();
     }
     d3.event.subject.fx = d3.event.subject.x;
     d3.event.subject.fy = d3.event.subject.y;
@@ -237,11 +255,11 @@ class TopologyCanvas extends Component {
     const coords = {
       source: {
         x: edge.source.x,
-        y: edge.source.y - edge.source.depth * this.simulation.alpha(),
+        y: edge.source.y,
       },
       target: {
         x: edge.target.x,
-        y: edge.target.y + edge.target.depth * this.simulation.alpha(),
+        y: edge.target.y,
       },
     };
     if (edge.source.depth === this.minDepth) {
@@ -339,7 +357,21 @@ class TopologyCanvas extends Component {
     this.ctx.fillText(text, x, y);
   }
 
-  isOdd = number => number % 2 === 0;
+  computeLevelDistance = (node) => {
+    if (!node.x) {
+      node.x = node.depth * 120; // eslint-disable-line no-param-reassign
+    }
+    if (!node.y) {
+      node.y = this.canvasHeight / 1.25; // eslint-disable-line no-param-reassign
+    }
+    const coords = this.transform.apply([node.x + node.depth * 10 * this.simulation.alpha(), node.y]);
+    const x = coords[0];
+    const y = coords[1];
+    return {
+      x,
+      y,
+    };
+  }
 
   drawNode = (node) => {
     if (node.depth === this.minDepth) {
@@ -347,10 +379,7 @@ class TopologyCanvas extends Component {
       node.y = this.topY + this.staticNodeRenderCount * (5 * node.size); // eslint-disable-line no-param-reassign
       if (this.staticNodeRenderCount < this.staticNodesCount) this.staticNodeRenderCount += 1;
     }
-    const coords = {
-      x: this.transform.apply([node.x, node.y])[0],
-      y: this.transform.apply([node.x, node.y])[1],
-    };
+    const coords = this.computeLevelDistance(node);
     // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     this.ctx.beginPath();
     // Create shadow
@@ -370,7 +399,7 @@ class TopologyCanvas extends Component {
     this.ctx.beginPath();
     this.ctx.arc(...[coords.x, coords.y], node.size, 0, 2 * Math.PI);
     // render gradient for selected node
-    if (node.selected) {
+    if (this.selectedNode && node.id === this.selectedNode.id) {
       const gradient = this.ctx.createRadialGradient(
         coords.x,
         coords.y,
@@ -451,7 +480,9 @@ class TopologyCanvas extends Component {
     this.topStatic = this.staticNodesCount * 100;
     this.topY = (this.canvasHeight / 2) - this.topStatic;
     nodes.forEach((node) => {
-      if (this.props.isFiltering && node.highlight) return;
+      if (this.props.isFiltering && node.highlight) {
+        return;
+      }
       this.drawNode(node);
     });
     if (this.props.isFiltering) {
@@ -472,17 +503,23 @@ class TopologyCanvas extends Component {
     if (this.transform.k !== 1) this.drawMinimap();
   }
 
-  handleNodeClicked = (node) => {
-    this.lastClickedNode = node;
-    this.props.handleNodeClick(node);
-  }
-
   handleButtonZoom = value => d3.select(this.canvas).transition().duration(300).call(this.zoom.scaleTo, this.transform.k + value);
 
   findCssIconRules = () => {
     const styleSheet = _.find(document.styleSheets, sheet =>
       _.find(sheet.rules, rule => rule.selectorText && rule.selectorText.indexOf('fa-gear::before') !== -1));
     return styleSheet ? styleSheet.rules : undefined;
+  }
+
+  updateDimensions = () => {
+    const { canvas } = this;
+    this.coords = canvas.getBoundingClientRect();
+    this.canvasWidth = canvas.clientWidth;
+    this.canvasHeight = canvas.clientHeight;
+    this.transform = d3.zoomIdentity;
+    canvas.width = this.canvasWidth;
+    canvas.height = this.canvasHeight;
+    this.simulation.on('tick')();
   }
 
   render() {
@@ -513,12 +550,14 @@ TopologyCanvas.propTypes = {
   isFiltering: PropTypes.bool,
   handleNodeClick: PropTypes.func,
   healthState: PropTypes.bool,
+  resetSelected: PropTypes.bool,
 };
 
 TopologyCanvas.defaultProps = {
   isFiltering: false,
   handleNodeClick: () => ({}),
   healthState: false,
+  resetSelected: false,
 };
 
 export default TopologyCanvas;
