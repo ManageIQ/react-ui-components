@@ -1,11 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import './styles.scss';
 
 /**
  * Render icon or an image with a title
  */
 export default class IconOrImage extends React.Component {
-  renderIcon = () => <i className={this.props.icon} title={this.props.title} />;
+  renderIcon = () => {
+    if (this.props.background) {
+      return (
+        <div style={{ background: this.props.background }} className="backgrounded-icon">
+          <i className={this.props.icon} title={this.props.title} />
+        </div>
+      );
+    }
+
+    return <i className={this.props.icon} title={this.props.title} />;
+  };
 
   // FIXME: preprocess and test in-lined images
   renderImage = () => <img src={this.props.image} alt={this.props.title} title={this.props.title} />;
@@ -22,6 +33,7 @@ IconOrImage.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   icon: PropTypes.string,
+  background: PropTypes.string,
 };
 
 IconOrImage.defaultProps = {
@@ -29,4 +41,3 @@ IconOrImage.defaultProps = {
   image: null,
   icon: null,
 };
-

@@ -13,7 +13,8 @@ export const summary1 = [
       {"label":"Security Groups","value":"18","icon":"pficon pficon-cloud-security","image":null,"link":"/ems_network/39?display=security_groups","title":"Show all Security Groups","hoverClass":""},
       {"label":"Floating IPs","value":"14","icon":"ff ff-floating-ip","image":null,"link":"/ems_network/39?display=floating_ips","title":"Show all Floating IPs","hoverClass":""},
       {"label":"Network Ports","value":"26","icon":"ff ff-network-port","image":null,"link":"/ems_network/39?display=network_ports","title":"Show all Network Ports","hoverClass":""},
-      {"label":"Load Balancers","value":"2","icon":"ff ff-load-balancer","image":null,"link":"/ems_network/39?display=load_balancers","title":"Show all Load Balancers","hoverClass":""}
+      {"label":"Load Balancers","value":"2","icon":"ff ff-load-balancer","image":null,"link":"/ems_network/39?display=load_balancers","title":"Show all Load Balancers","hoverClass":""},
+      {"label":"Power State","value":"On","icon":"fa fa-play","image":null,"hoverClass":"","background": "green"}
      ]
     },
     {"title":"Overview","component":"GenericGroup","items":[

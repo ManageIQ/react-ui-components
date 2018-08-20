@@ -35,7 +35,7 @@ export default function GenericTableRow(props) {
     <tr onClick={e => props.onClick(item, e)} className={item.hoverClass} title={item.title}>
       <td className="label">{item.label}</td>
       <td>
-        <IconOrImage icon={item.icon} image={item.image} title={item.title} />
+        <IconOrImage icon={item.icon} image={item.image} title={item.title} background={item.background} />
         {value}
       </td>
     </tr>
