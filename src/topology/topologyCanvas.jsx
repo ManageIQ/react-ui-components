@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
-import _ from 'lodash';
+import _ from 'lodash'; // eslint-disable-line
 import { Button, Icon } from 'patternfly-react';
 import { __ } from '../global-functions';
 import { duplicateArray, loadImage, findIconUnicode, createIconChar } from './utils';
@@ -80,7 +80,6 @@ class TopologyCanvas extends Component {
     if (!prevProps.isFiltering) this.overlayDelay = 0;
     this.highlightedNodes = this.props.isFiltering ? [
       ...this.simulation.nodes().filter(({ highlight }) => !!highlight),
-      ...newNodes.filter(({ highlight }) => !!highlight),
     ] : [];
     this.simulation.alphaTarget(0.2);
     this.simulation.restart();
@@ -455,11 +454,14 @@ class TopologyCanvas extends Component {
   handleButtonZoom = value => d3.select(this.canvas).transition().duration(300).call(this.zoom.scaleTo, this.transform.k + value);
 
   // find the css rule containing with icon content. Only for IE11
+  /* istanbul ignore next */
+  /**
   findCssIconRules = () => {
     const styleSheet = _.find(document.styleSheets, sheet =>
       _.find(sheet.rules, rule => rule.selectorText && rule.selectorText.indexOf('fa-gear::before') !== -1));
     return styleSheet ? styleSheet.rules : undefined;
   }
+  */
   /**
    * @description Updates canvas size based on parent element size
    */
@@ -480,8 +482,8 @@ class TopologyCanvas extends Component {
         />
         <div className="topology-zoom-container">
           <div>
-            <Button onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
-            <Button onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
+            <Button id="canvas-zoom-in" onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
+            <Button id="canvas-zoom-out" onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
           </div>
         </div>
       </div>
@@ -493,14 +495,13 @@ TopologyCanvas.propTypes = {
   nodes: PropTypes.arrayOf(PropTypes.object).isRequired,
   edges: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFiltering: PropTypes.bool,
-  handleNodeClick: PropTypes.func,
+  handleNodeClick: PropTypes.func.isRequired,
   healthState: PropTypes.bool,
   resetSelected: PropTypes.bool,
 };
 
 TopologyCanvas.defaultProps = {
   isFiltering: false,
-  handleNodeClick: () => ({}),
   healthState: false,
   resetSelected: false,
 };
