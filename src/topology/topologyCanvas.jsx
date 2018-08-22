@@ -4,138 +4,88 @@ import * as d3 from 'd3';
 import _ from 'lodash';
 import { Button, Icon } from 'patternfly-react';
 import { __ } from '../global-functions';
+import { duplicateArray, loadImage, findIconUnicode, createIconChar } from './utils';
 import './styles.scss';
 
 const VALID = 'valid';
 const WARNING = 'warning';
 const CRITICAL = 'critical';
+const WHITE = '#FFFFFF';
+const DEFAUT_NODE_SIZE = 30;
+const EDGE_COLOR = '#DCDCDC';
+const TOOLTIP_COLOR = '#72767B';
+const FONT = 'normal normal normal 12px "Open Sans"';
 
 class TopologyCanvas extends Component {
   componentDidMount() {
     this.IE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const { canvas } = this;
-    this.coords = canvas.getBoundingClientRect();
-    this.canvasWidth = canvas.clientWidth;
-    this.canvasHeight = canvas.clientHeight;
-    this.transform = d3.zoomIdentity;
-    canvas.width = this.canvasWidth;
-    canvas.height = this.canvasHeight;
+    this.updateDimensions(canvas);
     this.ctx = canvas.getContext('2d');
     this.highlightedNodes = [];
-    window.magix = this;
-    window.d3 = d3;
-    // load icon characters from stylesheet for IE browser
+    this.transform = d3.zoomIdentity;
     if (this.IE11) {
-      console.log('is IE');
       this.cssRules = this.findCssIconRules();
     }
-
-    // click
-    d3.select(this.canvas).on('click', () => {
-      const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
-      if (selectedNode) {
-        if (this.selectedNode) {
-          this.selectedNode.selected = false;
-        }
-        selectedNode.selected = true;
-        this.selectedNode = selectedNode;
-        this.props.handleNodeClick(selectedNode);
-      }
-    });
-
-    // drag
-    d3.select(canvas).call(d3.drag().container(canvas)
-      .subject(() => this.findNode(d3.event.x, d3.event.y))
-      .on('start', this.onDragStart)
-      .on('drag', this.onDrag)
-      .on('end', this.onDragEnd));
-
-    // pan and zoom
-    this.zoom = d3.zoom()
-      .translateExtent([[0, 0], [this.canvasWidth, this.canvasHeight]])
-      .scaleExtent([1, 8])
-      .on('zoom', () => this.onZoom({ manual: false }));
-
-    d3.select(canvas).call(this.zoom);
-
-
-    const forceX = d3.forceX(this.canvasWidth / 2).strength(0.0125);
-    const forceY = d3.forceY(this.canvasHeight / 2).strength(0.0125);
-    // force layout
+    this.setUpCanvas();
     this.simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id(node => node.id).distance(120).strength(1)
-        .iterations(10))
-      .force('collision', d3.forceCollide(d => d.size * 2 || 30))
-      .force('charge', () => -5000)
-      .force('y', forceY)
-      .force('x', forceX);
+      .force('link', d3.forceLink().id(node => node.id).distance(130).strength(1)
+        .iterations(5))
+      .force('collision', d3.forceCollide(() => 60))
+      .force('charge', d3.forceManyBody().strength(-100).distanceMin(500))
+      .force('y', d3.forceY(this.canvasHeight / 2).strength(0.005))
+      .force('x', d3.forceX(this.canvasWidth / 2).strength(0.035));
 
     // find node on hover
     d3.select(this.canvas).on('mousemove', () => {
       this.hoveredNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
+      this.simulation.on('tick')();
     });
 
-    const n = this.props.nodes.map(node => ({
-      ...node,
-      ...this.computeLevelDistance(node),
-    }));
-    const e = this.props.edges.map(edge => ({
-      ...edge,
-      source: n.find(({ id }) => edge.source === id),
-      targer: n.find(({ id }) => edge.target === id),
-    }));
+    this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
+    this.staticNodesCount = this.props.nodes.filter(({ depth }) => depth === this.minDepth).length;
+    // setup inital nodes positions
+    const n = duplicateArray(this.props.nodes, this.computeLevelDistance);
+    const e = duplicateArray(this.props.edges);
     this.cacheIconChars(n);
-    this.minDepth = Math.min.apply(undefined, n.map(({ depth }) => depth));
-    this.staticNodesCount = n.filter(({ depth }) => depth === this.minDepth).length;
 
     // register resize event
-    window.addEventListener('resize', this.updateDimensions);
-
+    window.addEventListener('resize', () => {
+      this.updateDimensions(canvas);
+      this.setUpCanvas();
+      this.simulation.on('tick')();
+    });
     this.simulation.nodes(n).on('tick', this.forceTick);
     this.simulation.force('link').links(e);
   }
 
   componentDidUpdate(prevProps) {
-    // resize canvas
     const { canvas } = this;
-    this.coords = canvas.getBoundingClientRect();
-    this.canvasWidth = canvas.clientWidth;
-    this.canvasHeight = canvas.clientHeight;
-    this.transform = d3.zoomIdentity;
-    canvas.width = this.canvasWidth;
-    canvas.height = this.canvasHeight;
+    this.staticNodesRendered = 0;
+    this.updateDimensions(canvas);
+    this.setUpCanvas();
     if (prevProps.resetSelected && !this.props.resetSelected) {
       this.selectedNode = undefined;
     }
 
     this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
     this.staticNodesCount = this.props.nodes.filter(({ depth }) => depth === this.minDepth).length;
-    const newNodes = this.props.nodes.filter(({ id }) => !prevProps.nodes.find(node => id === node.id)).map(node => ({
-      ...node,
-      ...this.computeLevelDistance(node),
-    }));
-    const oldNodes = this.simulation.nodes().map(node => ({
+    const newNodes = this.props.nodes.filter(({ id }) => !prevProps.nodes.find(node => id === node.id))
+      .map(node => ({ ...node, ...this.computeLevelDistance(node) }));
+    this.simulation.nodes([...this.simulation.nodes().map(node => ({
       ...node,
       highlight: this.props.nodes.find(({ id }) => id === node.id).highlight,
-    }));
-    this.simulation.nodes([...oldNodes, ...newNodes]);
-    this.minDepth = Math.min.apply(undefined, this.props.nodes.map(({ depth }) => depth));
-    this.simulation.force('link').links(this.props.edges.map(edge => ({
-      ...edge,
-    })));
+    })), ...newNodes]);
+    this.simulation.force('link').links(duplicateArray(this.props.edges));
     if (!prevProps.isFiltering) this.overlayDelay = 0;
-    if (this.props.isFiltering) {
-      this.highlightedNodes = [
-        ...this.simulation.nodes().filter(({ highlight }) => !!highlight),
-        ...newNodes.filter(({ highlight }) => !!highlight),
-      ];
-    } else {
-      this.highlightedNodes = [];
-    }
-    this.simulation.alphaTarget(0.3);
+    this.highlightedNodes = this.props.isFiltering ? [
+      ...this.simulation.nodes().filter(({ highlight }) => !!highlight),
+      ...newNodes.filter(({ highlight }) => !!highlight),
+    ] : [];
+    this.simulation.alphaTarget(0.2);
     this.simulation.restart();
-    let x = 0;
     // smooth animation after data update
+    let x = 0;
     const intervalID = setInterval(() => {
       this.simulation.on('tick')();
       x += 1;
@@ -175,6 +125,7 @@ class TopologyCanvas extends Component {
 
   onZoom = () => {
     if (d3.event !== null) {
+      this.simulation.alphaTarget(0).restart();
       this.transform = d3.event.transform;
     }
     this.simulation.on('tick')();
@@ -192,36 +143,43 @@ class TopologyCanvas extends Component {
     [WARNING]: '#EC7A08',
   })[status];
 
+  setUpNodeClick = () => {
+    const selectedNode = this.findNode(d3.event.x - this.coords.left, d3.event.y - this.coords.top);
+    if (selectedNode) {
+      if (this.selectedNode) {
+        this.selectedNode.selected = false;
+      }
+      selectedNode.selected = true;
+      this.selectedNode = selectedNode;
+      this.props.handleNodeClick(selectedNode);
+    }
+  }
+
+  setUpCanvas = () => {
+    const { canvas } = this;
+    // pan and zoom handler
+    this.zoom = d3.zoom()
+      .translateExtent([[0, 0], [this.canvasWidth, this.canvasHeight]])
+      .scaleExtent([1, 8])
+      .on('zoom', this.onZoom);
+    // click event handler
+    d3.select(this.canvas).on('click', this.setUpNodeClick);
+    // drag handler
+    d3.select(canvas).call(d3.drag().container(canvas)
+      .subject(() => this.findNode(d3.event.x, d3.event.y))
+      .on('start', this.onDragStart)
+      .on('drag', this.onDrag)
+      .on('end', this.onDragEnd));
+    // assign zoom handler to canvas
+    d3.select(canvas).call(this.zoom);
+  }
+
   loadIcon = (fontIcon) => {
-    const tmp = document.createElement('i');
-    document.body.appendChild(tmp);
-    tmp.className = `hidden ${fontIcon}`;
-    let char = window.getComputedStyle(tmp, ':before').content;
-    document.body.removeChild(tmp);
     if (this.IE11) {
-      const code = this.findIconUnicode(fontIcon).toUpperCase().replace('\\', '0x');
-      console.log('IE loading icon character', code);
-      char = String.fromCharCode(code.replace(/'|"/g, ''));
-      return char;
+      const code = findIconUnicode(fontIcon, this.cssRules).toUpperCase().replace('\\', '0x');
+      return String.fromCharCode(code.replace(/'|"/g, ''));
     }
-    return char.replace(/'|"/g, '');
-  }
-
-  loadImage = (imagePath) => {
-    const image = new Image(60, 60);
-    image.src = imagePath;
-    return image;
-  }
-
-  findIconUnicode = (fontIcon) => {
-    let rule;
-    console.log('fonticon: ', fontIcon);
-    const className = fontIcon.substring(fontIcon.indexOf(' ') + 1);
-    if (this.cssRules) {
-      rule = _.find(this.cssRules, r => r.selectorText && r.selectorText.indexOf(`${className}::before`) !== -1);
-    }
-    console.log('raw icon', rule.style.content);
-    return rule ? rule.style.content : undefined;
+    return createIconChar(fontIcon);
   }
 
   cacheIconChars = (nodes) => {
@@ -234,61 +192,33 @@ class TopologyCanvas extends Component {
       if (fonticon && !this.icons[fonticon]) {
         this.icons[fonticon] = this.loadIcon(fonticon);
       } else if (fileicon && !this.icons[fileicon]) {
-        this.icons[fileicon] = this.loadImage(fileicon);
+        this.icons[fileicon] = loadImage(fileicon);
       }
     });
   }
 
-  findNode = (x, y) => {
-    const point = this.transform.invert([x, y]);
-    const node = this.simulation.find(...point, 30);
-    return node ? this.simulation.find(...point, node.size) : undefined;
-  }
+  findNode = (x, y) => this.simulation.find(...this.transform.invert([x, y]), DEFAUT_NODE_SIZE);
 
   normalizeNode = (node) => {
-    node.size = node.size || 17; // eslint-disable-line no-param-reassign
-    node.x = Math.max(node.size + 1, Math.min(this.canvasWidth - node.size - 1, node.x)); // eslint-disable-line no-param-reassign
-    node.y = Math.max(node.size + 1, Math.min(this.canvasHeight - node.size - 1, node.y)); // eslint-disable-line no-param-reassign
+    node.size = node.size || DEFAUT_NODE_SIZE; // eslint-disable-line no-param-reassign
+    node.x = Math.max(node.size + 5, Math.min(this.canvasWidth - node.size - 5, node.x)); // eslint-disable-line no-param-reassign
+    node.y = Math.max(node.size + 5, Math.min(this.canvasHeight - node.size - DEFAUT_NODE_SIZE / 2, node.y)); // eslint-disable-line no-param-reassign
   }
 
-  drawEdge = (edge) => {
-    const coords = {
-      source: {
-        x: edge.source.x,
-        y: edge.source.y,
-      },
-      target: {
-        x: edge.target.x,
-        y: edge.target.y,
-      },
-    };
-    if (edge.source.depth === this.minDepth) {
-      coords.source = { x: 50, y: this.topY + this.staticEdgeRenderCount * (5 * edge.source.size) };
-      if (JSON.stringify(this.lastStaticEdge) !== JSON.stringify(edge) &&
-        this.staticEdgeRenderCount < this.staticNodesCount) this.staticEdgeRenderCount += 1;
-      this.lastStaticEdge = edge;
-    }
-    if (edge.target.depth === this.minDepth) {
-      coords.target = { x: 50, y: this.topY + this.staticEdgeRenderCount * (5 * edge.target.size) };
-      if (
-        JSON.stringify(this.lastStaticEdge) !== JSON.stringify(edge) &&
-        this.staticEdgeRenderCount < this.staticNodesCount) this.staticEdgeRenderCount += 1;
-      this.lastStaticEdge = edge;
-    }
+  drawEdge = ({ source, target }) => {
     this.ctx.beginPath();
-    this.ctx.strokeStyle = '#dcdcdc';
     this.ctx.lineWidth = 2;
-    this.ctx.moveTo(...this.transform.apply([coords.source.x, coords.source.y]));
-    this.ctx.lineTo(...this.transform.apply([coords.target.x, coords.target.y]));
-    this.ctx.stroke();
+    this.ctx.moveTo(...this.transform.apply([source.x, source.y]));
+    this.ctx.lineTo(...this.transform.apply([target.x, target.y]));
+    this.drawOnCanvas({ strokeStyle: EDGE_COLOR });
   }
 
   drawTooltip = ({ x, y }, { title, highlight }) => {
     this.ctx.beginPath();
-    this.ctx.fillStyle = highlight ? '#FFFFFF' : '#72767B';
+    this.ctx.fillStyle = highlight ? WHITE : TOOLTIP_COLOR;
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
-    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.font = FONT;
     this.ctx.fillText(title, x, y + 35);
   }
 
@@ -303,21 +233,19 @@ class TopologyCanvas extends Component {
     this.ctx.font = 'normal normal normal 8px FontAwesome';
     this.ctx.beginPath();
     this.ctx.arc(...[x + size / 1.5, y + size / 1.5], 7, 0, 2 * Math.PI);
-    this.ctx.fillStyle = '#FFFFFF';
-    this.ctx.strokeStyle = this.getStateIconColor(status);
-    this.ctx.lineWidth = 1;
-    this.ctx.fill();
-    this.ctx.stroke();
+    this.ctx.lineWidth = 3;
+    this.drawOnCanvas({ strokeStyle: this.getStateIconColor(status), fillStyle: WHITE });
+
     this.ctx.fillStyle = this.getStateIconColor(status);
     this.ctx.fillText(this.getStateIcon(status), x + size / 1.5, y + size / 1.5);
-    this.ctx.strokeStyle = '#FFFFFF';
+    this.ctx.restore();
   }
 
   drawStateLegend = () => {
     const y = this.canvasHeight - 10;
     let x = 10;
-    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
-    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.fillStyle = this.props.isFiltering ? WHITE : TOOLTIP_COLOR;
+    this.ctx.font = FONT;
     let text = `${__('Health State')}: `;
     x += this.ctx.measureText(text).width;
     this.ctx.fillText(text, x, y);
@@ -326,8 +254,8 @@ class TopologyCanvas extends Component {
     this.drawHealthState({
       x, y, size: 0, status: VALID,
     });
-    this.ctx.font = 'normal normal normal 12px "Open Sans"';
-    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
+    this.ctx.font = FONT;
+    this.ctx.fillStyle = this.props.isFiltering ? WHITE : TOOLTIP_COLOR;
     text = __('Valid');
     x += this.ctx.measureText(text).width;
     this.ctx.fillText(text, x, y);
@@ -338,8 +266,8 @@ class TopologyCanvas extends Component {
     });
     x -= 10;
 
-    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
-    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.fillStyle = this.props.isFiltering ? WHITE : TOOLTIP_COLOR;
+    this.ctx.font = FONT;
     text = __('Warning');
     x += this.ctx.measureText(text).width;
     this.ctx.fillText(text, x, y);
@@ -350,84 +278,100 @@ class TopologyCanvas extends Component {
     });
     x -= 15;
 
-    this.ctx.fillStyle = this.props.isFiltering ? '#FFFFFF' : '#72767B';
-    this.ctx.font = 'normal normal normal 12px "Open Sans"';
+    this.ctx.fillStyle = this.props.isFiltering ? WHITE : TOOLTIP_COLOR;
+    this.ctx.font = FONT;
     x += this.ctx.measureText(text).width;
     text = __('Critical');
     this.ctx.fillText(text, x, y);
   }
 
+  isOdd = value => value % 2 === 1;
+
   computeLevelDistance = (node) => {
     if (!node.x) {
-      node.x = node.depth * 120; // eslint-disable-line no-param-reassign
+      node.x = node.depth === this.minDepth ? 50 : node.depth * 200; // eslint-disable-line no-param-reassign
     }
     if (!node.y) {
-      node.y = this.canvasHeight / 1.25; // eslint-disable-line no-param-reassign
+      node.y = this.canvasHeight * 0.2; // eslint-disable-line no-param-reassign
     }
-    const coords = this.transform.apply([node.x + node.depth * 10 * this.simulation.alpha(), node.y]);
-    const x = coords[0];
-    const y = coords[1];
+    let coords = this.transform.apply([node.x + node.depth * 10 * this.simulation.alpha(), node.y]);
+    if (node.depth === this.minDepth) {
+      const step = 120;
+      const topCoord = this.isOdd(this.staticNodesCount) ?
+        ((this.staticNodesCount / 2) - this.staticNodesRendered) * step
+        : (((this.staticNodesCount / 2) + 0.5) - this.staticNodesRendered) * step;
+      this.staticNodesRendered += 1;
+      coords = [
+        60 + node.depth * 1 * this.simulation.alpha(),
+        this.canvasHeight / 2 + topCoord - step,
+      ];
+      node.fx = coords[0]; // eslint-disable-line
+      node.fy = coords[1]; // eslint-disable-line
+      return {
+        fx: node.fx,
+        fy: node.fy,
+      };
+    }
     return {
-      x,
-      y,
+      x: coords[0],
+      y: coords[1],
     };
   }
 
+  drawNodeGradient = ({ size }, coords, outerColor = '#BBBBBB') => {
+    const gradient = this.ctx.createRadialGradient(
+      coords[0],
+      coords[1],
+      5,
+      coords[0],
+      coords[1],
+      size,
+    );
+    gradient.addColorStop(0, WHITE);
+    gradient.addColorStop(1, outerColor);
+    this.ctx.strokeStyle = outerColor;
+    this.ctx.fillStyle = gradient;
+  }
+
   drawNode = (node) => {
-    if (node.depth === this.minDepth) {
-      node.x = 50; // eslint-disable-line no-param-reassign
-      node.y = this.topY + this.staticNodeRenderCount * (5 * node.size); // eslint-disable-line no-param-reassign
-      if (this.staticNodeRenderCount < this.staticNodesCount) this.staticNodeRenderCount += 1;
-    }
-    const coords = this.computeLevelDistance(node);
-    // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    this.computeLevelDistance(node);
+    const coords = this.transform.apply([node.x, node.y]);
+    this.ctx.restore();
     this.ctx.beginPath();
     // Create shadow
-
     this.ctx.shadowColor = 'rgba(0,0,0,0.3)';
     this.ctx.shadowBlur = 5;
     this.ctx.shadowOffsetX = 1;
     this.ctx.shadowOffsetY = 2;
-    this.ctx.arc(...[coords.x, coords.y], node.size, 0, 2 * Math.PI);
-    this.ctx.stroke();
-    this.ctx.fill();
+    this.ctx.arc(...coords, node.size, 0, 2 * Math.PI);
+    this.drawOnCanvas();
     this.ctx.shadowBlur = 0;
     this.ctx.shadowOffsetX = 0;
     this.ctx.shadowOffsetY = 0;
 
     // Create the circle
     this.ctx.beginPath();
-    this.ctx.arc(...[coords.x, coords.y], node.size, 0, 2 * Math.PI);
+    this.ctx.arc(...coords, node.size, 0, 2 * Math.PI);
     // render gradient for selected node
     if (this.selectedNode && node.id === this.selectedNode.id) {
-      const gradient = this.ctx.createRadialGradient(
-        coords.x,
-        coords.y,
-        5,
-        coords.x,
-        coords.y,
-        node.size,
-      );
-      gradient.addColorStop(0, '#FFFFFF');
-      gradient.addColorStop(1, '#BBBBBB');
-      this.ctx.strokeStyle = '#BBBBBB';
-      this.ctx.fillStyle = gradient;
+      this.drawNodeGradient(node, coords);
+    } else if (this.hoveredNode && node.id === this.hoveredNode.id) {
+      this.drawNodeGradient(node, coords, '#DDDDDD');
     } else {
-      this.ctx.fillStyle = '#FFFFFF';
-      this.ctx.strokeStyle = '#FFFFFF';
+      this.ctx.fillStyle = WHITE;
+      this.ctx.strokeStyle = WHITE;
     }
-    this.ctx.stroke();
-    this.ctx.fill();
+    this.drawOnCanvas();
 
-    // remove shadow
+    // draw node graphic
     if (node.fileicon) {
-      this.drawImage(node, coords);
+      this.drawImage(node, { x: coords[0], y: coords[1] });
     } else {
-      this.drawIcon(node, coords);
+      this.drawIcon(node, { x: coords[0], y: coords[1] });
     }
     // draw node health state
-    if (this.props.healthState && node.status) this.drawHealthState({ ...node, ...coords });
-    this.drawTooltip(coords, node);
+    if (this.props.healthState && node.status) this.drawHealthState({ ...node, x: coords[0], y: coords[1] });
+    this.drawTooltip({ x: coords[0], y: coords[1] }, node);
   }
 
   drawImage = ({ fileicon, size }, { x, y }) => {
@@ -438,24 +382,30 @@ class TopologyCanvas extends Component {
   drawIcon = ({ fonticon = 'fa fa-question', size, iconColor }, { x, y }) => {
     const iconChar = this.icons[fonticon];
     this.ctx.beginPath();
-    this.ctx.fillStyle = iconColor || '#72767B';
+    this.ctx.fillStyle = iconColor || TOOLTIP_COLOR;
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
     this.ctx.font = `normal normal normal ${size}px FontAwesome`;
     this.ctx.fillText(iconChar, x, y);
   }
 
+  drawOnCanvas = ({ strokeStyle = this.ctx.strokeStyle, fillStyle = this.ctx.fillStyle } = {}) => {
+    this.ctx.save();
+    this.ctx.fillStyle = fillStyle;
+    this.ctx.strokeStyle = strokeStyle;
+    this.ctx.stroke();
+    this.ctx.fill();
+    this.ctx.restore();
+  }
+
   drawMinimap = () => {
     this.ctx.beginPath();
-    this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
-    this.ctx.fillStyle = 'rgba(252, 252, 252, 0.3)';
     const mapX = 0.9 * this.canvasWidth - 10;
     const mapY = 10;
     const mapW = 0.1 * this.canvasWidth;
     const mapH = 0.1 * this.canvasHeight;
     this.ctx.rect(mapX, mapY, mapW, mapH);
-    this.ctx.stroke();
-    this.ctx.fill();
+    this.drawOnCanvas({ strokeStyle: 'rgba(0, 0, 0, 0.3)', fillStyle: 'rgba(252, 252, 252, 0.3)' });
     this.ctx.beginPath();
     this.ctx.fillStyle = 'rgba(224, 224, 224, 0.3)';
     this.ctx.rect(
@@ -464,79 +414,74 @@ class TopologyCanvas extends Component {
       mapW / this.transform.k,
       mapH / this.transform.k,
     );
-    this.ctx.stroke();
-    this.ctx.fill();
+    this.drawOnCanvas({ fillStyle: 'rgba(224, 224, 224, 0.3)' });
   }
 
   forceTick = () => {
+    // clear the canvas
+    this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    // reset static nodes counter
+    this.staticNodesRendered = 0;
     const nodes = this.simulation.nodes();
     const links = this.simulation.force('link').links();
-    this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     nodes.forEach(this.normalizeNode);
+    // render health state
+    if (this.props.healthState) this.drawStateLegend();
+    // render edges
     links.forEach(this.drawEdge);
-
-    this.staticNodeRenderCount = 1;
-    this.staticEdgeRenderCount = 1;
-    this.topStatic = this.staticNodesCount * 100;
-    this.topY = (this.canvasHeight / 2) - this.topStatic;
+    // render non highlighted nodes
     nodes.forEach((node) => {
       if (this.props.isFiltering && node.highlight) {
         return;
       }
       this.drawNode(node);
     });
+    // render canvas overlay if filtering nodes
     if (this.props.isFiltering) {
       if (this.overlayDelay < 0.5) this.overlayDelay += 0.025;
       this.ctx.fillStyle = `rgba(0, 0, 0, ${this.overlayDelay})`;
       this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
       this.highlightedNodes.forEach(this.drawNode);
-    } else {
-      if (this.overlayDelay > 0) {  // eslint-disable-line
-        this.overlayDelay -= 0.025;
-        this.ctx.fillStyle = `rgba(0, 0, 0, ${this.overlayDelay})`;
-        this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        this.highlightedNodes.forEach(this.drawNode);
-      }
+    } else if (!this.props.isFiltering && this.overlayDelay > 0) {
+      this.overlayDelay -= 0.025;
+      this.ctx.fillStyle = `rgba(0, 0, 0, ${this.overlayDelay})`;
+      this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.highlightedNodes.forEach(this.drawNode);
     }
-
-    if (this.props.healthState) this.drawStateLegend();
+    // render minimap if zoomed
     if (this.transform.k !== 1) this.drawMinimap();
   }
 
   handleButtonZoom = value => d3.select(this.canvas).transition().duration(300).call(this.zoom.scaleTo, this.transform.k + value);
 
+  // find the css rule containing with icon content. Only for IE11
   findCssIconRules = () => {
     const styleSheet = _.find(document.styleSheets, sheet =>
       _.find(sheet.rules, rule => rule.selectorText && rule.selectorText.indexOf('fa-gear::before') !== -1));
     return styleSheet ? styleSheet.rules : undefined;
   }
-
-  updateDimensions = () => {
-    const { canvas } = this;
+  /**
+   * @description Updates canvas size based on parent element size
+   */
+  updateDimensions = (canvas) => {
     this.coords = canvas.getBoundingClientRect();
     this.canvasWidth = canvas.clientWidth;
     this.canvasHeight = canvas.clientHeight;
-    this.transform = d3.zoomIdentity;
-    canvas.width = this.canvasWidth;
-    canvas.height = this.canvasHeight;
-    this.simulation.on('tick')();
+    canvas.width = this.canvasWidth; // eslint-disable-line no-param-reassign
+    canvas.height = this.canvasHeight; // eslint-disable-line no-param-reassign
   }
 
   render() {
     return (
-      <div style={{ position: 'relative', height: '100%' }}>
+      <div className="topology-container">
         <canvas
           className="topology-graph"
           ref={(canvas) => { this.canvas = canvas; }}
-          style={{
-            fontFamily: 'FontAwesome',
-            cursor: 'auto',
-          }}
         />
-        <div style={{ position: 'absolute', bottom: 0, width: '100%' }}>
-          <div style={{ float: 'right' }}>
-            <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
-            <Button style={{ display: 'block' }} onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
+        <div className="topology-zoom-container">
+          <div>
+            <Button onClick={() => this.handleButtonZoom(0.25)}><Icon type="fa" name="plus" /></Button>
+            <Button onClick={() => this.handleButtonZoom(-0.25)}><Icon type="fa" name="minus" /></Button>
           </div>
         </div>
       </div>
