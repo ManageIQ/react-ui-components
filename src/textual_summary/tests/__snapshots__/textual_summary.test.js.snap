@@ -138,6 +138,14 @@ exports[`TextualSummary renders just fine 1`] = `
               "title": "Show all Load Balancers",
               "value": "2",
             },
+            Object {
+              "background": "green",
+              "hoverClass": "",
+              "icon": "fa fa-play",
+              "image": null,
+              "label": "Power State",
+              "value": "On",
+            },
           ],
           "title": "Relationships",
         },
@@ -333,6 +341,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -366,6 +375,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -399,6 +409,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -531,6 +542,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title="Ok"
@@ -566,6 +578,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title="Ok"
@@ -608,6 +621,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -632,6 +646,7 @@ exports[`TextualSummary renders just fine 1`] = `
                               }
                             >
                               <IconOrImage
+                                background={null}
                                 icon={null}
                                 image={null}
                                 title={null}
@@ -654,6 +669,7 @@ exports[`TextualSummary renders just fine 1`] = `
                               }
                             >
                               <IconOrImage
+                                background={null}
                                 icon={null}
                                 image={null}
                                 title={null}
@@ -687,6 +703,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -779,6 +796,14 @@ exports[`TextualSummary renders just fine 1`] = `
                 "link": "/ems_network/39?display=load_balancers",
                 "title": "Show all Load Balancers",
                 "value": "2",
+              },
+              Object {
+                "background": "green",
+                "hoverClass": "",
+                "icon": "fa fa-play",
+                "image": null,
+                "label": "Power State",
+                "value": "On",
               },
             ],
             "title": "Relationships",
@@ -897,6 +922,14 @@ exports[`TextualSummary renders just fine 1`] = `
                   "title": "Show all Load Balancers",
                   "value": "2",
                 },
+                Object {
+                  "background": "green",
+                  "hoverClass": "",
+                  "icon": "fa fa-play",
+                  "image": null,
+                  "label": "Power State",
+                  "value": "On",
+                },
               ],
               "title": "Relationships",
             }
@@ -977,6 +1010,14 @@ exports[`TextualSummary renders just fine 1`] = `
                   "title": "Show all Load Balancers",
                   "value": "2",
                 },
+                Object {
+                  "background": "green",
+                  "hoverClass": "",
+                  "icon": "fa fa-play",
+                  "image": null,
+                  "label": "Power State",
+                  "value": "On",
+                },
               ]
             }
             onClick={[Function]}
@@ -1020,6 +1061,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="pficon pficon-cloud-tenant"
                         image={null}
                         title={null}
@@ -1063,6 +1105,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="ff ff-cloud-network"
                         image={null}
                         title="Show all Cloud Networks"
@@ -1106,6 +1149,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="pficon pficon-network"
                         image={null}
                         title="Show all Cloud Subnets"
@@ -1149,6 +1193,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="pficon pficon-route"
                         image={null}
                         title="Show all Network Routers"
@@ -1192,6 +1237,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="pficon pficon-cloud-security"
                         image={null}
                         title="Show all Security Groups"
@@ -1235,6 +1281,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="ff ff-floating-ip"
                         image={null}
                         title="Show all Floating IPs"
@@ -1278,6 +1325,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="ff ff-network-port"
                         image={null}
                         title="Show all Network Ports"
@@ -1321,6 +1369,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="ff ff-load-balancer"
                         image={null}
                         title="Show all Load Balancers"
@@ -1333,6 +1382,57 @@ exports[`TextualSummary renders just fine 1`] = `
                       <span>
                          
                         2
+                      </span>
+                    </td>
+                  </tr>
+                </GenericTableRow>
+                <GenericTableRow
+                  item={
+                    Object {
+                      "background": "green",
+                      "hoverClass": "",
+                      "icon": "fa fa-play",
+                      "image": null,
+                      "label": "Power State",
+                      "value": "On",
+                    }
+                  }
+                  key="8"
+                  onClick={[Function]}
+                >
+                  <tr
+                    className=""
+                    onClick={[Function]}
+                  >
+                    <td
+                      className="label"
+                    >
+                      Power State
+                    </td>
+                    <td>
+                      <IconOrImage
+                        background="green"
+                        icon="fa fa-play"
+                        image={null}
+                        title={null}
+                      >
+                        <div
+                          className="backgrounded-icon"
+                          style={
+                            Object {
+                              "background": "green",
+                            }
+                          }
+                        >
+                          <i
+                            className="fa fa-play"
+                            title={null}
+                          />
+                        </div>
+                      </IconOrImage>
+                      <span>
+                         
+                        On
                       </span>
                     </td>
                   </tr>
@@ -1414,6 +1514,7 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
+                        background={null}
                         icon="pficon pficon-topology"
                         image={null}
                         title="Show topology"
@@ -1500,6 +1601,7 @@ exports[`TextualSummary renders just fine 1`] = `
                   </td>
                   <td>
                     <IconOrImage
+                      background={null}
                       icon="pficon pficon-zone"
                       image={null}
                       title={null}
@@ -1522,6 +1624,7 @@ exports[`TextualSummary renders just fine 1`] = `
                   </td>
                   <td>
                     <IconOrImage
+                      background={null}
                       icon="fa fa-tag"
                       image={null}
                       title={null}

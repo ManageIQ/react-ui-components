@@ -18,4 +18,9 @@ describe('Icon or Image', () => {
     const image = mount(<IconOrImage icon="" title="foo bar title" />);
     expect(toJson(image)).toMatchSnapshot();
   });
+
+  it('renders icon with background', () => {
+    const image = mount(<IconOrImage icon="fa fa-foobar" title="foo bar title" background="blue" />)
+    expect(toJson(image)).toMatchSnapshot();
+  });
 });
