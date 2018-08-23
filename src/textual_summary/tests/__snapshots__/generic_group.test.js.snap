@@ -55,7 +55,6 @@ exports[`GenericGroup renders just fine 1`] = `
           </td>
           <td>
             <IconOrImage
-              background={null}
               icon={null}
               image={null}
               title={null}
@@ -89,7 +88,6 @@ exports[`GenericGroup renders just fine 1`] = `
           </td>
           <td>
             <IconOrImage
-              background={null}
               icon={null}
               image={null}
               title={null}

@@ -587,6 +587,25 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                     </FormControl>
                                   </div>
                                 </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  md={2}
+                                >
+                                  <div
+                                    className="col-md-2"
+                                  >
+                                    <button
+                                      className="button-link"
+                                      id="password-change-enabler"
+                                      onClick={[Function]}
+                                      tabIndex="-1"
+                                      type="button"
+                                    >
+                                      Change stored password
+                                    </button>
+                                  </div>
+                                </Col>
                               </div>
                             </FormGroup>
                           </FinalFormComponent>
@@ -1157,7 +1176,6 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                     disabled={false}
                                     escapeClearsValue={true}
                                     filterOptions={[Function]}
-                                    id="groups"
                                     ignoreAccents={true}
                                     ignoreCase={true}
                                     inputProps={Object {}}
@@ -2053,6 +2071,25 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                     </FormControl>
                                   </div>
                                 </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  md={2}
+                                >
+                                  <div
+                                    className="col-md-2"
+                                  >
+                                    <button
+                                      className="button-link"
+                                      id="password-change-enabler"
+                                      onClick={[Function]}
+                                      tabIndex="-1"
+                                      type="button"
+                                    >
+                                      Change stored password
+                                    </button>
+                                  </div>
+                                </Col>
                               </div>
                             </FormGroup>
                           </FinalFormComponent>
@@ -2635,7 +2672,6 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                     disabled={false}
                                     escapeClearsValue={true}
                                     filterOptions={[Function]}
-                                    id="groups"
                                     ignoreAccents={true}
                                     ignoreCase={true}
                                     inputProps={Object {}}
