@@ -47,12 +47,14 @@ const FinalFormComponent = ({
   maxLength,
   disabled,
   children,
+  id,
   ...rest
 }) => {
   const invalid = validationError(meta, validateOnMount);
   const inputProps = {
     meta,
-    input: { ...normalizeInputValues(input), disabled, maxLength },
+    id,
+    input: { ...normalizeInputValues({ ...input, id }), disabled, maxLength },
     options,
     clearable,
     placeholder,
@@ -147,6 +149,7 @@ FinalFormComponent.propTypes = {
   valueKey: PropTypes.string,
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
+  id: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
