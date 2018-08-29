@@ -36,7 +36,7 @@ const RbacUserForm = ({
       form: { change, reset },
     }) => (
       <PfForm horizontal>
-        <Grid>
+        <Grid fluid>
           <Row>
             <Col xs={12}>
               <Field
