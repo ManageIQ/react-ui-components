@@ -116,10 +116,10 @@ exports[`RbacUserForm component Should render correctly 1`] = `
         <Grid
           bsClass="container"
           componentClass="div"
-          fluid={false}
+          fluid={true}
         >
           <div
-            className="container"
+            className="container-fluid"
           >
             <Row
               bsClass="row"
@@ -585,6 +585,25 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                         value=""
                                       />
                                     </FormControl>
+                                  </div>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  md={2}
+                                >
+                                  <div
+                                    className="col-md-2"
+                                  >
+                                    <button
+                                      className="button-link"
+                                      id="password-change-enabler"
+                                      onClick={[Function]}
+                                      tabIndex="-1"
+                                      type="button"
+                                    >
+                                      Change stored password
+                                    </button>
                                   </div>
                                 </Col>
                               </div>
@@ -1298,7 +1317,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                         onTouchMove={[Function]}
                                         onTouchStart={[Function]}
                                       >
-                                        <span
+                                        <div
                                           className="Select-multi-value-wrapper"
                                           id="react-select-2--value"
                                         >
@@ -1325,7 +1344,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                             }
                                             tabIndex={0}
                                           />
-                                        </span>
+                                        </div>
                                         <span
                                           className="Select-arrow-zone"
                                           onMouseDown={[Function]}
@@ -1582,10 +1601,10 @@ exports[`RbacUserForm component Should render editing version 1`] = `
         <Grid
           bsClass="container"
           componentClass="div"
-          fluid={false}
+          fluid={true}
         >
           <div
-            className="container"
+            className="container-fluid"
           >
             <Row
               bsClass="row"
@@ -2051,6 +2070,25 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                         value=""
                                       />
                                     </FormControl>
+                                  </div>
+                                </Col>
+                                <Col
+                                  bsClass="col"
+                                  componentClass="div"
+                                  md={2}
+                                >
+                                  <div
+                                    className="col-md-2"
+                                  >
+                                    <button
+                                      className="button-link"
+                                      id="password-change-enabler"
+                                      onClick={[Function]}
+                                      tabIndex="-1"
+                                      type="button"
+                                    >
+                                      Change stored password
+                                    </button>
                                   </div>
                                 </Col>
                               </div>
@@ -2795,7 +2833,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                         onTouchMove={[Function]}
                                         onTouchStart={[Function]}
                                       >
-                                        <span
+                                        <div
                                           className="Select-multi-value-wrapper"
                                           id="react-select-3--value"
                                         >
@@ -2812,6 +2850,18 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                                 "label": "Cloud-Users",
                                                 "value": "10000000000026",
                                               }
+                                            }
+                                            values={
+                                              Array [
+                                                Object {
+                                                  "label": "Cloud-Users",
+                                                  "value": "10000000000026",
+                                                },
+                                                Object {
+                                                  "label": "EvmGroup-consumption_administrator",
+                                                  "value": "10000000000016",
+                                                },
+                                              ]
                                             }
                                           >
                                             <div
@@ -2855,6 +2905,18 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                                 "label": "EvmGroup-consumption_administrator",
                                                 "value": "10000000000016",
                                               }
+                                            }
+                                            values={
+                                              Array [
+                                                Object {
+                                                  "label": "Cloud-Users",
+                                                  "value": "10000000000026",
+                                                },
+                                                Object {
+                                                  "label": "EvmGroup-consumption_administrator",
+                                                  "value": "10000000000016",
+                                                },
+                                              ]
                                             }
                                           >
                                             <div
@@ -2903,7 +2965,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                             }
                                             tabIndex={0}
                                           />
-                                        </span>
+                                        </div>
                                         <span
                                           className="Select-arrow-zone"
                                           onMouseDown={[Function]}

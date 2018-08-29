@@ -341,7 +341,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -375,7 +374,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -409,7 +407,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -542,7 +539,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title="Ok"
@@ -578,7 +574,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title="Ok"
@@ -621,7 +616,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -646,7 +640,6 @@ exports[`TextualSummary renders just fine 1`] = `
                               }
                             >
                               <IconOrImage
-                                background={null}
                                 icon={null}
                                 image={null}
                                 title={null}
@@ -669,7 +662,6 @@ exports[`TextualSummary renders just fine 1`] = `
                               }
                             >
                               <IconOrImage
-                                background={null}
                                 icon={null}
                                 image={null}
                                 title={null}
@@ -703,7 +695,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon={null}
                         image={null}
                         title={null}
@@ -1061,7 +1052,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="pficon pficon-cloud-tenant"
                         image={null}
                         title={null}
@@ -1105,7 +1095,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="ff ff-cloud-network"
                         image={null}
                         title="Show all Cloud Networks"
@@ -1149,7 +1138,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="pficon pficon-network"
                         image={null}
                         title="Show all Cloud Subnets"
@@ -1193,7 +1181,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="pficon pficon-route"
                         image={null}
                         title="Show all Network Routers"
@@ -1237,7 +1224,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="pficon pficon-cloud-security"
                         image={null}
                         title="Show all Security Groups"
@@ -1281,7 +1267,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="ff ff-floating-ip"
                         image={null}
                         title="Show all Floating IPs"
@@ -1325,7 +1310,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="ff ff-network-port"
                         image={null}
                         title="Show all Network Ports"
@@ -1369,7 +1353,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="ff ff-load-balancer"
                         image={null}
                         title="Show all Load Balancers"
@@ -1514,7 +1497,6 @@ exports[`TextualSummary renders just fine 1`] = `
                     </td>
                     <td>
                       <IconOrImage
-                        background={null}
                         icon="pficon pficon-topology"
                         image={null}
                         title="Show topology"
@@ -1601,7 +1583,6 @@ exports[`TextualSummary renders just fine 1`] = `
                   </td>
                   <td>
                     <IconOrImage
-                      background={null}
                       icon="pficon pficon-zone"
                       image={null}
                       title={null}
@@ -1624,7 +1605,6 @@ exports[`TextualSummary renders just fine 1`] = `
                   </td>
                   <td>
                     <IconOrImage
-                      background={null}
                       icon="fa fa-tag"
                       image={null}
                       title={null}
