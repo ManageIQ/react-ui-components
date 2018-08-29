@@ -170,11 +170,7 @@ class RbacAssignCompanyTags extends Component {
                 type: 'pf',
                 name: 'user',
               }}
-              rows={[...users.map(({ role, current_group, ...rest }) => ({ // eslint-disable-line camelcase
-                role: role.label,
-                current_group: current_group.label,
-                ...rest,
-              }))]}
+              rows={[...users]}
               columns={columns}
               rowKey="id"
               rowClick={() => {}}

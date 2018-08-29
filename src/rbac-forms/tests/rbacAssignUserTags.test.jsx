@@ -36,7 +36,7 @@ describe('Rbac assign user tags component', () => {
     }],
   }));
   beforeEach(() => {
-    initialProps.users = users;
+    initialProps.users = users.map(user => ({ ...user, current_group: 'foo', role: 'bar' }));
     initialProps.columns = usersTableColumns;
     initialProps.categories = categories.map(category => ({ ...category, label: category.description, value: category.id }));
     initialProps.loadCategoryEntry = mockLoadCategoryEntry;
@@ -83,7 +83,15 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should render correctly without initial assignmets', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[users[0]]} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+    />);
     wrapper.setState({ isLoaded: true });
     wrapper.update();
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -104,7 +112,16 @@ describe('Rbac assign user tags component', () => {
 
   it('should call save function', () => {
     const handleSave = jest.fn();
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[{ ...users[0], tags: [] }]} handleSave={handleSave} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+      handleSave={handleSave}
+    />);
     expect.assertions(1);
     return mockInitialLoad()
       .then(() => {
@@ -134,7 +151,15 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should call remove entry', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[{ ...users[0], tags: [] }]} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+    />);
     expect.assertions(1);
     return mockInitialLoad()
       .then(() => {
@@ -165,7 +190,15 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should call reset function', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[{ ...users[0], tags: [] }]} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+    />);
     expect.assertions(1);
     return mockInitialLoad()
       .then(() => {
@@ -195,7 +228,15 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should select new entry state', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[{ ...users[0], tags: [] }]} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+    />);
     wrapper.setState({
       categoryEntries: {
         10000000000085: [{
@@ -222,7 +263,15 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should select new entry state', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} users={[{ ...users[0], tags: [] }]} />);
+    const wrapper = mount(<RbacAssignCompanyTags
+      {...initialProps}
+      users={[{
+        ...users[0],
+        currentgroup: 'foo',
+        role: 'bar',
+        tags: [],
+      }]}
+    />);
     wrapper.instance().handleCategorySelect({ value: 'foo', label: 'bar' });
     expect(wrapper.state().selectedCategory).toEqual('foo');
   });

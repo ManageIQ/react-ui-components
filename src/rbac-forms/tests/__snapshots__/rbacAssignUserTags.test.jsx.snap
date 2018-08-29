@@ -1583,24 +1583,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
           },
         ],
         "created_on": "2017-06-01T02:47:54Z",
-        "current_group": Object {
-          "created_on": "2017-06-01T02:47:54Z",
-          "description": "EvmGroup-super_administrator",
-          "group_type": "system",
-          "id": "10000000000002",
-          "miq_user_role": Object {
-            "created_at": "2017-06-01T02:47:51Z",
-            "id": "10000000000001",
-            "name": "EvmRole-super_administrator",
-            "read_only": true,
-            "settings": null,
-            "updated_at": "2017-06-01T02:47:51Z",
-          },
-          "sequence": 1,
-          "settings": null,
-          "tenant_id": "10000000000001",
-          "updated_on": "2017-06-01T02:47:54Z",
-        },
+        "current_group": "foo",
         "current_group_id": "10000000000002",
         "email": "jmarc@redhat.com",
         "first_name": null,
@@ -1646,9 +1629,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
           },
         ],
         "name": "Administrator",
-        "role": Object {
-          "label": "EvmGroup-super_administrator",
-        },
+        "role": "bar",
         "tags": Array [
           Object {
             "href": "http://localhost:3000/api/tags/10000000000092",
@@ -1698,24 +1679,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
           },
         ],
         "created_on": "2017-06-05T11:32:30Z",
-        "current_group": Object {
-          "created_on": "2017-06-01T02:47:54Z",
-          "description": "EvmGroup-administrator",
-          "group_type": "system",
-          "id": "10000000000005",
-          "miq_user_role": Object {
-            "created_at": "2017-06-01T02:47:51Z",
-            "id": "10000000000002",
-            "name": "EvmRole-administrator",
-            "read_only": true,
-            "settings": null,
-            "updated_at": "2017-06-01T02:47:51Z",
-          },
-          "sequence": 4,
-          "settings": null,
-          "tenant_id": "10000000000001",
-          "updated_on": "2017-06-01T02:47:54Z",
-        },
+        "current_group": "foo",
         "current_group_id": "10000000000005",
         "email": "jmarc@redhat.com",
         "first_name": null,
@@ -1750,9 +1714,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
           },
         ],
         "name": "Ansible Tower ",
-        "role": Object {
-          "label": "EvmGroup-administrator",
-        },
+        "role": "bar",
         "settings": Object {},
         "tags": Array [
           Object {
@@ -3341,7 +3303,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-18--value"
                             >
@@ -3368,7 +3330,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -3442,7 +3404,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-19--value"
                             >
@@ -3469,7 +3431,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -3634,7 +3596,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                         },
                       ],
                       "created_on": "2017-06-01T02:47:54Z",
-                      "current_group": undefined,
+                      "current_group": "foo",
                       "current_group_id": "10000000000002",
                       "email": "jmarc@redhat.com",
                       "first_name": null,
@@ -3680,7 +3642,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                         },
                       ],
                       "name": "Administrator",
-                      "role": "EvmGroup-super_administrator",
+                      "role": "bar",
                       "tags": Array [
                         Object {
                           "href": "http://localhost:3000/api/tags/10000000000092",
@@ -3730,7 +3692,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                         },
                       ],
                       "created_on": "2017-06-05T11:32:30Z",
-                      "current_group": undefined,
+                      "current_group": "foo",
                       "current_group_id": "10000000000005",
                       "email": "jmarc@redhat.com",
                       "first_name": null,
@@ -3765,7 +3727,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                         },
                       ],
                       "name": "Ansible Tower ",
-                      "role": "EvmGroup-administrator",
+                      "role": "bar",
                       "settings": Object {},
                       "tags": Array [
                         Object {
@@ -4367,7 +4329,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 },
                               ],
                               "created_on": "2017-06-01T02:47:54Z",
-                              "current_group": undefined,
+                              "current_group": "foo",
                               "current_group_id": "10000000000002",
                               "email": "jmarc@redhat.com",
                               "first_name": null,
@@ -4413,7 +4375,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 },
                               ],
                               "name": "Administrator",
-                              "role": "EvmGroup-super_administrator",
+                              "role": "bar",
                               "tags": Array [
                                 Object {
                                   "href": "http://localhost:3000/api/tags/10000000000092",
@@ -4463,7 +4425,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 },
                               ],
                               "created_on": "2017-06-05T11:32:30Z",
-                              "current_group": undefined,
+                              "current_group": "foo",
                               "current_group_id": "10000000000005",
                               "email": "jmarc@redhat.com",
                               "first_name": null,
@@ -4498,7 +4460,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                 },
                               ],
                               "name": "Ansible Tower ",
-                              "role": "EvmGroup-administrator",
+                              "role": "bar",
                               "settings": Object {},
                               "tags": Array [
                                 Object {
@@ -4675,7 +4637,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                   },
                                 ],
                                 "created_on": "2017-06-01T02:47:54Z",
-                                "current_group": undefined,
+                                "current_group": "foo",
                                 "current_group_id": "10000000000002",
                                 "email": "jmarc@redhat.com",
                                 "first_name": null,
@@ -4721,7 +4683,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                   },
                                 ],
                                 "name": "Administrator",
-                                "role": "EvmGroup-super_administrator",
+                                "role": "bar",
                                 "tags": Array [
                                   Object {
                                     "href": "http://localhost:3000/api/tags/10000000000092",
@@ -4834,7 +4796,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                     <td
                                       className="clickable "
                                     >
-                                      EvmGroup-super_administrator
+                                      bar
                                     </td>
                                   </TableCell>
                                 </tableCell>
@@ -5030,7 +4992,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                   },
                                 ],
                                 "created_on": "2017-06-05T11:32:30Z",
-                                "current_group": undefined,
+                                "current_group": "foo",
                                 "current_group_id": "10000000000005",
                                 "email": "jmarc@redhat.com",
                                 "first_name": null,
@@ -5065,7 +5027,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                   },
                                 ],
                                 "name": "Ansible Tower ",
-                                "role": "EvmGroup-administrator",
+                                "role": "bar",
                                 "settings": Object {},
                                 "tags": Array [
                                   Object {
@@ -5174,7 +5136,7 @@ exports[`Rbac assign user tags component should load category entries if not pre
                                     <td
                                       className="clickable "
                                     >
-                                      EvmGroup-administrator
+                                      bar
                                     </td>
                                   </TableCell>
                                 </tableCell>
@@ -6889,24 +6851,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
           },
         ],
         "created_on": "2017-06-01T02:47:54Z",
-        "current_group": Object {
-          "created_on": "2017-06-01T02:47:54Z",
-          "description": "EvmGroup-super_administrator",
-          "group_type": "system",
-          "id": "10000000000002",
-          "miq_user_role": Object {
-            "created_at": "2017-06-01T02:47:51Z",
-            "id": "10000000000001",
-            "name": "EvmRole-super_administrator",
-            "read_only": true,
-            "settings": null,
-            "updated_at": "2017-06-01T02:47:51Z",
-          },
-          "sequence": 1,
-          "settings": null,
-          "tenant_id": "10000000000001",
-          "updated_on": "2017-06-01T02:47:54Z",
-        },
+        "current_group": "foo",
         "current_group_id": "10000000000002",
         "email": "jmarc@redhat.com",
         "first_name": null,
@@ -6952,9 +6897,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
           },
         ],
         "name": "Administrator",
-        "role": Object {
-          "label": "EvmGroup-super_administrator",
-        },
+        "role": "bar",
         "tags": Array [
           Object {
             "href": "http://localhost:3000/api/tags/10000000000092",
@@ -7004,24 +6947,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
           },
         ],
         "created_on": "2017-06-05T11:32:30Z",
-        "current_group": Object {
-          "created_on": "2017-06-01T02:47:54Z",
-          "description": "EvmGroup-administrator",
-          "group_type": "system",
-          "id": "10000000000005",
-          "miq_user_role": Object {
-            "created_at": "2017-06-01T02:47:51Z",
-            "id": "10000000000002",
-            "name": "EvmRole-administrator",
-            "read_only": true,
-            "settings": null,
-            "updated_at": "2017-06-01T02:47:51Z",
-          },
-          "sequence": 4,
-          "settings": null,
-          "tenant_id": "10000000000001",
-          "updated_on": "2017-06-01T02:47:54Z",
-        },
+        "current_group": "foo",
         "current_group_id": "10000000000005",
         "email": "jmarc@redhat.com",
         "first_name": null,
@@ -7056,9 +6982,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
           },
         ],
         "name": "Ansible Tower ",
-        "role": Object {
-          "label": "EvmGroup-administrator",
-        },
+        "role": "bar",
         "settings": Object {},
         "tags": Array [
           Object {
@@ -8647,7 +8571,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-2--value"
                             >
@@ -8674,7 +8598,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -8748,7 +8672,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-3--value"
                             >
@@ -8775,7 +8699,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -8940,7 +8864,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                         },
                       ],
                       "created_on": "2017-06-01T02:47:54Z",
-                      "current_group": undefined,
+                      "current_group": "foo",
                       "current_group_id": "10000000000002",
                       "email": "jmarc@redhat.com",
                       "first_name": null,
@@ -8986,7 +8910,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                         },
                       ],
                       "name": "Administrator",
-                      "role": "EvmGroup-super_administrator",
+                      "role": "bar",
                       "tags": Array [
                         Object {
                           "href": "http://localhost:3000/api/tags/10000000000092",
@@ -9036,7 +8960,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                         },
                       ],
                       "created_on": "2017-06-05T11:32:30Z",
-                      "current_group": undefined,
+                      "current_group": "foo",
                       "current_group_id": "10000000000005",
                       "email": "jmarc@redhat.com",
                       "first_name": null,
@@ -9071,7 +8995,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                         },
                       ],
                       "name": "Ansible Tower ",
-                      "role": "EvmGroup-administrator",
+                      "role": "bar",
                       "settings": Object {},
                       "tags": Array [
                         Object {
@@ -9673,7 +9597,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 },
                               ],
                               "created_on": "2017-06-01T02:47:54Z",
-                              "current_group": undefined,
+                              "current_group": "foo",
                               "current_group_id": "10000000000002",
                               "email": "jmarc@redhat.com",
                               "first_name": null,
@@ -9719,7 +9643,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 },
                               ],
                               "name": "Administrator",
-                              "role": "EvmGroup-super_administrator",
+                              "role": "bar",
                               "tags": Array [
                                 Object {
                                   "href": "http://localhost:3000/api/tags/10000000000092",
@@ -9769,7 +9693,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 },
                               ],
                               "created_on": "2017-06-05T11:32:30Z",
-                              "current_group": undefined,
+                              "current_group": "foo",
                               "current_group_id": "10000000000005",
                               "email": "jmarc@redhat.com",
                               "first_name": null,
@@ -9804,7 +9728,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                 },
                               ],
                               "name": "Ansible Tower ",
-                              "role": "EvmGroup-administrator",
+                              "role": "bar",
                               "settings": Object {},
                               "tags": Array [
                                 Object {
@@ -9981,7 +9905,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                   },
                                 ],
                                 "created_on": "2017-06-01T02:47:54Z",
-                                "current_group": undefined,
+                                "current_group": "foo",
                                 "current_group_id": "10000000000002",
                                 "email": "jmarc@redhat.com",
                                 "first_name": null,
@@ -10027,7 +9951,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                   },
                                 ],
                                 "name": "Administrator",
-                                "role": "EvmGroup-super_administrator",
+                                "role": "bar",
                                 "tags": Array [
                                   Object {
                                     "href": "http://localhost:3000/api/tags/10000000000092",
@@ -10140,7 +10064,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                     <td
                                       className="clickable "
                                     >
-                                      EvmGroup-super_administrator
+                                      bar
                                     </td>
                                   </TableCell>
                                 </tableCell>
@@ -10336,7 +10260,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                   },
                                 ],
                                 "created_on": "2017-06-05T11:32:30Z",
-                                "current_group": undefined,
+                                "current_group": "foo",
                                 "current_group_id": "10000000000005",
                                 "email": "jmarc@redhat.com",
                                 "first_name": null,
@@ -10371,7 +10295,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                   },
                                 ],
                                 "name": "Ansible Tower ",
-                                "role": "EvmGroup-administrator",
+                                "role": "bar",
                                 "settings": Object {},
                                 "tags": Array [
                                   Object {
@@ -10480,7 +10404,7 @@ exports[`Rbac assign user tags component should render correctly with initial as
                                     <td
                                       className="clickable "
                                     >
-                                      EvmGroup-administrator
+                                      bar
                                     </td>
                                   </TableCell>
                                 </tableCell>
@@ -12137,24 +12061,7 @@ exports[`Rbac assign user tags component should render correctly without initial
   handleCancel={[MockFunction]}
   handleSave={[MockFunction]}
   loadCategoryEntry={[MockFunction]}
-  loadMultipleEntries={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Array [
-            "10000000000085",
-            "10000000000140",
-          ],
-        ],
-      ],
-      "results": Array [
-        Object {
-          "isThrow": false,
-          "value": Promise {},
-        },
-      ],
-    }
-  }
+  loadMultipleEntries={[MockFunction]}
   users={
     Array [
       Object {
@@ -12210,6 +12117,7 @@ exports[`Rbac assign user tags component should render correctly without initial
           "updated_on": "2017-06-01T02:47:54Z",
         },
         "current_group_id": "10000000000002",
+        "currentgroup": "foo",
         "email": "jmarc@redhat.com",
         "first_name": null,
         "href": "http://localhost:3000/api/users/10000000000001",
@@ -12254,21 +12162,8 @@ exports[`Rbac assign user tags component should render correctly without initial
           },
         ],
         "name": "Administrator",
-        "role": Object {
-          "label": "EvmGroup-super_administrator",
-        },
-        "tags": Array [
-          Object {
-            "href": "http://localhost:3000/api/tags/10000000000092",
-            "id": "10000000000092",
-            "name": "/managed/prov_max_cpu/5",
-          },
-          Object {
-            "href": "http://localhost:3000/api/tags/10000000000190",
-            "id": "10000000000190",
-            "name": "/managed/application/acl_2_2_51",
-          },
-        ],
+        "role": "bar",
+        "tags": Array [],
         "updated_on": "2018-08-14T07:25:42Z",
         "userid": "admin",
       },
@@ -13849,7 +13744,7 @@ exports[`Rbac assign user tags component should render correctly without initial
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-4--value"
                             >
@@ -13876,7 +13771,7 @@ exports[`Rbac assign user tags component should render correctly without initial
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -13950,7 +13845,7 @@ exports[`Rbac assign user tags component should render correctly without initial
                             onTouchMove={[Function]}
                             onTouchStart={[Function]}
                           >
-                            <span
+                            <div
                               className="Select-multi-value-wrapper"
                               id="react-select-5--value"
                             >
@@ -13977,7 +13872,7 @@ exports[`Rbac assign user tags component should render correctly without initial
                                 }
                                 tabIndex={0}
                               />
-                            </span>
+                            </div>
                             <span
                               className="Select-arrow-zone"
                               onMouseDown={[Function]}
@@ -14105,8 +14000,26 @@ exports[`Rbac assign user tags component should render correctly without initial
                         },
                       ],
                       "created_on": "2017-06-01T02:47:54Z",
-                      "current_group": undefined,
+                      "current_group": Object {
+                        "created_on": "2017-06-01T02:47:54Z",
+                        "description": "EvmGroup-super_administrator",
+                        "group_type": "system",
+                        "id": "10000000000002",
+                        "miq_user_role": Object {
+                          "created_at": "2017-06-01T02:47:51Z",
+                          "id": "10000000000001",
+                          "name": "EvmRole-super_administrator",
+                          "read_only": true,
+                          "settings": null,
+                          "updated_at": "2017-06-01T02:47:51Z",
+                        },
+                        "sequence": 1,
+                        "settings": null,
+                        "tenant_id": "10000000000001",
+                        "updated_on": "2017-06-01T02:47:54Z",
+                      },
                       "current_group_id": "10000000000002",
+                      "currentgroup": "foo",
                       "email": "jmarc@redhat.com",
                       "first_name": null,
                       "href": "http://localhost:3000/api/users/10000000000001",
@@ -14151,19 +14064,8 @@ exports[`Rbac assign user tags component should render correctly without initial
                         },
                       ],
                       "name": "Administrator",
-                      "role": "EvmGroup-super_administrator",
-                      "tags": Array [
-                        Object {
-                          "href": "http://localhost:3000/api/tags/10000000000092",
-                          "id": "10000000000092",
-                          "name": "/managed/prov_max_cpu/5",
-                        },
-                        Object {
-                          "href": "http://localhost:3000/api/tags/10000000000190",
-                          "id": "10000000000190",
-                          "name": "/managed/application/acl_2_2_51",
-                        },
-                      ],
+                      "role": "bar",
+                      "tags": Array [],
                       "updated_on": "2018-08-14T07:25:42Z",
                       "userid": "admin",
                     },
@@ -14757,8 +14659,26 @@ exports[`Rbac assign user tags component should render correctly without initial
                                 },
                               ],
                               "created_on": "2017-06-01T02:47:54Z",
-                              "current_group": undefined,
+                              "current_group": Object {
+                                "created_on": "2017-06-01T02:47:54Z",
+                                "description": "EvmGroup-super_administrator",
+                                "group_type": "system",
+                                "id": "10000000000002",
+                                "miq_user_role": Object {
+                                  "created_at": "2017-06-01T02:47:51Z",
+                                  "id": "10000000000001",
+                                  "name": "EvmRole-super_administrator",
+                                  "read_only": true,
+                                  "settings": null,
+                                  "updated_at": "2017-06-01T02:47:51Z",
+                                },
+                                "sequence": 1,
+                                "settings": null,
+                                "tenant_id": "10000000000001",
+                                "updated_on": "2017-06-01T02:47:54Z",
+                              },
                               "current_group_id": "10000000000002",
+                              "currentgroup": "foo",
                               "email": "jmarc@redhat.com",
                               "first_name": null,
                               "href": "http://localhost:3000/api/users/10000000000001",
@@ -14803,19 +14723,8 @@ exports[`Rbac assign user tags component should render correctly without initial
                                 },
                               ],
                               "name": "Administrator",
-                              "role": "EvmGroup-super_administrator",
-                              "tags": Array [
-                                Object {
-                                  "href": "http://localhost:3000/api/tags/10000000000092",
-                                  "id": "10000000000092",
-                                  "name": "/managed/prov_max_cpu/5",
-                                },
-                                Object {
-                                  "href": "http://localhost:3000/api/tags/10000000000190",
-                                  "id": "10000000000190",
-                                  "name": "/managed/application/acl_2_2_51",
-                                },
-                              ],
+                              "role": "bar",
+                              "tags": Array [],
                               "updated_on": "2018-08-14T07:25:42Z",
                               "userid": "admin",
                             },
@@ -14984,8 +14893,26 @@ exports[`Rbac assign user tags component should render correctly without initial
                                   },
                                 ],
                                 "created_on": "2017-06-01T02:47:54Z",
-                                "current_group": undefined,
+                                "current_group": Object {
+                                  "created_on": "2017-06-01T02:47:54Z",
+                                  "description": "EvmGroup-super_administrator",
+                                  "group_type": "system",
+                                  "id": "10000000000002",
+                                  "miq_user_role": Object {
+                                    "created_at": "2017-06-01T02:47:51Z",
+                                    "id": "10000000000001",
+                                    "name": "EvmRole-super_administrator",
+                                    "read_only": true,
+                                    "settings": null,
+                                    "updated_at": "2017-06-01T02:47:51Z",
+                                  },
+                                  "sequence": 1,
+                                  "settings": null,
+                                  "tenant_id": "10000000000001",
+                                  "updated_on": "2017-06-01T02:47:54Z",
+                                },
                                 "current_group_id": "10000000000002",
+                                "currentgroup": "foo",
                                 "email": "jmarc@redhat.com",
                                 "first_name": null,
                                 "href": "http://localhost:3000/api/users/10000000000001",
@@ -15030,19 +14957,8 @@ exports[`Rbac assign user tags component should render correctly without initial
                                   },
                                 ],
                                 "name": "Administrator",
-                                "role": "EvmGroup-super_administrator",
-                                "tags": Array [
-                                  Object {
-                                    "href": "http://localhost:3000/api/tags/10000000000092",
-                                    "id": "10000000000092",
-                                    "name": "/managed/prov_max_cpu/5",
-                                  },
-                                  Object {
-                                    "href": "http://localhost:3000/api/tags/10000000000190",
-                                    "id": "10000000000190",
-                                    "name": "/managed/application/acl_2_2_51",
-                                  },
-                                ],
+                                "role": "bar",
+                                "tags": Array [],
                                 "updated_on": "2018-08-14T07:25:42Z",
                                 "userid": "admin",
                               }
@@ -15130,7 +15046,9 @@ exports[`Rbac assign user tags component should render correctly without initial
                                   >
                                     <td
                                       className="clickable "
-                                    />
+                                    >
+                                      foo
+                                    </td>
                                   </TableCell>
                                 </tableCell>
                                 <tableCell
@@ -15143,7 +15061,7 @@ exports[`Rbac assign user tags component should render correctly without initial
                                     <td
                                       className="clickable "
                                     >
-                                      EvmGroup-super_administrator
+                                      bar
                                     </td>
                                   </TableCell>
                                 </tableCell>
