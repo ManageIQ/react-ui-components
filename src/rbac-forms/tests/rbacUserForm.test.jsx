@@ -76,7 +76,7 @@ describe('RbacUserForm component', () => {
     passwordInput.instance().value = '123456789';
     passwordInput.simulate('change');
 
-    const verify = wrapper.find('input#verify');
+    const verify = wrapper.find('input#password-verify');
     verify.instance().value = '123456789';
     verify.simulate('change');
 
