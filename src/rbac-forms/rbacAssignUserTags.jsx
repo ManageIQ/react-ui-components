@@ -110,7 +110,7 @@ class RbacAssignCompanyTags extends Component {
     } = this.state;
     if (!isLoaded) return <Spinner loading />;
     return (
-      <Grid>
+      <Grid fluid>
         <Row>
           <Col xs={12}>
             <h3>{__('Tag Assignment')}</h3>

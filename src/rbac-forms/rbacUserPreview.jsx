@@ -47,7 +47,7 @@ PreviewRow.propTypes = {
 
 const RbacUserPreview = ({ user }) => (
   <div className="form-horizontal rbac-user-preview">
-    <Grid>
+    <Grid fluid>
       <PreviewRow label={__('Full Name')}>
         <p className="form-control-static">{user.name}</p>
       </PreviewRow>
