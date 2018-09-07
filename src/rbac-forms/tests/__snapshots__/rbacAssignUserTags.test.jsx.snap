@@ -1732,10 +1732,10 @@ exports[`Rbac assign user tags component should load category entries if not pre
   <Grid
     bsClass="container"
     componentClass="div"
-    fluid={false}
+    fluid={true}
   >
     <div
-      className="container"
+      className="container-fluid"
     >
       <Row
         bsClass="row"
@@ -7000,10 +7000,10 @@ exports[`Rbac assign user tags component should render correctly with initial as
   <Grid
     bsClass="container"
     componentClass="div"
-    fluid={false}
+    fluid={true}
   >
     <div
-      className="container"
+      className="container-fluid"
     >
       <Row
         bsClass="row"
@@ -12173,10 +12173,10 @@ exports[`Rbac assign user tags component should render correctly without initial
   <Grid
     bsClass="container"
     componentClass="div"
-    fluid={false}
+    fluid={true}
   >
     <div
-      className="container"
+      className="container-fluid"
     >
       <Row
         bsClass="row"
