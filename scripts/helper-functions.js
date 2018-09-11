@@ -1,6 +1,11 @@
 const { readdirSync, statSync, existsSync } = require('fs');
 const { parse } = require('path');
-const { fileTypes, ROOT_FOLDER, FILE_NAMES, externals } = require('./constants');
+const {
+  fileTypes,
+  ROOT_FOLDER,
+  FILE_NAMES,
+  externals,
+} = require('./constants');
 
 function filterFiles(path, checkDirr, folder) {
   return checkDirr ? statSync(`${folder}/${path}`).isDirectory() : statSync(`${folder}/${path}`).isFile();

@@ -14,6 +14,8 @@ module.exports = (env) => {
     isServer ? fileEntries(FILE_NAMES, false, 'demo') : {},
   );
 
+  entries.index = ['../src/styles.scss', '../src/index.js'];
+
   return {
     context: __dirname,
     entry: entries,
