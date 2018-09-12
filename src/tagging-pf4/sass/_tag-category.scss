@@ -1,0 +1,26 @@
+@import '~@patternfly/patternfly-next/sass-utilities/_all.scss';
+
+.pf4-tag-category.list-inline {
+  background-color:$pf-color-blue-500;
+  padding: 3px 10px 3px 15px !important;
+  color: $pf-color-white;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 24px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  float: left;
+  font-weight: 600;
+  border-radius: 20px;
+  li a span {
+    color: $pf-color-white;
+  }
+}
+
+.pf4-category-label {
+  padding-right: 10px;
+}
