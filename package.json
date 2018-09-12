@@ -106,6 +106,7 @@
   "dependencies": {
     "@patternfly/patternfly-next": "^1.0.42",
     "@patternfly/react-core": "^1.11.1",
+    "@patternfly/react-icons": "^2.4.0",
     "final-form": "^4.7.3",
     "patternfly-react": "^2.5.1",
     "prop-types": "^15.6.1",

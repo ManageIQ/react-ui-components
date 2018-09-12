@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'patternfly-react';
 import TagCategory from './TagCategory';
 
 import TaggingPropTypes from '../TaggingPropTypes';
@@ -22,7 +21,7 @@ class TagView extends React.Component {
     return (
       <ul className="list-inline">
         {assignedTags
-          .sort(this.sortingFunction)
+          .sort(this.props.sortingFunction)
           .map(this.generateTagCategories)}
       </ul>
     );
@@ -31,18 +30,12 @@ class TagView extends React.Component {
 TagView.propTypes = {
   assignedTags: TaggingPropTypes.tags,
   onTagDeleteClick: PropTypes.func,
-  header: PropTypes.string,
-  categoryTruncate: PropTypes.func,
-  valueTruncate: PropTypes.func,
   sortingFunction: PropTypes.func,
 
 };
 
 TagView.defaultProps = {
-  header: 'Assigned tags',
-  categoryTruncate: str => (str.length > 18 ? `${str.substring(0, 18)}...` : str),
-  valueTruncate: str => (str.length > 18 ? `${str.substring(0, 18)}...` : str),
-  sortingFunction: (a, b) => (a.description < b.description ? -1 : 1)
+  sortingFunction: (a, b) => (a.description < b.description ? -1 : 1),
 };
 
 export default TagView;

@@ -1,14 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Badge } from '@patternfly/react-core'
-
 import TaggingPropTypes from '../TaggingPropTypes';
-import BadgeWithDelete from './BadgeWithDelete'
-
-const tooltip = text => <Tooltip id="tooltip">{text}</Tooltip>;
+import BadgeWithDelete from './BadgeWithDelete';
 
 const Tag = ({
-  onTagDeleteClick, tagCategory, tagValue, truncate,
+  onTagDeleteClick, tagValue, truncate,
 }) => (
   <li key={tagValue.id} className="pf4-tag">
     <BadgeWithDelete
