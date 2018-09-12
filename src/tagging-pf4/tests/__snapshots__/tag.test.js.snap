@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag Component match snapshot 1`] = `
+<li
+  className="pf4-tag"
+  key="1"
+>
+  <BadgeWithDelete
+    className=""
+    description="duck"
+    onDeleteClick={[Function]}
+    truncate={[MockFunction]}
+  />
+</li>
+`;
