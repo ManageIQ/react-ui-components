@@ -134,10 +134,13 @@ class GenericPreviewTable extends Component {
 
   sortColumn = property => this.setState((prevState) => {
     const asc = prevState.sortableColumnPropery === property ? !prevState.sortOrderAsc : true;
+    if (this.props.customSort) {
+      this.props.customSort(property);
+    }
     return {
       sortableColumnPropery: property,
       sortOrderAsc: asc,
-      rows: prevState.rows.sort((a, b) => (asc ? a[property] > b[property] : a[property] < b[property])),
+      rows: this.props.customSort ? prevState.rows : prevState.rows.sort((a, b) => (asc ? a[property] > b[property] : a[property] < b[property])),
     };
   })
 
@@ -212,6 +215,7 @@ GenericPreviewTable.propTypes = {
   showIcon: PropTypes.bool,
   icon: tableIconProp,
   rowKey: PropTypes.string,
+  customSort: PropTypes.func,
 };
 
 GenericPreviewTable.defaultProps = {
