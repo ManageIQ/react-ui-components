@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagCategory Component match snapshot 1`] = `
+<ul
+  className="pf4-tag-category list-inline"
+>
+  <li
+    key="1"
+  >
+    <div
+      className="pf4-category-label"
+      title="animal"
+    >
+      animal
+    </div>
+  </li>
+  <Tag
+    key="1"
+    onTagDeleteClick={[Function]}
+    tagCategory={
+      Object {
+        "description": "animal",
+        "id": 1,
+      }
+    }
+    tagValue={
+      Object {
+        "description": "duck",
+        "id": 1,
+      }
+    }
+    truncate={[Function]}
+  />
+  <Tag
+    key="2"
+    onTagDeleteClick={[Function]}
+    tagCategory={
+      Object {
+        "description": "animal",
+        "id": 1,
+      }
+    }
+    tagValue={
+      Object {
+        "description": "lion",
+        "id": 2,
+      }
+    }
+    truncate={[Function]}
+  />
+</ul>
+`;

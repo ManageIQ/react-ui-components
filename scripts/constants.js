@@ -22,6 +22,12 @@ const pfReact = {
   root: 'PFReact',
 };
 
+const pfReact4 = {
+  commonjs: '@patternfly/react-core',
+  commonjs2: '@patternfly/react-core',
+  amd: '@patternfly/react-core',
+  root: 'PFReact4',
+};
 const redux = {
   commonjs: 'redux',
   commonjs2: 'redux',
@@ -65,6 +71,7 @@ module.exports = {
     react,
     redux,
     'patternfly-react': pfReact,
+    '@patternfly/react-core': pfReact4,
     'react-dom': reactDom,
     'react-redux': reactRedux,
     'react-router-dom': reactRouterDom,
