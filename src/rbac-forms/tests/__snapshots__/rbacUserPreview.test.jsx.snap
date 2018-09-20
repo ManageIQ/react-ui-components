@@ -38,10 +38,10 @@ exports[`RbacUserPreview component Should render correctly 1`] = `
     <Grid
       bsClass="container"
       componentClass="div"
-      fluid={false}
+      fluid={true}
     >
       <div
-        className="container"
+        className="container-fluid"
       >
         <PreviewRow
           label="Full Name"
