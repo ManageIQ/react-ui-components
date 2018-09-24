@@ -9,6 +9,7 @@
     "vendor": "webpack --config scripts/webpack.config.js --env.build",
     "server": "webpack-dev-server --config scripts/webpack.config.js --env.server",
     "test": "jest",
+    "test-ci": "jest --runInBand",
     "doc": "react-docgen",
     "storybook": "start-storybook -c scripts/storybook -p 6006",
     "build-storybook": "build-storybook -c scripts/storybook -o .out",
