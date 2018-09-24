@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Topology canvas component should render correctly 1`] = `
+<TopologyCanvas
+  edges={
+    Array [
+      Object {
+        "source": 1,
+        "target": 4,
+      },
+      Object {
+        "source": 2,
+        "target": 5,
+      },
+      Object {
+        "source": 0,
+        "target": 1,
+      },
+      Object {
+        "source": 0,
+        "target": 2,
+      },
+      Object {
+        "source": 1,
+        "target": 3,
+      },
+    ]
+  }
+  handleNodeClick={[MockFunction]}
+  healthState={false}
+  isFiltering={false}
+  nodes={
+    Array [
+      Object {
+        "depth": 3,
+        "fonticon": "fa fa-cloud",
+        "id": 3,
+        "size": 24,
+        "status": "valid",
+        "title": "Yang",
+        "x": 600,
+        "y": 0,
+      },
+      Object {
+        "depth": 3,
+        "fonticon": "fa fa-cloud",
+        "id": 4,
+        "size": 24,
+        "status": "valid",
+        "title": "Gray",
+        "x": 600,
+        "y": 0,
+      },
+      Object {
+        "depth": 3,
+        "fileicon": "https://www.svgrepo.com/show/5386/speedometer.svg",
+        "id": 5,
+        "size": 24,
+        "status": "warning",
+        "title": "Maddox",
+        "x": 600,
+        "y": 0,
+      },
+      Object {
+        "depth": 1,
+        "fonticon": "fa fa-cog",
+        "fx": 61,
+        "fy": NaN,
+        "id": 0,
+        "size": 24,
+        "status": "valid",
+        "title": "Levy",
+        "x": 50,
+        "y": 0,
+      },
+      Object {
+        "depth": 2,
+        "fonticon": "fa fa-cloud",
+        "id": 1,
+        "size": 24,
+        "status": "warning",
+        "title": "Celina",
+        "x": 400,
+        "y": 0,
+      },
+      Object {
+        "depth": 2,
+        "fonticon": "fa fa-cloud",
+        "id": 2,
+        "size": 24,
+        "status": "critical",
+        "title": "Nancy",
+        "x": 400,
+        "y": 0,
+      },
+    ]
+  }
+  resetSelected={false}
+>
+  <div
+    className="topology-container"
+  >
+    <canvas
+      className="topology-graph"
+    />
+    <div
+      className="topology-zoom-container"
+    >
+      <div>
+        <Button
+          active={false}
+          block={false}
+          bsClass="btn"
+          bsStyle="default"
+          disabled={false}
+          id="canvas-zoom-in"
+          onClick={[Function]}
+        >
+          <button
+            className="btn btn-default"
+            disabled={false}
+            id="canvas-zoom-in"
+            onClick={[Function]}
+            type="button"
+          >
+            <Icon
+              name="plus"
+              type="fa"
+            >
+              <FontAwesome
+                name="plus"
+              >
+                <span
+                  aria-hidden={true}
+                  className="fa fa-plus"
+                />
+              </FontAwesome>
+            </Icon>
+          </button>
+        </Button>
+        <Button
+          active={false}
+          block={false}
+          bsClass="btn"
+          bsStyle="default"
+          disabled={false}
+          id="canvas-zoom-out"
+          onClick={[Function]}
+        >
+          <button
+            className="btn btn-default"
+            disabled={false}
+            id="canvas-zoom-out"
+            onClick={[Function]}
+            type="button"
+          >
+            <Icon
+              name="minus"
+              type="fa"
+            >
+              <FontAwesome
+                name="minus"
+              >
+                <span
+                  aria-hidden={true}
+                  className="fa fa-minus"
+                />
+              </FontAwesome>
+            </Icon>
+          </button>
+        </Button>
+      </div>
+    </div>
+  </div>
+</TopologyCanvas>
+`;

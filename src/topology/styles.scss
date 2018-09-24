@@ -1,0 +1,23 @@
+.topology-graph {
+  width: 100%;
+  height: 100%;
+  font-family: 'FontAwesome';
+  cursor: auto;
+}
+
+.topology-container {
+  position: relative;
+  height: 100%;
+}
+
+.topology-zoom-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  div {
+    float: right;
+    button {
+      display: block;
+    }
+  }
+}

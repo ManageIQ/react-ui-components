@@ -5,6 +5,7 @@
     "react"
   ],
   "rules": {
+    "no-mixed-operators": "off",
     "no-underscore-dangle": ["error", { "allow": ["__"] }],
     "import/prefer-default-export": "off",
     "no-console": "off",
@@ -21,7 +22,7 @@
     "jsx-a11y/no-noninteractive-element-interactions": [1],
     "jsx-a11y/anchor-is-valid": [1],
     "no-unused-expressions": [1],
-    "react/no-typos": [1],
+    "react/no-typos": [1]
   },
   "settings" : {
     "import/extensions": ["js", "jsx"]
@@ -30,7 +31,8 @@
     "window": true,
     "document": true,
     "__": true,
-    "sprintf": true
+    "sprintf": true,
+    "Image": true
   },
   "env": {
     "node": true,
