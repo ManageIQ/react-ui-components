@@ -6,7 +6,9 @@ export default class Chip extends React.Component {
 
   render () {
     return (
-      <Label onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>{this.props.label}</Label>
+      <div onKeyDown={this.props.onKeyDown}>
+        <Label onRemoveClick={this.props.onDelete} onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>{this.props.label}</Label>
+      </div>
     )
   }
 }
@@ -14,5 +16,7 @@ export default class Chip extends React.Component {
 Chip.propTypes = {
   onClick: PropTypes.func.isRequired,
   onDoubleClick: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
   label: PropTypes.string.isRequired,
+  onKeyDown: PropTypes.func,
 }

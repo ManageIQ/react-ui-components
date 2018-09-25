@@ -6,18 +6,20 @@ import ExpressionEditorPropTypes from './ExpressionEditorPropTypes'
 
 class Expression extends React.Component {
 
-  generateChip = term => (
+  generateChip = ({term, flags}) => (
     <EditableChip
       key={term.id}
       id={term.id}
       label={term.label}
-      isEditing={term.isEditing}
+      isEditing={flags.isEditing}
       onClick={this.onClick}
       onDoubleClick={this.onDoubleClick}
       onSubmit={this.onSubmit}
+      onDelete={this.props.onDelete}
       options={term.parent.next}
       selected={term}
       item={term}
+      onKeyDown={this.props.onKeyDown}
     />
   )
 
@@ -54,8 +56,8 @@ class Expression extends React.Component {
      selected={this.props.next}
      item={this.props.next}
     />);
-    const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].isEditing);
-    console.log('expression props next', this.props.next.parent.next, isLastEditing);
+    const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].flags.isEditing);
+    console.log('expression props next', this.props.next, isLastEditing);
 
     return (
       <React.Fragment>
@@ -72,8 +74,11 @@ Expression.propTypes = {
   onClick: PropTypes.func,
   onDoubleClick: PropTypes.func,
   onSubmit: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onDelete: PropTypes.func,
   expression: ExpressionEditorPropTypes.expression,
   value: PropTypes.string,
+  next: ExpressionEditorPropTypes.term,
 
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Expression from '../Expression'
 
-const userInputMock = [{ id: 666, label: '', type: 'userinput', next: [], parent: null }];
+const userInputMock = [{ id: 666, label: '', type: 'userinput', next: [], flags: {}, parent: null }];
 
 export default class MockExpression extends React.Component {
   constructor (props) {
@@ -59,7 +59,9 @@ export default class MockExpression extends React.Component {
   }
 
   onClick = selected => {
-    selected.isEditing = !selected.isEditing;
+    const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
+    const isEditing = selectedExp.flags.isEditing
+    selectedExp.flags.isEditing = !isEditing;
     //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
     // console.log('mock onclick', selected, expression, this.state.expression);
     this.setState({expression: [...this.state.expression]});
@@ -67,25 +69,37 @@ export default class MockExpression extends React.Component {
   }
 
   onSubmit = (selected, previous) => {
-    let expression = this.state.expression.filter((exp) => (exp.id !== userInputMock[0].id));
-    let index = expression.indexOf(selected);
-    console.log('expression', expression, previous);
+    let expression = this.state.expression.filter((exp) => (exp.term.id !== userInputMock[0].id));
+    const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
+    const selectedFlags = selectedExp && selectedExp.flags;
+    let index = expression.map(e => e.term.id).indexOf(selected.id);
+    console.log('mock expression', expression, previous, selected, selectedFlags);
     if (index >= 0) {
       expression = expression.slice(0, index);
     } else {
-      index = expression.indexOf(previous);
+      index = expression.map(e => e.term.id).indexOf(previous.id);
       if (index >= 0) {
         expression = expression.slice(0, index);
       }
     }
-    selected.isEditing = false;
-    console.log('expression', expression);
+    const flags = { ...selectedFlags, isEditing: false };
+    console.log('mock expression', expression, flags);
     //this.setState({expression: [...expression, selected, {...userInputMock[0], next: selected.next, parent: selected}]});
-    this.setState({expression: [...expression, selected]});
+    this.setState({expression: [...expression, {term: selected, flags: flags}]});
     // this.setState({label: selected.label, isEditing: false});
     // this.setState({selected: selected})
-    console.log('mock on submit',selected, this.state);
+    console.log('mock on submit', selected, this.state);
 
+  }
+
+  onKeyDown = (e) => {
+    console.log('MOCK onKeyDown', e);
+  }
+
+  onDelete = (selected) => {
+    console.log('MOCK onDelete', selected);
+    const expression = this.state.expression.filter((exp) => (exp.term.id !== selected.id));
+    this.setState({expression: [...expression]});
   }
 
   render() {
@@ -95,8 +109,12 @@ export default class MockExpression extends React.Component {
         onClick={this.onClick}
         onDoubleClick={this.onClick}
         onSubmit={this.onSubmit}
+        onKeyDown={this.onKeyDown}
+        onDelete={this.onDelete}
         expression={this.state.expression}
-        next={{...userInputMock[0], parent: (this.state.expression[this.state.expression.length - 1] || this.state.options)}}
+        next={{...userInputMock[0],
+          parent: (this.state.expression[this.state.expression.length - 1] && this.state.expression[this.state.expression.length - 1].term ||
+           this.state.options)}}
       />
     )
   }

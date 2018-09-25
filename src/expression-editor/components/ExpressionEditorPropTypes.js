@@ -8,9 +8,19 @@ const ExpressionEditorPropTypes = {
     isEditing: PropTypes.bool,
     next: PropTypes.arrayOf(PropTypes.shape(() => ExpressionEditorPropTypes.term)),
     parent: PropTypes.shape(() => ExpressionEditorPropTypes.term)
-  }),
+  }).isRequired,
 
-  expression: PropTypes.arrayOf(PropTypes.shape(() => ExpressionEditorPropTypes.term)),
+  flags: PropTypes.shape({
+    isEditing: PropTypes.bool,
+    isSelected: PropTypes.bool,
+  }).isRequired,
+
+  expression: PropTypes.arrayOf(PropTypes.shape({
+    term: (() => ExpressionEditorPropTypes.term),
+    flags: (() => ExpressionEditorPropTypes.flags)
+  })).isRequired,
+
+
 
   option: PropTypes.shape({
     id: PropTypes.any.isRequired,

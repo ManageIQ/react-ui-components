@@ -41,7 +41,11 @@ class EditableChip extends React.Component {
     }
     // let{ label, id, item } = this.props;
     this.setState({filterString: ''});
-    this.props.onSubmit(selected, this.props.item)
+    this.props.onSubmit(selected, this.props.item);
+  }
+
+  onDelete = () => {
+    this.props.onDelete(this.props.item)
   }
 
   onUserInput = (input) => {
@@ -58,7 +62,7 @@ class EditableChip extends React.Component {
       this.props.isEditing &&
         <AutocompleteTextInput onSubmit={this.onSubmit} onChange={this.onUserInput}
           options={this.state.filteredOptions} value={this.state.filterString}></AutocompleteTextInput>  ||
-        <Chip onDoubleClick={this.onDoubleClick} label={this.props.selected.label} />
+        <Chip onDelete={this.onDelete} onDoubleClick={this.onDoubleClick} label={this.props.selected.label} />
     )
   }
 }
@@ -66,6 +70,7 @@ class EditableChip extends React.Component {
 EditableChip.propTypes = {
   onClick: PropTypes.func.isRequired,
   onDoubleClick: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
   onDelete: PropTypes.func,
   label: PropTypes.string.isRequired,
   id: PropTypes.any.isRequired,
@@ -74,6 +79,7 @@ EditableChip.propTypes = {
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.term).isRequired,
   selected: ExpressionEditorPropTypes.option,
   filterOption: PropTypes.func,
+
 };
 
 EditableChip.defaultProps = {
