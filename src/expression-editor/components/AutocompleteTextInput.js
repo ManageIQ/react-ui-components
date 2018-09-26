@@ -6,6 +6,10 @@ import Menu from './Menu'
 export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
     super(props);
+    this.state= {
+      menuItemRefs: [React.createRef()],
+      index: 0
+    }
   }
 
   handleChange = ({target: {value}}) => {
@@ -21,7 +25,28 @@ export default class AutocompleteTextInput extends React.Component {
       const value = e.target.value;
       const selected = this.props.options.find(this.props.matchingFunction(value)) || {id: value, label: value, type: "userinput", next: []};
       this.props.onSubmit(selected);
+    } else if (e.keyCode == 38) {
+      this.setState(prevState => ({index: prevState.index-1}));
+      this.focusMenuItem(this.state.index);
+    } else if (e.keyCode == 40) {
+      this.setState(prevState => ({index: prevState.index+1}));
+      this.focusMenuItem(this.state.index);
     }
+
+  }
+
+  registerMenuItem = (ref) => {
+    console.log('register:', ref);
+    this.setState(prevState => ({menuItemRefs: [...prevState.menuItemRefs, ref]}));
+  }
+
+  unregisterMenuItem = (index) => {
+
+  }
+
+  focusMenuItem = (index) => {
+    console.log('focus', index);
+    this.state.menuItemRefs[index].current.focus();
   }
 
   onMenuClick = (selected) => {
@@ -30,11 +55,14 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   render () {
-    console.log('AutocompleteTextInput', this.props);
+    console.log('AutocompleteTextInput', this.props, this.state);
     return(
        <div>
-         <input value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth={true} />
-         <Menu options={this.props.options} onClick={this.onMenuClick}/>
+         <input ref={this.state.menuItemRefs[0]} value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth={true} />
+         <Menu options={this.props.options}
+           registerMenuItem={this.registerMenuItem}
+           unregisterMenuItem={this.unregisterMenuItem}
+           onClick={this.onMenuClick}/>
        </div>
 
     )
@@ -47,7 +75,8 @@ AutocompleteTextInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option).isRequired,
-  matchingFunction: PropTypes.func
+  matchingFunction: PropTypes.func,
+  menuNavigationKeyDown: PropTypes.func,
 }
 
 AutocompleteTextInput.defaultProps = {
