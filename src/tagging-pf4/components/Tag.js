@@ -16,7 +16,7 @@ const Tag = ({
 );
 
 Tag.propTypes = {
-  onTagDeleteClick: PropTypes.func.isRequired,
+  onTagDeleteClick: PropTypes.func,
   tagValue: TaggingPropTypes.value,
   truncate: PropTypes.func.isRequired,
 };
