@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from '@patternfly/react-core';
 import { TimesIcon } from '@patternfly/react-icons';
-import TaggingPropTypes from '../TaggingPropTypes';
 
 const BadgeWithDelete = ({
   onDeleteClick, description, truncate, className,
@@ -24,8 +23,8 @@ const BadgeWithDelete = ({
 );
 
 BadgeWithDelete.propTypes = {
-  onDeleteClick: PropTypes.func.isRequired,
-  description: TaggingPropTypes.string,
+  onDeleteClick: PropTypes.func,
+  description: PropTypes.string,
   truncate: PropTypes.func,
   className: PropTypes.string,
 };
