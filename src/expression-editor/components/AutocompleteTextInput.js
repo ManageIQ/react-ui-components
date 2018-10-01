@@ -7,9 +7,12 @@ export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-      menuItemRefs: [React.createRef()],
-      index: 0
+      menuItemRefs: props.options.map(() => React.createRef()),
+      toDelete: {},
+      index: 0,
     }
+    this.inputRef = React.createRef();
+
   }
 
   handleChange = ({target: {value}}) => {
@@ -23,14 +26,22 @@ export default class AutocompleteTextInput extends React.Component {
 
     if (e.keyCode == this.props.submitKeyCode) {
       const value = e.target.value;
-      const selected = this.props.options.find(this.props.matchingFunction(value)) || {id: value, label: value, type: "userinput", next: []};
+      let selected = {};
+      if (this.state.index == 0) {
+        selected = this.props.options.find(this.props.matchingFunction(value)) || {id: value, label: value, type: "userinput", next: []};
+      } else {
+        selected = this.props.options[this.state.index];
+      }
       this.props.onSubmit(selected);
+      this.setState({index: 0, menuItemRefs: []});
     } else if (e.keyCode == 38) {
+      this.focusMenuItem(this.state.index-1);
       this.setState(prevState => ({index: prevState.index-1}));
-      this.focusMenuItem(this.state.index);
     } else if (e.keyCode == 40) {
+      this.focusMenuItem(this.state.index+1);
       this.setState(prevState => ({index: prevState.index+1}));
-      this.focusMenuItem(this.state.index);
+    } else {
+      this.setState({index: 0});
     }
 
   }
@@ -40,8 +51,37 @@ export default class AutocompleteTextInput extends React.Component {
     this.setState(prevState => ({menuItemRefs: [...prevState.menuItemRefs, ref]}));
   }
 
-  unregisterMenuItem = (index) => {
+  componentDidUpdate(prevProps, prevState) {
+    console.log('cdu');
+    if(prevProps.options.length !== this.props.options.length) {
+      this.setState({menuItemRefs: this.props.options.map(() => React.createRef())});
+    }
+    /*if(JSON.stringify(prevState.toDelete) !== JSON.stringify(this.state.toDelete)) {
+      this.setState(prevState => {
+        const indexes = Object.keys(prevState.toDelete).map(index => parseInt(index, 10));
+        const refs = prevState.menuItemRefs.map((item, i) => {
+          if(indexes.includes(i)) {
+            return undefined
+          }
+          return item
+        }).filter(item => !!item);
+        return {toDelete: {}, menuItemRefs: refs};
+      })
+    }*/
+  }
 
+  unregisterMenuItem = (index) => {
+    // let refs = [...this.state.menuItemRefs];
+    // refs.splice(index, 1)
+    // this.setState({menuItemRefs: [...refs]});
+    console.log('unregister', index);
+    console.log('refs: ', [...this.state.menuItemRefs.slice(0, index), ...this.state.menuItemRefs.slice(index + 1)]);
+    //this.setState(prevState => ({menuItemRefs: [...prevState.menuItemRefs.slice(0, index), ...prevState.menuItemRefs.slice(index + 1)]}));
+    this.setState(prevState => ({ toDelete: { ...prevState.toDelete, [index]: true } }))
+  }
+
+  updateMenuItem= (ref, index) => {
+      this.setState(prevState => ([...prevState.menuItemRefs]));
   }
 
   focusMenuItem = (index) => {
@@ -58,10 +98,12 @@ export default class AutocompleteTextInput extends React.Component {
     console.log('AutocompleteTextInput', this.props, this.state);
     return(
        <div>
-         <input ref={this.state.menuItemRefs[0]} value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth={true} />
+         <input ref={this.inputRef} value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth={true} />
          <Menu options={this.props.options}
            registerMenuItem={this.registerMenuItem}
            unregisterMenuItem={this.unregisterMenuItem}
+           focusedIndex={this.state.index}
+           menuItemRefs={this.state.menuItemRefs}
            onClick={this.onMenuClick}/>
        </div>
 

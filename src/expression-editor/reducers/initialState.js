@@ -1,4 +1,4 @@
-const userInputMock = [{ id: 666, label: 'UserInput', type: 'userinput', next: [] }];
+const userInputMock = [{ id: 666, label: '', type: 'userinput', next: [], parent: null }];
 
 
 const initialState = {
@@ -40,4 +40,4 @@ const initialState = {
   steps: []
 };
 
-export default initialState;
+export { initialState, userInputMock };

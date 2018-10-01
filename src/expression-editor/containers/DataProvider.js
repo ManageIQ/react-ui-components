@@ -36,10 +36,17 @@ const defaultOptions = [{ id: 1, label: 'fields', type: 'category', next: [
   }
 ];
 
+const mapParent = (parent, nodes) => {
+  nodes.map(node => node.parent = parent);
+  nodes.map(node => mapParent(node, node.next));
+  return parent;
+}
+
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
     console.log('data provider', props);
-    const options = props.next || defaultOptions;
+    let options = props.next || defaultOptions;
+    options = mapParent(options, options.next)
     console.log('options', options);
     let newProps = {...props};
     newProps.options = options;

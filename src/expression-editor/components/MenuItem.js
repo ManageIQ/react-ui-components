@@ -5,17 +5,23 @@ import ExpressionEditorPropTypes from './ExpressionEditorPropTypes'
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      focused: false,
-    }
-    this.menuRef = React.createRef();
+
+    // this.menuRef = React.createRef();
   }
 
   componentDidMount() {
-    console.log('menu item', this.props);
-    
-    this.props.registerMenuItem(this.menuRef);
+    // console.log('did mount', this.menuRef.current);
+    // this.props.registerMenuItem(this.menuRef);
+  }
 
+  componentWillUnmount() {
+    // console.log('will unmount');
+    // this.props.unregisterMenuItem(this.props.index);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+      // this.menuRef = React.createRef();
+      // this.props.updateMenuItem(this.menuRef, this,props.index);
   }
 
   onClick = () => {
@@ -26,9 +32,17 @@ class MenuItem extends React.Component {
     this.props.onKeyDown(index);
   }
 
+  focusedClass = () => (
+    this.props.focused && {'color': 'red'} || {}
+  )
+
   render() {
+    // console.log('CLASS:',this.focusedClass());
+    // console.log('menu ref: ',this.props.option.label, this.menuRef)
     return (
-      <li ref={this.menuRef} onKeyDown={this.onKeyDown}  key={this.props.option.id} onClick={this.onClick}>{this.props.option.label}</li>
+      <li ref={this.props.menuItemRef} style={this.focusedClass()}
+        // onFocus={() => this.setState({ focused: true })} onBlur={() => this.setState({ focused: false })}
+        onKeyDown={this.onKeyDown}  key={this.props.option.id} onClick={this.onClick}>{this.props.option.label}</li>
     )
   }
 }
@@ -39,6 +53,7 @@ MenuItem.propTypes = {
   index: PropTypes.number,
   registerMenuItem: PropTypes.func,
   unregisterMenuItem: PropTypes.func,
+  focused: PropTypes.bool,
 }
 
 export default MenuItem;

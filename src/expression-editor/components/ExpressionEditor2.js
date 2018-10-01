@@ -34,8 +34,8 @@ class ExpressionEditor2 extends React.Component {
     } else if(key.keyCode === 39) {
       this.state.chipRefs[index+1].current.focus();
     }
-
   }
+  
 
   generateExpression = expression => (
     <Expression
