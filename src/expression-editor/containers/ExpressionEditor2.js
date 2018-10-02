@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onChange, calculateNext, onSubmit, onDelete, onClick } from '../actions';
+import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
@@ -13,11 +13,6 @@ const mapStateToProps = ({ expressionEditor }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: (selected) => {
-    console.log('onchagne map dispatch');
-    dispatch(onChange(selected));
-    dispatch(calculateNext(selected));
-  },
 
   onDelete: (selected, expression) => {
     dispatch(onDelete(selected, expression));
@@ -27,7 +22,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(onClick(selected, expression));
   },
 
+  onFocus: (selected, expression) => {
+    dispatch(onFocus(selected, expression));
+  },
 
+  onBlur: (selected, expression) => {
+    dispatch(onBlur(selected, expression));
+  },
 
   onSubmit: (selected, previous, expression) => {
     dispatch(onSubmit(selected, previous, expression));
@@ -46,6 +47,6 @@ const ExpressionEditorConnected2 = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(dataProvider({foo: 'foo'})(ExpressionEditor));
-console.log(dataProvider);
+// console.log(dataProvider);
 
 export { ExpressionEditorConnected2 };

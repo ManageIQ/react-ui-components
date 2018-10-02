@@ -44,10 +44,10 @@ const mapParent = (parent, nodes) => {
 
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
-    console.log('data provider', props);
+    // console.log('data provider', props);
     let options = props.next || defaultOptions;
     options = mapParent(options, options.next)
-    console.log('options', options);
+    // console.log('options', options);
     let newProps = {...props};
     newProps.options = options;
     return <Component  {...newProps}/>

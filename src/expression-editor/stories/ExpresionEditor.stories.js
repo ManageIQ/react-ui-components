@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
-import MockExpressionEditor from '../components/MOCKS/MockExpressionEditor'
-import { ExpressionEditorConnected } from '../containers/ExpressionEditor'
+// import MockExpressionEditor from '../components/MOCKS/MockExpressionEditor'
+// import { ExpressionEditorConnected } from '../containers/ExpressionEditor'
 import { ExpressionEditorConnected2 } from '../containers/ExpressionEditor2'
 import ExpressionEditorReducers from '../reducers/'
 import MockEditableChip from '../components/MOCKS/MockEditableChip'
@@ -15,15 +15,6 @@ const store = createStore(ExpressionEditorReducers);
 
 
 
-storiesOf('ExpressionEditor', module)
-  .add('ExpressionEditor MOCK', () => (<MockExpressionEditor
-  />));
-
-storiesOf('ExpressionEditor', module)
-  .add('ExpressionEditor CONNECTED', () => (<Provider store={store}><ExpressionEditorConnected /></Provider>));
-
-storiesOf('ExpressionEditor', module)
-  .add('Expression MOCK', () => (<MockExpression />));
 
 storiesOf('ExpressionEditor2', module)
   .add('ExpressionEditor2 MOCK', () => (<MockExpressionEditor2 />));

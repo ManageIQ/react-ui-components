@@ -13,6 +13,12 @@ export const expressions = (state = [[]], {type, selected, previous, expression}
     case actionsConstants.ON_CLICK:
       console.log('REDUCER ON CLICK:', selected, expression);
       return calculateClick(state, selected, expression);
+    case actionsConstants.ON_FOCUS:
+      console.log('REDUCER ON FOCUS:', selected, expression);
+      return calculateFocus(state, selected, expression);
+    case actionsConstants.ON_BLUR:
+      console.log('REDUCER ON BLUR:', selected, expression);
+      return calculateBlur(state, selected, expression);
     default:
       return state;
   }
@@ -22,7 +28,7 @@ export const expressions = (state = [[]], {type, selected, previous, expression}
 
 
 export const onChange = (state = [], action) => {
-  console.log('REDUCER ON CHANGE ', action, state);
+  // console.log('REDUCER ON CHANGE ', action, state);
   switch (action.type) {
     case actionsConstants.ON_CHANGE:
       return action.selected;
@@ -33,7 +39,7 @@ export const onChange = (state = [], action) => {
 
 export const steps = (state = initialState.steps) => state;
 export const next = (state = initialState.next, action) => {
-  console.log("REDUCER NEXT", state, action);
+  // console.log("REDUCER NEXT", state, action);
   switch (action.type) {
     case actionsConstants.CALCULATE_NEXT:
       return (action.selected[action.selected.length-1] && action.selected[action.selected.length-1].next) || null;
@@ -82,6 +88,27 @@ const calculateClick = (state, selected, expression) => {
   selectedTerm.flags.isEditing = !selectedTerm.flags.isEditing;;
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
+  state.splice(expressionIndex, 1, expression);
+  return [...state];
+}
+
+const calculateFocus = (state, selected, expression) => {
+  // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
+  const expressionIndex = state.indexOf(expression);
+  const selectedTerm = expression.find((exp) => (exp.term === selected));
+
+  selectedTerm.flags.isFocused = true;
+  //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
+  // console.log('mock onclick', selected, expression, this.state.expression);
+  state.splice(expressionIndex, 1, expression);
+  return [...state];
+}
+
+const calculateBlur = (state, selected, expression) => {
+  const expressionIndex = state.indexOf(expression);
+  const selectedTerm = expression.find((exp) => (exp.term === selected));
+
+  selectedTerm.flags.isFocused = false;
   state.splice(expressionIndex, 1, expression);
   return [...state];
 }

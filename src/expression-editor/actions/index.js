@@ -19,6 +19,20 @@ export const onClick = (selected, expression) => ({
   expression: expression,
 });
 
+export const onFocus = (selected, expression) => ({
+  type: actions.ON_FOCUS,
+  selected: selected,
+  expression: expression,
+});
+
+export const onBlur = (selected, expression) => ({
+  type: actions.ON_BLUR,
+  selected: selected,
+  expression: expression,
+});
+
+
+
 export const onChange = selected => ({
   type: actions.ON_CHANGE,
   selected: selected.selected,

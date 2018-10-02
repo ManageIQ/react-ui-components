@@ -22,7 +22,7 @@ const combinedReducers = combineReducers({
 
 function ExpressionEditorReducers(state = {}, action) {
   const appState = {...state.expressionEditor}
-  console.log('combineReducers', appState, action);
+  // console.log('combineReducers', appState, action);
   return { expressionEditor: combinedReducers(appState, action)};
 }
 
