@@ -3,7 +3,7 @@
 const endpoints = {
 };
 
-const userInputMock = [{ id: 666, label: 'UserInput', type: 'userinput', next: [] }];
+const userInputMock = [{ id: 666, label: 'UserInput', type: 'userinput', next: null }];
 const defaultOptions = [{ id: 1, label: 'fields', type: 'category', next: [
     { id: 11, label: 'Hostname', type: 'category',
       next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
@@ -45,6 +45,7 @@ const mapParent = (parent, nodes) => {
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
     // console.log('data provider', props);
+    // console.log('NEXT', props);
     let options = props.next || defaultOptions;
     options = mapParent(options, options.next)
     // console.log('options', options);

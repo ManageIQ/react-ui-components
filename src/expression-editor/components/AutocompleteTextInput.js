@@ -91,6 +91,7 @@ export default class AutocompleteTextInput extends React.Component {
     // console.log('AutocompleteTextInput', this.props, this.state);
     return (
       <span>
+        <div>
         <input ref={this.props.inputRef} autoFocus value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth />
         <Menu
           options={this.props.options}
@@ -100,6 +101,7 @@ export default class AutocompleteTextInput extends React.Component {
           menuItemRefs={this.state.menuItemRefs}
           onClick={this.onMenuClick}
         />
+      </div>
       </span>
 
     );

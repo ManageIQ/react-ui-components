@@ -55,6 +55,7 @@ export const options = (state = initialState.options ) => state;
 const calculateSubmit = (state, selected, previous, expression) => {
   const expressionIndex = state.indexOf(expression);
   let filteredExpression = expression.filter((exp) => (exp.term.id !== userInputMock[0].id));
+  // find flags
   const selectedTerm = filteredExpression.find((exp) => (exp.term === selected));
   const selectedFlags = selectedTerm && selectedTerm.flags;
   let index = filteredExpression.map(e => e.term.id).indexOf(selected.id);
@@ -70,13 +71,27 @@ const calculateSubmit = (state, selected, previous, expression) => {
   filteredExpression.push({term: selected, flags: flags});
   //this.setState({expression: [...expression, selected, {...userInputMock[0], next: selected.next, parent: selected}]});
   state.splice(expressionIndex, 1, filteredExpression);
+  const lastExpression = state[state.length-1] || [];
+  // console.log(lastExpression);
+  const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: [1]}};
+  // console.log(lastTerm);
+  const lastExpressionIsCompleted = (lastTerm.term.next.length === 0);
+  console.log("SUBMIT", selected);
+  if (selected.next.length === 0 && lastExpressionIsCompleted) {
+    state.push([]);
+  }
   return [...state];
 }
 
 const calculateDelete = (state, selected, expression) => {
   const expressionIndex = state.indexOf(expression);
   const filteredExpression = expression.filter((exp) => (exp.term.id !== selected.id));
-  state.splice(expressionIndex, 1, filteredExpression);
+  if (filteredExpression.length === 0) {
+    state.splice(expressionIndex, 1, filteredExpression);
+  } else {
+    state.splice(expressionIndex, 1, filteredExpression);
+  }
+  cleanLastExpression(state, selected);
   return [...state];
 }
 
@@ -89,6 +104,8 @@ const calculateClick = (state, selected, expression) => {
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
   state.splice(expressionIndex, 1, expression);
+  // console.log('CLICK', selected, state);
+  cleanLastExpression(state, selected);
   return [...state];
 }
 
@@ -111,4 +128,10 @@ const calculateBlur = (state, selected, expression) => {
   selectedTerm.flags.isFocused = false;
   state.splice(expressionIndex, 1, expression);
   return [...state];
+}
+
+const cleanLastExpression = (state, selected) => {
+  if (selected.next.length === 0 && state[state.length-1].length === 0) {
+    state.splice(state.length-1,1);
+  }
 }

@@ -21,18 +21,21 @@ export default class Chip extends React.Component {
 
   render() {
     // console.log('focused: ', this.state.focused)
+    // const { a, b, ...rest } = this.props;
     return (
       <span
         ref={this.chipRef}
         onKeyDown={this.props.onKeyDown}
         tabIndex="0"
-        // onFocus={this.props.onFocus}
-        // onBlur={this.props.onBlur}
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
+        // {...rest}
       >
         <Label
           onRemoveClick={this.props.onDelete}
           onClick={this.props.onClick}
           onDoubleClick={this.props.onDoubleClick}
+          bsStyle="primary"
         >
           {this.props.label}
         </Label>

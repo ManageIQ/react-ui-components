@@ -7,6 +7,7 @@ import ExpressionEditorPropTypes from './ExpressionEditorPropTypes'
 class Expression extends React.Component {
 
   generateChip = ({term, flags}, index) => (
+    <li className="chip">
     <EditableChip
       key={term.id}
       label={term.label}
@@ -18,8 +19,8 @@ class Expression extends React.Component {
       onFocus={this.onFocus}
       onBlur={this.onBlur}
       onKeyDown={this.props.onKeyDown}
-      registerChip={this.props.registerChip}
-      unregisterChip={this.props.unregisterChip}
+      registerChip={this.registerChip}
+      unregisterChip={this.unregisterChip}
       // registerInput={this.props.registerInput}
       // unregisterInput={this.props.unregisterInput}
       options={term.parent.next}
@@ -28,6 +29,7 @@ class Expression extends React.Component {
       index={index}
       onKeyDown={this.onKeyDown}
     />
+  </li>
   )
 
   onClick = (index) => {
@@ -67,34 +69,48 @@ class Expression extends React.Component {
     this.props.onKeyDown(key, index, selected, this.props.expression);
   }
 
+  registerChip = (index) => {
+    this.props.registerChip(index, this.props.expression);
+  }
+
+  unregisterChip = (index) => {
+    this.props.unregisterChip(index, this.props.expression);
+  }
+
 
   render () {
+    // console.log('Expression options', this.props.next.parent.next);
     const expression = this.props.expression;
     // console.log('expression props', this.props);
-    const newChip = (<EditableChip
-     label={this.props.next.label}
-     isEditing={this.props.next.isEditing}
-     onClick={this.onClick}
-     onDoubleClick={this.onDoubleClick}
-     onSubmit={this.onSubmit}
-     onFocus={this.onFocus}
-     onBlur={this.onBlur}
-     onKeyDown={this.onKeyDown}
-     // registerInput={this.props.registerInput}
-     // unregisterInput={this.props.unregisterInput}
-     inputRef={this.props.inputRef}
-     options={this.props.next.parent.next}
-     selected={this.props.next}
-     item={this.props.next}
-     index={this.props.expression.length}
-    />);
+    const newChip = (<li>
+      <EditableChip
+       label={this.props.next.label}
+       isEditing={this.props.next.isEditing}
+       onClick={this.onClick}
+       onDoubleClick={this.onDoubleClick}
+       onSubmit={this.onSubmit}
+       onFocus={this.onFocus}
+       onBlur={this.onBlur}
+       onKeyDown={this.onKeyDown}
+       // registerInput={this.props.registerInput}
+       // unregisterInput={this.props.unregisterInput}
+       inputRef={this.props.inputRef}
+       options={this.props.next.parent.next}
+       selected={this.props.next}
+       item={this.props.next}
+       index={this.props.expression.length}
+      />
+    </li>);
     const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].flags.isEditing);
+    const endOfExpresion = this.props.next.parent.next.length === 0;
     // console.log('expression props next', this.props.next, isLastEditing);
 
     return (
       <React.Fragment>
-        {expression.map((expression, index) => this.generateChip(expression, index))}
-        {(isLastEditing || null) || newChip}
+        <ul className="list-inline">
+          {expression.map((expression, index) => this.generateChip(expression, index))}
+          {(isLastEditing || endOfExpresion || null) || newChip}
+        </ul>
       </React.Fragment>
     );
   }

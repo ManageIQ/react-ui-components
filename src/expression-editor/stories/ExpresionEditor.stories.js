@@ -10,6 +10,8 @@ import ExpressionEditorReducers from '../reducers/'
 import MockEditableChip from '../components/MOCKS/MockEditableChip'
 import MockExpression from '../components/MOCKS/MockExpression'
 import MockExpressionEditor2 from '../components/MOCKS/MockExpressionEditor2'
+import './index.scss';
+
 
 const store = createStore(ExpressionEditorReducers);
 

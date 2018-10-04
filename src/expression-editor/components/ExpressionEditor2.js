@@ -13,11 +13,13 @@ class ExpressionEditor2 extends React.Component {
   }
 
   registerChip = (chipRef) => {
-    // console.log('CHIP REF', chipRef);
+    // console.log('CHIP REF', chipRef, this.state.chipRefs.length);
     this.setState(prevState => ({chipRefs: [...prevState.chipRefs, chipRef]}));
   }
 
-  unregisterChip = (index) => {
+  unregisterChip = (index, expression) => {
+    index = this.localToGlobalIndex(index, expression);
+    // console.log('unregister', index, expression);
     this.state.chipRefs.splice(index, 1);
     this.setState({chipRefs: [...this.state.chipRefs]});
   }
@@ -28,11 +30,15 @@ class ExpressionEditor2 extends React.Component {
   }
 
   focusInput = () => {
+    console.log("FOCUS INPUT");
     this.state.inputRef.current.focus();
   }
 
   onKeyDown = (key, index, selected, expression) => {
-    console.log(this.state.inputRef);
+    // console.log('local',index);
+    index = this.localToGlobalIndex(index, expression);
+    // console.log('global',index);
+    console.log(this.state.chipRefs);
     // console.log('on key down', key, index);
     if(key.keyCode === 37) {
       index = index <= 0 ? index : index - 1;
@@ -56,14 +62,21 @@ class ExpressionEditor2 extends React.Component {
   }
 
   onSubmit = (selected, previous, expression) => {
-    this.focusInput();
     this.props.onSubmit(selected, previous, expression);
+    this.focusInput();
   }
 
   onDelete = (selected, expression) => {
-    console.log('DDDDDDDDDDDDDDDDDDDDDDD');
+    // console.log('DDDDDDDDDDDDDDDDDDDDDDD');
     this.focusInput();
     this.props.onDelete(selected, expression);
+  }
+
+  localToGlobalIndex = (index, expression) => {
+    // console.log(this.props.expressions, expression);
+    const indexOfExpression = this.props.expressions.indexOf(expression);
+    // console.log(indexOfExpression, this.props.expressions);
+    return this.props.expressions.slice(0, indexOfExpression).map(a => a.length).reduce((a,b) => (a+b), 0) + index;
   }
 
 
@@ -91,6 +104,8 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render () {
+    console.log('ExpressionEditor2:', this.state.inputRef);
+
       return (
         this.props.expressions.map( ((expression, index) => (this.generateExpression(expression, index))) )
       );
