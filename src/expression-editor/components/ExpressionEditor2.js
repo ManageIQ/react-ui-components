@@ -4,7 +4,13 @@ import EditableChip from './EditableChip'
 
 import Expression from './Expression'
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes'
-const userInputMock = [{ id: 666, label: '', type: 'userinput', next: [], flags: {}, parent: null }];
+
+const logicalOperatorsMock = [
+  { id: 1000, label: 'AND', type: 'operator', next: [], parent: null },
+  { id: 1001, label: 'OR', type: 'operator', next: [], parent: null }
+];
+const userInputMock = [{ id: 666, label: '', type: 'userinput', next: logicalOperatorsMock, parent: null }];
+logicalOperatorsMock.map(a => a.parent = userInputMock[0]);
 
 class ExpressionEditor2 extends React.Component {
   constructor(props) {
@@ -12,16 +18,27 @@ class ExpressionEditor2 extends React.Component {
     this.state = {chipRefs: [], prevKeyPressed: undefined, inputRef: React.createRef()};
   }
 
-  registerChip = (chipRef) => {
-    // console.log('CHIP REF', chipRef, this.state.chipRefs.length);
-    this.setState(prevState => ({chipRefs: [...prevState.chipRefs, chipRef]}));
+  registerChip = (chipRef, index, expression) => {
+    console.log('CHIP REF', chipRef, index, expression, this.state.chipRefs);
+    index = this.localToGlobalIndex(index, expression);
+    // this.state.chipRefs.splice(index, 0, chipRef);
+    // this.setState({chipRefs: [...this.state.chipRefs]});
+    // this.setState(prevState => ({chipRefs: [...prevState.chipRefs, chipRef]}));
+    let chipRefs = [...this.state.chipRefs];
+    const toDelete = this.state.chipRefs[index] === null ? 1 : 0;
+    console.log(toDelete);
+    chipRefs.splice(index, toDelete, chipRef);
+    this.setState(prevState => ({chipRefs: chipRefs}));
   }
 
   unregisterChip = (index, expression) => {
     index = this.localToGlobalIndex(index, expression);
-    // console.log('unregister', index, expression);
-    this.state.chipRefs.splice(index, 1);
-    this.setState({chipRefs: [...this.state.chipRefs]});
+    console.log('unregister', index, expression);
+    // this.state.chipRefs.splice(index, 1);
+    // this.setState({chipRefs: [...this.state.chipRefs]});
+    let chipRefs = [...this.state.chipRefs];
+    chipRefs.splice(index, 1);
+    this.setState(prevState => ({chipRefs: chipRefs}));
   }
 
   focusChip = (index) => {
@@ -104,7 +121,7 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render () {
-    console.log('ExpressionEditor2:', this.state.inputRef);
+    console.log('ExpressionEditor2:', this.state.chipRefs);
 
       return (
         this.props.expressions.map( ((expression, index) => (this.generateExpression(expression, index))) )

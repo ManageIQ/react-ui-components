@@ -69,8 +69,8 @@ class Expression extends React.Component {
     this.props.onKeyDown(key, index, selected, this.props.expression);
   }
 
-  registerChip = (index) => {
-    this.props.registerChip(index, this.props.expression);
+  registerChip = (ref, index) => {
+    this.props.registerChip(ref, index, this.props.expression);
   }
 
   unregisterChip = (index) => {
@@ -103,6 +103,7 @@ class Expression extends React.Component {
     </li>);
     const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
+    // console.log('Expression',endOfExpresion, this.props.next.parent);
     // console.log('expression props next', this.props.next, isLastEditing);
 
     return (

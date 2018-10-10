@@ -3,38 +3,45 @@
 const endpoints = {
 };
 
-const userInputMock = [{ id: 666, label: 'UserInput', type: 'userinput', next: null }];
-const defaultOptions = [{ id: 1, label: 'fields', type: 'category', next: [
-    { id: 11, label: 'Hostname', type: 'category',
-      next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
-    },
-    { id: 12, label: 'IP Address', type: 'category',
-      next: [{ id: 121, label: '=', type: 'operator', next: userInputMock}, { id: 122, label: '!=', type: 'operator', next: userInputMock}]
-    },
-    { id: 13, label: 'VM count', type: 'category',
-      next: [{ id: 131, label: '=', type: 'operator', next: userInputMock}, { id: 132, label: '!=', type: 'operator', next: userInputMock}]
-    },
-    { id: 14, label: 'Status', type: 'category',
-      next: [{ id: 141, label: '=', type: 'operator', next: userInputMock}, { id: 142, label: '!=', type: 'operator', next: userInputMock}]
-    },
-  ]
-},
-  { id: 2, label: 'tags', type: 'category', next: [
-      { id: 21, label: 'Location', type: 'category',
-        next: [{ id: 211, label: '=', type: 'operator', next: userInputMock}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
+const logicalOperatorsMock = [
+  { id: 1000, label: '', type: 'operator', next: [], parent: null },
+  { id: 1001, label: '', type: 'operator', next: [], parent: null }
+];
+const userInputMock = [{ id: 666, label: '', type: 'userinput', next: logicalOperatorsMock, parent: null }];
+
+const defaultOptions = {id: 0, label: 'root', type: 'root', next:
+  [{ id: 1, label: 'fields', type: 'category', next: [
+      { id: 11, label: 'Hostname', type: 'category',
+        next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
       },
-      { id: 22, label: 'Department', type: 'category',
-        next: [{ id: 221, label: '=', type: 'operator', next: userInputMock}, { id: 222, label: '!=', type: 'operator', next: userInputMock}]
+      { id: 12, label: 'IP Address', type: 'category',
+        next: [{ id: 121, label: '=', type: 'operator', next: userInputMock}, { id: 122, label: '!=', type: 'operator', next: userInputMock}]
       },
-      { id: 23, label: 'Environment', type: 'category',
-        next: [{ id: 231, label: '=', type: 'operator', next: userInputMock}, { id: 232, label: '!=', type: 'operator', next: userInputMock}]
+      { id: 13, label: 'VM count', type: 'category',
+        next: [{ id: 131, label: '=', type: 'operator', next: userInputMock}, { id: 132, label: '!=', type: 'operator', next: userInputMock}]
       },
-      { id: 24, label: 'Owner', type: 'category',
-        next: [{ id: 241, label: '=', type: 'operator', next: userInputMock}, { id: 242, label: '!=', type: 'operator', next: userInputMock}]
+      { id: 14, label: 'Status', type: 'category',
+        next: [{ id: 141, label: '=', type: 'operator', next: userInputMock}, { id: 142, label: '!=', type: 'operator', next: userInputMock}]
       },
     ]
-  }
-];
+  },
+    { id: 2, label: 'tags', type: 'category', next: [
+        { id: 21, label: 'Location', type: 'category',
+          next: [{ id: 211, label: '=', type: 'operator', next: userInputMock}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
+        },
+        { id: 22, label: 'Department', type: 'category',
+          next: [{ id: 221, label: '=', type: 'operator', next: userInputMock}, { id: 222, label: '!=', type: 'operator', next: userInputMock}]
+        },
+        { id: 23, label: 'Environment', type: 'category',
+          next: [{ id: 231, label: '=', type: 'operator', next: userInputMock}, { id: 232, label: '!=', type: 'operator', next: userInputMock}]
+        },
+        { id: 24, label: 'Owner', type: 'category',
+          next: [{ id: 241, label: '=', type: 'operator', next: userInputMock}, { id: 242, label: '!=', type: 'operator', next: userInputMock}]
+        },
+      ]
+    }
+  ]
+};
 
 const mapParent = (parent, nodes) => {
   nodes.map(node => node.parent = parent);
@@ -45,12 +52,14 @@ const mapParent = (parent, nodes) => {
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
     // console.log('data provider', props);
-    // console.log('NEXT', props);
+    // console.log('DATA PROVIDER', props.next, defaultOptions);
     let options = props.next || defaultOptions;
+    // console.log(options);
     options = mapParent(options, options.next)
     // console.log('options', options);
     let newProps = {...props};
-    newProps.options = options;
+    newProps.next = options;
+    // console.log('DATA PROVIDER2', newProps);
     return <Component  {...newProps}/>
   };
   return DataProvider;

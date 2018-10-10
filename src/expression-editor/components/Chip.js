@@ -12,7 +12,7 @@ export default class Chip extends React.Component {
   }
 
   componentDidMount() {
-    this.props.registerChip(this.chipRef);
+    this.props.registerChip(this.chipRef, this.props.index);
   }
 
   componentWillUnmount() {

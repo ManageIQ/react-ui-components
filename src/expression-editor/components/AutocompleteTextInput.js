@@ -50,7 +50,7 @@ export default class AutocompleteTextInput extends React.Component {
       let selected = {};
       if (this.state.index === 0) {
         selected = this.props.options.find(this.props.matchingFunction(value)) || {
-          id: value, label: value, type: 'userinput', next: [],
+          id: value, label: value, type: 'userinput', next: this.props.next,
         };
       } else {
         selected = this.props.options[this.state.index];
@@ -115,6 +115,7 @@ AutocompleteTextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   inputRef: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option).isRequired,
+  next: PropTypes.arrayOf(ExpressionEditorPropTypes.term),
   matchingFunction: PropTypes.func,
 };
 

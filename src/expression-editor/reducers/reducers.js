@@ -5,19 +5,19 @@ import { initialState, userInputMock } from './initialState'
 export const expressions = (state = [[]], {type, selected, previous, expression}) => {
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      console.log('REDUCER ON SUBMIT:', selected, previous, expression);
+      // console.log('REDUCER ON SUBMIT:', selected, previous, expression);
       return calculateSubmit(state, selected, previous, expression);
     case actionsConstants.ON_DELETE:
-      console.log('REDUCER ON DELETE:', selected, expression);
+      // console.log('REDUCER ON DELETE:', selected, expression);
       return calculateDelete(state, selected, expression);
     case actionsConstants.ON_CLICK:
-      console.log('REDUCER ON CLICK:', selected, expression);
+      // console.log('REDUCER ON CLICK:', selected, expression);
       return calculateClick(state, selected, expression);
     case actionsConstants.ON_FOCUS:
-      console.log('REDUCER ON FOCUS:', selected, expression);
+      // console.log('REDUCER ON FOCUS:', selected, expression);
       return calculateFocus(state, selected, expression);
     case actionsConstants.ON_BLUR:
-      console.log('REDUCER ON BLUR:', selected, expression);
+      // console.log('REDUCER ON BLUR:', selected, expression);
       return calculateBlur(state, selected, expression);
     default:
       return state;
@@ -48,7 +48,7 @@ export const next = (state = initialState.next, action) => {
   }
 }
 
-export const options = (state = initialState.options ) => state;
+export const options = (state = null ) => state;
 
 
 
@@ -76,7 +76,7 @@ const calculateSubmit = (state, selected, previous, expression) => {
   const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: [1]}};
   // console.log(lastTerm);
   const lastExpressionIsCompleted = (lastTerm.term.next.length === 0);
-  console.log("SUBMIT", selected);
+  // console.log("SUBMIT", selected);
   if (selected.next.length === 0 && lastExpressionIsCompleted) {
     state.push([]);
   }

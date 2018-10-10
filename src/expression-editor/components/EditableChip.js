@@ -32,6 +32,7 @@ class EditableChip extends React.Component {
     // console.log('EditableChip submit', selected, this.props.item);
     const newSelected = selected;
     if (selected.type === 'userinput') {
+      // console.log('SUMBIT:',selected);
       newSelected.parent = this.props.item.parent;
     }
     // let{ label, id, item } = this.props;
@@ -63,7 +64,7 @@ class EditableChip extends React.Component {
   }
 
   render() {
-    // console.log('EditableChip props:', this.props, this.state.filteredOptions);
+    // console.log('EditableChip props:', this.props);
     return (
       (this.props.isEditing &&
         <AutocompleteTextInput
@@ -76,6 +77,7 @@ class EditableChip extends React.Component {
           // unregisterInput={this.props.unregisterInput}
           inputRef={this.props.inputRef}
           index={this.props.index}
+          next={this.props.item.next}
         />) ||
         <Chip
           onDelete={this.onDelete}
