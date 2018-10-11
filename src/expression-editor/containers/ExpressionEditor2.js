@@ -3,18 +3,21 @@ import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur }
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
-const mapStateToProps = ({ expressionEditor }) => ({
+const mapStateToProps = (state) => {
+  console.log('state: ', state.expressions);
+  return {
   // actions which have been done since loeaded
-  expressions: expressionEditor.expressions,
+  expressions: state.expressions.expressions,
   // data for next dropdown
   // next: expressionEditor.next,
   // selected: expressionEditor.selected,
-  next: expressionEditor.options
-});
+  next: state.expressions.options
+}};
 
 const mapDispatchToProps = dispatch => ({
 
   onDelete: (selected, expression) => {
+    dispatch(onBlur(selected, expression));
     dispatch(onDelete(selected, expression));
   },
 

@@ -90,6 +90,7 @@ class EditableChip extends React.Component {
           onClick={this.onClick}
           onDoubleClick={this.onDoubleClick}
           label={this.props.selected.label}
+          chipRef={this.props.chipRef}
         />
     );
   }

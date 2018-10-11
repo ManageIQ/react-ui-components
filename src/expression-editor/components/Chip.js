@@ -8,15 +8,15 @@ export default class Chip extends React.Component {
     this.state = {
       focused: false,
     };
-    this.chipRef = React.createRef();
+    // this.chipRef = React.createRef();
   }
 
   componentDidMount() {
-    this.props.registerChip(this.chipRef, this.props.index);
+    // this.props.registerChip(this.chipRef, this.props.index);
   }
 
   componentWillUnmount() {
-    this.props.unregisterChip(this.props.index);
+    // this.props.unregisterChip(this.props.index);
   }
 
   render() {
@@ -24,7 +24,7 @@ export default class Chip extends React.Component {
     // const { a, b, ...rest } = this.props;
     return (
       <span
-        ref={this.chipRef}
+        ref={this.props.chipRef}
         onKeyDown={this.props.onKeyDown}
         tabIndex="0"
         onBlur={this.props.onBlur}
@@ -33,7 +33,7 @@ export default class Chip extends React.Component {
       >
         <Label
           onRemoveClick={this.props.onDelete}
-          onClick={this.props.onClick}
+          // onClick={this.props.onClick}
           onDoubleClick={this.props.onDoubleClick}
           bsStyle="primary"
         >

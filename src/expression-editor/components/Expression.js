@@ -21,6 +21,7 @@ class Expression extends React.Component {
       onKeyDown={this.props.onKeyDown}
       registerChip={this.registerChip}
       unregisterChip={this.unregisterChip}
+      chipRef={this.props.chipRefs[index]}
       // registerInput={this.props.registerInput}
       // unregisterInput={this.props.unregisterInput}
       options={term.parent.next}
@@ -33,7 +34,7 @@ class Expression extends React.Component {
   )
 
   onClick = (index) => {
-    // console.log('expression onclick', selected, this.props.expression);
+    console.log('expression onclick');
     this.props.onClick(index);
     // this.setState({isEditing: !selected.isEditing});
     // console.log(selected);
@@ -103,6 +104,8 @@ class Expression extends React.Component {
     </li>);
     const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
+    const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
+    // console.log('IS FOCUSED', this.props.isFocused);
     // console.log('Expression',endOfExpresion, this.props.next.parent);
     // console.log('expression props next', this.props.next, isLastEditing);
 
@@ -110,7 +113,8 @@ class Expression extends React.Component {
       <React.Fragment>
         <ul className="list-inline">
           {expression.map((expression, index) => this.generateChip(expression, index))}
-          {(isLastEditing || endOfExpresion || null) || newChip}
+          {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
+          {(endOfExpresion || null) || this.props.isFocused && newChip}
         </ul>
       </React.Fragment>
     );

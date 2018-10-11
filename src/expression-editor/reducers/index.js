@@ -26,4 +26,7 @@ function ExpressionEditorReducers(state = {}, action) {
   return { expressionEditor: combinedReducers(appState, action)};
 }
 
-export default ExpressionEditorReducers;
+export default combineReducers({
+  expressions,
+  options
+});

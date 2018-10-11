@@ -2,23 +2,29 @@ import * as actionsConstants from '../actions/actions';
 import { initialState, userInputMock } from './initialState'
 
 
-export const expressions = (state = [[]], {type, selected, previous, expression}) => {
+export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expression}) => {
+  let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      // console.log('REDUCER ON SUBMIT:', selected, previous, expression);
-      return calculateSubmit(state, selected, previous, expression);
+      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expression);
+      newExpressions = calculateSubmit([...state.expressions], selected, previous, expression);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
-      // console.log('REDUCER ON DELETE:', selected, expression);
-      return calculateDelete(state, selected, expression);
+      console.log('REDUCER ON DELETE:', selected, expression);
+      newExpressions = calculateDelete([...state.expressions], selected, expression);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_CLICK:
-      // console.log('REDUCER ON CLICK:', selected, expression);
-      return calculateClick(state, selected, expression);
+      console.log('REDUCER ON CLICK:', selected, expression);
+      newExpressions = calculateClick([...state.expressions], selected, expression);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_FOCUS:
-      // console.log('REDUCER ON FOCUS:', selected, expression);
-      return calculateFocus(state, selected, expression);
+      console.log('REDUCER ON FOCUS:', selected, expression);
+      newExpressions = calculateFocus([...state.expressions], selected, expression);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_BLUR:
-      // console.log('REDUCER ON BLUR:', selected, expression);
-      return calculateBlur(state, selected, expression);
+      console.log('REDUCER ON BLUR:', selected, expression);
+      newExpressions = calculateBlur([...state.expressions], selected, expression);
+      return { ...state, expressions: [...newExpressions]};
     default:
       return state;
   }
@@ -53,8 +59,9 @@ export const options = (state = null ) => state;
 
 
 const calculateSubmit = (state, selected, previous, expression) => {
+  let newState = [...state];
   const expressionIndex = state.indexOf(expression);
-  let filteredExpression = expression.filter((exp) => (exp.term.id !== userInputMock[0].id));
+  let filteredExpression = [...expression.filter((exp) => (exp.term.id !== userInputMock[0].id))];
   // find flags
   const selectedTerm = filteredExpression.find((exp) => (exp.term === selected));
   const selectedFlags = selectedTerm && selectedTerm.flags;
@@ -72,15 +79,15 @@ const calculateSubmit = (state, selected, previous, expression) => {
   //this.setState({expression: [...expression, selected, {...userInputMock[0], next: selected.next, parent: selected}]});
   state.splice(expressionIndex, 1, filteredExpression);
   const lastExpression = state[state.length-1] || [];
-  // console.log(lastExpression);
-  const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: [1]}};
-  // console.log(lastTerm);
+  console.log(lastExpression);
+  const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: ["meaningless not empty value"]}};
+  console.log(lastTerm);
   const lastExpressionIsCompleted = (lastTerm.term.next.length === 0);
   // console.log("SUBMIT", selected);
   if (selected.next.length === 0 && lastExpressionIsCompleted) {
-    state.push([]);
+    state = [...state, []]
   }
-  return [...state];
+  return state;
 }
 
 const calculateDelete = (state, selected, expression) => {
@@ -117,13 +124,15 @@ const calculateFocus = (state, selected, expression) => {
   selectedTerm.flags.isFocused = true;
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
-  state.splice(expressionIndex, 1, expression);
+  // state.splice(expressionIndex, 1, expression);
+  console.log(state);
   return [...state];
 }
 
 const calculateBlur = (state, selected, expression) => {
   const expressionIndex = state.indexOf(expression);
   const selectedTerm = expression.find((exp) => (exp.term === selected));
+  console.log(state, expression, selectedTerm);
 
   selectedTerm.flags.isFocused = false;
   state.splice(expressionIndex, 1, expression);

@@ -15,9 +15,42 @@ logicalOperatorsMock.map(a => a.parent = userInputMock[0]);
 class ExpressionEditor2 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {chipRefs: [], prevKeyPressed: undefined, inputRef: React.createRef()};
+    this.state = {
+      chipRefs: props.expressions.map(ex => ex.map(() => React.createRef())),
+      prevKeyPressed: undefined,
+      inputRef: React.createRef(),
+      focusedExpressionIndex: props.expressions.length - 1
+    };
+    console.log(React.createRef());
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.expressions.flat().length !== this.props.expressions.flat().length) {
+      // console.log('CDU', prevProps.expressions, this.props.expressions);
+      this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef()))});
+    }
+    let focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
+    let focusedIndex = focusedExpressions.indexOf(true);
+    if (focusedIndex > -1 && focusedIndex !== this.state.focusedExpressionIndex) {
+      this.setState({focusedExpressionIndex: focusedIndex});
+    }
+    else if (focusedIndex < 0 && prevState.focusedExpressionIndex === this.state.focusedExpressionIndex && this.state.focusedExpressionIndex !== this.props.expressions.length - 1) {
+      console.log('DEFAULT FOCUS', focusedIndex, this.state, this.props);
+      // last expression which is not complete
+      focusedIndex = this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
+      console.log(focusedIndex);
+      focusedIndex = focusedIndex < 0 ? this.props.expressions.length - 1 : focusedIndex;
+      if (focusedIndex !== this.state.focusedExpressionIndex) {
+        this.setState({focusedExpressionIndex: focusedIndex});
+      }
+    }
+    if (focusedIndex < 0) {
+      this.focusInput();
+    }
+    // console.log(focusedExpressions);
+  }
+
+/*
   registerChip = (chipRef, index, expression) => {
     console.log('CHIP REF', chipRef, index, expression, this.state.chipRefs);
     index = this.localToGlobalIndex(index, expression);
@@ -40,10 +73,11 @@ class ExpressionEditor2 extends React.Component {
     chipRefs.splice(index, 1);
     this.setState(prevState => ({chipRefs: chipRefs}));
   }
-
+*/
   focusChip = (index) => {
-    // console.log('AAAAAAAAAAAAAAAAAAAAAAAAa', this.state.chipRefs[index]);
-    this.state.chipRefs[index].current.focus();
+    const chipRefs = this.state.chipRefs.flat();
+    console.log('FOCUS INDEX', index);
+    chipRefs[index].current.focus();
   }
 
   focusInput = () => {
@@ -56,16 +90,20 @@ class ExpressionEditor2 extends React.Component {
     index = this.localToGlobalIndex(index, expression);
     // console.log('global',index);
     console.log(this.state.chipRefs);
+    const chipRefs = this.state.chipRefs.flat();
     // console.log('on key down', key, index);
     if(key.keyCode === 37) {
       index = index <= 0 ? index : index - 1;
-      this.state.chipRefs[index].current.focus();
+      // chipRefs[index].current.focus();
+      this.focusChip(index);
     } else if(key.keyCode === 39) {
-      if (index >= this.state.chipRefs.length - 1) {
+      if (index >= chipRefs.length - 1) {
+        this.setState({focusedExpressionIndex: this.props.expressions.length - 1})
         this.focusInput();
       } else {
         // index = index >= 0 ? index : index + 1;
-        this.state.chipRefs[index + 1].current.focus();
+        this.focusChip(index + 1);
+        // chipRefs[index + 1].current.focus();
       }
     }
     else if(key.keyCode === 13) {
@@ -85,7 +123,11 @@ class ExpressionEditor2 extends React.Component {
 
   onDelete = (selected, expression) => {
     // console.log('DDDDDDDDDDDDDDDDDDDDDDD');
-    this.focusInput();
+    // console.log(this.state.focusedExpressionIndex,  this.props.expressions);
+    // const focusedIndex = this.props.expressions[this.state.focusedExpressionIndex].findIndex(t => t.flags.isFocused === true);
+    // let focusedElement = this.state.chipRefs[this.state.focusedExpressionIndex][focusedIndex];
+    // console.log(focusedElement);
+    // this.state.chipRefs.flat().map(e => e.current.blur());
     this.props.onDelete(selected, expression);
   }
 
@@ -95,7 +137,6 @@ class ExpressionEditor2 extends React.Component {
     // console.log(indexOfExpression, this.props.expressions);
     return this.props.expressions.slice(0, indexOfExpression).map(a => a.length).reduce((a,b) => (a+b), 0) + index;
   }
-
 
   generateExpression = (expression, index) => (
     <Expression
@@ -111,6 +152,8 @@ class ExpressionEditor2 extends React.Component {
       expression={expression}
       registerChip={this.registerChip}
       unregisterChip={this.unregisterChip}
+      chipRefs={this.state.chipRefs[index]}
+      isFocused={index === this.state.focusedExpressionIndex}
       // registerInput={this.registerInput}
       // unregisterInput={this.unregisterInput}
       inputRef={this.state.inputRef}
@@ -121,7 +164,8 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render () {
-    console.log('ExpressionEditor2:', this.state.chipRefs);
+    console.log('ExpressionEditor2:', this.props);
+    // console.log('STATE: ', this.state.focusedExpressionIndex);
 
       return (
         this.props.expressions.map( ((expression, index) => (this.generateExpression(expression, index))) )
