@@ -82,6 +82,8 @@ const RbacUserForm = ({
                 options={groups}
                 placeholder={__('Choose one or more Groups')}
                 multi
+                searchable
+                clearable
               />
             </Col>
           </Row>

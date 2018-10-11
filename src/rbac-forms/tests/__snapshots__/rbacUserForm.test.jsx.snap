@@ -775,6 +775,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                     className="col-xs-12"
                   >
                     <Field
+                      clearable={true}
                       component={[Function]}
                       format={[Function]}
                       label="Available Groups"
@@ -874,9 +875,11 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                       }
                       parse={[Function]}
                       placeholder="Choose one or more Groups"
+                      searchable={true}
                       validate={[Function]}
                     >
                       <FinalFormSelect
+                        clearable={true}
                         input={
                           Object {
                             "name": "groups",
@@ -999,9 +1002,10 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                           ]
                         }
                         placeholder="Choose one or more Groups"
+                        searchable={true}
                       >
                         <FinalFormComponent
-                          clearable={false}
+                          clearable={true}
                           componentType="select"
                           disabled={false}
                           input={
@@ -1129,7 +1133,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                             ]
                           }
                           placeholder="Choose one or more Groups"
-                          searchable={false}
+                          searchable={true}
                           validateOnMount={false}
                           valueKey="value"
                         >
@@ -1169,7 +1173,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                     clearAllText="Clear all"
                                     clearRenderer={[Function]}
                                     clearValueText="Clear value"
-                                    clearable={false}
+                                    clearable={true}
                                     closeOnSelect={true}
                                     deleteRemoves={true}
                                     delimiter=","
@@ -1297,7 +1301,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                     required={false}
                                     rtl={false}
                                     scrollMenuIntoView={true}
-                                    searchable={false}
+                                    searchable={true}
                                     simpleValue={false}
                                     tabSelectsValue={true}
                                     trimFilter={true}
@@ -1306,7 +1310,7 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                     valueKey="value"
                                   >
                                     <div
-                                      className="Select  final-form-select Select--multi"
+                                      className="Select  final-form-select is-clearable is-searchable Select--multi"
                                     >
                                       <div
                                         className="Select-control"
@@ -1325,24 +1329,62 @@ exports[`RbacUserForm component Should render correctly 1`] = `
                                           >
                                             Choose one or more Groups
                                           </div>
-                                          <div
+                                          <AutosizeInput
                                             aria-activedescendant="react-select-2--value"
-                                            aria-disabled="false"
-                                            aria-expanded={false}
+                                            aria-expanded="false"
+                                            aria-haspopup="false"
                                             aria-owns=""
                                             className="Select-input"
+                                            injectStyles={true}
+                                            minWidth="5"
                                             onBlur={[Function]}
+                                            onChange={[Function]}
                                             onFocus={[Function]}
+                                            required={false}
                                             role="combobox"
-                                            style={
-                                              Object {
-                                                "border": 0,
-                                                "display": "inline-block",
-                                                "width": 1,
+                                            value=""
+                                          >
+                                            <div
+                                              className="Select-input"
+                                              style={
+                                                Object {
+                                                  "display": "inline-block",
+                                                }
                                               }
-                                            }
-                                            tabIndex={0}
-                                          />
+                                            >
+                                              <input
+                                                aria-activedescendant="react-select-2--value"
+                                                aria-expanded="false"
+                                                aria-haspopup="false"
+                                                aria-owns=""
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                required={false}
+                                                role="combobox"
+                                                style={
+                                                  Object {
+                                                    "boxSizing": "content-box",
+                                                    "width": "5px",
+                                                  }
+                                                }
+                                                value=""
+                                              />
+                                              <div
+                                                style={
+                                                  Object {
+                                                    "height": 0,
+                                                    "left": 0,
+                                                    "overflow": "scroll",
+                                                    "position": "absolute",
+                                                    "top": 0,
+                                                    "visibility": "hidden",
+                                                    "whiteSpace": "pre",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </AutosizeInput>
                                         </div>
                                         <span
                                           className="Select-arrow-zone"
@@ -2259,6 +2301,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                     className="col-xs-12"
                   >
                     <Field
+                      clearable={true}
                       component={[Function]}
                       format={[Function]}
                       label="Available Groups"
@@ -2358,9 +2401,11 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                       }
                       parse={[Function]}
                       placeholder="Choose one or more Groups"
+                      searchable={true}
                       validate={[Function]}
                     >
                       <FinalFormSelect
+                        clearable={true}
                         input={
                           Object {
                             "name": "groups",
@@ -2489,9 +2534,10 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                           ]
                         }
                         placeholder="Choose one or more Groups"
+                        searchable={true}
                       >
                         <FinalFormComponent
-                          clearable={false}
+                          clearable={true}
                           componentType="select"
                           disabled={false}
                           input={
@@ -2625,7 +2671,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                             ]
                           }
                           placeholder="Choose one or more Groups"
-                          searchable={false}
+                          searchable={true}
                           validateOnMount={false}
                           valueKey="value"
                         >
@@ -2665,7 +2711,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                     clearAllText="Clear all"
                                     clearRenderer={[Function]}
                                     clearValueText="Clear value"
-                                    clearable={false}
+                                    clearable={true}
                                     closeOnSelect={true}
                                     deleteRemoves={true}
                                     delimiter=","
@@ -2793,7 +2839,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                     required={false}
                                     rtl={false}
                                     scrollMenuIntoView={true}
-                                    searchable={false}
+                                    searchable={true}
                                     simpleValue={false}
                                     tabSelectsValue={true}
                                     trimFilter={true}
@@ -2807,7 +2853,7 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                     valueKey="value"
                                   >
                                     <div
-                                      className="Select  final-form-select has-value Select--multi"
+                                      className="Select  final-form-select has-value is-clearable is-searchable Select--multi"
                                     >
                                       <input
                                         disabled={false}
@@ -2945,25 +2991,81 @@ exports[`RbacUserForm component Should render editing version 1`] = `
                                               </span>
                                             </div>
                                           </Value>
-                                          <div
+                                          <AutosizeInput
                                             aria-activedescendant="react-select-3--value"
-                                            aria-disabled="false"
-                                            aria-expanded={false}
+                                            aria-expanded="false"
+                                            aria-haspopup="false"
                                             aria-owns=""
                                             className="Select-input"
+                                            injectStyles={true}
+                                            minWidth="5"
                                             onBlur={[Function]}
+                                            onChange={[Function]}
                                             onFocus={[Function]}
+                                            required={false}
                                             role="combobox"
-                                            style={
+                                            value=""
+                                          >
+                                            <div
+                                              className="Select-input"
+                                              style={
+                                                Object {
+                                                  "display": "inline-block",
+                                                }
+                                              }
+                                            >
+                                              <input
+                                                aria-activedescendant="react-select-3--value"
+                                                aria-expanded="false"
+                                                aria-haspopup="false"
+                                                aria-owns=""
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                required={false}
+                                                role="combobox"
+                                                style={
+                                                  Object {
+                                                    "boxSizing": "content-box",
+                                                    "width": "5px",
+                                                  }
+                                                }
+                                                value=""
+                                              />
+                                              <div
+                                                style={
+                                                  Object {
+                                                    "height": 0,
+                                                    "left": 0,
+                                                    "overflow": "scroll",
+                                                    "position": "absolute",
+                                                    "top": 0,
+                                                    "visibility": "hidden",
+                                                    "whiteSpace": "pre",
+                                                  }
+                                                }
+                                              />
+                                            </div>
+                                          </AutosizeInput>
+                                        </div>
+                                        <span
+                                          aria-label="Clear all"
+                                          className="Select-clear-zone"
+                                          onMouseDown={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          title="Clear all"
+                                        >
+                                          <span
+                                            className="Select-clear"
+                                            dangerouslySetInnerHTML={
                                               Object {
-                                                "border": 0,
-                                                "display": "inline-block",
-                                                "width": 1,
+                                                "__html": "&times;",
                                               }
                                             }
-                                            tabIndex={0}
                                           />
-                                        </div>
+                                        </span>
                                         <span
                                           className="Select-arrow-zone"
                                           onMouseDown={[Function]}
