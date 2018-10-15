@@ -10,13 +10,14 @@ class EditableChip extends React.Component {
     super(props);
     this.state = {
       filteredOptions: props.options,
-      filterString: this.props.label,
+      // filterString: this.props.label,
+      filterString: '',
     };
     // console.log('editable chip constructor', props);
   }
 
   static getDerivedStateFromProps(props, state) {
-    // console.log('editable chipget derived state', props);
+    console.log('editable chipget derived state', props, state);
     return { filteredOptions: props.options.filter(props.filterOption(state.filterString)) };
   }
 
@@ -29,7 +30,7 @@ class EditableChip extends React.Component {
   };
 
   onSubmit = (selected) => {
-    // console.log('EditableChip submit', selected, this.props.item);
+    console.log('EditableChip submit', selected, this.props.item);
     const newSelected = selected;
     if (selected.type === 'userinput') {
       // console.log('SUMBIT:',selected);
@@ -56,6 +57,7 @@ class EditableChip extends React.Component {
   }
 
   onUserInput = (input) => {
+  // console.log('EditableChip UserInput', input);
     this.setState({ filterString: input });
   }
 
@@ -86,6 +88,7 @@ class EditableChip extends React.Component {
           onKeyDown={this.onKeyDown}
           registerChip={this.props.registerChip}
           unregisterChip={this.props.unregisterChip}
+          isFocused={this.props.isFocused}
           index={this.props.index}
           onClick={this.onClick}
           onDoubleClick={this.onDoubleClick}

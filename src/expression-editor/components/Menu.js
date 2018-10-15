@@ -15,13 +15,15 @@ class Menu extends React.Component {
       // registerMenuItem={this.props.registerMenuItem}
       // unregisterMenuItem={this.props.unregisterMenuItem}
       menuItemRef={this.props.menuItemRefs[index]}
+      onMouseEnter={this.props.onMouseEnter}
+      onMouseLeave={this.props.onMouseLeave}
     />
   )
 
 
   render() {
     return (
-      <ul className="test">
+      <ul>
         {this.props.options.map(((option, index) => (this.renderOption(option, index))))}
       </ul>
     );

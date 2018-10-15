@@ -76,12 +76,12 @@ class ExpressionEditor2 extends React.Component {
 */
   focusChip = (index) => {
     const chipRefs = this.state.chipRefs.flat();
-    console.log('FOCUS INDEX', index);
+    // console.log('FOCUS INDEX', index);
     chipRefs[index].current.focus();
   }
 
   focusInput = () => {
-    console.log("FOCUS INPUT");
+    // console.log("FOCUS INPUT");
     this.state.inputRef.current.focus();
   }
 
@@ -89,7 +89,7 @@ class ExpressionEditor2 extends React.Component {
     // console.log('local',index);
     index = this.localToGlobalIndex(index, expression);
     // console.log('global',index);
-    console.log(this.state.chipRefs);
+    // console.log(this.state.chipRefs);
     const chipRefs = this.state.chipRefs.flat();
     // console.log('on key down', key, index);
     if(key.keyCode === 37) {
@@ -164,7 +164,7 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render () {
-    console.log('ExpressionEditor2:', this.props);
+    // console.log('ExpressionEditor2:', this.props);
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
       return (

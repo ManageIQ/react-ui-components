@@ -19,6 +19,10 @@ export default class Chip extends React.Component {
     // this.props.unregisterChip(this.props.index);
   }
 
+  focusedClass = () => (
+    (this.props.isFocused && 'focusedChip') || ''
+  )
+
   render() {
     // console.log('focused: ', this.state.focused)
     // const { a, b, ...rest } = this.props;
@@ -29,6 +33,8 @@ export default class Chip extends React.Component {
         tabIndex="0"
         onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
+        className={`${this.focusedClass()}`}
+
         // {...rest}
       >
         <Label

@@ -4,7 +4,7 @@ import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
 const mapStateToProps = (state) => {
-  console.log('state: ', state.expressions);
+  // console.log('state: ', state.expressions);
   return {
   // actions which have been done since loeaded
   expressions: state.expressions.expressions,
@@ -34,7 +34,9 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onSubmit: (selected, previous, expression) => {
+    dispatch(onBlur(selected, expression));
     dispatch(onSubmit(selected, previous, expression));
+
   },
 
   undo: (action) => {

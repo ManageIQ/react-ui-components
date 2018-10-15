@@ -12,6 +12,7 @@ class Expression extends React.Component {
       key={term.id}
       label={term.label}
       isEditing={flags.isEditing}
+      isFocused={flags.isFocused}
       onClick={this.onClick}
       onDoubleClick={this.onDoubleClick}
       onSubmit={this.onSubmit}

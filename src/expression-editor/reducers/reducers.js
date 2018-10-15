@@ -79,9 +79,9 @@ const calculateSubmit = (state, selected, previous, expression) => {
   //this.setState({expression: [...expression, selected, {...userInputMock[0], next: selected.next, parent: selected}]});
   state.splice(expressionIndex, 1, filteredExpression);
   const lastExpression = state[state.length-1] || [];
-  console.log(lastExpression);
+  // console.log(lastExpression);
   const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: ["meaningless not empty value"]}};
-  console.log(lastTerm);
+  // console.log(lastTerm);
   const lastExpressionIsCompleted = (lastTerm.term.next.length === 0);
   // console.log("SUBMIT", selected);
   if (selected.next.length === 0 && lastExpressionIsCompleted) {
@@ -125,18 +125,21 @@ const calculateFocus = (state, selected, expression) => {
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
   // state.splice(expressionIndex, 1, expression);
-  console.log(state);
+  // console.log(state);
   return [...state];
 }
 
 const calculateBlur = (state, selected, expression) => {
   const expressionIndex = state.indexOf(expression);
   const selectedTerm = expression.find((exp) => (exp.term === selected));
-  console.log(state, expression, selectedTerm);
-
-  selectedTerm.flags.isFocused = false;
-  state.splice(expressionIndex, 1, expression);
-  return [...state];
+  // console.log(state, expression, selectedTerm);
+  if (selectedTerm === undefined) {
+    return [...state];
+  } else {
+    selectedTerm.flags.isFocused = false;
+    state.splice(expressionIndex, 1, expression);
+    return [...state];
+  }
 }
 
 const cleanLastExpression = (state, selected) => {
