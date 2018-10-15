@@ -49,7 +49,7 @@ storiesOf('Rbac forms', module).add('Rbac add user form', withInfo()(() => (
       name: 'User name',
       userid: 'User id',
       email: 'email@mail.com',
-      groups: ['1', '2', '5'],
+      groups: ['2', '1', '5'],
     }}
   />
 )))
