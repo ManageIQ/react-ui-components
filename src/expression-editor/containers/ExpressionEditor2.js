@@ -16,26 +16,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
 
-  onDelete: (selected, expression) => {
-    dispatch(onBlur(selected, expression));
-    dispatch(onDelete(selected, expression));
+  onDelete: (selected, expressionIndex) => {
+    dispatch(onBlur(selected, expressionIndex));
+    dispatch(onDelete(selected, expressionIndex));
   },
 
-  onClick: (selected, expression) => {
-    dispatch(onClick(selected, expression));
+  onClick: (selected, expressionIndex) => {
+    dispatch(onClick(selected, expressionIndex));
   },
 
-  onFocus: (selected, expression) => {
-    dispatch(onFocus(selected, expression));
+  onFocus: (selected, expressionIndex) => {
+    dispatch(onFocus(selected, expressionIndex));
   },
 
-  onBlur: (selected, expression) => {
-    dispatch(onBlur(selected, expression));
+  onBlur: (selected, expressionIndex) => {
+    dispatch(onBlur(selected, expressionIndex));
   },
 
-  onSubmit: (selected, previous, expression) => {
-    dispatch(onBlur(selected, expression));
-    dispatch(onSubmit(selected, previous, expression));
+  onSubmit: (selected, previous, expressionIndex) => {
+    dispatch(onBlur(selected, expressionIndex));
+    dispatch(onSubmit(selected, previous, expressionIndex));
 
   },
 

@@ -1,34 +1,34 @@
 import * as actions from './actions';
 
-export const onSubmit = (selected, previous, expression) => ({
+export const onSubmit = (selected, previous, expressionIndex) => ({
   type: actions.ON_SUBMIT,
   selected: selected,
   previous: previous,
-  expression: expression,
+  expressionIndex: expressionIndex,
 });
 
-export const onDelete = (selected, expression) => ({
+export const onDelete = (selected, expressionIndex) => ({
   type: actions.ON_DELETE,
   selected: selected,
-  expression: expression,
+  expressionIndex: expressionIndex,
 });
 
-export const onClick = (selected, expression) => ({
+export const onClick = (selected, expressionIndex) => ({
   type: actions.ON_CLICK,
   selected: selected,
-  expression: expression,
+  expressionIndex: expressionIndex,
 });
 
-export const onFocus = (selected, expression) => ({
+export const onFocus = (selected, expressionIndex) => ({
   type: actions.ON_FOCUS,
   selected: selected,
-  expression: expression,
+  expressionIndex: expressionIndex,
 });
 
-export const onBlur = (selected, expression) => ({
+export const onBlur = (selected, expressionIndex) => ({
   type: actions.ON_BLUR,
   selected: selected,
-  expression: expression,
+  expressionIndex: expressionIndex,
 });
 
 

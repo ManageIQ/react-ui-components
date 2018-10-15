@@ -43,40 +43,40 @@ class Expression extends React.Component {
 
   onDoubleClick = (selected) => {
     // console.log('EditableChip onDoubleClickclick');
-    this.props.onDoubleClick(selected, this.props.expression);
+    this.props.onDoubleClick(selected, this.props.index);
   }
 
   onSubmit = (selected, previous) => {
-    // console.log('expression on submit', selected, previous);
-    this.props.onSubmit(selected, previous, this.props.expression);
+    console.log('expression on submit', selected, previous, this.props);
+    this.props.onSubmit(selected, previous, this.props.index);
   }
 
   onDelete = selected => {
     console.log('ON DELETE', selected);
-    this.props.onDelete(selected, this.props.expression);
+    this.props.onDelete(selected, this.props.index);
   }
 
   onFocus = selected => {
     console.log('ON FOCUS', selected);
-    this.props.onFocus(selected, this.props.expression);
+    this.props.onFocus(selected, this.props.index);
   }
 
   onBlur = selected => {
     console.log('ON BLUR', selected);
-    this.props.onBlur(selected, this.props.expression);
+    this.props.onBlur(selected, this.props.index);
   }
 
   onKeyDown = (key, index, selected) => {
-    // console.log('EXRESSION ON KEY DOWN', this.props.expression);
-    this.props.onKeyDown(key, index, selected, this.props.expression);
+    // console.log('EXRESSION ON KEY DOWN', index);
+    this.props.onKeyDown(key, index, selected, this.props.index);
   }
 
-  registerChip = (ref, index) => {
-    this.props.registerChip(ref, index, this.props.expression);
+  registerChip = (ref, chipIndex) => {
+    this.props.registerChip(ref, chipIndex, this.props.index);
   }
 
-  unregisterChip = (index) => {
-    this.props.unregisterChip(index, this.props.expression);
+  unregisterChip = (chipIndex) => {
+    this.props.unregisterChip(chipIndex, this.props.index);
   }
 
 
@@ -138,7 +138,7 @@ Expression.propTypes = {
   expression: ExpressionEditorPropTypes.expression,
   value: PropTypes.string,
   next: ExpressionEditorPropTypes.term,
-
+  index: PropTypes.number.isRequired
 }
 
 Expression.defaultProps = {

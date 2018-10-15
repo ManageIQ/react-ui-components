@@ -2,28 +2,28 @@ import * as actionsConstants from '../actions/actions';
 import { initialState, userInputMock } from './initialState'
 
 
-export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expression}) => {
+export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expressionIndex}) => {
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expression);
-      newExpressions = calculateSubmit([...state.expressions], selected, previous, expression);
+      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
+      newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
-      console.log('REDUCER ON DELETE:', selected, expression);
-      newExpressions = calculateDelete([...state.expressions], selected, expression);
+      console.log('REDUCER ON DELETE:', selected, expressionIndex);
+      newExpressions = calculateDelete([...state.expressions], selected, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_CLICK:
-      console.log('REDUCER ON CLICK:', selected, expression);
-      newExpressions = calculateClick([...state.expressions], selected, expression);
+      console.log('REDUCER ON CLICK:', selected, expressionIndex);
+      newExpressions = calculateClick([...state.expressions], selected, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_FOCUS:
-      console.log('REDUCER ON FOCUS:', selected, expression);
-      newExpressions = calculateFocus([...state.expressions], selected, expression);
+      console.log('REDUCER ON FOCUS:', selected, expressionIndex);
+      newExpressions = calculateFocus([...state.expressions], selected, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_BLUR:
-      console.log('REDUCER ON BLUR:', selected, expression);
-      newExpressions = calculateBlur([...state.expressions], selected, expression);
+      console.log('REDUCER ON BLUR:', selected, expressionIndex);
+      newExpressions = calculateBlur([...state.expressions], selected, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     default:
       return state;
@@ -58,9 +58,10 @@ export const options = (state = null ) => state;
 
 
 
-const calculateSubmit = (state, selected, previous, expression) => {
+const calculateSubmit = (state, selected, previous, expressionIndex) => {
   let newState = [...state];
-  const expressionIndex = state.indexOf(expression);
+  // const expressionIndex = state.indexOf(expression);
+  const expression = state[expressionIndex];
   let filteredExpression = [...expression.filter((exp) => (exp.term.id !== userInputMock[0].id))];
   // find flags
   const selectedTerm = filteredExpression.find((exp) => (exp.term === selected));
@@ -90,8 +91,9 @@ const calculateSubmit = (state, selected, previous, expression) => {
   return state;
 }
 
-const calculateDelete = (state, selected, expression) => {
-  const expressionIndex = state.indexOf(expression);
+const calculateDelete = (state, selected, expressionIndex) => {
+  // const expressionIndex = state.indexOf(expression);
+  const expression = state[expressionIndex];
   const filteredExpression = expression.filter((exp) => (exp.term.id !== selected.id));
   if (filteredExpression.length === 0) {
     state.splice(expressionIndex, 1, filteredExpression);
@@ -102,9 +104,10 @@ const calculateDelete = (state, selected, expression) => {
   return [...state];
 }
 
-const calculateClick = (state, selected, expression) => {
+const calculateClick = (state, selected, expressionIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
-  const expressionIndex = state.indexOf(expression);
+  // const expressionIndex = state.indexOf(expression);
+  const expression = state[expressionIndex];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
 
   selectedTerm.flags.isEditing = !selectedTerm.flags.isEditing;;
@@ -116,9 +119,10 @@ const calculateClick = (state, selected, expression) => {
   return [...state];
 }
 
-const calculateFocus = (state, selected, expression) => {
+const calculateFocus = (state, selected, expressionIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
-  const expressionIndex = state.indexOf(expression);
+  // const expressionIndex = state.indexOf(expression);
+  const expression = state[expressionIndex];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
 
   selectedTerm.flags.isFocused = true;
@@ -129,8 +133,9 @@ const calculateFocus = (state, selected, expression) => {
   return [...state];
 }
 
-const calculateBlur = (state, selected, expression) => {
-  const expressionIndex = state.indexOf(expression);
+const calculateBlur = (state, selected, expressionIndex) => {
+  // const expressionIndex = state.indexOf(expression);
+  const expression = state[expressionIndex];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
   // console.log(state, expression, selectedTerm);
   if (selectedTerm === undefined) {

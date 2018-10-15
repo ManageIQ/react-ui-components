@@ -50,30 +50,6 @@ class ExpressionEditor2 extends React.Component {
     // console.log(focusedExpressions);
   }
 
-/*
-  registerChip = (chipRef, index, expression) => {
-    console.log('CHIP REF', chipRef, index, expression, this.state.chipRefs);
-    index = this.localToGlobalIndex(index, expression);
-    // this.state.chipRefs.splice(index, 0, chipRef);
-    // this.setState({chipRefs: [...this.state.chipRefs]});
-    // this.setState(prevState => ({chipRefs: [...prevState.chipRefs, chipRef]}));
-    let chipRefs = [...this.state.chipRefs];
-    const toDelete = this.state.chipRefs[index] === null ? 1 : 0;
-    console.log(toDelete);
-    chipRefs.splice(index, toDelete, chipRef);
-    this.setState(prevState => ({chipRefs: chipRefs}));
-  }
-
-  unregisterChip = (index, expression) => {
-    index = this.localToGlobalIndex(index, expression);
-    console.log('unregister', index, expression);
-    // this.state.chipRefs.splice(index, 1);
-    // this.setState({chipRefs: [...this.state.chipRefs]});
-    let chipRefs = [...this.state.chipRefs];
-    chipRefs.splice(index, 1);
-    this.setState(prevState => ({chipRefs: chipRefs}));
-  }
-*/
   focusChip = (index) => {
     const chipRefs = this.state.chipRefs.flat();
     // console.log('FOCUS INDEX', index);
@@ -85,9 +61,9 @@ class ExpressionEditor2 extends React.Component {
     this.state.inputRef.current.focus();
   }
 
-  onKeyDown = (key, index, selected, expression) => {
+  onKeyDown = (key, chipIndex, selected, expressionIndex) => {
     // console.log('local',index);
-    index = this.localToGlobalIndex(index, expression);
+    let index = this.localToGlobalIndex(chipIndex, expressionIndex);
     // console.log('global',index);
     // console.log(this.state.chipRefs);
     const chipRefs = this.state.chipRefs.flat();
@@ -108,34 +84,34 @@ class ExpressionEditor2 extends React.Component {
     }
     else if(key.keyCode === 13) {
       // console.log('on enter key down', selected, expression);
-      this.props.onClick(selected, expression);
+      this.props.onClick(selected, expressionIndex);
     } else if (key.keyCode === 8 || key.keyCode === 46) {
-      this.onDelete(selected, expression)
+      this.onDelete(selected, expressionIndex)
     }
 
     this.setState({prevKeyPressed: key});
   }
 
-  onSubmit = (selected, previous, expression) => {
-    this.props.onSubmit(selected, previous, expression);
+  onSubmit = (selected, previous, expressionIndex) => {
+    this.props.onSubmit(selected, previous, expressionIndex);
     this.focusInput();
   }
 
-  onDelete = (selected, expression) => {
+  onDelete = (selected, expressionIndex) => {
     // console.log('DDDDDDDDDDDDDDDDDDDDDDD');
     // console.log(this.state.focusedExpressionIndex,  this.props.expressions);
     // const focusedIndex = this.props.expressions[this.state.focusedExpressionIndex].findIndex(t => t.flags.isFocused === true);
     // let focusedElement = this.state.chipRefs[this.state.focusedExpressionIndex][focusedIndex];
     // console.log(focusedElement);
     // this.state.chipRefs.flat().map(e => e.current.blur());
-    this.props.onDelete(selected, expression);
+    this.props.onDelete(selected, expressionIndex);
   }
 
-  localToGlobalIndex = (index, expression) => {
+  localToGlobalIndex = (chipIndex, expressionIndex) => {
     // console.log(this.props.expressions, expression);
-    const indexOfExpression = this.props.expressions.indexOf(expression);
+    // const indexOfExpression = this.props.expressions.indexOf(expression);
     // console.log(indexOfExpression, this.props.expressions);
-    return this.props.expressions.slice(0, indexOfExpression).map(a => a.length).reduce((a,b) => (a+b), 0) + index;
+    return this.props.expressions.slice(0, expressionIndex).map(a => a.length).reduce((a,b) => (a+b), 0) + chipIndex;
   }
 
   generateExpression = (expression, index) => (
@@ -154,6 +130,7 @@ class ExpressionEditor2 extends React.Component {
       unregisterChip={this.unregisterChip}
       chipRefs={this.state.chipRefs[index]}
       isFocused={index === this.state.focusedExpressionIndex}
+      index={index}
       // registerInput={this.registerInput}
       // unregisterInput={this.unregisterInput}
       inputRef={this.state.inputRef}
