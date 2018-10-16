@@ -6,7 +6,7 @@ export const expressions = (state = {expressions: [[]]}, {type, selected, previo
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
+      // console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
       newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
@@ -29,30 +29,6 @@ export const expressions = (state = {expressions: [[]]}, {type, selected, previo
       return state;
   }
 };
-
-
-
-
-export const onChange = (state = [], action) => {
-  // console.log('REDUCER ON CHANGE ', action, state);
-  switch (action.type) {
-    case actionsConstants.ON_CHANGE:
-      return action.selected;
-    default:
-      return state;
-  }
-};
-
-export const steps = (state = initialState.steps) => state;
-export const next = (state = initialState.next, action) => {
-  // console.log("REDUCER NEXT", state, action);
-  switch (action.type) {
-    case actionsConstants.CALCULATE_NEXT:
-      return (action.selected[action.selected.length-1] && action.selected[action.selected.length-1].next) || null;
-    default:
-      return state;
-  }
-}
 
 export const options = (state = null ) => state;
 
@@ -107,10 +83,11 @@ const calculateDelete = (state, selected, expressionIndex) => {
 const calculateClick = (state, selected, expressionIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
   // const expressionIndex = state.indexOf(expression);
-  const expression = state[expressionIndex];
+  const expression = [...state[expressionIndex]];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
+  const termIndex = expression.findIndex((exp) => (exp.term === selected));
+  expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags, isEditing: !selectedTerm.flags.isEditing}});
 
-  selectedTerm.flags.isEditing = !selectedTerm.flags.isEditing;;
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
   state.splice(expressionIndex, 1, expression);
@@ -122,10 +99,12 @@ const calculateClick = (state, selected, expressionIndex) => {
 const calculateFocus = (state, selected, expressionIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
   // const expressionIndex = state.indexOf(expression);
-  const expression = state[expressionIndex];
+  const expression = [...state[expressionIndex]];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
-
-  selectedTerm.flags.isFocused = true;
+  const termIndex = expression.findIndex((exp) => (exp.term === selected));
+  expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags, isFocused: true}});
+  state.splice(expressionIndex, 1, expression);
+  // selectedTerm.flags.isFocused = true;
   //const expression = this.state.expression.filter((exp) => (exp.id !== selected.id));
   // console.log('mock onclick', selected, expression, this.state.expression);
   // state.splice(expressionIndex, 1, expression);
@@ -135,13 +114,15 @@ const calculateFocus = (state, selected, expressionIndex) => {
 
 const calculateBlur = (state, selected, expressionIndex) => {
   // const expressionIndex = state.indexOf(expression);
-  const expression = state[expressionIndex];
+  const expression = [...state[expressionIndex]];
   const selectedTerm = expression.find((exp) => (exp.term === selected));
   // console.log(state, expression, selectedTerm);
   if (selectedTerm === undefined) {
     return [...state];
   } else {
-    selectedTerm.flags.isFocused = false;
+    const termIndex = expression.findIndex((exp) => (exp.term === selected));
+    expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags, isFocused: false}});
+    // selectedTerm.flags.isFocused = false;
     state.splice(expressionIndex, 1, expression);
     return [...state];
   }
