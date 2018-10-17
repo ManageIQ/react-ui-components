@@ -1,39 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditableChip from './EditableChip'
+import EditableChip from './EditableChip';
 
-import ExpressionEditorPropTypes from './ExpressionEditorPropTypes'
+import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 
 class Expression extends React.Component {
-
-  generateChip = ({term, flags}, index) => (
-    <li className="chip">
-    <EditableChip
-      key={term.id}
-      label={term.label}
-      isEditing={flags.isEditing}
-      isFocused={flags.isFocused}
-      onClick={this.onClick}
-      onDoubleClick={this.onDoubleClick}
-      onSubmit={this.onSubmit}
-      onDelete={this.onDelete}
-      onFocus={this.onFocus}
-      onBlur={this.onBlur}
-      onKeyDown={this.props.onKeyDown}
-      registerChip={this.registerChip}
-      unregisterChip={this.unregisterChip}
-      chipRef={this.props.chipRefs[index]}
-      // registerInput={this.props.registerInput}
-      // unregisterInput={this.props.unregisterInput}
-      options={term.parent.next}
-      selected={term}
-      item={term}
-      index={index}
-      onKeyDown={this.onKeyDown}
-    />
-  </li>
-  )
-
   onClick = (index) => {
     console.log('expression onclick');
     this.props.onClick(index);
@@ -51,17 +22,17 @@ class Expression extends React.Component {
     this.props.onSubmit(selected, previous, this.props.index);
   }
 
-  onDelete = selected => {
+  onDelete = (selected) => {
     console.log('ON DELETE', selected);
     this.props.onDelete(selected, this.props.index);
   }
 
-  onFocus = selected => {
+  onFocus = (selected) => {
     console.log('ON FOCUS', selected);
     this.props.onFocus(selected, this.props.index);
   }
 
-  onBlur = selected => {
+  onBlur = (selected) => {
     console.log('ON BLUR', selected);
     this.props.onBlur(selected, this.props.index);
   }
@@ -71,41 +42,62 @@ class Expression extends React.Component {
     this.props.onKeyDown(key, index, selected, this.props.index);
   }
 
-  registerChip = (ref, chipIndex) => {
-    this.props.registerChip(ref, chipIndex, this.props.index);
-  }
+  generateChip = ({ term, flags }, index) => (
+    <li className="chip">
+      <EditableChip
+        key={term.id}
+        label={term.label}
+        isEditing={flags.isEditing}
+        isFocused={flags.isFocused}
+        onClick={this.onClick}
+        onDoubleClick={this.onDoubleClick}
+        onSubmit={this.onSubmit}
+        onDelete={this.onDelete}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
+        // onKeyDown={this.props.onKeyDown}
+        chipRef={this.props.chipRefs[index]}
+      // registerInput={this.props.registerInput}
+      // unregisterInput={this.props.unregisterInput}
+        options={term.parent.next}
+        selected={term}
+        item={term}
+        index={index}
+        onKeyDown={this.onKeyDown}
+      />
+    </li>
+  )
 
-  unregisterChip = (chipIndex) => {
-    this.props.unregisterChip(chipIndex, this.props.index);
-  }
 
-
-  render () {
+  render() {
     // console.log('Expression options', this.props.next.parent.next);
+    // const { this: { props: { expression } } } = this.props.expression;
+    // const {this: {props: {expression: expression}}} = this;
     const expression = this.props.expression;
     // console.log('expression props', this.props);
-    const newChip = (<li>
-      <EditableChip
-       label={this.props.next.label}
-       isEditing={this.props.next.isEditing}
-       onClick={this.onClick}
-       onDoubleClick={this.onDoubleClick}
-       onSubmit={this.onSubmit}
-       onFocus={this.onFocus}
-       onBlur={this.onBlur}
-       onKeyDown={this.onKeyDown}
-       // registerInput={this.props.registerInput}
-       // unregisterInput={this.props.unregisterInput}
-       inputRef={this.props.inputRef}
-       options={this.props.next.parent.next}
-       selected={this.props.next}
-       item={this.props.next}
-       index={this.props.expression.length}
-      />
-    </li>);
-    const isLastEditing = (expression[expression.length-1] && expression[expression.length-1].flags.isEditing);
+    const newChip = (
+      <li>
+        <EditableChip
+          label={this.props.next.label}
+          isEditing={this.props.next.isEditing}
+          onClick={this.onClick}
+          onDoubleClick={this.onDoubleClick}
+          onSubmit={this.onSubmit}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          onKeyDown={this.onKeyDown}
+         // registerInput={this.props.registerInput}
+         // unregisterInput={this.props.unregisterInput}
+          inputRef={this.props.inputRef}
+          options={this.props.next.parent.next}
+          selected={this.props.next}
+          item={this.props.next}
+          index={this.props.expression.length}
+        />
+      </li>);
+    // const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
-    const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
+    // const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
     // console.log('IS FOCUSED', this.props.isFocused);
     // console.log('Expression',endOfExpresion, this.props.next.parent);
     // console.log('expression props next', this.props.next, isLastEditing);
@@ -113,9 +105,9 @@ class Expression extends React.Component {
     return (
       <React.Fragment>
         <ul className="list-inline">
-          {expression.map((expression, index) => this.generateChip(expression, index))}
+          {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
-          {(endOfExpresion || null) || this.props.isFocused && newChip}
+          {(endOfExpresion || null) || (this.props.isFocused && newChip)}
         </ul>
       </React.Fragment>
     );
@@ -125,24 +117,20 @@ class Expression extends React.Component {
 
 Expression.propTypes = {
   // isEditing: PropTypes.arrayOf(),
-  onClick: PropTypes.func,
-  onDoubleClick: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  onDelete: PropTypes.func,
-  onFocus: PropTypes.func,
-  registerChip: PropTypes.func,
-  unregisterChip: PropTypes.func,
-  registerInput: PropTypes.func,
-  unregisterInput: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  onDoubleClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   expression: ExpressionEditorPropTypes.expression,
-  value: PropTypes.string,
   next: ExpressionEditorPropTypes.term,
-  index: PropTypes.number.isRequired
-}
+  index: PropTypes.number.isRequired,
+  isFocused: PropTypes.bool.isRequired,
+  chipRefs: PropTypes.arrayOf(PropTypes.object),
+  inputRef: PropTypes.object,
+};
 
-Expression.defaultProps = {
-  value: ''
-}
 
 export default Expression;

@@ -10,16 +10,12 @@ class Menu extends React.Component {
       option={option}
       index={index}
       onClick={this.props.onClick}
-      // onKeyDown={this.props.onKeyDown}
       focused={this.props.focusedIndex === index}
-      // registerMenuItem={this.props.registerMenuItem}
-      // unregisterMenuItem={this.props.unregisterMenuItem}
       menuItemRef={this.props.menuItemRefs[index]}
       onMouseEnter={this.props.onMouseEnter}
       onMouseLeave={this.props.onMouseLeave}
     />
   )
-
 
   render() {
     return (
@@ -33,10 +29,9 @@ class Menu extends React.Component {
 Menu.propTypes = {
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option),
   onClick: PropTypes.func.isRequired,
-  // onKeyDown: PropTypes.func.isRequired,
   menuItemRefs: PropTypes.arrayOf(PropTypes.object),
-  // registerMenuItem: PropTypes.func,
-  // unregisterMenuItem: PropTypes.func,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
   focusedIndex: PropTypes.number,
 };
 

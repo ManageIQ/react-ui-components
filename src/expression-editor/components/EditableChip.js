@@ -17,7 +17,7 @@ class EditableChip extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('editable chipget derived state', props, state);
+    // console.log('editable chipget derived state', props, state);
     return { filteredOptions: props.options.filter(props.filterOption(state.filterString)) };
   }
 
@@ -30,7 +30,7 @@ class EditableChip extends React.Component {
   };
 
   onSubmit = (selected) => {
-    console.log('EditableChip submit', selected, this.props.item);
+    // console.log('EditableChip submit', selected, this.props.item);
     const newSelected = selected;
     if (selected.type === 'userinput') {
       // console.log('SUMBIT:',selected);
@@ -112,10 +112,13 @@ EditableChip.propTypes = {
   label: PropTypes.string.isRequired,
   item: PropTypes.object,
   index: PropTypes.number.isRequired,
+  isFocused: PropTypes.bool.isRequired,
   isEditing: PropTypes.bool,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.term).isRequired,
   selected: ExpressionEditorPropTypes.option,
   filterOption: PropTypes.func,
+  inputRef: PropTypes.object,
+  chipRef: PropTypes.object,
 };
 
 EditableChip.defaultProps = {

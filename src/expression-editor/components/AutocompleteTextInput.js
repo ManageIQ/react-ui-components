@@ -11,26 +11,12 @@ export default class AutocompleteTextInput extends React.Component {
       toDelete: {},
       index: 0,
     };
-    // this.inputRef = React.createRef();
   }
 
   componentDidUpdate(prevProps) {
-    // console.log('cdu');
     if (prevProps.options.length !== this.props.options.length) {
       this.setState({ menuItemRefs: this.props.options.map(() => React.createRef()) });
     }
-    /* if(JSON.stringify(prevState.toDelete) !== JSON.stringify(this.state.toDelete)) {
-      this.setState(prevState => {
-        const indexes = Object.keys(prevState.toDelete).map(index => parseInt(index, 10));
-        const refs = prevState.menuItemRefs.map((item, i) => {
-          if(indexes.includes(i)) {
-            return undefined
-          }
-          return item
-        }).filter(item => !!item);
-        return {toDelete: {}, menuItemRefs: refs};
-      })
-    } */
   }
 
   onMenuClick = (selected) => {
@@ -38,11 +24,6 @@ export default class AutocompleteTextInput extends React.Component {
     this.props.onSubmit(selected);
   }
 
-  handleChange = ({ target: { value } }) => {
-    // console.log('handle change:', value);
-    // this.setState({ value: value });
-    this.props.onChange(value);
-  }
 
   handleKeyDown = (e) => {
     const { target: { value } } = e;
@@ -58,15 +39,15 @@ export default class AutocompleteTextInput extends React.Component {
       this.props.onSubmit(selected);
       this.setState({ index: 0, menuItemRefs: [] });
     } else if (e.keyCode === 38) {
-      const index = this.state.index <= 0 ?  this.state.index :  this.state.index - 1;
+      const index = this.state.index <= 0 ? this.state.index : this.state.index - 1;
       this.focusMenuItem(index);
-      this.setState(prevState => ({ index: index }));
+      this.setState(prevState => ({ index }));
     } else if (e.keyCode === 40) {
-      const index = this.state.index >= this.state.menuItemRefs.length - 1 ?  this.state.menuItemRefs.length - 1 :  this.state.index + 1;
+      const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
       this.focusMenuItem(index);
-      this.setState(prevState => ({ index: index }));
+      this.setState(prevState => ({ index }));
     } else if (e.keyCode === 37) {
-      if (value === "") {
+      if (value === '') {
         this.props.onKeyDown(e);
       }
     } else {
@@ -89,10 +70,17 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onMouseEnter = (index) => {
-    this.setState({index: index})
+    this.setState({ index });
   }
+
   onMouseLeave = (a) => {
     console.log('MOUSE LEAVE', a);
+  }
+
+  handleChange = ({ target: { value } }) => {
+    // console.log('handle change:', value);
+    // this.setState({ value: value });
+    this.props.onChange(value);
   }
 
 
@@ -101,18 +89,18 @@ export default class AutocompleteTextInput extends React.Component {
     return (
       <span>
         <div>
-        <input ref={this.props.inputRef} autoFocus value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth />
-        <Menu
-          options={this.props.options}
-          registerMenuItem={this.registerMenuItem}
-          unregisterMenuItem={this.unregisterMenuItem}
-          focusedIndex={this.state.index}
-          menuItemRefs={this.state.menuItemRefs}
-          onClick={this.onMenuClick}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-        />
-      </div>
+          <input ref={this.props.inputRef} autoFocus value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth />
+          <Menu
+            options={this.props.options}
+            registerMenuItem={this.registerMenuItem}
+            unregisterMenuItem={this.unregisterMenuItem}
+            focusedIndex={this.state.index}
+            menuItemRefs={this.state.menuItemRefs}
+            onClick={this.onMenuClick}
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          />
+        </div>
       </span>
 
     );
@@ -124,6 +112,7 @@ AutocompleteTextInput.propTypes = {
   submitKeyCode: PropTypes.number,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
   inputRef: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option).isRequired,
   next: PropTypes.arrayOf(ExpressionEditorPropTypes.term),

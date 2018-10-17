@@ -3,22 +3,6 @@ import PropTypes from 'prop-types';
 import { Label } from 'patternfly-react';
 
 export default class Chip extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      focused: false,
-    };
-    // this.chipRef = React.createRef();
-  }
-
-  componentDidMount() {
-    // this.props.registerChip(this.chipRef, this.props.index);
-  }
-
-  componentWillUnmount() {
-    // this.props.unregisterChip(this.props.index);
-  }
-
   focusedClass = () => (
     (this.props.isFocused && 'focusedChip') || ''
   )
@@ -34,7 +18,6 @@ export default class Chip extends React.Component {
         onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
         className={`${this.focusedClass()}`}
-
         // {...rest}
       >
         <Label
@@ -51,19 +34,19 @@ export default class Chip extends React.Component {
 }
 
 Chip.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  // onClick: PropTypes.func.isRequired,
   onDoubleClick: PropTypes.func.isRequired,
   onDelete: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   label: PropTypes.string.isRequired,
-  index: PropTypes.number,
   onKeyDown: PropTypes.func,
-  registerChip: PropTypes.func,
-  unregisterChip: PropTypes.func,
+  isFocused: PropTypes.bool.isRequired,
+  chipRef: PropTypes.object.isRequired,
 };
 
 Chip.defaultProps = {
   onFocus: () => {},
-  onBlur: () =>  {}
-}
+  onBlur: () => {},
+
+};

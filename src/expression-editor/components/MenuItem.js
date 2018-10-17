@@ -7,14 +7,6 @@ class MenuItem extends React.Component {
     this.props.onClick(this.props.option);
   }
 
-  // onKeyDown = (key) => {
-  //   this.props.onKeyDown(key);
-  // }
-
-  focusedClass = () => (
-    (this.props.focused && 'focusedMenuItem') || ''
-  )
-
   onMouseEnter = () => {
     this.props.onMouseEnter(this.props.index);
   }
@@ -22,6 +14,10 @@ class MenuItem extends React.Component {
   onMouseLeave = () => {
     this.props.onMouseLeave(this.props.index);
   }
+
+  focusedClass = () => (
+    (this.props.focused && 'focusedMenuItem') || ''
+  )
 
 
   render() {
@@ -47,12 +43,14 @@ class MenuItem extends React.Component {
 MenuItem.propTypes = {
   option: ExpressionEditorPropTypes.option,
   onClick: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
   index: PropTypes.number,
   // registerMenuItem: PropTypes.func,
   // unregisterMenuItem: PropTypes.func,
-  focused: PropTypes.bool,
+  focused: PropTypes.bool.isRequired,
   // onKeyDown: PropTypes.func,
-  menuItemRef: PropTypes.object,
+  menuItemRef: PropTypes.object.isRequired,
 };
 
 export default MenuItem;
