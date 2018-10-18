@@ -1,15 +1,9 @@
 // import ExpressionEditor from '../components/ExpressionEditor';
-
+import { logicalOperatorsMock, userInputMock } from "../constants"
 const endpoints = {
 };
 
-const logicalOperatorsMock = [
-  { id: 1000, label: '', type: 'operator', next: [], parent: null },
-  { id: 1001, label: '', type: 'operator', next: [], parent: null }
-];
-const userInputMock = [{ id: 666, label: '', type: 'userinput', next: logicalOperatorsMock, parent: null }];
-
-const defaultOptions = {id: 0, label: 'root', type: 'root', next:
+let defaultOptions = {id: 0, label: 'root', type: 'root', next:
   [{ id: 1, label: 'fields', type: 'category', next: [
       { id: 11, label: 'Hostname', type: 'category',
         next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
@@ -48,14 +42,15 @@ const mapParent = (parent, nodes) => {
   nodes.map(node => mapParent(node, node.next));
   return parent;
 }
+defaultOptions = mapParent(defaultOptions, defaultOptions.next);
 
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
     // console.log('data provider', props);
     // console.log('DATA PROVIDER', props.next, defaultOptions);
-    let options = props.next || defaultOptions;
-    // console.log(options);
-    options = mapParent(options, options.next)
+    let options = props.isLastElement ? logicalOperatorsMock : defaultOptions;
+    console.log("NEXT", options);
+    // options = mapParent(options, options.next);
     // console.log('options', options);
     let newProps = {...props};
     newProps.next = options;

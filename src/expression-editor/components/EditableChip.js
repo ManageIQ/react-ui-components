@@ -75,6 +75,7 @@ class EditableChip extends React.Component {
           onKeyDown={this.onKeyDown}
           options={this.state.filteredOptions}
           value={this.state.filterString}
+          isLastElement={!!this.props.isLastElement}
           // registerInput={this.props.registerInput}
           // unregisterInput={this.props.unregisterInput}
           inputRef={this.props.inputRef}

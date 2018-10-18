@@ -18,22 +18,22 @@ class Expression extends React.Component {
   }
 
   onSubmit = (selected, previous) => {
-    console.log('expression on submit', selected, previous, this.props);
+    // console.log('expression on submit', selected, previous, this.props);
     this.props.onSubmit(selected, previous, this.props.index);
   }
 
   onDelete = (selected) => {
-    console.log('ON DELETE', selected);
+    // console.log('ON DELETE', selected);
     this.props.onDelete(selected, this.props.index);
   }
 
   onFocus = (selected) => {
-    console.log('ON FOCUS', selected);
+    // console.log('ON FOCUS', selected);
     this.props.onFocus(selected, this.props.index);
   }
 
   onBlur = (selected) => {
-    console.log('ON BLUR', selected);
+    // console.log('ON BLUR', selected);
     this.props.onBlur(selected, this.props.index);
   }
 
@@ -88,11 +88,12 @@ class Expression extends React.Component {
           onKeyDown={this.onKeyDown}
          // registerInput={this.props.registerInput}
          // unregisterInput={this.props.unregisterInput}
-          inputRef={this.props.inputRef}
+          inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
           options={this.props.next.parent.next}
           selected={this.props.next}
           item={this.props.next}
           index={this.props.expression.length}
+          isLastElement={this.props.isLastExpression}
         />
       </li>);
     // const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
@@ -107,7 +108,7 @@ class Expression extends React.Component {
         <ul className="list-inline">
           {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
-          {(endOfExpresion || null) || (this.props.isFocused && newChip)}
+          {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
         </ul>
       </React.Fragment>
     );

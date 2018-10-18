@@ -1,17 +1,18 @@
 import { connect } from 'react-redux';
-import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur } from '../actions';
+import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
 const mapStateToProps = (state) => {
-  // console.log('state: ', state.expressions);
+  console.log('state: ', state);
   return {
   // actions which have been done since loeaded
   expressions: state.expressions.expressions,
   // data for next dropdown
   // next: expressionEditor.next,
   // selected: expressionEditor.selected,
-  next: state.expressions.options
+  next: state.next,
+  isLastElement: state.isLastElement
 }};
 
 const mapDispatchToProps = dispatch => ({
@@ -34,6 +35,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onSubmit: (selected, previous, expressionIndex) => {
+    dispatch(isLastElement(selected));
     dispatch(onBlur(selected, expressionIndex));
     dispatch(onSubmit(selected, previous, expressionIndex));
 

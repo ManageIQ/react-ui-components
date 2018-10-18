@@ -31,14 +31,20 @@ export const onBlur = (selected, expressionIndex) => ({
   expressionIndex: expressionIndex,
 });
 
+export const calculateNext = selected => ({
+  type: actions.CALCULATE_NEXT,
+  selected: selected,
+});
+
+export const isLastElement = selected => ({
+  type: actions.IS_LAST_ELEMENT,
+  selected: selected,
+});
+
+
 
 
 export const onChange = selected => ({
   type: actions.ON_CHANGE,
-  selected: selected.selected,
-});
-
-export const calculateNext = selected => ({
-  type: actions.CALCULATE_NEXT,
   selected: selected.selected,
 });

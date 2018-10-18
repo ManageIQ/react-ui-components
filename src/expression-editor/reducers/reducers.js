@@ -1,5 +1,5 @@
 import * as actionsConstants from '../actions/actions';
-import { initialState, userInputMock } from './initialState'
+// import { initialState, userInputMock } from './initialState'
 
 
 export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expressionIndex}) => {
@@ -30,7 +30,17 @@ export const expressions = (state = {expressions: [[]]}, {type, selected, previo
   }
 };
 
-export const options = (state = null ) => state;
+export const next = (state = null) => (state)
+
+export const isLastElement = (state = false, {selected, type}) => {
+  console.log('XXXXXX', selected);
+  switch (type) {
+    case actionsConstants.IS_LAST_ELEMENT:
+    return selected.next.length === 0 && selected.type !== "operator";
+    default:
+    return state;
+  }
+}
 
 
 
@@ -118,7 +128,7 @@ const calculateBlur = (state, selected, expressionIndex) => {
   // const expressionIndex = state.indexOf(expression);
   const expression = [...state[expressionIndex]];
   const selectedTerm = expression.find((exp) => (exp.term.id === selected.id));
-  console.log(state, expression, selectedTerm);
+  // console.log(state, expression, selectedTerm);
   if (selectedTerm === undefined) {
     return [...state];
   } else {

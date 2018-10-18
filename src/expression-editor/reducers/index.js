@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { onChange as selected, expressions, steps, next, options } from './reducers';
+import { onChange as selected, expressions, steps, next, options, isLastElement } from './reducers';
 /*
 old code
 const combinedReducers = combineReducers({
@@ -17,7 +17,8 @@ function ExpressionEditorReducers(state = {}, action) {
 */
 const combinedReducers = combineReducers({
   expressions,
-  options
+  next,
+  isLastElement
 });
 
 function ExpressionEditorReducers(state = {}, action) {
@@ -28,5 +29,6 @@ function ExpressionEditorReducers(state = {}, action) {
 
 export default combineReducers({
   expressions,
-  options
+  next,
+  isLastElement
 });

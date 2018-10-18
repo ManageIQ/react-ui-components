@@ -2,19 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Expression from './Expression';
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
+import { logicalOperatorsMock, userInputMock } from "../constants"
 
-const logicalOperatorsMock = [
-  {
-    id: 1000, label: 'AND', type: 'operator', next: [], parent: null,
-  },
-  {
-    id: 1001, label: 'OR', type: 'operator', next: [], parent: null,
-  },
-];
-const userInputMock = [{
-  id: 666, label: '', type: 'userinput', next: logicalOperatorsMock, parent: null,
-}];
-logicalOperatorsMock.map((a) => { a.parent = userInputMock[0]; });
+
+// logicalOperatorsMock.map((a) => { a.parent = userInputMock[0]; });
 
 class ExpressionEditor2 extends React.Component {
   constructor(props) {
@@ -25,7 +16,6 @@ class ExpressionEditor2 extends React.Component {
       inputRef: React.createRef(),
       focusedExpressionIndex: props.expressions.length - 1,
     };
-    console.log(React.createRef());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -60,6 +50,7 @@ class ExpressionEditor2 extends React.Component {
 
   onDelete = (selected, expressionIndex) => {
     this.props.onDelete(selected, expressionIndex);
+    this.focusInput();
   }
 
   onKeyDown = (key, chipIndex, selected, expressionIndex) => {
@@ -68,7 +59,7 @@ class ExpressionEditor2 extends React.Component {
     // console.log('global',index);
     // console.log(this.state.chipRefs);
     const chipRefs = this.state.chipRefs.flat();
-    console.log('on key down', key, index, selected);
+    // console.log('on key down', key, index, selected);
     if (key.keyCode === 37) {
       index = index <= 0 ? index : index - 1;
       // chipRefs[index].current.focus();
@@ -124,6 +115,7 @@ class ExpressionEditor2 extends React.Component {
       chipRefs={this.state.chipRefs[index]}
       isFocused={index === this.state.focusedExpressionIndex}
       index={index}
+      isLastExpression={index===this.props.expressions.length-1}
       // registerInput={this.registerInput}
       // unregisterInput={this.unregisterInput}
       inputRef={this.state.inputRef}
@@ -136,7 +128,7 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render() {
-    console.log('ExpressionEditor2:', this.props);
+    // console.log('ExpressionEditor2:', this.props);
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
     return (

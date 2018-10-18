@@ -24,6 +24,15 @@ export default class AutocompleteTextInput extends React.Component {
     this.props.onSubmit(selected);
   }
 
+  onBlur = () => {
+    if (this.props.isLastElement === false) {
+      const selected = this.props.options.find(this.props.matchingFunction(this.props.value)) || {
+        id: this.props.value, label: this.props.value, type: 'userinput', next: this.props.next,
+      };
+      console.log('XXXXXXXXXXXXXX', selected);
+      this.props.onSubmit(selected);
+    }
+  }
 
   handleKeyDown = (e) => {
     const { target: { value } } = e;
@@ -89,9 +98,15 @@ export default class AutocompleteTextInput extends React.Component {
     return (
       <span>
         <div>
-          <input ref={this.props.inputRef} autoFocus value={this.props.value} onKeyDown={this.handleKeyDown} onChange={this.handleChange} fullWidth />
+          <input ref={this.props.inputRef}
+            autoFocus
+            value={this.props.value}
+            onKeyDown={this.handleKeyDown}
+            onBlur={this.onBlur}
+            onChange={this.handleChange}
+            fullWidth />
           <Menu
-            options={this.props.options}
+            options={this.props.options.filter(o => o.type !== "userinput")}
             registerMenuItem={this.registerMenuItem}
             unregisterMenuItem={this.unregisterMenuItem}
             focusedIndex={this.state.index}
