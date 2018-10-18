@@ -43,6 +43,8 @@ const mapParent = (parent, nodes) => {
   return parent;
 }
 defaultOptions = mapParent(defaultOptions, defaultOptions.next);
+defaultOptions.next.push({ id: 1002, label: '(', type: 'parenteze', next: defaultOptions.next, parent: defaultOptions });
+
 
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
