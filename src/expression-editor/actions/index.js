@@ -7,6 +7,11 @@ export const onSubmit = (selected, previous, expressionIndex) => ({
   expressionIndex: expressionIndex,
 });
 
+export const onInsert = (previousExpressionIndex) => ({
+  type: actions.ON_INSERT,
+  previousExpressionIndex: previousExpressionIndex,
+});
+
 export const onDelete = (selected, expressionIndex) => ({
   type: actions.ON_DELETE,
   selected: selected,

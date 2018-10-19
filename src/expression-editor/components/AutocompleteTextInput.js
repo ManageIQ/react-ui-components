@@ -25,6 +25,9 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onBlur = () => {
+    if (this.props.value === ""){
+      return;
+    }
     if (this.props.isLastElement === false) {
       const selected = this.props.options.find(this.props.matchingFunction(this.props.value)) || {
         id: this.props.value, label: this.props.value, type: 'userinput', next: this.props.next,
@@ -45,6 +48,10 @@ export default class AutocompleteTextInput extends React.Component {
       } else {
         selected = this.props.options[this.state.index];
       }
+      if (selected.label === "") {
+        return;
+      }
+
       this.props.onSubmit(selected);
       this.setState({ index: 0, menuItemRefs: [] });
     } else if (e.keyCode === 38) {

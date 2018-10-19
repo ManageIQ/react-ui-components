@@ -42,8 +42,9 @@ class Expression extends React.Component {
     this.props.onKeyDown(key, index, selected, this.props.index);
   }
 
-  generateChip = ({ term, flags }, index) => (
-    <li className="chip">
+  generateChip = ({ term, flags }, index) => {
+    console.log('AAAAAAAAA', term, flags, index, this.props.chipRefs);
+    return (<li className="chip">
       <EditableChip
         key={term.id}
         label={term.label}
@@ -65,8 +66,8 @@ class Expression extends React.Component {
         index={index}
         onKeyDown={this.onKeyDown}
       />
-    </li>
-  )
+    </li>)
+  }
 
 
   render() {
@@ -74,7 +75,7 @@ class Expression extends React.Component {
     // const { this: { props: { expression } } } = this.props.expression;
     // const {this: {props: {expression: expression}}} = this;
     const expression = this.props.expression;
-    // console.log('expression props', this.props);
+    console.log('expression props', expression);
     const newChip = (
       <li>
         <EditableChip
@@ -108,7 +109,8 @@ class Expression extends React.Component {
         <ul className="list-inline">
           {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
-          {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
+          {/* {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)} */}
+          {newChip}
         </ul>
       </React.Fragment>
     );

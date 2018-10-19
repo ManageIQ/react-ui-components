@@ -42,6 +42,12 @@ const mapParent = (parent, nodes) => {
   nodes.map(node => mapParent(node, node.next));
   return parent;
 }
+const isLastExpressionOperator = (expressions) => {
+  const flatExpressions = expressions.flat();
+  const lastTerm = flatExpressions[flatExpressions.length-1] || {term: {type: ["default"]}};
+  return lastTerm.term.type === "operator";
+}
+
 defaultOptions = mapParent(defaultOptions, defaultOptions.next);
 defaultOptions.next.push({ id: 1002, label: '(', type: 'parenteze', next: defaultOptions.next, parent: defaultOptions });
 
@@ -50,8 +56,10 @@ export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
     // console.log('data provider', props);
     // console.log('DATA PROVIDER', props.next, defaultOptions);
-    let options = props.isLastElement ? logicalOperatorsMock : defaultOptions;
-    console.log("NEXT", options);
+    const isLastElementOperator = isLastExpressionOperator(props.expressions);
+
+    let options = props.isLastElement && !isLastElementOperator ? logicalOperatorsMock : defaultOptions;
+    console.log("NEXT", options, isLastElementOperator);
     // options = mapParent(options, options.next);
     // console.log('options', options);
     let newProps = {...props};

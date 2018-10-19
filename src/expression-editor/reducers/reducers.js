@@ -2,12 +2,16 @@ import * as actionsConstants from '../actions/actions';
 // import { initialState, userInputMock } from './initialState'
 
 
-export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expressionIndex}) => {
+export const expressions = (state = {expressions: [[]]}, {type, selected, previous, expressionIndex, previousExpressionIndex}) => {
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      // console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
+      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
       newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
+      return { ...state, expressions: [...newExpressions]};
+    case actionsConstants.ON_INSERT:
+      console.log('REDUCER ON INSERT:', previousExpressionIndex);
+      newExpressions = calculateInsert([...state.expressions], previousExpressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
       console.log('REDUCER ON DELETE:', selected, expressionIndex);
@@ -33,7 +37,6 @@ export const expressions = (state = {expressions: [[]]}, {type, selected, previo
 export const next = (state = null) => (state)
 
 export const isLastElement = (state = false, {selected, type}) => {
-  console.log('XXXXXX', selected);
   switch (type) {
     case actionsConstants.IS_LAST_ELEMENT:
     return selected.next.length === 0 && selected.type !== "operator";
@@ -48,6 +51,11 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   let newState = [...state];
   // const expressionIndex = state.indexOf(expression);
   let expression = [...state[expressionIndex]];
+  // avoid double submit, should be handled elsewhere
+  // if (selected.id === (expression[expression.length-1] && expression[expression.length-1].term && expression[expression.length-1].term.id)) {
+    // console.log('AAAAAAAA', expression);
+    // return state;
+  // }
 
   // let filteredExpression = [...expression.filter((exp) => (exp.term.id !== userInputMock[0].id))];
   // find flags
@@ -60,7 +68,7 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   if (selected.id === previous.id) {
     // expression = expression.slice(0, index);
     console.log('SUBMIT', expression, selected, selectedTerm);
-    expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedFlags, isEditing: false}})
+    expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedFlags, isEditing: false, isFocused: false}})
   } else {
     const indexOfPrevious = expression.map(e => e.term.id).indexOf(previous.id);
     if (indexOfPrevious >= 0) {
@@ -72,11 +80,20 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   // expression.push({term: selected, flags: flags});
   //this.setState({expression: [...expression, selected, {...userInputMock[0], next: selected.next, parent: selected}]});
   state.splice(expressionIndex, 1, expression);
-
-  if (selected.next.length === 0 && lastExpressionCompleted(state)) {
-    state = [...state, []]
+  // console.log(state);
+  if (selected.next.length === 0) {
+    state.splice(expressionIndex + 1, 0, []);
+    // console.log('AAAA', state);
+    // state = [...state, []]
   }
+
   return state;
+}
+
+const calculateInsert = (state, previousExpressionIndex) => {
+  state.splice(previousExpressionIndex, 0, []);
+  return [...state];
+
 }
 
 const calculateDelete = (state, selected, expressionIndex) => {
@@ -111,7 +128,9 @@ const calculateClick = (state, selected, expressionIndex) => {
 const calculateFocus = (state, selected, expressionIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
   // const expressionIndex = state.indexOf(expression);
+  // expression.map(e => e.flags = {...e.flags, isFocused: false})
   const expression = [...state[expressionIndex]];
+
   const selectedTerm = expression.find((exp) => (exp.term.id === selected.id));
   const termIndex = expression.findIndex((exp) => (exp.term.id === selected.id));
   expression.splice(termIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags, isFocused: true}});

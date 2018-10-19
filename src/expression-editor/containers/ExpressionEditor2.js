@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement } from '../actions';
+import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement, onInsert } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
@@ -34,9 +34,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(onBlur(selected, expressionIndex));
   },
 
+  onInsert: (previousExpressionIndex) => {
+    dispatch(onInsert(previousExpressionIndex));
+  },
+
   onSubmit: (selected, previous, expressionIndex) => {
     dispatch(isLastElement(selected));
-    dispatch(onBlur(selected, expressionIndex));
+    // dispatch(onBlur(selected, expressionIndex));
     dispatch(onSubmit(selected, previous, expressionIndex));
 
   },
