@@ -107,7 +107,7 @@ class Expression extends React.Component {
           isLastElement={this.props.isLastExpression}
         />
       </li>);
-    // const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
+    const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
     // const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
     // console.log('IS FOCUSED', this.props.isFocused);
@@ -119,7 +119,7 @@ class Expression extends React.Component {
         <ul className="list-inline expression">
           {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
-          {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
+          {(endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
           {/* {newChip} */}
           <button onClick={this.onDeleteExpressionClick}> Delete Expression </button>
           <button onClick={this.onInsertExpressionClick}> Add Expression </button>
