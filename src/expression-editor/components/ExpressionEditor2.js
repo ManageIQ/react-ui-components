@@ -18,9 +18,22 @@ class ExpressionEditor2 extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const a = props.expressions.map(e => e.length);
+    const b = state.chipRefs.map(e => e.length);
+    const updateChips = !b.map((e, i) => e === a[i]).reduce((a, b) => (a && b), true);
+    if (updateChips) {
+      return { chipRefs: props.expressions.map(ex => ex.map(() => React.createRef())) };
+    }
+    return null;
+  }
+
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.expressions.flat().length !== this.props.expressions.flat().length) {
-      // console.log('CDU', prevProps.expressions, this.props.expressions);
+    const a = prevProps.expressions.map(e => e.length);
+    const b = this.props.expressions.map(e => e.length);
+    const updateChips = !b.map((e, i) => e === a[i]).reduce((a, b) => (a && b), true);
+    // console.log('CDU', a, b, updateChips, prevProps.expressions, this.props.expressions);
+    if (updateChips) {
       this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef())) });
     }
     const focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
@@ -115,7 +128,8 @@ class ExpressionEditor2 extends React.Component {
       onDelete={this.onDelete}
       onFocus={this.props.onFocus}
       onBlur={this.props.onBlur}
-      onInsert={this.props.onInsert}
+      onInsertExpression={this.props.onInsert}
+      onDeleteExpression={this.props.onDeleteExpression}
       expression={expression}
       chipRefs={this.state.chipRefs[index]}
       isFocused={index === this.state.focusedExpressionIndex}
@@ -127,13 +141,13 @@ class ExpressionEditor2 extends React.Component {
       next={{
 ...userInputMock[0],
         parent: ((expression[expression.length - 1] && expression[expression.length - 1].term) ||
-         this.props.next),
+         this.props.next[index]),
 }}
     />
   )
 
   render() {
-    // console.log('ExpressionEditor2:', this.props);
+    console.log('ExpressionEditor2:', this.props.expressions, this.state.chipRefs);
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
     return (

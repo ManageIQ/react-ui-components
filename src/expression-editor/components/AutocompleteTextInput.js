@@ -26,6 +26,8 @@ export default class AutocompleteTextInput extends React.Component {
 
   onBlur = () => {
     if (this.props.value === ""){
+      // console.log('DELETEEEEEEEEE', this.props);
+      // this.props.deleteExpression();
       return;
     }
     if (this.props.isLastElement === false) {
@@ -135,6 +137,7 @@ AutocompleteTextInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onKeyDown: PropTypes.func.isRequired,
+  deleteExpression: PropTypes.func,
   inputRef: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option).isRequired,
   next: PropTypes.arrayOf(ExpressionEditorPropTypes.term),

@@ -13,6 +13,10 @@ export const expressions = (state = {expressions: [[]]}, {type, selected, previo
       console.log('REDUCER ON INSERT:', previousExpressionIndex);
       newExpressions = calculateInsert([...state.expressions], previousExpressionIndex);
       return { ...state, expressions: [...newExpressions]};
+    case actionsConstants.ON_DELETE_EXPRESSION:
+      console.log('REDUCER ON DELETE EXPRESSION:', expressionIndex);
+      newExpressions = calculateExpressionDelete([...state.expressions], expressionIndex);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
       console.log('REDUCER ON DELETE:', selected, expressionIndex);
       newExpressions = calculateDelete([...state.expressions], selected, expressionIndex);
@@ -82,16 +86,31 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   state.splice(expressionIndex, 1, expression);
   // console.log(state);
   if (selected.next.length === 0) {
-    state.splice(expressionIndex + 1, 0, []);
-    // console.log('AAAA', state);
-    // state = [...state, []]
+    const a = state[expressionIndex+1];
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAA', a && a[0] && a[0].term, expression[0].term.type);
+    if (a && a[0] && a[0].term.type === expression[0].term.type) {
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAA', a && a[0] && a[0].term);
+      state.splice(expressionIndex + 1, 0, []);
+    } else if (lastExpressionCompleted(state)) {
+    state = [...state, []]
+    }
   }
 
   return state;
 }
 
 const calculateInsert = (state, previousExpressionIndex) => {
-  state.splice(previousExpressionIndex, 0, []);
+  state.splice(previousExpressionIndex + 1, 0, []);
+  return [...state];
+
+}
+
+const calculateExpressionDelete = (state, expressionIndex) => {
+  console.log('calculateExpressionDelete', expressionIndex);
+  state.splice(expressionIndex, 1);
+  if (state.length === 0) {
+    state = [[]];
+  }
   return [...state];
 
 }
@@ -106,6 +125,10 @@ const calculateDelete = (state, selected, expressionIndex) => {
     state.splice(expressionIndex, 1, filteredExpression);
   }
   cleanLastExpression(state, selected);
+  state = state.filter(e => e.length !== 0)
+  if (state.length === 0) {
+    state = [[]];
+  }
   return [...state];
 }
 

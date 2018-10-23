@@ -76,6 +76,7 @@ class EditableChip extends React.Component {
           options={this.state.filteredOptions}
           value={this.state.filterString}
           isLastElement={!!this.props.isLastElement}
+          deleteExpression={this.props.deleteExpression}
           // registerInput={this.props.registerInput}
           // unregisterInput={this.props.unregisterInput}
           inputRef={this.props.inputRef}
@@ -108,6 +109,7 @@ EditableChip.propTypes = {
   onDelete: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  deleteExpression: PropTypes.func,
   registerChip: PropTypes.func,
   unregisterChip: PropTypes.func,
   label: PropTypes.string.isRequired,

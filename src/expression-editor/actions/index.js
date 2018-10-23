@@ -12,6 +12,12 @@ export const onInsert = (previousExpressionIndex) => ({
   previousExpressionIndex: previousExpressionIndex,
 });
 
+export const onDeleteExpression = (expressionIndex) => ({
+  type: actions.ON_DELETE_EXPRESSION,
+  expressionIndex: expressionIndex,
+});
+
+
 export const onDelete = (selected, expressionIndex) => ({
   type: actions.ON_DELETE,
   selected: selected,

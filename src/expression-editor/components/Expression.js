@@ -42,8 +42,17 @@ class Expression extends React.Component {
     this.props.onKeyDown(key, index, selected, this.props.index);
   }
 
+  onInsertExpressionClick = () => {
+    this.props.onInsertExpression(this.props.index);
+  }
+
+  onDeleteExpressionClick = () => {
+    this.props.onDeleteExpression(this.props.index);
+  }
+
+
   generateChip = ({ term, flags }, index) => {
-    console.log('AAAAAAAAA', term, flags, index, this.props.chipRefs);
+    // console.log('AAAAAAAAA', term, flags, index, this.props.chipRefs);
     return (<li className="chip">
       <EditableChip
         key={term.id}
@@ -75,7 +84,7 @@ class Expression extends React.Component {
     // const { this: { props: { expression } } } = this.props.expression;
     // const {this: {props: {expression: expression}}} = this;
     const expression = this.props.expression;
-    console.log('expression props', expression);
+    // console.log('expression props', expression);
     const newChip = (
       <li>
         <EditableChip
@@ -87,6 +96,7 @@ class Expression extends React.Component {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
+          deleteExpression={this.onDeleteExpressionClick}
          // registerInput={this.props.registerInput}
          // unregisterInput={this.props.unregisterInput}
           inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
@@ -106,11 +116,13 @@ class Expression extends React.Component {
 
     return (
       <React.Fragment>
-        <ul className="list-inline">
+        <ul className="list-inline expression">
           {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
-          {/* {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)} */}
-          {newChip}
+          {(endOfExpresion || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
+          {/* {newChip} */}
+          <button onClick={this.onDeleteExpressionClick}> Delete Expression </button>
+          <button onClick={this.onInsertExpressionClick}> Add Expression </button>
         </ul>
       </React.Fragment>
     );
@@ -127,6 +139,8 @@ Expression.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  onInsertExpression: PropTypes.func.isRequired,
+  onDeleteExpression: PropTypes.func.isRequired,
   expression: ExpressionEditorPropTypes.expression,
   next: ExpressionEditorPropTypes.term,
   index: PropTypes.number.isRequired,
