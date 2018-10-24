@@ -21,6 +21,7 @@ class Menu extends React.Component {
     return (
       <ul>
         {this.props.options.map(((option, index) => (this.renderOption(option, index))))}
+
       </ul>
     );
   }

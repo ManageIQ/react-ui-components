@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
+
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import Menu from './Menu';
+
 
 export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
@@ -9,7 +12,8 @@ export default class AutocompleteTextInput extends React.Component {
     this.state = {
       menuItemRefs: props.options.map(() => React.createRef()),
       toDelete: {},
-      index: 0,
+      index: -1,
+      isFocused: true
     };
   }
 
@@ -19,12 +23,14 @@ export default class AutocompleteTextInput extends React.Component {
     }
   }
 
-  onMenuClick = (selected) => {
-    // console.log('onMenuClick', selected);
+  onMenuClick = (index) => {
+    const selected = this.props.options[index];
+    this.setState({ index: -1 });
     this.props.onSubmit(selected);
   }
 
   onBlur = () => {
+
     if (this.props.value === "") {
       // console.log('DELETEEEEEEEEE', this.props);
       // this.props.deleteExpression();
@@ -37,11 +43,16 @@ export default class AutocompleteTextInput extends React.Component {
     this.props.onSubmit(selected);
   }
 
+  onFocus = () => {
+    this.setState({isFocused: true});
+  }
+
   handleKeyDown = (e) => {
+    // console.log(value);
     const { target: { value } } = e;
     if (e.keyCode === this.props.submitKeyCode) {
-      let selected = {};
-      if (this.state.index === 0) {
+      let selected = {label: ""};
+      if (this.state.index === -1) {
         selected = this.props.options.find(this.props.matchingFunction(value)) || {
           id: value, label: value, type: 'userinput', next: this.props.next,
         };
@@ -53,26 +64,30 @@ export default class AutocompleteTextInput extends React.Component {
       }
 
       this.props.onSubmit(selected);
-      this.setState({ index: 0 });
+      this.setState({ index: -1 });
     } else if (e.keyCode === 38) {
       console.log(this.state.index);
       const index = this.state.index <= 0 ? this.state.index : this.state.index - 1;
-      this.focusMenuItem(index);
+      // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
     } else if (e.keyCode === 40) {
       console.log('AAAA',this.state.index, this.state.menuItemRefs.length);
       const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
-      this.focusMenuItem(index);
+      // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
     } else if (e.keyCode === 37) {
       if (value === '') {
         this.props.onKeyDown(e);
       }
     } else {
-      this.setState({ index: 0 });
+      this.setState({ index: -1 });
     }
   }
 
+  hideMenu = () => {
+    this.setState({isFocused: false});
+  }
+/*
   registerMenuItem = (ref) => {
     // console.log('register:', ref);
     this.setState(prevState => ({ menuItemRefs: [...prevState.menuItemRefs, ref] }));
@@ -84,7 +99,7 @@ export default class AutocompleteTextInput extends React.Component {
 
   focusMenuItem = (index) => {
     // console.log('focus', index);
-    this.state.menuItemRefs[index].current.focus();
+    // this.state.menuItemRefs[index].current.focus();
   }
 
   onMouseEnter = (index) => {
@@ -93,7 +108,7 @@ export default class AutocompleteTextInput extends React.Component {
 
   onMouseLeave = (a) => {
     console.log('MOUSE LEAVE', a);
-  }
+  }*/
 
   handleChange = ({ target: { value } }) => {
     // console.log('handle change:', value);
@@ -101,13 +116,18 @@ export default class AutocompleteTextInput extends React.Component {
     this.props.onChange(value);
   }
 
+  generateMenuClick = (i) => () => {
+    this.onMenuClick(i);
+  }
+
+
 
   render() {
     // console.log('AutocompleteTextInput', this.props, this.state);
     return (
       <span>
         <div>
-          <input ref={this.props.inputRef}
+          {/* <input ref={this.props.inputRef}
             autoFocus
             value={this.props.value}
             onKeyDown={this.handleKeyDown}
@@ -123,7 +143,34 @@ export default class AutocompleteTextInput extends React.Component {
             onClick={this.onMenuClick}
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
-          />
+          /> */}
+
+          <Dropdown
+            // onToggle={this.onToggle}
+            onSelect={this.hideMenu}
+            toggle={
+              <input
+                autoFocus
+                ref={this.props.inputRef}
+                onKeyDown={this.handleKeyDown}
+                value={this.props.value}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                fullWidth
+                onChange={this.handleChange}
+              />
+            }
+            isOpen={this.state.isFocused}
+          >
+          {this.props.options.filter(o => o.type !== "userinput").map((o, i) => (
+            <DropdownItem
+              component="button"
+              isHovered={this.state.index === i}
+              onClick={(this.generateMenuClick(i))}
+            >
+              {o.label}
+            </DropdownItem>))}
+          </Dropdown>
         </div>
       </span>
 
