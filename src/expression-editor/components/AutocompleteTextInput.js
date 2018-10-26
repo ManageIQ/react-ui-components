@@ -56,6 +56,10 @@ export default class AutocompleteTextInput extends React.Component {
         selected = this.props.options.find(this.props.matchingFunction(value)) || {
           id: value, label: value, type: 'userinput', next: this.props.next,
         };
+        console.log(selected);
+        if (selected.type === "parenteze") {
+          return ;
+        }
       } else {
         selected = this.props.options[this.state.index];
       }

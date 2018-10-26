@@ -18,25 +18,29 @@ export const onDeleteExpression = (expressionIndex) => ({
 });
 
 
-export const onDelete = (selected, expressionIndex) => ({
+export const onDelete = (selected, expressionIndex, chipIndex) => ({
+  chipIndex: chipIndex,
   type: actions.ON_DELETE,
   selected: selected,
   expressionIndex: expressionIndex,
 });
 
-export const onClick = (selected, expressionIndex) => ({
+export const onClick = (selected, expressionIndex, chipIndex) => ({
+  chipIndex: chipIndex,
   type: actions.ON_CLICK,
   selected: selected,
   expressionIndex: expressionIndex,
 });
 
-export const onFocus = (selected, expressionIndex) => ({
+export const onFocus = (selected, expressionIndex, chipIndex) => ({
+  chipIndex: chipIndex,
   type: actions.ON_FOCUS,
   selected: selected,
   expressionIndex: expressionIndex,
 });
 
-export const onBlur = (selected, expressionIndex) => ({
+export const onBlur = (selected, expressionIndex, chipIndex) => ({
+  chipIndex: chipIndex,
   type: actions.ON_BLUR,
   selected: selected,
   expressionIndex: expressionIndex,
@@ -52,7 +56,9 @@ export const isLastElement = selected => ({
   selected: selected,
 });
 
-
+export const countParentheses = () => ({
+  type: actions.COUNT_PARENTHESES,
+})
 
 
 export const onChange = selected => ({

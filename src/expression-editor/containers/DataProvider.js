@@ -49,7 +49,7 @@ const isLastExpressionOperator = (expressions) => {
 }
 
 defaultOptions = mapParent(defaultOptions, defaultOptions.next);
-defaultOptions.next.push({ id: 1002, label: '(', type: 'parenteze', next: defaultOptions.next, parent: defaultOptions });
+defaultOptions.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: defaultOptions.next, parent: defaultOptions });
 
 
 export const dataProvider = (endpoints) => (Component) => {

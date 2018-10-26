@@ -12,9 +12,9 @@ class Expression extends React.Component {
     // console.log(selected);
   }
 
-  onDoubleClick = (selected) => {
+  onDoubleClick = (selected, chipIndex) => {
     // console.log('EditableChip onDoubleClickclick');
-    this.props.onDoubleClick(selected, this.props.index);
+    this.props.onDoubleClick(selected, this.props.index, chipIndex);
   }
 
   onSubmit = (selected, previous) => {
@@ -22,19 +22,19 @@ class Expression extends React.Component {
     this.props.onSubmit(selected, previous, this.props.index);
   }
 
-  onDelete = (selected) => {
+  onDelete = (selected, chipIndex) => {
     // console.log('ON DELETE', selected);
-    this.props.onDelete(selected, this.props.index);
+    this.props.onDelete(selected, this.props.index, chipIndex);
   }
 
-  onFocus = (selected) => {
+  onFocus = (selected, chipIndex) => {
     // console.log('ON FOCUS', selected);
-    this.props.onFocus(selected, this.props.index);
+    this.props.onFocus(selected, this.props.index, chipIndex);
   }
 
-  onBlur = (selected) => {
+  onBlur = (selected, chipIndex) => {
     // console.log('ON BLUR', selected);
-    this.props.onBlur(selected, this.props.index);
+    this.props.onBlur(selected, this.props.index, chipIndex);
   }
 
   onKeyDown = (key, index, selected) => {
@@ -84,6 +84,7 @@ class Expression extends React.Component {
     // const { this: { props: { expression } } } = this.props.expression;
     // const {this: {props: {expression: expression}}} = this;
     const expression = this.props.expression;
+    const options = this.props.parenthesesCount.left > this.props.parenthesesCount.right ? this.props.next.parent.next : this.props.next.parent.next.filter(t => t.type !== "rightParenteze");
     // console.log('expression props', expression);
     const newChip = (
       <li>
@@ -100,7 +101,7 @@ class Expression extends React.Component {
          // registerInput={this.props.registerInput}
          // unregisterInput={this.props.unregisterInput}
           inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
-          options={this.props.next.parent.next}
+          options={options}
           selected={this.props.next}
           item={this.props.next}
           index={this.props.expression.length}

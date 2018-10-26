@@ -63,8 +63,8 @@ class ExpressionEditor2 extends React.Component {
     // this.focusChip(this.localToGlobalIndex(termIndex, expressionIndex));
   }
 
-  onDelete = (selected, expressionIndex) => {
-    this.props.onDelete(selected, expressionIndex);
+  onDelete = (selected, expressionIndex, chipIndex) => {
+    this.props.onDelete(selected, expressionIndex, chipIndex);
     this.focusInput();
   }
 
@@ -90,9 +90,9 @@ class ExpressionEditor2 extends React.Component {
       }
     } else if (key.keyCode === 13) {
       // console.log('on enter key down', selected, expression);
-      this.props.onClick(selected, expressionIndex);
+      this.props.onClick(selected, expressionIndex, chipIndex);
     } else if (key.keyCode === 8 || key.keyCode === 46) {
-      this.onDelete(selected, expressionIndex);
+      this.onDelete(selected, expressionIndex, chipIndex);
     } else if (key.keyCode === 45) {
       this.props.onInsert(expressionIndex);
     }
@@ -135,9 +135,11 @@ class ExpressionEditor2 extends React.Component {
       isFocused={index === this.state.focusedExpressionIndex}
       index={index}
       isLastExpression={index===this.props.expressions.length-1}
+      parenthesesCount={this.props.parenthesesCount}
       // registerInput={this.registerInput}
       // unregisterInput={this.unregisterInput}
       inputRef={this.state.inputRef}
+
       next={{
 ...userInputMock[0],
         parent: ((expression[expression.length - 1] && expression[expression.length - 1].term) ||
@@ -165,6 +167,7 @@ ExpressionEditor2.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   expressions: PropTypes.arrayOf(ExpressionEditorPropTypes.expression),
+  parenthesesCount: PropTypes.shape({left: PropTypes.number, right: PropTypes.number}),
   next: ExpressionEditorPropTypes.term,
 
 };

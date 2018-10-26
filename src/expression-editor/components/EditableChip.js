@@ -26,7 +26,7 @@ class EditableChip extends React.Component {
   };
 
   onDoubleClick = () => {
-    this.props.onDoubleClick(this.props.selected);
+    this.props.onDoubleClick(this.props.selected, this.props.index);
   };
 
   onSubmit = (selected) => {
@@ -43,17 +43,17 @@ class EditableChip extends React.Component {
 
   onDelete = () => {
     // console.log('on DELETEE');
-    this.props.onDelete(this.props.item);
+    this.props.onDelete(this.props.item, this.props.index);
   }
 
   onFocus = () => {
     // console.log('on FOCUSSSSSSSS');
-    this.props.onFocus(this.props.item);
+    this.props.onFocus(this.props.item, this.props.index);
   }
 
   onBlur = () => {
     // console.log('on bluuuuuuuuuuuuuuuuuur');
-    this.props.onBlur(this.props.item);
+    this.props.onBlur(this.props.item, this.props.index);
   }
 
   onUserInput = (input) => {
