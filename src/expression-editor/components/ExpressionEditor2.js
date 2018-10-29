@@ -111,17 +111,23 @@ class ExpressionEditor2 extends React.Component {
     this.state.inputRef.current.focus();
   }
 
-  localToGlobalIndex = (chipIndex, expressionIndex) =>
+  localToGlobalIndex = (chipIndex, expressionIndex) => (
     // console.log(this.props.expressions, expression);
     // const indexOfExpression = this.props.expressions.indexOf(expression);
     // console.log(indexOfExpression, this.props.expressions);
     this.props.expressions.slice(0, expressionIndex).map(a => a.length).reduce((a, b) => (a + b), 0) + chipIndex
+  )
+
+  setFocusChip = (expressionIndex, chipIndex) => {
+    let index = this.localToGlobalIndex(chipIndex, expressionIndex);
+    this.focusChip(index);
+  }
 
 
   generateExpression = (expression, index) => (
     <Expression
       key={index}
-      onClick={this.focusChip}
+      onClick={this.setFocusChip}
       onDoubleClick={this.props.onClick}
       onSubmit={this.onSubmit}
       onKeyDown={this.onKeyDown}

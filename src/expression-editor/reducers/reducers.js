@@ -169,7 +169,8 @@ const calculateFocus = (state, selected, expressionIndex, chipIndex) => {
   // const selectedExp = this.state.expression.find((exp) => (exp.term.id === selected.id));
   // const expressionIndex = state.indexOf(expression);
   // expression.map(e => e.flags = {...e.flags, isFocused: false})
-  const expression = [...state[expressionIndex]];
+  const newState = state.map(e => e.map(t => {t.flags.isFocused = false; return t}));
+  const expression = [...newState[expressionIndex]];
 
   // const selectedTerm = expression.find((exp) => (exp.term.id === selected.id));
   // const termIndex = expression.findIndex((exp) => (exp.term.id === selected.id));

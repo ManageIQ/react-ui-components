@@ -1,34 +1,78 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Label } from 'patternfly-react';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
 
 export default class Chip extends React.Component {
   focusedClass = () => (
     (this.props.isFocused && 'focusedChip') || ''
   )
 
+
+  hideMenu = () => {
+    this.setState({isFocused: false});
+  }
+
+  onBlur = () => {
+    this.props.onBlur();
+  }
+
   render() {
     // console.log('focused: ', this.state.focused)
     // const { a, b, ...rest } = this.props;
     return (
-      <span
-        ref={this.props.chipRef}
-        onKeyDown={this.props.onKeyDown}
-        tabIndex="0"
-        onBlur={this.props.onBlur}
-        onFocus={this.props.onFocus}
-        className={`${this.focusedClass()}`}
-        // {...rest}
+      <Dropdown
+        // onToggle={this.onToggle}
+        onSelect={this.hideMenu}
+        toggle={
+          <span
+            ref={this.props.chipRef}
+            onKeyDown={this.props.onKeyDown}
+            tabIndex="0"
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+            className={`${this.focusedClass()}`}
+            // {...rest}
+          >
+            <Label
+              onRemoveClick={this.props.onDelete}
+              onClick={this.props.onClick}
+              onDoubleClick={this.props.onDoubleClick}
+              bsStyle="primary"
+            >
+              {this.props.label}
+            </Label>
+          </span>
+        }
+        // DISEAPEAR BEFORE CLICK
+        isOpen={this.props.isFocused}
       >
-        <Label
-          onRemoveClick={this.props.onDelete}
-          // onClick={this.props.onClick}
-          onDoubleClick={this.props.onDoubleClick}
-          bsStyle="primary"
+        <DropdownItem
+          component="button"
+          // isHovered={this.state.index === i}
+          onClick={this.props.onDoubleClick}
         >
-          {this.props.label}
-        </Label>
-      </span>
+          Edit
+        </DropdownItem>
+        <DropdownItem
+          component="button"
+          // isHovered={this.state.index === i}
+          onClick={this.props.onDelete}
+        >
+          Delete
+        </DropdownItem>
+        <DropdownItem
+          component="button"
+          // isHovered={this.state.index === i}
+          onClick={this.props.onDelete}
+        >
+          Set Alias
+        </DropdownItem>
+      </Dropdown>
+
+
+
+
     );
   }
 }

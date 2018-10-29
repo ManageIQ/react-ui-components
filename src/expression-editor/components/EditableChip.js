@@ -10,8 +10,8 @@ class EditableChip extends React.Component {
     super(props);
     this.state = {
       filteredOptions: props.options,
-      // filterString: this.props.label,
-      filterString: '',
+      filterString: this.props.label,
+      // filterString: '',
     };
     // console.log('editable chip constructor', props);
   }

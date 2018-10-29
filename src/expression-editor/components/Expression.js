@@ -5,9 +5,9 @@ import EditableChip from './EditableChip';
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 
 class Expression extends React.Component {
-  onClick = (index) => {
+  onClick = (chipIndex) => {
     console.log('expression onclick');
-    this.props.onClick(index);
+    this.props.onClick(this.props.index, chipIndex);
     // this.setState({isEditing: !selected.isEditing});
     // console.log(selected);
   }
@@ -56,7 +56,7 @@ class Expression extends React.Component {
     return (<li className="chip">
       <EditableChip
         key={term.id}
-        label={term.label}
+        label={flags.alias || term.label}
         isEditing={flags.isEditing}
         isFocused={flags.isFocused}
         onClick={this.onClick}

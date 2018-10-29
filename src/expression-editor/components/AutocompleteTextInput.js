@@ -39,7 +39,7 @@ export default class AutocompleteTextInput extends React.Component {
     const selected = this.props.options.find(this.props.matchingFunction(this.props.value)) || {
       id: this.props.value, label: this.props.value, type: 'userinput', next: this.props.next,
     };
-    console.log('XXXXXXXXXXXXXX', selected);
+    // console.log('XXXXXXXXXXXXXX', selected);
     this.props.onSubmit(selected);
   }
 
@@ -70,12 +70,12 @@ export default class AutocompleteTextInput extends React.Component {
       this.props.onSubmit(selected);
       this.setState({ index: -1 });
     } else if (e.keyCode === 38) {
-      console.log(this.state.index);
+      // console.log(this.state.index);
       const index = this.state.index <= 0 ? this.state.index : this.state.index - 1;
       // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
     } else if (e.keyCode === 40) {
-      console.log('AAAA',this.state.index, this.state.menuItemRefs.length);
+      // console.log('AAAA',this.state.index, this.state.menuItemRefs.length);
       const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
       // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
