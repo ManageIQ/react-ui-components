@@ -26,7 +26,6 @@ export default class Chip extends React.Component {
   }
 
   onFocus = () => {
-    console.log('ON MENU Focus');
     this.setState({isFocused: true});
     // this.props.onBlur();
   }
@@ -45,6 +44,16 @@ export default class Chip extends React.Component {
         return "info"
 
     }
+  }
+
+  setAliasModeWrapper = (bool) => () => {
+    this.props.onDoubleClick();
+    this.props.setAliasMode(bool);
+  }
+
+  setAliasWrapper = (alias) => () => {
+    // this.props.onDoubleClick();
+    this.props.setAlias(alias);
   }
 
   render() {
@@ -93,18 +102,21 @@ export default class Chip extends React.Component {
         >
           Delete
         </DropdownItem>
-        <DropdownItem
-          component="button"
-          // isHovered={this.state.index === i}
-          onClick={this.props.onDelete}
-        >
-          Set Alias
-        </DropdownItem>
+          <DropdownItem
+            component="button"
+            // isHovered={this.state.index === i}
+            onClick={this.setAliasModeWrapper(true)}
+          >
+            Set Alias
+          </DropdownItem> 
+          <DropdownItem
+            component="button"
+            // isHovered={this.state.index === i}
+            onClick={this.setAliasWrapper(false)}
+          >
+            Remove Alias
+          </DropdownItem>
       </Dropdown>
-
-
-
-
     );
   }
 }

@@ -11,6 +11,7 @@ class EditableChip extends React.Component {
     this.state = {
       filteredOptions: props.options,
       filterString: this.props.label,
+      aliasMode: false,
       // filterString: '',
     };
     // console.log('editable chip constructor', props);
@@ -26,19 +27,26 @@ class EditableChip extends React.Component {
   };
 
   onDoubleClick = () => {
+    this.setState({ filterString: this.props.label });
     this.props.onDoubleClick(this.props.selected, this.props.index);
   };
 
   onSubmit = (selected) => {
     // console.log('EditableChip submit', selected, this.props.item);
-    const newSelected = selected;
-    if (selected.type === 'userinput') {
-      // console.log('SUMBIT:',selected);
-      newSelected.parent = this.props.item.parent;
+    console.log('MODE:', this.state.aliasMode);
+    if (this.state.aliasMode) {
+      this.setAlias(selected);
+      this.setState({aliasMode: false});
+    } else {
+      const newSelected = selected;
+      if (selected.type === 'userinput') {
+        // console.log('SUMBIT:',selected);
+        newSelected.parent = this.props.item.parent;
+      }
+      // let{ label, id, item } = this.props;
+      this.setState({ filterString: '' });
+      this.props.onSubmit(newSelected, this.props.item);
     }
-    // let{ label, id, item } = this.props;
-    this.setState({ filterString: '' });
-    this.props.onSubmit(newSelected, this.props.item);
   }
 
   onDelete = () => {
@@ -65,8 +73,17 @@ class EditableChip extends React.Component {
     this.props.onKeyDown(key, this.props.index, this.props.selected);
   }
 
+  setAliasMode = (bool) => {
+    this.setState({aliasMode: bool});
+  }
+
+  setAlias = (alias) => {
+    console.log('ALIAS',alias, this.props.index );
+    this.props.setAlias(alias, this.props.index)
+  }
+
   render() {
-    // console.log('EditableChip props:', this.props);
+    console.log('EditableChip props:', this.props.label);
     return (
       (this.props.isEditing &&
         <AutocompleteTextInput
@@ -75,6 +92,9 @@ class EditableChip extends React.Component {
           onKeyDown={this.onKeyDown}
           options={this.state.filteredOptions}
           value={this.state.filterString}
+          // setAlias={this.props.setAlias}
+          setAliasMode={this.setAliasMode}
+          aliasMode={this.state.aliasMode}
           isLastElement={!!this.props.isLastElement}
           deleteExpression={this.props.deleteExpression}
           blurAllChips={this.props.blurAllChips}
@@ -91,11 +111,14 @@ class EditableChip extends React.Component {
           onKeyDown={this.onKeyDown}
           registerChip={this.props.registerChip}
           unregisterChip={this.props.unregisterChip}
+          isAliasSet={this.props.isAliasSet}
+          setAliasMode={this.setAliasMode}
+          setAlias={this.setAlias}
           isFocused={this.props.isFocused}
           index={this.props.index}
           onClick={this.onClick}
           onDoubleClick={this.onDoubleClick}
-          label={this.props.selected.label}
+          label={this.props.label}
           type={this.props.selected.type}
           chipRef={this.props.chipRef}
         />
@@ -111,12 +134,14 @@ EditableChip.propTypes = {
   onDelete: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  setAlias: PropTypes.func,
   deleteExpression: PropTypes.func,
   registerChip: PropTypes.func,
   unregisterChip: PropTypes.func,
   label: PropTypes.string.isRequired,
   item: PropTypes.object,
   index: PropTypes.number.isRequired,
+  isAliasSet: PropTypes.bool,
   isFocused: PropTypes.bool.isRequired,
   isEditing: PropTypes.bool,
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.term).isRequired,

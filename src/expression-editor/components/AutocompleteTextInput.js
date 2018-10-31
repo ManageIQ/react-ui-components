@@ -52,23 +52,26 @@ export default class AutocompleteTextInput extends React.Component {
     // console.log(value);
     const { target: { value } } = e;
     if (e.keyCode === this.props.submitKeyCode) {
-      let selected = {label: ""};
-      if (this.state.index === -1) {
-        selected = this.props.options.find(this.props.matchingFunction(value)) || {
-          id: value, label: value, type: 'userinput', next: this.props.next,
-        };
-        console.log(selected);
-        if (selected.type === "parenteze") {
-          return ;
-        }
+      if (this.props.aliasMode) {
+        this.props.onSubmit(value);
       } else {
-        selected = this.props.options[this.state.index];
+        let selected = {label: ""};
+        if (this.state.index === -1) {
+          selected = this.props.options.find(this.props.matchingFunction(value)) || {
+            id: value, label: value, type: 'userinput', next: this.props.next,
+          };
+          console.log(selected);
+          if (this.props.denyUserInput || (selected.type === "userinput" && this.props.options.length > 0)) {
+            return ;
+          }
+        } else {
+          selected = this.props.options[this.state.index];
+        }
+        if (selected.label === "") {
+          return;
+        }
+        this.props.onSubmit(selected);
       }
-      if (selected.label === "") {
-        return;
-      }
-
-      this.props.onSubmit(selected);
       this.setState({ index: -1 });
     } else if (e.keyCode === 38) {
       // console.log(this.state.index);
@@ -122,6 +125,7 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   generateMenuClick = (i) => () => {
+    console.log('BLAAAAAAAAAAAAAAAAAAAAA', i);
     this.onMenuClick(i);
   }
 
@@ -194,10 +198,12 @@ AutocompleteTextInput.propTypes = {
   options: PropTypes.arrayOf(ExpressionEditorPropTypes.option).isRequired,
   next: PropTypes.arrayOf(ExpressionEditorPropTypes.term),
   matchingFunction: PropTypes.func,
+  denyUserInput: PropTypes.bool,
 };
 
 AutocompleteTextInput.defaultProps = {
   submitKeyCode: 13,
   value: '',
   matchingFunction: value => option => option.label.toLowerCase().includes(value.toLowerCase()),
+  denyUserInput: true,
 };

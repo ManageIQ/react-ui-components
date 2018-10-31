@@ -2,7 +2,7 @@ import * as actionsConstants from '../actions/actions';
 // import { initialState, userInputMock } from './initialState'
 
 
-export const expressions = (state = {expressions: [[]], parenthesesCount: {left: 0, right: 0}}, {type, selected, previous, expressionIndex, previousExpressionIndex, chipIndex}) => {
+export const expressions = (state = {expressions: [[]], parenthesesCount: {left: 0, right: 0}}, {type, selected, previous, expressionIndex, previousExpressionIndex, chipIndex, alias}) => {
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
@@ -37,6 +37,10 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
       console.log('REDUCER ON BLUR ALL CHIPS:');
       newExpressions = blurAllChips([...state.expressions]);
       return { ...state, expressions: [...newExpressions]};
+    case actionsConstants.SET_ALIAS:
+      console.log('REDUCER ON SET ALIAS:');
+      newExpressions = setAlias([...state.expressions], alias, expressionIndex, chipIndex);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.COUNT_PARENTHESES:
     console.log('REDUCER ON COUNT:', selected, expressionIndex);
       const newParenthesesCount = countParentheses({...state.parenthesesCount}, state.expressions);
@@ -55,6 +59,16 @@ export const isLastElement = (state = false, {selected, type}) => {
     default:
     return state;
   }
+}
+
+const setAlias = (state, alias, expressionIndex, chipIndex) => {
+  const expression = [...state[expressionIndex]];
+  const selectedTerm = expression[chipIndex];
+  console.log('ALIAS', alias, selectedTerm,chipIndex);
+  expression.splice(chipIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags,  isEditing: false, alias: alias}});
+  state.splice(expressionIndex, 1, expression);
+
+  return [...state];
 }
 
 const countParentheses = (state = {left: 0, right: 0}, expressions) => {

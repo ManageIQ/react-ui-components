@@ -46,6 +46,13 @@ export const onBlur = (selected, expressionIndex, chipIndex) => ({
   expressionIndex: expressionIndex,
 });
 
+export const setAlias = (alias, expressionIndex, chipIndex) => ({
+  type: actions.SET_ALIAS,
+  chipIndex: chipIndex,
+  alias: alias,
+  expressionIndex: expressionIndex,
+});
+
 export const blurAllChips = (selected, expressionIndex, chipIndex) => ({
   type: actions.BLUR_ALL_CHIPS,
 });

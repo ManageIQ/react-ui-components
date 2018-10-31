@@ -136,6 +136,7 @@ class ExpressionEditor2 extends React.Component {
       onFocus={this.props.onFocus}
       onBlur={this.props.onBlur}
       blurAllChips={this.props.blurAllChips}
+      setAlias={this.props.setAlias}
       onInsertExpression={this.props.onInsert}
       onDeleteExpression={this.props.onDeleteExpression}
       expression={expression}
@@ -174,6 +175,7 @@ ExpressionEditor2.propTypes = {
   onDelete: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  setAlias: PropTypes.func,
   expressions: PropTypes.arrayOf(ExpressionEditorPropTypes.expression),
   parenthesesCount: PropTypes.shape({left: PropTypes.number, right: PropTypes.number}),
   next: ExpressionEditorPropTypes.term,

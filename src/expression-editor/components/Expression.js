@@ -50,6 +50,12 @@ class Expression extends React.Component {
     this.props.onDeleteExpression(this.props.index);
   }
 
+  setAlias = (alias, chipIndex) => {
+    this.props.setAlias(alias, this.props.index, chipIndex);
+  }
+
+
+
 
   generateChip = ({ term, flags }, index) => {
     // console.log('AAAAAAAAA', term, flags, index, this.props.chipRefs);
@@ -57,6 +63,7 @@ class Expression extends React.Component {
       <EditableChip
         key={term.id}
         label={flags.alias || term.label}
+        isAliasSet={!!flags.alias}
         isEditing={flags.isEditing}
         isFocused={flags.isFocused}
         onClick={this.onClick}
@@ -145,6 +152,7 @@ Expression.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  setAlias: PropTypes.func,
   onInsertExpression: PropTypes.func.isRequired,
   onDeleteExpression: PropTypes.func.isRequired,
   expression: ExpressionEditorPropTypes.expression,
