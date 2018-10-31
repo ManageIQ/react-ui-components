@@ -46,6 +46,11 @@ export const onBlur = (selected, expressionIndex, chipIndex) => ({
   expressionIndex: expressionIndex,
 });
 
+export const blurAllChips = (selected, expressionIndex, chipIndex) => ({
+  type: actions.BLUR_ALL_CHIPS,
+});
+
+
 export const calculateNext = selected => ({
   type: actions.CALCULATE_NEXT,
   selected: selected,

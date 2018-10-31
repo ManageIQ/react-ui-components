@@ -77,6 +77,7 @@ class EditableChip extends React.Component {
           value={this.state.filterString}
           isLastElement={!!this.props.isLastElement}
           deleteExpression={this.props.deleteExpression}
+          blurAllChips={this.props.blurAllChips}
           // registerInput={this.props.registerInput}
           // unregisterInput={this.props.unregisterInput}
           inputRef={this.props.inputRef}
@@ -95,6 +96,7 @@ class EditableChip extends React.Component {
           onClick={this.onClick}
           onDoubleClick={this.onDoubleClick}
           label={this.props.selected.label}
+          type={this.props.selected.type}
           chipRef={this.props.chipRef}
         />
     );

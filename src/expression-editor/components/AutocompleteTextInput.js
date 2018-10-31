@@ -30,7 +30,7 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onBlur = () => {
-
+    this.setState({isFocused: false});
     if (this.props.value === "") {
       // console.log('DELETEEEEEEEEE', this.props);
       // this.props.deleteExpression();
@@ -44,6 +44,7 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onFocus = () => {
+    this.props.blurAllChips();
     this.setState({isFocused: true});
   }
 
@@ -170,7 +171,7 @@ export default class AutocompleteTextInput extends React.Component {
             <DropdownItem
               component="button"
               isHovered={this.state.index === i}
-              onClick={(this.generateMenuClick(i))}
+              onMouseDown={this.generateMenuClick(i)}
             >
               {o.label}
             </DropdownItem>))}

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement, onInsert, onDeleteExpression, countParentheses } from '../actions';
+import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement, onInsert, onDeleteExpression, countParentheses, blurAllChips } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
@@ -34,6 +34,10 @@ const mapDispatchToProps = dispatch => ({
 
   onBlur: (selected, expressionIndex, chipIndex) => {
     dispatch(onBlur(selected, expressionIndex, chipIndex));
+  },
+
+  blurAllChips: () => {
+    dispatch(blurAllChips());
   },
 
   onInsert: (previousExpressionIndex) => {

@@ -109,6 +109,7 @@ class ExpressionEditor2 extends React.Component {
   focusInput = () => {
     // console.log("FOCUS INPUT");
     this.state.inputRef.current.focus();
+    this.props.blurAllChips();
   }
 
   localToGlobalIndex = (chipIndex, expressionIndex) => (
@@ -134,6 +135,7 @@ class ExpressionEditor2 extends React.Component {
       onDelete={this.onDelete}
       onFocus={this.props.onFocus}
       onBlur={this.props.onBlur}
+      blurAllChips={this.props.blurAllChips}
       onInsertExpression={this.props.onInsert}
       onDeleteExpression={this.props.onDeleteExpression}
       expression={expression}

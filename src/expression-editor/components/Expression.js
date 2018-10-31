@@ -65,6 +65,8 @@ class Expression extends React.Component {
         onDelete={this.onDelete}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
+        setAlias={this.setAlias}
+        blurAllChips={this.props.blurAllChips}
         // onKeyDown={this.props.onKeyDown}
         chipRef={this.props.chipRefs[index]}
       // registerInput={this.props.registerInput}
@@ -98,6 +100,7 @@ class Expression extends React.Component {
           onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
           deleteExpression={this.onDeleteExpressionClick}
+          blurAllChips={this.props.blurAllChips}
          // registerInput={this.props.registerInput}
          // unregisterInput={this.props.unregisterInput}
           inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
@@ -122,8 +125,10 @@ class Expression extends React.Component {
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
           {(endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
           {/* {newChip} */}
-          <button onClick={this.onDeleteExpressionClick}> Delete Expression </button>
-          <button onClick={this.onInsertExpressionClick}> Add Expression </button>
+          <span className="buttons">
+            <button onClick={this.onDeleteExpressionClick}> Delete Expression </button>
+            <button onClick={this.onInsertExpressionClick}> Add Expression </button>
+          </span>
         </ul>
       </React.Fragment>
     );

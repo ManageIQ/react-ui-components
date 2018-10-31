@@ -4,17 +4,47 @@ import { Label } from 'patternfly-react';
 import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
 
 export default class Chip extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFocused: false
+    };
+  }
+
   focusedClass = () => (
     (this.props.isFocused && 'focusedChip') || ''
   )
 
-
   hideMenu = () => {
-    this.setState({isFocused: false});
+    // console.log('ON MENU BLUR');
+    this.props.onBlur()
   }
 
   onBlur = () => {
-    this.props.onBlur();
+    // this.setState({isFocused: false});
+    setTimeout(() => this.props.onBlur(), 50);
+  }
+
+  onFocus = () => {
+    console.log('ON MENU Focus');
+    this.setState({isFocused: true});
+    // this.props.onBlur();
+  }
+
+  chipStyle = (type) => {
+    switch (type) {
+      case "logicalOperator":
+        return "primary"
+      case "operator":
+        return "info"
+      case "category":
+        return "info"
+      case "userinput":
+        return "info"
+      default:
+        return "info"
+
+    }
   }
 
   render() {
@@ -23,22 +53,24 @@ export default class Chip extends React.Component {
     return (
       <Dropdown
         // onToggle={this.onToggle}
-        onSelect={this.hideMenu}
+        // onSelect={this.hideMenu}
+        // onFocus={this.onFocus}
+        // onBlur={this.onBlur}
         toggle={
           <span
             ref={this.props.chipRef}
             onKeyDown={this.props.onKeyDown}
             tabIndex="0"
-            onBlur={this.props.onBlur}
+            // onBlur={this.onBlur}
             onFocus={this.props.onFocus}
             className={`${this.focusedClass()}`}
             // {...rest}
           >
             <Label
-              onRemoveClick={this.props.onDelete}
+              // onRemoveClick={this.props.onDelete}
               onClick={this.props.onClick}
               onDoubleClick={this.props.onDoubleClick}
-              bsStyle="primary"
+              bsStyle={this.chipStyle(this.props.type)}
             >
               {this.props.label}
             </Label>

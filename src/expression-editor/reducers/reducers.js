@@ -33,6 +33,10 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
       console.log('REDUCER ON BLUR:', selected, expressionIndex);
       newExpressions = calculateBlur([...state.expressions], selected, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
+    case actionsConstants.BLUR_ALL_CHIPS:
+      console.log('REDUCER ON BLUR ALL CHIPS:');
+      newExpressions = blurAllChips([...state.expressions]);
+      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.COUNT_PARENTHESES:
     console.log('REDUCER ON COUNT:', selected, expressionIndex);
       const newParenthesesCount = countParentheses({...state.parenthesesCount}, state.expressions);
@@ -201,6 +205,10 @@ const calculateBlur = (state, selected, expressionIndex, chipIndex) => {
     state.splice(expressionIndex, 1, expression);
     return [...state];
   }
+}
+
+const blurAllChips = (state) => {
+    return [...state].map(e => e.map(t => {t.flags.isFocused = false; return t}));
 }
 
 const cleanLastExpression = (state, selected) => {
