@@ -78,7 +78,7 @@ class Expression extends React.Component {
         chipRef={this.props.chipRefs[index]}
       // registerInput={this.props.registerInput}
       // unregisterInput={this.props.unregisterInput}
-        options={term.parent.next}
+        options={term.parent.next.filter(o => o.type !== "userinput")}
         selected={term}
         item={term}
         index={index}
@@ -111,7 +111,7 @@ class Expression extends React.Component {
          // registerInput={this.props.registerInput}
          // unregisterInput={this.props.unregisterInput}
           inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
-          options={options}
+          options={options.filter(o => o.type !== "userinput")}
           selected={this.props.next}
           item={this.props.next}
           index={this.props.expression.length}

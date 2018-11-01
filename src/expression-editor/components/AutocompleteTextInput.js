@@ -61,7 +61,7 @@ export default class AutocompleteTextInput extends React.Component {
             id: value, label: value, type: 'userinput', next: this.props.next,
           };
           console.log(selected);
-          if (this.props.denyUserInput || (selected.type === "userinput" && this.props.options.length > 0)) {
+          if (this.props.denyUserInput && selected.type === "userinput") {
             return ;
           }
         } else {
@@ -171,7 +171,7 @@ export default class AutocompleteTextInput extends React.Component {
             }
             isOpen={this.state.isFocused}
           >
-          {this.props.options.filter(o => o.type !== "userinput").map((o, i) => (
+          {this.props.options.map((o, i) => (
             <DropdownItem
               component="button"
               isHovered={this.state.index === i}
@@ -205,5 +205,4 @@ AutocompleteTextInput.defaultProps = {
   submitKeyCode: 13,
   value: '',
   matchingFunction: value => option => option.label.toLowerCase().includes(value.toLowerCase()),
-  denyUserInput: true,
 };

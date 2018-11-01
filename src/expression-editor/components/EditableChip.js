@@ -83,7 +83,7 @@ class EditableChip extends React.Component {
   }
 
   render() {
-    console.log('EditableChip props:', this.props.label);
+    // console.log('EditableChip props:', this.props.label);
     return (
       (this.props.isEditing &&
         <AutocompleteTextInput
@@ -92,6 +92,7 @@ class EditableChip extends React.Component {
           onKeyDown={this.onKeyDown}
           options={this.state.filteredOptions}
           value={this.state.filterString}
+          denyUserInput={(this.props.options.length > 0)}
           // setAlias={this.props.setAlias}
           setAliasMode={this.setAliasMode}
           aliasMode={this.state.aliasMode}
