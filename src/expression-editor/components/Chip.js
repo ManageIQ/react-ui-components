@@ -7,28 +7,18 @@ export default class Chip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFocused: false
+      menuIndex: -1,
+      menuItems: [{label: "Edit", onClick: props.onDoubleClick},
+        {label: "Delete", onClick: props.onDelete},
+        {label: "Set Alias", onClick: this.setAliasModeWrapper(true)},
+        {label: "Remove Alias", onClick: this.setAliasWrapper(false)}
+    ]
     };
   }
 
   focusedClass = () => (
     (this.props.isFocused && 'focusedChip') || ''
   )
-
-  hideMenu = () => {
-    // console.log('ON MENU BLUR');
-    this.props.onBlur()
-  }
-
-  onBlur = () => {
-    // this.setState({isFocused: false});
-    setTimeout(() => this.props.onBlur(), 50);
-  }
-
-  onFocus = () => {
-    this.setState({isFocused: true});
-    // this.props.onBlur();
-  }
 
   chipStyle = (type) => {
     switch (type) {
@@ -56,6 +46,30 @@ export default class Chip extends React.Component {
     this.props.setAlias(alias);
   }
 
+  onKeyDown = (e) => {
+    let index = this.state.menuIndex;
+    switch (e.keyCode) {
+      case 38:
+        index = this.state.menuIndex <= -1 ? this.state.menuIndex : this.state.menuIndex - 1;
+        this.setState(prevState => ({ menuIndex: index }));
+        break;
+      case 40:
+        index = this.state.menuIndex >= this.state.menuItems.length - 1 ? this.state.menuItems.length - 1 : this.state.menuIndex + 1;
+        this.setState(prevState => ({ menuIndex: index }));
+        break;
+      case 13:
+        if (index > -1) {
+          this.state.menuItems[index].onClick();
+        } else {
+          this.props.onDoubleClick();
+        }
+        break;
+      default:
+      this.props.onKeyDown(e);
+    }
+
+  }
+
   render() {
     // console.log('focused: ', this.state.focused)
     // const { a, b, ...rest } = this.props;
@@ -68,7 +82,7 @@ export default class Chip extends React.Component {
         toggle={
           <span
             ref={this.props.chipRef}
-            onKeyDown={this.props.onKeyDown}
+            onKeyDown={this.onKeyDown}
             tabIndex="0"
             // onBlur={this.onBlur}
             onFocus={this.props.onFocus}
@@ -88,34 +102,15 @@ export default class Chip extends React.Component {
         // DISEAPEAR BEFORE CLICK
         isOpen={this.props.isFocused}
       >
-        <DropdownItem
-          component="button"
-          // isHovered={this.state.index === i}
-          onClick={this.props.onDoubleClick}
-        >
-          Edit
-        </DropdownItem>
-        <DropdownItem
-          component="button"
-          // isHovered={this.state.index === i}
-          onClick={this.props.onDelete}
-        >
-          Delete
-        </DropdownItem>
+        {this.state.menuItems.map((o, i) => (
           <DropdownItem
             component="button"
-            // isHovered={this.state.index === i}
-            onClick={this.setAliasModeWrapper(true)}
+            isHovered={this.state.menuIndex === i}
+            onClick={o.onClick}
           >
-            Set Alias
-          </DropdownItem> 
-          <DropdownItem
-            component="button"
-            // isHovered={this.state.index === i}
-            onClick={this.setAliasWrapper(false)}
-          >
-            Remove Alias
-          </DropdownItem>
+            {o.label}
+          </DropdownItem>)
+        )}
       </Dropdown>
     );
   }
@@ -136,5 +131,6 @@ Chip.propTypes = {
 Chip.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
+
 
 };
