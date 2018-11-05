@@ -1,20 +1,22 @@
 import { connect } from 'react-redux';
 import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement,
-  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias } from '../actions';
+  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
 const mapStateToProps = (state) => {
-  console.log('state: ', state);
+  console.log('state: ', state, state.expressions.past );
   return {
   // actions which have been done since loeaded
-  expressions: state.expressions.expressions,
+  canUndo: !!(state.expressions.past && state.expressions.past.length > 0),
+  canRedo: !!(state.expressions.future && state.expressions.future.length > 0),
+  expressions: state.expressions.present.expressions,
   // data for next dropdown
   // next: expressionEditor.next,
   // selected: expressionEditor.selected,
   next: state.next,
   isLastElement: state.isLastElement,
-  parenthesesCount:  state.expressions.parenthesesCount
+  parenthesesCount:  state.expressions.present.parenthesesCount
 }};
 
 const mapDispatchToProps = dispatch => ({
@@ -62,11 +64,13 @@ const mapDispatchToProps = dispatch => ({
   },
 
   undo: (action) => {
-
+    dispatch(undo());
+    dispatch(clearFlags());
   },
 
   redo: (action) => {
-
+    dispatch(redo());
+    dispatch(clearFlags());
   },
 });
 

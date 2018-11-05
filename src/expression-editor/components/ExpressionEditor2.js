@@ -158,11 +158,15 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render() {
-    console.log('ExpressionEditor2:', this.props.expressions, this.state.chipRefs);
+    console.log('ExpressionEditor2:', this.props);
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
     return (
-      this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))
+      <div>
+        <button disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</button>
+        <button disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</button>
+        {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
+      </div>
     );
   }
 }

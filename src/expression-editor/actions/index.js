@@ -77,3 +77,15 @@ export const onChange = selected => ({
   type: actions.ON_CHANGE,
   selected: selected.selected,
 });
+
+export const undo = () => ({
+  type: actions.UNDO,
+});
+
+export const redo = () => ({
+  type: actions.REDO,
+})
+
+export const clearFlags = () => ({
+  type: actions.CLEAR_FLAGS,
+});
