@@ -48,6 +48,7 @@ export default class Chip extends React.Component {
 
   onKeyDown = (e) => {
     let index = this.state.menuIndex;
+    console.log(e.ctrlKey);
     switch (e.keyCode) {
       case 38:
         index = this.state.menuIndex <= -1 ? this.state.menuIndex : this.state.menuIndex - 1;

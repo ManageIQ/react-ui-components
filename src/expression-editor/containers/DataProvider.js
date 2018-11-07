@@ -59,7 +59,7 @@ export const dataProvider = (endpoints) => (Component) => {
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
     // let options = (isLastElementOperator || props.expressions.length === 1) ? defaultOptions : logicalOperatorsMock;
-    console.log("NEXT", options);
+    // console.log("NEXT", options);
     // options = mapParent(options, options.next);
     // console.log('options', options);
     let newProps = {...props};

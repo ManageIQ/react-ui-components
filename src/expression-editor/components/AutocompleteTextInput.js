@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'patternfly-react';
 import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
@@ -31,16 +32,7 @@ export default class AutocompleteTextInput extends React.Component {
 
   onBlur = () => {
     this.setState({isFocused: false});
-    if (this.props.value === "") {
-      // console.log('DELETEEEEEEEEE', this.props);
-      // this.props.deleteExpression();
-      return;
-    }
-    const selected = this.props.options.find(this.props.matchingFunction(this.props.value)) || {
-      id: this.props.value, label: this.props.value, type: 'userinput', next: this.props.next,
-    };
-    // console.log('XXXXXXXXXXXXXX', selected);
-    this.props.onSubmit(selected);
+    this.handleSubmit(this.props.value);
   }
 
   onFocus = () => {
@@ -52,30 +44,10 @@ export default class AutocompleteTextInput extends React.Component {
     // console.log(value);
     const { target: { value } } = e;
     if (e.keyCode === this.props.submitKeyCode) {
-      if (this.props.aliasMode) {
-        this.props.onSubmit(value);
-      } else {
-        let selected = {label: ""};
-        if (this.state.index === -1) {
-          selected = this.props.options.find(this.props.matchingFunction(value)) || {
-            id: value, label: value, type: 'userinput', next: this.props.next,
-          };
-          console.log(selected);
-          if (this.props.denyUserInput && selected.type === "userinput") {
-            return ;
-          }
-        } else {
-          selected = this.props.options[this.state.index];
-        }
-        if (selected.label === "") {
-          return;
-        }
-        this.props.onSubmit(selected);
-      }
-      this.setState({ index: -1 });
+      this.handleSubmit(value);
     } else if (e.keyCode === 38) {
       // console.log(this.state.index);
-      const index = this.state.index <= 0 ? this.state.index : this.state.index - 1;
+      const index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
       // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
     } else if (e.keyCode === 40) {
@@ -90,6 +62,41 @@ export default class AutocompleteTextInput extends React.Component {
     } else {
       this.setState({ index: -1 });
     }
+  }
+
+
+  eligibleForSubmit = (value) => {
+    if (value === "" && this.state.index === -1) {
+      return false;
+    }
+    else if (this.props.aliasMode) {
+      return value;
+    } else {
+      let selected = {label: ""};
+      if (this.state.index === -1) {
+        selected = this.props.options.find(this.props.matchingFunction(value)) || {
+          id: value, label: value, type: 'userinput', next: this.props.next,
+        };
+        if (this.props.denyUserInput && selected.type === "userinput") {
+          return false;
+        }
+      } else {
+        selected = this.props.options[this.state.index];
+      }
+      if (selected.label === "") {
+        return false;
+      }
+      return selected;
+    }
+  }
+
+
+  handleSubmit = (value) => {
+    const selected = this.eligibleForSubmit(value);
+    if (selected) {
+      this.props.onSubmit(selected);
+    }
+    this.setState({ index: -1 });
   }
 
   hideMenu = () => {
@@ -125,17 +132,13 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   generateMenuClick = (i) => () => {
-    console.log('BLAAAAAAAAAAAAAAAAAAAAA', i);
     this.onMenuClick(i);
   }
-
-
 
   render() {
     // console.log('AutocompleteTextInput', this.props, this.state);
     return (
       <span>
-        <div>
           {/* <input ref={this.props.inputRef}
             autoFocus
             value={this.props.value}
@@ -180,7 +183,7 @@ export default class AutocompleteTextInput extends React.Component {
               {o.label}
             </DropdownItem>))}
           </Dropdown>
-        </div>
+          <Button disabled={!this.eligibleForSubmit(this.props.value)}>Submit</Button>
       </span>
 
     );

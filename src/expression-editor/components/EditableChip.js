@@ -33,7 +33,7 @@ class EditableChip extends React.Component {
 
   onSubmit = (selected) => {
     // console.log('EditableChip submit', selected, this.props.item);
-    console.log('MODE:', this.state.aliasMode);
+    // console.log('MODE:', this.state.aliasMode);
     if (this.state.aliasMode) {
       this.setAlias(selected);
       this.setState({aliasMode: false});

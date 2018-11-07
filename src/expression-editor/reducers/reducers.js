@@ -46,7 +46,7 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
       newExpressions = clearFlags([...state.expressions]);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.COUNT_PARENTHESES:
-    console.log('REDUCER ON COUNT:', selected, expressionIndex);
+    console.log('REDUCER ON COUNT:');
       const newParenthesesCount = countParentheses({...state.parenthesesCount}, state.expressions);
       return {...state, parenthesesCount: newParenthesesCount};
     default:
@@ -80,7 +80,7 @@ const countParentheses = (state = {left: 0, right: 0}, expressions) => {
     left: expressions.map(e => e.filter(t => t.term.type === "leftParenteze")).flat().length,
     right: expressions.map(e => e.filter(t => t.term.type === "rightParenteze")).flat().length
   }
-  console.log('COUNT', newCount);
+  // console.log('COUNT', newCount);
   return newCount;
 }
 
@@ -122,9 +122,7 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   // console.log(state);
   if (selected.next.length === 0) {
     const a = state[expressionIndex+1];
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAA', a && a[0] && a[0].term, expression[0].term.type);
     if (a && a[0] && a[0].term.type === expression[0].term.type) {
-      console.log('AAAAAAAAAAAAAAAAAAAAAAAA', a && a[0] && a[0].term);
       state.splice(expressionIndex + 1, 0, []);
     } else if (lastExpressionCompleted(state)) {
     state = [...state, []]

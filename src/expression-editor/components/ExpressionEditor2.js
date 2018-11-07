@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ButtonGroup, Button } from 'patternfly-react';
 import Expression from './Expression';
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import { logicalOperatorsMock, userInputMock } from "../constants"
@@ -36,14 +37,15 @@ class ExpressionEditor2 extends React.Component {
     if (updateChips) {
       this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef())) });
     }
+    const defaultIndex =  this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
     const focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
     let focusedIndex = focusedExpressions.indexOf(true);
     if (focusedIndex > -1 && focusedIndex !== this.state.focusedExpressionIndex) {
       this.setState({ focusedExpressionIndex: focusedIndex });
-    } else if (focusedIndex < 0 && prevState.focusedExpressionIndex === this.state.focusedExpressionIndex && this.state.focusedExpressionIndex !== this.props.expressions.length - 1) {
+    } else if (focusedIndex < 0 && prevState.focusedExpressionIndex === this.state.focusedExpressionIndex && this.state.focusedExpressionIndex !== defaultIndex) {
       // console.log('DEFAULT FOCUS', focusedIndex, this.state, this.props);
       // last expression which is not complete
-      focusedIndex = this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
+      focusedIndex = defaultIndex;
       // console.log(focusedIndex);
       focusedIndex = focusedIndex < 0 ? this.props.expressions.length - 1 : focusedIndex;
       if (focusedIndex !== this.state.focusedExpressionIndex) {
@@ -159,12 +161,15 @@ class ExpressionEditor2 extends React.Component {
 
   render() {
     console.log('ExpressionEditor2:', this.props);
+
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
     return (
       <div>
-        <button disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</button>
-        <button disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</button>
+        <ButtonGroup>
+          <Button disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
+          <Button disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+        </ButtonGroup>
         {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
       </div>
     );

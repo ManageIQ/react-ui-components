@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ButtonGroup, Button } from 'patternfly-react';
 import EditableChip from './EditableChip';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
@@ -120,6 +121,7 @@ class Expression extends React.Component {
       </li>);
     const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
+    console.log((endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression), this.props.expression));
     // const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
     // console.log('IS FOCUSED', this.props.isFocused);
     // console.log('Expression',endOfExpresion, this.props.next.parent);
@@ -132,10 +134,10 @@ class Expression extends React.Component {
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
           {(endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
           {/* {newChip} */}
-          <span className="buttons">
-            <button onClick={this.onDeleteExpressionClick}> Delete Expression </button>
-            <button onClick={this.onInsertExpressionClick}> Add Expression </button>
-          </span>
+          <ButtonGroup className="buttons">
+            <Button onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
+            <Button onClick={this.onInsertExpressionClick}> Add Expression </Button>
+          </ButtonGroup>
         </ul>
       </React.Fragment>
     );
