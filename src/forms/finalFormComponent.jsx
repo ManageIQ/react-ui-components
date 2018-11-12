@@ -11,8 +11,7 @@ const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
 const selectValue = (option, labelKey, valueKey) =>
-  option.sort((a, b) => (a[labelKey].toLowerCase() > b[labelKey].toLowerCase()))
-    .map(item => item[valueKey]);
+  option.sort((a, b) => a[labelKey].localeCompare(b[labelKey], 'en', { sensitivity: 'base' }).map(item => item[valueKey]));
 
 const componentSelect = (componentType, { input, meta, ...rest }) => ({
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,

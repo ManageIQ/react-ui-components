@@ -31,82 +31,93 @@ const RbacUserForm = ({
     initialValues={initialValues}
     render={({
       invalid,
-      pristine,
       handleSubmit,
+      values,
       form: { change, reset },
-    }) => (
-      <PfForm horizontal>
-        <Grid fluid>
-          <Row>
-            <Col xs={12}>
-              <Field
-                name="name"
-                validate={required({ msg: __('Required') })}
-                component={FinalFormField}
-                label={__('Full Name')}
-                disabled={!newRecord && editDisabled}
+    }) => {
+      const pristine = JSON.stringify(initialValues) === JSON.stringify(values);
+      return (
+        <PfForm horizontal>
+          <Grid fluid>
+            <Row>
+              <Col xs={12}>
+                <Field
+                  name="name"
+                  validate={required({ msg: __('Required') })}
+                  component={FinalFormField}
+                  label={__('Full Name')}
+                  disabled={!newRecord && editDisabled}
+                />
+              </Col>
+              <Col xs={12}>
+                <Field
+                  name="userid"
+                  validate={required({ msg: __('Required') })}
+                  component={FinalFormField}
+                  label={__('Username')}
+                  disabled={!newRecord && editDisabled}
+                />
+              </Col>
+              <PasswordFragment
+                changeValue={change}
+                isEditing={!newRecord}
+                passwordValidators={[required({ msg: __('Required') })]}
               />
-            </Col>
-            <Col xs={12}>
-              <Field
-                name="userid"
-                validate={required({ msg: __('Required') })}
-                component={FinalFormField}
-                label={__('Username')}
-                disabled={!newRecord && editDisabled}
-              />
-            </Col>
-            <PasswordFragment
-              changeValue={change}
-              isEditing={!newRecord}
-              passwordValidators={[required({ msg: __('Required') })]}
-            />
-            <Col xs={12}>
-              <Field
-                name="email"
-                type="email"
-                validate={email({
+              <Col xs={12}>
+                <Field
+                  name="email"
+                  type="email"
+                  validate={email({
                   msg: __('Email must be a valid email address'),
                   allowBlank: true,
                 })}
-                component={FinalFormField}
-                label={__('Email Address')}
-              />
-            </Col>
-            <Col xs={12}>
-              <Field
-                name="groups"
-                validate={composeValidators(required({ msg: __('A User must be assigned to a Group') }), validateEmpty)}
-                component={FinalFormSelect}
-                label={__('Available Groups')}
-                options={groups}
-                placeholder={__('Choose one or more Groups')}
-                multi
-                searchable
-                clearable
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={10}>
-              <ButtonGroup className="pull-right">
-                <Button
-                  id="user-submit"
-                  bsStyle="primary"
-                  disabled={pristine || invalid}
-                  type="button"
-                  onClick={handleSubmit}
-                >
-                  {newRecord ? __('Add') : __('Save')}
-                </Button>
-                {!newRecord && <Button disabled={pristine} onClick={reset} type="button">{__('Reset')}</Button>}
-                <Button onClick={onCancel}>{__('Cancel')}</Button>
-              </ButtonGroup>
-            </Col>
-          </Row>
-        </Grid>
-      </PfForm>
-    )}
+                  component={FinalFormField}
+                  label={__('Email Address')}
+                />
+              </Col>
+              <Col xs={12}>
+                <Field
+                  name="groups"
+                  validate={composeValidators(required({ msg: __('A User must be assigned to a Group') }), validateEmpty)}
+                  component={FinalFormSelect}
+                  label={__('Available Groups')}
+                  options={groups}
+                  placeholder={__('Choose one or more Groups')}
+                  multi
+                  searchable
+                  clearable
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={10}>
+                <ButtonGroup className="pull-right">
+                  <Button
+                    id="user-submit"
+                    bsStyle="primary"
+                    disabled={pristine || invalid}
+                    type="button"
+                    onClick={handleSubmit}
+                  >
+                    {newRecord ? __('Add') : __('Save')}
+                  </Button>
+                  {!newRecord && (
+                  <Button
+                    disabled={pristine}
+                    onClick={reset}
+                    type="button"
+                  >
+                    {__('Reset')}
+                  </Button>
+                )}
+                  <Button onClick={onCancel}>{__('Cancel')}</Button>
+                </ButtonGroup>
+              </Col>
+            </Row>
+          </Grid>
+        </PfForm>
+    );
+}}
   />
 );
 
