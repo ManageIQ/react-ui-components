@@ -55,6 +55,9 @@ class Expression extends React.Component {
     this.props.setAlias(alias, this.props.index, chipIndex);
   }
 
+  expressionStyle = () => (
+    this.props.index % 2 == 0 ? "expressionEven" : "expressionOdd"
+  )
 
 
 
@@ -121,25 +124,30 @@ class Expression extends React.Component {
       </li>);
     const isLastEditing = (expression[expression.length - 1] && expression[expression.length - 1].flags.isEditing);
     const endOfExpresion = this.props.next.parent.next.length === 0;
-    console.log((endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression), this.props.expression));
+    // console.log((endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression), this.props.expression));
     // const isFocused = expression.map(t => t.flags.isFocused).reduce((a, b) => (a || b), false);
     // console.log('IS FOCUSED', this.props.isFocused);
     // console.log('Expression',endOfExpresion, this.props.next.parent);
     // console.log('expression props next', this.props.next, isLastEditing);
 
     return (
-      <React.Fragment>
+      <div className={`expressionRow ${this.expressionStyle()}`}>
         <ul className="list-inline expression">
           {expression.map((term, index) => this.generateChip(term, index))}
           {/* {(isLastEditing || endOfExpresion || null) || newChip} */}
           {(endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
           {/* {newChip} */}
-          <ButtonGroup className="buttons">
-            <Button onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
-            <Button onClick={this.onInsertExpressionClick}> Add Expression </Button>
-          </ButtonGroup>
+
         </ul>
-      </React.Fragment>
+        <ul className="list-inline expressionButtons">
+        <li>
+        <ButtonGroup className="buttons .pf-c-form-control">
+          <Button className="button" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
+          <Button className="button" onClick={this.onInsertExpressionClick}> Insert Expression </Button>
+        </ButtonGroup>
+        </li>
+      </ul>
+    </div>
     );
   }
 }

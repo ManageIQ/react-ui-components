@@ -124,7 +124,6 @@
     "lodash": "^4.17.10",
     "numeral": "^2.0.6",
     "patternfly-react": "^2.5.1",
-    "@patternfly/react-core": "^1.31.2",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",

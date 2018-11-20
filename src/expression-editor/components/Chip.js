@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Label } from 'patternfly-react';
-import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
+// import { Label } from 'patternfly-react';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, Label } from '@patternfly/react-core';
 
 export default class Chip extends React.Component {
   constructor(props) {

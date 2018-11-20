@@ -4,9 +4,7 @@ import { ButtonGroup, Button } from 'patternfly-react';
 import Expression from './Expression';
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import { logicalOperatorsMock, userInputMock } from "../constants"
-
-
-// logicalOperatorsMock.map((a) => { a.parent = userInputMock[0]; });
+import jsep from "jsep";
 
 class ExpressionEditor2 extends React.Component {
   constructor(props) {
@@ -17,6 +15,7 @@ class ExpressionEditor2 extends React.Component {
       inputRef: React.createRef(),
       focusedExpressionIndex: props.expressions.length - 1,
     };
+    console.log("JSEP", jsep("exp1 && exp2"));
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -37,7 +36,8 @@ class ExpressionEditor2 extends React.Component {
     if (updateChips) {
       this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef())) });
     }
-    const defaultIndex =  this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
+    const defaultIndex = (this.props.expressions.map(ex => ex.map(t => (t.flags.isEditing)).indexOf(true)) ||
+      this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false));
     const focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
     let focusedIndex = focusedExpressions.indexOf(true);
     if (focusedIndex > -1 && focusedIndex !== this.state.focusedExpressionIndex) {
@@ -49,7 +49,14 @@ class ExpressionEditor2 extends React.Component {
       // console.log(focusedIndex);
       focusedIndex = focusedIndex < 0 ? this.props.expressions.length - 1 : focusedIndex;
       if (focusedIndex !== this.state.focusedExpressionIndex) {
+        if (focusedIndex !== defaultIndex) {
+          console.log("XXXXXXXXXXXXXXXXXXXXXXXXXX", this.props.expressions, defaultIndex, focusedIndex);
+          let index = this.localToGlobalIndex(this.props.expressions[focusedIndex].length-1, focusedIndex);
+          // set focus when editing and it should not
+          this.focusChip(index);
+        }
         this.setState({ focusedExpressionIndex: focusedIndex });
+
       }
     }
     if (focusedIndex < 0) {
@@ -165,11 +172,14 @@ class ExpressionEditor2 extends React.Component {
     // console.log('STATE: ', this.state.focusedExpressionIndex);
 
     return (
-      <div>
-        <ButtonGroup>
-          <Button disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
-          <Button disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
-        </ButtonGroup>
+      <div className="expressionEditor">
+        <h1 className="expressionEditorTitle">Expression Editor</h1>
+        <div>
+          <ButtonGroup className="undoRedoButtons">
+            <Button className="button" disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
+            <Button className="button" disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+          </ButtonGroup>
+        </div>
         {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
       </div>
     );

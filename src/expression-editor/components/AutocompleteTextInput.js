@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'patternfly-react';
-import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator } from '@patternfly/react-core';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, TextInput } from '@patternfly/react-core';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import Menu from './Menu';
@@ -163,6 +163,9 @@ export default class AutocompleteTextInput extends React.Component {
             toggle={
               <input
                 autoFocus
+                className="pf-c-form-control"
+                input="true"
+                type="text"
                 ref={this.props.inputRef}
                 onKeyDown={this.handleKeyDown}
                 value={this.props.value}
@@ -183,7 +186,8 @@ export default class AutocompleteTextInput extends React.Component {
               {o.label}
             </DropdownItem>))}
           </Dropdown>
-          <Button disabled={!this.eligibleForSubmit(this.props.value)}>Submit</Button>
+
+          <Button className="inputButton" disabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
       </span>
 
     );
