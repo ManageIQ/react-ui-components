@@ -7,6 +7,7 @@ export default class Chip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      enabledBlur: true,
       menuIndex: -1,
       menuItems: [{label: "Edit", onClick: props.onDoubleClick},
         {label: "Delete", onClick: props.onDelete},
@@ -68,7 +69,16 @@ export default class Chip extends React.Component {
       default:
       this.props.onKeyDown(e);
     }
+  }
 
+  onBlur = () => {
+    if (this.state.enabledBlur) {
+      this.props.onBlur();
+    }
+  }
+
+  blockBlur = () => {
+    this.setState({enabledBlur: false});
   }
 
   render() {
@@ -79,7 +89,7 @@ export default class Chip extends React.Component {
         // onToggle={this.onToggle}
         // onSelect={this.hideMenu}
         // onFocus={this.onFocus}
-        // onBlur={this.onBlur}
+        onBlur={this.onBlur}
         toggle={
           <span
             ref={this.props.chipRef}
@@ -108,6 +118,7 @@ export default class Chip extends React.Component {
             component="button"
             isHovered={this.state.menuIndex === i}
             onClick={o.onClick}
+            onMouseDown={this.blockBlur}
           >
             {o.label}
           </DropdownItem>)

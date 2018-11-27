@@ -36,7 +36,7 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onFocus = () => {
-    this.props.blurAllChips();
+    // this.props.blurAllChips();
     this.setState({isFocused: true});
   }
 
@@ -101,31 +101,13 @@ export default class AutocompleteTextInput extends React.Component {
     this.setState({ index: -1 });
   }
 
+  addButtonClick = () => {
+    this.handleSubmit(this.props.value)
+  }
+
   hideMenu = () => {
     this.setState({isFocused: false});
   }
-/*
-  registerMenuItem = (ref) => {
-    // console.log('register:', ref);
-    this.setState(prevState => ({ menuItemRefs: [...prevState.menuItemRefs, ref] }));
-  }
-
-  unregisterMenuItem = (index) => {
-    this.setState(prevState => ({ toDelete: { ...prevState.toDelete, [index]: true } }));
-  }
-
-  focusMenuItem = (index) => {
-    // console.log('focus', index);
-    // this.state.menuItemRefs[index].current.focus();
-  }
-
-  onMouseEnter = (index) => {
-    this.setState({ index });
-  }
-
-  onMouseLeave = (a) => {
-    console.log('MOUSE LEAVE', a);
-  }*/
 
   handleChange = ({ target: { value } }) => {
     // console.log('handle change:', value);
@@ -158,7 +140,6 @@ export default class AutocompleteTextInput extends React.Component {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           /> */}
-
           <Dropdown
             // onToggle={this.onToggle}
             onSelect={this.hideMenu}
@@ -188,8 +169,7 @@ export default class AutocompleteTextInput extends React.Component {
               {o.label}
             </DropdownItem>))}
           </Dropdown>
-
-          <Button className="inputButton" disabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
+          <Button className="inputButton" onClick={this.addButtonClick} disabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
       </span>
 
     );
