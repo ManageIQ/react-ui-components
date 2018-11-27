@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonGroup, Button } from 'patternfly-react';
+import { Button } from '@patternfly/react-core';
 import EditableChip from './EditableChip';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
@@ -141,10 +141,10 @@ class Expression extends React.Component {
         </ul>
         <ul className="list-inline expressionButtons">
         <li>
-        <ButtonGroup className="buttons .pf-c-form-control">
+        <div className="buttons .pf-c-form-control">
           <Button className="button" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
           <Button className="button" onClick={this.onInsertExpressionClick}> Insert Expression </Button>
-        </ButtonGroup>
+        </div>
         </li>
       </ul>
     </div>

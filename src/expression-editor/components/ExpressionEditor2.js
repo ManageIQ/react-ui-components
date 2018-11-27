@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonGroup, Button } from 'patternfly-react';
+import { Button } from '@patternfly/react-core';
 import Expression from './Expression';
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import { logicalOperatorsMock, userInputMock } from "../constants"
@@ -196,10 +196,10 @@ class ExpressionEditor2 extends React.Component {
       <div className="expressionEditor">
         <h1 className="expressionEditorTitle">Expression Editor</h1>
         <div>
-          <ButtonGroup className="undoRedoButtons">
-            <Button className="button" disabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
-            <Button className="button" disabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
-          </ButtonGroup>
+          <div className="undoRedoButtons">
+            <Button className="button" isDisabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
+            <Button className="button" isDisabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+          </div>
         </div>
         {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
       </div>

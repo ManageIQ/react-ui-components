@@ -4,7 +4,7 @@ const endpoints = {
 };
 
 let defaultOptions = {id: 0, label: 'root', type: 'root', next:
-  [{ id: 1, label: 'fields', type: 'category', next: [
+  [{ id: 1, label: 'Fields', type: 'category', next: [
       { id: 11, label: 'Hostname', type: 'category',
         next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
       },
@@ -19,7 +19,7 @@ let defaultOptions = {id: 0, label: 'root', type: 'root', next:
       },
     ]
   },
-    { id: 2, label: 'tags', type: 'category', next: [
+    { id: 2, label: 'Tags', type: 'category', next: [
         { id: 21, label: 'Location', type: 'category',
           next: [{ id: 211, label: '=', type: 'operator', next: userInputMock}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
         },

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'patternfly-react';
-import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, TextInput } from '@patternfly/react-core';
+import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, TextInput } from '@patternfly/react-core';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import Menu from './Menu';
@@ -146,7 +145,7 @@ export default class AutocompleteTextInput extends React.Component {
             toggle={
               <input
                 autoFocus
-                className="pf-c-form-control"
+                className="pf-c-form-control autocompleteTextInput"
                 input="true"
                 type="text"
                 ref={this.props.inputRef}
@@ -163,13 +162,14 @@ export default class AutocompleteTextInput extends React.Component {
           {this.props.options.map((o, i) => (
             <DropdownItem
               component="button"
+              className="dropdownFontSize"
               isHovered={this.state.index === i}
               onMouseDown={this.generateMenuClick(i)}
             >
               {o.label}
             </DropdownItem>))}
           </Dropdown>
-          <Button className="inputButton" onClick={this.addButtonClick} disabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
+          <Button className="inputButton" onClick={this.addButtonClick} isDisabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
       </span>
 
     );

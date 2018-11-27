@@ -116,6 +116,7 @@ export default class Chip extends React.Component {
         {this.state.menuItems.map((o, i) => (
           <DropdownItem
             component="button"
+            className="dropdownFontSize"
             isHovered={this.state.menuIndex === i}
             onClick={o.onClick}
             onMouseDown={this.blockBlur}
