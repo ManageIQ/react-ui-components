@@ -1,225 +1,23 @@
 @import '~patternfly/dist/sass/patternfly/variables';
-@import "~react-select/dist/react-select.css";
 
 $input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 
-.final-form-select {
-  .Select-control {
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    box-shadow: 0 2px 3px rgba(3, 3, 3, 0.1);
-    border-radius: 0;
-    height: 20px;
-    padding: 2px 6px;
-    line-height: 20px;
-    background-color: #f1f1f1;
-    border-color: $color-pf-black-400;
-    color: $color-pf-black-700;
-    background-image: linear-gradient(to bottom, $color-pf-black-100 0%, $color-pf-black-200 100%);
-    background-repeat: repeat-x;
-    cursor: pointer;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 2px 6px;
-    font-size: 12px;
-    line-height: 1.66666667;
-    border-radius: 1px;
-    font-weight: 600;
-    border-color: rgb(187, 187, 187);
-    &:hover {
-      background-color: #f1f1f1;
-      background-image: none;
-      border-color: $color-pf-black-400;
-      color: $color-pf-black-700;
-    }
-    &.is-focused.has-value, &.is-focused {
-      .Select-control {
-        background-image: none;
-      }
-    }
-  }
-  .Select-placeholder {
-    line-height: 25px;
-    padding: 0 6px;
-    color: $color-pf-black-700;
-  }
-  .Select-input {
-    height: 20px;
-  }
-  .Select-clear-zone {
-    line-height: 0.7;
-  }
-  .Select-control > *:last-child {
-    padding-top: 2px;
-  }
-  &.Select--single {
-    .Select-value {
-      line-height: 25px;
-      padding-left: 6px;
-      padding-right: 6px;
-    }
-  }
+$input-default-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+.final-form-select.has-error{
+  border: 1px solid;
+  border-color: #cc0000;
 }
 
-.final-form-select.is-disabled {
-  .Select-control {
-    cursor: not-allowed;
-    background-image: none;
-    box-shadow: none;
-    .Select-placeholder {
-      color: $color-pf-black-500;
-    }
-    &:hover {
-      background-color: #f9f9f9;
-      cursor: not-allowed;
-      background-image: none;
-      box-shadow: none;
-      .Select-placeholder {
-        color: $color-pf-black-500;
-      }
-    }
-  }
-  
+.form-group.field-group:not(:last-child) {
+  margin-bottom: 0;
+}
+.form-group.field-group:last-child {
+  margin-bottom: 0;
 }
 
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.final-form-select.Select--multi{
-  .Select-control {
-    width: 100%;
-    display: table;
-    height: auto;
-  }
-
-  .Select-multi-value-wrapper {
-    width: calc(100% - 25px);
-    .Select-value {
-      float: left;
-    }
-  }
-
-  .Select-value {
-      animation: 0.3s ease-out 0s 1 fadeIn;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      border: none;
-      border-radius: 0;
-      margin-right: 5px;
-      margin-left: 0px;
-      font-size: 12px;
-      .Select-value-icon, .Select-value-label {
-        background-color: $color-pf-blue-400;
-        color: white;
-        border: none;
-        border-radius: 0;
-      }
-      .Select-value-icon {
-        float: right;
-        padding: 2px 7px 2px;
-        &:hover {
-          background-color: $color-pf-blue-300;
-        }
-      }
-  }
-}
-
-.final-form-select.is-searchable{
-  .Select-input {
-    padding-left: 0;
-    margin-left: 0;
-    input {
-      padding: 0;
-    }
-  }
-  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
-  &.is-open.Select--single .Select-control .Select-value .Select-value-label,
-  &.is-open.Select--single .Select-placeholder {
-    color: $color-pf-black-600;
-  }
-}
-
-
-.final-form-select.Select--multi.has-value,
-.final-form-select.Select--multi.is-open.has-value,
-.final-form-select.Select--multi.is-open.is-focused.has-value,
-.final-form-select.Select--multi.is-focused.has-value,
-.final-form-select.is-searchable.is-focused.is-open,
-.final-form-select.is-searchable.is-focused,
-.final-form-select.is-searchable.is-focused:not(.is-open) {
-  .Select-control {
-    background-image: none;
-    background-color: white;
-  }
-
-  .Select-input {
-    background-color: white;
-  }
-}
-
-.final-form-select.has-error {
-  .Select-control {
-    border-color: $color-pf-red-100;
-  }
-}
-
-.final-form-select.is-open,
-.final-form-select.is-focused.is-open,
-.final-form-select.is-pseudo-focused.is-open,
-.final-form-select.is-focused:not(.is-open),
-.final-form-select.is-pseudo-focused:not(.is-open) {
-  .Select-control, .Select-input {
-    background-color: #f1f1f1;
-    background-image: none;
-  }
-}
-
-.form-group.has-error .final-form-select.is-fosuced,
-.form-group.has-error .final-form-select,
-.final-form-select.has-error.is-fosuced {
-    .Select-control {
-      border-color: $color-pf-red-100;
-      background-color: #f1f1f1;
-      background-image: none;
-    }
-}
-
-.final-form-select.is-focused:not(.is-open), .final-form-select.is-pseudo-focused:not(.is-open) {
-  .Select-control {
-    border-color: $color-pf-blue-400;
-    outline: 0;
-    box-shadow: $input-default-box-shadow, 0 0 8px rgba(0, 136, 206, 0.6);
-  }
-  &.has-error {
-    .Select-control {
-      border-color: $color-pf-red-100;
-      box-shadow: $input-default-box-shadow, 0 0 8px rgba(204, 0, 0, 0.8);
-    }
-  }
-}
-
-.final-form-select-option.Select-option {
-  background-color: $color-pf-white;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 1px 0;
-  padding: 1px 10px;
-  &.is-focused {
-    color: $color-pf-black-700;
-    background-color: $color-pf-blue-50;
-    border-color: $color-pf-blue-100;
-  }
-  &.is-selected {
-    background-color: $color-pf-blue-400;
-    border-color: $color-pf-blue-400;
-    color: $color-pf-white;
-  }
+div.field-group {
+  margin-bottom: 25px;
 }
 
 .radio label, .checkbox label {
