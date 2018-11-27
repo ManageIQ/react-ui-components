@@ -59,6 +59,8 @@ export default class AutocompleteTextInput extends React.Component {
       if (value === '') {
         this.props.onKeyDown(e);
       }
+    } else if ([35, 36].includes(e.keyCode)) {
+      this.props.onKeyDown(e);
     } else {
       this.setState({ index: -1 });
     }

@@ -85,18 +85,28 @@ class ExpressionEditor2 extends React.Component {
     const chipRefs = this.state.chipRefs.flat();
     // console.log('on key down', key, index, selected);
     if (key.keyCode === 37) {
-      index = index <= 0 ? index : index - 1;
-      // chipRefs[index].current.focus();
-      this.focusChip(index);
-    } else if (key.keyCode === 39) {
-      if (index >= chipRefs.length - 1) {
-        this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
-        this.focusInput();
+      if (key.ctrlKey) {
+        index = this.localToGlobalIndex(0, expressionIndex);
       } else {
-        // index = index >= 0 ? index : index + 1;
-        this.focusChip(index + 1);
-        // chipRefs[index + 1].current.focus();
+        index = index <= 0 ? index : index - 1;
       }
+      // chipRefs[index].current.focus();
+      if (this.props.expressions.flat().length > 0) {
+        this.focusChip(index);
+      }
+    } else if (key.keyCode === 39) {
+        if (key.ctrlKey) {
+          console.log("CTRL", this.props.expressions[expressionIndex].length - 1);
+          index = this.localToGlobalIndex(this.props.expressions[expressionIndex].length - 1, expressionIndex);
+        }
+        if (index >= chipRefs.length - 1) {
+          this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
+          this.focusInput();
+        } else {
+          // index = index >= 0 ? index : index + 1;
+          this.focusChip(index + 1);
+          // chipRefs[index + 1].current.focus();
+        }
     } else if (key.keyCode === 13) {
       // console.log('on enter key down', selected, expression);
       this.props.onClick(selected, expressionIndex, chipIndex);
@@ -104,6 +114,18 @@ class ExpressionEditor2 extends React.Component {
       this.onDelete(selected, expressionIndex, chipIndex);
     } else if (key.keyCode === 45) {
       this.props.onInsert(expressionIndex);
+    } else if (key.keyCode == 36) {
+      if (this.props.expressions.flat().length > 0) {
+        this.focusChip(0);
+      }
+    } else if (key.keyCode == 35) {
+      if (this.props.expressions.flat().length > 0) {
+        if (this.state.inputRef.current) {
+          this.focusInput()
+        } else {
+          this.focusChip(this.props.expressions.flat().length - 1);
+        }
+      }
     }
 
     this.setState({ prevKeyPressed: key });
