@@ -31,8 +31,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     hideSelectedOptions={false}
     closeMenuOnSelect={!rest.multi}
     noOptionsMessage={() => __('No option found')}
-    onChange={option =>
-    input.onChange(rest.multi ? selectValue(option) : option ? option.value : undefined)} // eslint-disable-line no-nested-ternary
+    onChange={option => input.onChange(rest.multi ? selectValue(option) : option && option.value)} // eslint-disable-line no-nested-ternary
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
