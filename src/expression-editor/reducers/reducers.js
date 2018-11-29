@@ -122,8 +122,8 @@ const calculateExpressionDelete = (state, expressionIndex) => {
 }
 
 const calculateDelete = (state, selected, expressionIndex, chipIndex) => {
-  const filteredExpression = [...state[expressionIndex]];
-  filteredExpression.splice(chipIndex, 1);
+  let filteredExpression = [...state[expressionIndex]];
+  filteredExpression = filteredExpression.slice(0, chipIndex);
   state.splice(expressionIndex, 1, filteredExpression);
   cleanLastExpression(state, selected);
   state = state.filter(e => e.length !== 0)
