@@ -39,22 +39,32 @@ export default class AutocompleteTextInput extends React.Component {
 
   handleKeyDown = (e) => {
     const { target: { value } } = e;
-    if (e.keyCode === keyCodes.enter) {
-      this.handleSubmit(value);
-    } else if (e.keyCode === keyCodes.upArrow) {
-      const index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
-      this.setState(prevState => ({ index }));
-    } else if (e.keyCode === keyCodes.downArrow) {
-      const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
-      this.setState(prevState => ({ index }));
-    } else if (e.keyCode === keyCodes.leftArrow) {
-      if (value === '') {
+    let index = 0;
+    switch (e.keyCode)  {
+      case keyCodes.enter:
+        this.handleSubmit(value);
+        break;
+      case keyCodes.upArrow:
+        index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
+        this.setState(prevState => ({ index }));
+        break;
+      case keyCodes.downArrow:
+        index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
+        this.setState(prevState => ({ index }));
+        break;
+      case keyCodes.leftArrow:
+        if (value === '') {
+          this.props.onKeyDown(e);
+        }
+        break;
+      case keyCodes.end:
         this.props.onKeyDown(e);
-      }
-    } else if ([keyCodes.end, keyCodes.home].includes(e.keyCode)) {
-      this.props.onKeyDown(e);
-    } else {
-      this.setState({ index: -1 });
+        break;
+      case keyCodes.home:
+        this.props.onKeyDown(e);
+        break;
+      default:
+        this.setState({ index: -1 });
     }
   }
 

@@ -115,7 +115,7 @@ class Expression extends React.Component {
         <ul className="list-inline expressionButtons">
         <li>
         <div className="buttons .pf-c-form-control">
-          <Button className="button" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
+          <Button className="button" variant="danger" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
           <Button className="button" onClick={this.onInsertExpressionClick}> Insert Expression </Button>
         </div>
         </li>

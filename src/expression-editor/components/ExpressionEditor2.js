@@ -18,9 +18,9 @@ class ExpressionEditor2 extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const a = props.expressions.map(e => e.length);
-    const b = state.chipRefs.map(e => e.length);
-    const updateChips = !b.map((e, i) => e === a[i]).reduce((a, b) => (a && b), true);
+    const expressionLengths = props.expressions.map(e => e.length);
+    const chipRefsLength = state.chipRefs.map(e => e.length);
+    const updateChips = !chipRefsLength.map((e, i) => e === expressionLengths[i]).reduce((a, b) => (a && b), true);
     if (updateChips) {
       return { chipRefs: props.expressions.map(ex => ex.map(() => React.createRef())) };
     }
@@ -34,10 +34,11 @@ class ExpressionEditor2 extends React.Component {
     if (updateChips) {
       this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef())) });
     }
-    const defaultIndex =  this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
+  
+    const defaultIndex = this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
     const focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
     let focusedIndex = focusedExpressions.indexOf(true);
-    if (focusedIndex > -1 && focusedIndex !== this.state.focusedExpressionIndex) {
+    if (focusedIndex >= 0 && focusedIndex !== this.state.focusedExpressionIndex) {
       this.setState({ focusedExpressionIndex: focusedIndex });
     } else if (focusedIndex < 0 && prevState.focusedExpressionIndex === this.state.focusedExpressionIndex && this.state.focusedExpressionIndex !== defaultIndex) {
       focusedIndex = defaultIndex;
@@ -64,64 +65,41 @@ class ExpressionEditor2 extends React.Component {
   onKeyDown = (key, chipIndex, selected, expressionIndex) => {
     let index = this.localToGlobalIndex(chipIndex, expressionIndex);
     const chipRefs = this.state.chipRefs.flat();
-    if (key.keyCode === keyCodes.leftArrow) {
-      if (key.ctrlKey) {
-        if (chipIndex == 0 && expressionIndex > 0) {
-          index = this.localToGlobalIndex(0, expressionIndex - 1);
-        } else {
-          index = this.localToGlobalIndex(0, expressionIndex);
+
+    switch (key.keyCode) {
+      case keyCodes.leftArrow:
+        this.handleLeftArrow(chipIndex, expressionIndex, index, key.ctrlKey);
+        break;
+      case keyCodes.rightArrow:
+        this.handleRightArrow(chipIndex, expressionIndex, index, key.ctrlKey);
+        break;
+      case keyCodes.enter:
+        this.props.onClick(selected, expressionIndex, chipIndex);
+        break;
+      case keyCodes.backspace:
+        this.onDelete(selected, expressionIndex, chipIndex);
+        break;
+      case keyCodes.delete:
+        this.onDelete(selected, expressionIndex, chipIndex);
+        break;
+      case keyCodes.insert:
+        this.props.onInsert(expressionIndex);
+        break;
+      case keyCodes.home:
+        if (this.props.expressions.flat().length > 0) {
+          this.focusChip(0);
         }
-      } else {
-        index = index <= 0 ? index : index - 1;
-      }
-      if (this.props.expressions.flat().length > 0) {
-        this.focusChip(index);
-      }
-    } else if (key.keyCode === keyCodes.rightArrow) {
-        if (key.ctrlKey) {
-          const expressionLength =  this.props.expressions[expressionIndex].length - 1;
-          if (chipIndex >= expressionLength) {
-            if (expressionIndex < this.props.expressions.length - 1) {
-              if (this.props.expressions[expressionIndex+1].length  > 0) {
-                index = this.localToGlobalIndex(this.props.expressions[expressionIndex+1].length - 1, expressionIndex + 1);
-                this.focusChip(index);
-              } else {
-                this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
-                this.focusInput();
-              }
-            }
+        break;
+      case keyCodes.end:
+        if (this.props.expressions.flat().length > 0) {
+          if (this.state.inputRef.current) {
+            this.focusInput()
           } else {
-            index = this.localToGlobalIndex(expressionLength, expressionIndex);
-            this.focusChip(index);
-
-          }
-
-        } else {
-          if (index >= chipRefs.length - 1) {
-            this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
-            this.focusInput();
-          } else {
-            this.focusChip(index + 1);
+            this.focusChip(this.props.expressions.flat().length - 1);
           }
         }
-    } else if (key.keyCode === keyCodes.enter) {
-      this.props.onClick(selected, expressionIndex, chipIndex);
-    } else if (key.keyCode === keyCodes.backspace || key.keyCode === keyCodes.delete) {
-      this.onDelete(selected, expressionIndex, chipIndex);
-    } else if (key.keyCode === keyCodes.insert) {
-      this.props.onInsert(expressionIndex);
-    } else if (key.keyCode == keyCodes.home) {
-      if (this.props.expressions.flat().length > 0) {
-        this.focusChip(0);
-      }
-    } else if (key.keyCode == keyCodes.end) {
-      if (this.props.expressions.flat().length > 0) {
-        if (this.state.inputRef.current) {
-          this.focusInput()
-        } else {
-          this.focusChip(this.props.expressions.flat().length - 1);
-        }
-      }
+        break;
+      default:
     }
 
     this.setState({ prevKeyPressed: key });
@@ -129,7 +107,6 @@ class ExpressionEditor2 extends React.Component {
 
   focusChip = (index) => {
     const chipRefs = this.state.chipRefs.flat();
-    console.log('FOCUS INDEX', index, chipRefs);
     chipRefs[index].current.focus();
   }
 
@@ -147,6 +124,48 @@ class ExpressionEditor2 extends React.Component {
     this.focusChip(index);
   }
 
+  handleLeftArrow = (chipIndex, expressionIndex, index, ctrl) => {
+    if (ctrl) {
+      if (chipIndex == 0 && expressionIndex > 0) {
+        index = this.localToGlobalIndex(0, expressionIndex - 1);
+      } else {
+        index = this.localToGlobalIndex(0, expressionIndex);
+      }
+    } else {
+      index = index <= 0 ? index : index - 1;
+    }
+    if (this.props.expressions.flat().length > 0) {
+      this.focusChip(index);
+    }
+  }
+
+  handleRightArrow = (chipIndex, expressionIndex, index, ctrl) => {
+    const lastElement = index >= this.state.chipRefs.flat().length - 1;
+    if (ctrl) {
+      const expressionLength = this.props.expressions[expressionIndex].length - 1;
+      const lastElementOnRow = chipIndex >= expressionLength;
+      if (lastElementOnRow) {
+        const nextRowHasChips = this.props.expressions[expressionIndex+1].length > 0 && expressionIndex < this.props.expressions.length - 1;
+        if (nextRowHasChips) {
+          index = this.localToGlobalIndex(this.props.expressions[expressionIndex+1].length - 1, expressionIndex + 1);
+          this.focusChip(index);
+        } else {
+          this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
+          this.focusInput();
+        }
+      } else {
+        index = this.localToGlobalIndex(expressionLength, expressionIndex);
+        this.focusChip(index);
+      }
+    } else {
+      if (lastElement) {
+        this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
+        this.focusInput();
+      } else {
+        this.focusChip(index + 1);
+      }
+    }
+  }
 
   generateExpression = (expression, index) => (
     <Expression

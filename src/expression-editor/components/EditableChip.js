@@ -38,7 +38,6 @@ class EditableChip extends React.Component {
         newSelected.parent = this.props.item.parent;
       }
       this.setState({ filterString: '' });
-      console.log(newSelected);
       this.props.onSubmit(newSelected, this.props.item);
     }
   }
