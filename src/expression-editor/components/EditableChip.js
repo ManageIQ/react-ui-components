@@ -12,13 +12,10 @@ class EditableChip extends React.Component {
       filteredOptions: props.options,
       filterString: this.props.label,
       aliasMode: false,
-      // filterString: '',
     };
-    // console.log('editable chip constructor', props);
   }
 
   static getDerivedStateFromProps(props, state) {
-    // console.log('editable chipget derived state', props, state);
     return { filteredOptions: props.options.filter(props.filterOption(state.filterString)) };
   }
 
@@ -32,18 +29,14 @@ class EditableChip extends React.Component {
   };
 
   onSubmit = (selected) => {
-    // console.log('EditableChip submit', selected, this.props.item);
-    // console.log('MODE:', this.state.aliasMode);
     if (this.state.aliasMode) {
       this.setAlias(selected);
       this.setState({aliasMode: false});
     } else {
       const newSelected = selected;
       if (selected.type === 'userinput') {
-        // console.log('SUMBIT:',selected);
         newSelected.parent = this.props.item.parent;
       }
-      // let{ label, id, item } = this.props;
       this.setState({ filterString: '' });
       console.log(newSelected);
       this.props.onSubmit(newSelected, this.props.item);
@@ -51,22 +44,18 @@ class EditableChip extends React.Component {
   }
 
   onDelete = () => {
-    // console.log('on DELETEE');
     this.props.onDelete(this.props.item, this.props.index);
   }
 
   onFocus = () => {
-    // console.log('on FOCUSSSSSSSS');
     this.props.onFocus(this.props.item, this.props.index);
   }
 
   onBlur = () => {
-    // console.log('on bluuuuuuuuuuuuuuuuuur');
     this.props.onBlur(this.props.item, this.props.index);
   }
 
   onUserInput = (input) => {
-  // console.log('EditableChip UserInput', input);
     this.setState({ filterString: input });
   }
 
@@ -79,12 +68,10 @@ class EditableChip extends React.Component {
   }
 
   setAlias = (alias) => {
-    console.log('ALIAS',alias, this.props.index );
     this.props.setAlias(alias, this.props.index)
   }
 
   render() {
-    // console.log('EditableChip props:', this.props.label);
     return (
       (this.props.isEditing &&
         <AutocompleteTextInput
@@ -94,14 +81,11 @@ class EditableChip extends React.Component {
           options={this.state.filteredOptions}
           value={this.state.filterString}
           denyUserInput={(this.props.options.length > 0)}
-          // setAlias={this.props.setAlias}
           setAliasMode={this.setAliasMode}
           aliasMode={this.state.aliasMode}
           isLastElement={!!this.props.isLastElement}
           deleteExpression={this.props.deleteExpression}
           blurAllChips={this.props.blurAllChips}
-          // registerInput={this.props.registerInput}
-          // unregisterInput={this.props.unregisterInput}
           inputRef={this.props.inputRef}
           index={this.props.index}
           next={this.props.item.next}

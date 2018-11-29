@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, TextInput } from '@patternfly/react-core';
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
-import Menu from './Menu';
-import "../constants";
+import { keyCodes } from "../constants";
 
 export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
@@ -35,30 +34,24 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   onFocus = () => {
-    // this.props.blurAllChips();
     this.setState({isFocused: true});
   }
 
   handleKeyDown = (e) => {
-    // console.log(value);
     const { target: { value } } = e;
-    if (e.keyCode === enterKeyCode) {
+    if (e.keyCode === keyCodes.enter) {
       this.handleSubmit(value);
-    } else if (e.keyCode === upArrowKeyCode) {
-      // console.log(this.state.index);
+    } else if (e.keyCode === keyCodes.upArrow) {
       const index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
-      // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
-    } else if (e.keyCode === downArrowKeyCode) {
-      // console.log('AAAA',this.state.index, this.state.menuItemRefs.length);
+    } else if (e.keyCode === keyCodes.downArrow) {
       const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
-      // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
-    } else if (e.keyCode === leftArrowKeyCode) {
+    } else if (e.keyCode === keyCodes.leftArrow) {
       if (value === '') {
         this.props.onKeyDown(e);
       }
-    } else if ([endKeyCode, homeKeyCode].includes(e.keyCode)) {
+    } else if ([keyCodes.end, keyCodes.home].includes(e.keyCode)) {
       this.props.onKeyDown(e);
     } else {
       this.setState({ index: -1 });
@@ -104,13 +97,7 @@ export default class AutocompleteTextInput extends React.Component {
     this.handleSubmit(this.props.value)
   }
 
-  hideMenu = () => {
-    this.setState({isFocused: false});
-  }
-
   handleChange = ({ target: { value } }) => {
-    // console.log('handle change:', value);
-    // this.setState({ value: value });
     this.props.onChange(value);
   }
 
@@ -119,29 +106,9 @@ export default class AutocompleteTextInput extends React.Component {
   }
 
   render() {
-    // console.log('AutocompleteTextInput', this.props, this.state);
     return (
       <span>
-          {/* <input ref={this.props.inputRef}
-            autoFocus
-            value={this.props.value}
-            onKeyDown={this.handleKeyDown}
-            onBlur={this.onBlur}
-            onChange={this.handleChange}
-            fullWidth />
-          <Menu
-            options={this.props.options.filter(o => o.type !== "userinput")}
-            registerMenuItem={this.registerMenuItem}
-            unregisterMenuItem={this.unregisterMenuItem}
-            focusedIndex={this.state.index}
-            menuItemRefs={this.state.menuItemRefs}
-            onClick={this.onMenuClick}
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
-          /> */}
           <Dropdown
-            // onToggle={this.onToggle}
-            onSelect={this.hideMenu}
             toggle={
               <input
                 autoFocus

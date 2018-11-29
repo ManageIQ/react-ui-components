@@ -5,21 +5,6 @@ import * as actionsConstants from '../actions/actions';
 const undoableActions = [actionsConstants.ON_SUBMIT, actionsConstants.ON_INSERT,
   actionsConstants.ON_DELETE, actionsConstants.ON_DELETE_EXPRESSION, actionsConstants.SET_ALIAS]
 
-/*
-old code
-const combinedReducers = combineReducers({
-  steps,
-  selected,
-  next,
-  options
-});
-
-function ExpressionEditorReducers(state = {}, action) {
-  const appState = {...state.expressionEditor}
-  console.log('combineReducers', appState, action);
-  return { expressionEditor: combinedReducers(appState, action)};
-}
-*/
 function undoable(reducer) {
   // Call the reducer with empty action to populate the initial state
   const initialState = {
@@ -68,19 +53,6 @@ function undoable(reducer) {
         }
     }
   }
-}
-
-const combinedReducers = combineReducers({
-  expressions,
-  next,
-  isLastElement,
-  countParentheses
-});
-
-function ExpressionEditorReducers(state = {}, action) {
-  const appState = {...state.expressionEditor}
-  console.log('combineReducers', appState, action);
-  return { expressionEditor: combinedReducers(appState, action)};
 }
 
 export default combineReducers({

@@ -7,14 +7,9 @@ import { dataProvider } from './DataProvider';
 const mapStateToProps = (state) => {
   console.log('state: ', state, state.expressions.past );
   return {
-  // actions which have been done since loeaded
   canUndo: !!(state.expressions.past && state.expressions.past.length > 0),
   canRedo: !!(state.expressions.future && state.expressions.future.length > 0),
   expressions: state.expressions.present.expressions,
-  // data for next dropdown
-  // next: expressionEditor.next,
-  // selected: expressionEditor.selected,
-  next: state.next,
   isLastElement: state.isLastElement,
   parenthesesCount:  state.expressions.present.parenthesesCount
 }};
@@ -53,7 +48,6 @@ const mapDispatchToProps = dispatch => ({
 
   onSubmit: (selected, previous, expressionIndex) => {
     dispatch(isLastElement(selected));
-    // dispatch(onBlur(selected, expressionIndex));
     dispatch(onSubmit(selected, previous, expressionIndex));
     dispatch(countParentheses());
 
@@ -78,6 +72,5 @@ const ExpressionEditorConnected2 = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(dataProvider({foo: 'foo'})(ExpressionEditor));
-// console.log(dataProvider);
 
 export { ExpressionEditorConnected2 };

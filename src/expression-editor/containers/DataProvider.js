@@ -54,26 +54,11 @@ defaultOptions.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: de
 
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
-    // console.log('data provider', props);
-    // console.log('DATA PROVIDER', props.next, defaultOptions);
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
-    // let options = (isLastElementOperator || props.expressions.length === 1) ? defaultOptions : logicalOperatorsMock;
-    // console.log("NEXT", options);
-    // options = mapParent(options, options.next);
-    // console.log('options', options);
     let newProps = {...props};
     newProps.next = options;
-    // console.log('DATA PROVIDER2', newProps);
     return <Component  {...newProps}/>
   };
   return DataProvider;
 }
-
-
-/*
-const foo = (props) => {
-  return (Component) => <Component {...props}/>
-}
-export default dataProvider(connect(mapStateToProps, mapDispatchToProps)(Foo));
-*/
