@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import { metaObjectProps, inputObjectProps } from './finalFormPropTypes';
 import { validationError } from './finalFormFieldsHelper';
+import customStyles from './select-styles';
 import './style.scss';
 
 const componentTypes = ['radio', 'checkbox', 'textarea', 'select', 'textfield', 'switch'];
 const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
-const selectValue = (option, labelKey, valueKey) =>
-  option.sort((a, b) => a[labelKey].localeCompare(b[labelKey], 'en', { sensitivity: 'base' }).map(item => item[valueKey]));
+const selectValue = option => option.sort((a, b) => a.label.localeCompare(b.label, 'en', { sensitivity: 'base' })).map(item => item.value);
 
 const componentSelect = (componentType, { input, meta, ...rest }) => ({
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
@@ -19,11 +19,19 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
   checkbox: <Checkbox {...input}>{rest.label}</Checkbox>,
   textarea: <FormControl componentClass="textarea" {...input} placeholder={rest.placeholder} />,
   select: <ReactSelect
-    className={`${rest.invalid ? 'has-error' : ''} final-form-select`}
-    optionClassName="final-form-select-option"
+    className={`final-form-select ${meta.invalid ? 'has-error' : ''}`}
+    styles={customStyles}
     {...input}
-    onChange={option => input.onChange(rest.multi ? selectValue(option, rest.labelKey, rest.valueKey) : option[rest.valueKey])}
     {...rest}
+    options={rest.options.filter(option => option.hasOwnProperty('value') && option.value !== null)} // eslint-disable-line
+    value={rest.options.filter(({ value }) => (rest.multi ? input.value.includes(value) : value === input.value))}
+    isMulti={rest.multi}
+    isSearchable={!!rest.searchable}
+    isClearable={!!rest.clearable}
+    hideSelectedOptions={false}
+    closeMenuOnSelect={!rest.multi}
+    noOptionsMessage={() => __('No option found')}
+    onChange={option => input.onChange(rest.multi ? selectValue(option) : option && option.value)} // eslint-disable-line no-nested-ternary
   />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
@@ -54,7 +62,7 @@ const FinalFormComponent = ({
     meta,
     id,
     input: { ...normalizeInputValues({ ...input, id }), disabled, maxLength },
-    options,
+    options: options || [],
     clearable,
     placeholder,
     label,

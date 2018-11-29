@@ -1,6 +1,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { RbacAssignCompanyTags } from '../';
 import { usersTableColumns } from '../stories/data';
 import { users, categories } from '../stories/usersData';
@@ -69,32 +69,6 @@ describe('Rbac assign user tags component', () => {
       value: 10000000000190,
       label: 'lazy loaded 2',
     }]);
-  });
-
-  it('should render correctly with initial assignments', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} />);
-    expect.assertions(1);
-    return mockInitialLoad()
-      .then(() => {
-        wrapper.setState({ isLoaded: true });
-        wrapper.update();
-        expect(toJson(wrapper)).toMatchSnapshot();
-      });
-  });
-
-  it('should render correctly without initial assignmets', () => {
-    const wrapper = mount(<RbacAssignCompanyTags
-      {...initialProps}
-      users={[{
-        ...users[0],
-        currentgroup: 'foo',
-        role: 'bar',
-        tags: [],
-      }]}
-    />);
-    wrapper.setState({ isLoaded: true });
-    wrapper.update();
-    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('should not call save function', () => {
@@ -274,16 +248,5 @@ describe('Rbac assign user tags component', () => {
     />);
     wrapper.instance().handleCategorySelect({ value: 'foo', label: 'bar' });
     expect(wrapper.state().selectedCategory).toEqual('foo');
-  });
-
-  it('should load category entries if not present in state', () => {
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} />);
-    expect.assertions(1);
-    return mockLoadCategoryEntries()
-      .then(() => {
-        wrapper.setState({ mockLoadCategoryEntry: 123 });
-        wrapper.instance().loadCategoryEntries(123);
-        expect(toJson(wrapper)).toMatchSnapshot();
-      });
   });
 });
