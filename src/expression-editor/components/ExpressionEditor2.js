@@ -85,7 +85,11 @@ class ExpressionEditor2 extends React.Component {
     // console.log('on key down', key, index, selected);
     if (key.keyCode === 37) {
       if (key.ctrlKey) {
-        index = this.localToGlobalIndex(0, expressionIndex);
+        if (chipIndex == 0 && expressionIndex > 0) {
+          index = this.localToGlobalIndex(0, expressionIndex - 1);
+        } else {
+          index = this.localToGlobalIndex(0, expressionIndex);
+        }
       } else {
         index = index <= 0 ? index : index - 1;
       }
@@ -95,16 +99,33 @@ class ExpressionEditor2 extends React.Component {
       }
     } else if (key.keyCode === 39) {
         if (key.ctrlKey) {
-          console.log("CTRL", this.props.expressions[expressionIndex].length - 1);
-          index = this.localToGlobalIndex(this.props.expressions[expressionIndex].length - 1, expressionIndex);
-        }
-        if (index >= chipRefs.length - 1) {
-          this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
-          this.focusInput();
+          const expressionLength =  this.props.expressions[expressionIndex].length - 1;
+          if (chipIndex >= expressionLength) {
+            if (expressionIndex < this.props.expressions.length - 1) {
+              console.log("CTRL", this.props.expressions[expressionIndex+1].length - 1, expressionIndex+1);
+              if (this.props.expressions[expressionIndex+1].length  > 0) {
+                index = this.localToGlobalIndex(this.props.expressions[expressionIndex+1].length - 1, expressionIndex + 1);
+                this.focusChip(index);
+              } else {
+                this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
+                this.focusInput();
+              }
+            }
+          } else {
+            index = this.localToGlobalIndex(expressionLength, expressionIndex);
+            this.focusChip(index);
+
+          }
+
         } else {
-          // index = index >= 0 ? index : index + 1;
-          this.focusChip(index + 1);
-          // chipRefs[index + 1].current.focus();
+          if (index >= chipRefs.length - 1) {
+            this.setState({ focusedExpressionIndex: this.props.expressions.length - 1 });
+            this.focusInput();
+          } else {
+            // index = index >= 0 ? index : index + 1;
+            this.focusChip(index + 1);
+            // chipRefs[index + 1].current.focus();
+          }
         }
     } else if (key.keyCode === 13) {
       // console.log('on enter key down', selected, expression);
