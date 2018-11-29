@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Label } from 'patternfly-react';
 import { Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, Label } from '@patternfly/react-core';
+import "../constants";
 
 export default class Chip extends React.Component {
   constructor(props) {
@@ -51,15 +52,15 @@ export default class Chip extends React.Component {
     let index = this.state.menuIndex;
     console.log(e.ctrlKey);
     switch (e.keyCode) {
-      case 38:
+      case upArrowKeyCode:
         index = this.state.menuIndex <= -1 ? this.state.menuIndex : this.state.menuIndex - 1;
         this.setState(prevState => ({ menuIndex: index }));
         break;
-      case 40:
+      case downArrowKeyCode:
         index = this.state.menuIndex >= this.state.menuItems.length - 1 ? this.state.menuItems.length - 1 : this.state.menuIndex + 1;
         this.setState(prevState => ({ menuIndex: index }));
         break;
-      case 13:
+      case enterKeyCode:
         if (index > -1) {
           this.state.menuItems[index].onClick();
         } else {

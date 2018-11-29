@@ -6,6 +6,8 @@ import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import { logicalOperatorsMock, userInputMock } from "../constants"
 import jsep from "jsep";
 
+import "../constants";
+
 class ExpressionEditor2 extends React.Component {
   constructor(props) {
     super(props);
@@ -83,7 +85,7 @@ class ExpressionEditor2 extends React.Component {
     // console.log(this.state.chipRefs);
     const chipRefs = this.state.chipRefs.flat();
     // console.log('on key down', key, index, selected);
-    if (key.keyCode === 37) {
+    if (key.keyCode === leftArrowKeyCode) {
       if (key.ctrlKey) {
         if (chipIndex == 0 && expressionIndex > 0) {
           index = this.localToGlobalIndex(0, expressionIndex - 1);
@@ -97,7 +99,7 @@ class ExpressionEditor2 extends React.Component {
       if (this.props.expressions.flat().length > 0) {
         this.focusChip(index);
       }
-    } else if (key.keyCode === 39) {
+    } else if (key.keyCode === rightArrowKeyCode) {
         if (key.ctrlKey) {
           const expressionLength =  this.props.expressions[expressionIndex].length - 1;
           if (chipIndex >= expressionLength) {
@@ -127,18 +129,18 @@ class ExpressionEditor2 extends React.Component {
             // chipRefs[index + 1].current.focus();
           }
         }
-    } else if (key.keyCode === 13) {
+    } else if (key.keyCode === enterKeyCode) {
       // console.log('on enter key down', selected, expression);
       this.props.onClick(selected, expressionIndex, chipIndex);
-    } else if (key.keyCode === 8 || key.keyCode === 46) {
+    } else if (key.keyCode === backspaceKeyCode || key.keyCode === deleteKeyCode) {
       this.onDelete(selected, expressionIndex, chipIndex);
-    } else if (key.keyCode === 45) {
+    } else if (key.keyCode === insertKeyCode) {
       this.props.onInsert(expressionIndex);
-    } else if (key.keyCode == 36) {
+    } else if (key.keyCode == homeKeyCode) {
       if (this.props.expressions.flat().length > 0) {
         this.focusChip(0);
       }
-    } else if (key.keyCode == 35) {
+    } else if (key.keyCode == endKeyCode) {
       if (this.props.expressions.flat().length > 0) {
         if (this.state.inputRef.current) {
           this.focusInput()

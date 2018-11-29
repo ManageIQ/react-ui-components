@@ -15,3 +15,14 @@ export const logicalOperatorsMock = {id: 0, label: 'root', type: 'root', next: l
 
 rightParenteze.parent = userInputMock;
 logicalOperators.map((a) => { a.parent = logicalOperatorsMock; });
+
+export const backspaceKeyCode = 8;
+export const enterKeyCode = 13;
+export const endKeyCode = 35;
+export const homeKeyCode = 36;
+export const leftArrowKeyCode = 37;
+export const upArrowKeyCode = 38;
+export const rightArrowKeyCode = 39;
+export const downArrowKeyCode = 40;
+export const insertKeyCode = 45;
+export const deleteKeyCode = 46;

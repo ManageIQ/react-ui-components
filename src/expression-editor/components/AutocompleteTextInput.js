@@ -4,7 +4,7 @@ import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownSeparator, Text
 
 import ExpressionEditorPropTypes from './ExpressionEditorPropTypes';
 import Menu from './Menu';
-
+import "../constants";
 
 export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
@@ -42,23 +42,23 @@ export default class AutocompleteTextInput extends React.Component {
   handleKeyDown = (e) => {
     // console.log(value);
     const { target: { value } } = e;
-    if (e.keyCode === this.props.submitKeyCode) {
+    if (e.keyCode === enterKeyCode) {
       this.handleSubmit(value);
-    } else if (e.keyCode === 38) {
+    } else if (e.keyCode === upArrowKeyCode) {
       // console.log(this.state.index);
       const index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
       // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
-    } else if (e.keyCode === 40) {
+    } else if (e.keyCode === downArrowKeyCode) {
       // console.log('AAAA',this.state.index, this.state.menuItemRefs.length);
       const index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
       // this.focusMenuItem(index);
       this.setState(prevState => ({ index }));
-    } else if (e.keyCode === 37) {
+    } else if (e.keyCode === leftArrowKeyCode) {
       if (value === '') {
         this.props.onKeyDown(e);
       }
-    } else if ([35, 36].includes(e.keyCode)) {
+    } else if ([endKeyCode, homeKeyCode].includes(e.keyCode)) {
       this.props.onKeyDown(e);
     } else {
       this.setState({ index: -1 });
@@ -191,7 +191,6 @@ AutocompleteTextInput.propTypes = {
 };
 
 AutocompleteTextInput.defaultProps = {
-  submitKeyCode: 13,
   value: '',
   matchingFunction: value => option => option.label.toLowerCase().includes(value.toLowerCase()),
 };
