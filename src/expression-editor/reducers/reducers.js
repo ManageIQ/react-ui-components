@@ -64,7 +64,8 @@ export const isLastElement = (state = false, {selected, type}) => {
 const setAlias = (state, alias, expressionIndex, chipIndex) => {
   const expression = [...state[expressionIndex]];
   const selectedTerm = expression[chipIndex];
-  expression.splice(chipIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags,  isEditing: false, alias: alias}});
+  expression.splice(chipIndex, 1, {term: selectedTerm.term, flags: {...selectedTerm.flags,  isEditing: false,
+    isFocused: false, alias: alias}});
   state.splice(expressionIndex, 1, expression);
 
   return [...state];
