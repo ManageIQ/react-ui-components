@@ -3,57 +3,37 @@ import { logicalOperatorsMock, userInputMock } from "../constants"
 const endpoints = {
 };
 
-let defaultOptions = {id: 0, label: 'root', type: 'root', next:
-  [{ id: 1, label: 'Fields', type: 'category', next: [
-      { id: 11, label: 'Hostname', type: 'category',
-        next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
-      },
-      { id: 12, label: 'IP Address', type: 'category',
-        next: [{ id: 121, label: '=', type: 'operator', next: userInputMock}, { id: 122, label: '!=', type: 'operator', next: userInputMock}]
-      },
-      { id: 13, label: 'VM count', type: 'category',
-        next: [{ id: 131, label: '=', type: 'operator', next: userInputMock}, { id: 132, label: '!=', type: 'operator', next: userInputMock}]
-      },
-      { id: 14, label: 'Status', type: 'category',
-        next: [{ id: 141, label: '=', type: 'operator', next: userInputMock}, { id: 142, label: '!=', type: 'operator', next: userInputMock}]
-      },
-    ]
-  },
-    { id: 2, label: 'Tags', type: 'category', next: [
-        { id: 21, label: 'Location', type: 'category',
-          next: [{ id: 211, label: '=', type: 'operator', next: userInputMock}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
-        },
-        { id: 22, label: 'Department', type: 'category',
-          next: [{ id: 221, label: '=', type: 'operator', next: userInputMock}, { id: 222, label: '!=', type: 'operator', next: userInputMock}]
-        },
-        { id: 23, label: 'Environment', type: 'category',
-          next: [{ id: 231, label: '=', type: 'operator', next: userInputMock}, { id: 232, label: '!=', type: 'operator', next: userInputMock}]
-        },
-        { id: 24, label: 'Owner', type: 'category',
-          next: [{ id: 241, label: '=', type: 'operator', next: userInputMock}, { id: 242, label: '!=', type: 'operator', next: userInputMock}]
-        },
-      ]
-    }
-  ]
-};
+let defaultOptions = {};
 
+let preProcess = true;
 const mapParent = (parent, nodes) => {
   nodes.map(node => node.parent = parent);
   nodes.map(node => mapParent(node, node.next));
   return parent;
 }
+
 const isLastExpressionOperator = (expressions) => {
   const flatExpressions = expressions.flat();
   const lastTerm = flatExpressions[flatExpressions.length-1] || {term: {type: ["default"]}};
   return lastTerm.term.type === "logicalOperator";
 }
 
-defaultOptions = mapParent(defaultOptions, defaultOptions.next);
-defaultOptions.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: defaultOptions.next, parent: defaultOptions });
+const preProcessData = (data) => {
+  data = mapParent(data, data.next);
+  data.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: data.next, parent: data });
+  return data;
+}
+// defaultOptions = mapParent(defaultOptions, defaultOptions.next);
+// defaultOptions.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: defaultOptions.next, parent: defaultOptions });
 
 
 export const dataProvider = (endpoints) => (Component) => {
   const DataProvider = (props) => {
+    if (preProcess) {
+      defaultOptions = preProcessData(props.data);
+      preProcess = false;
+    }
+    console.log(props);
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
     let newProps = {...props};
