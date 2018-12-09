@@ -20,6 +20,7 @@ const isLastExpressionOperator = (expressions) => {
 
 const preProcessData = (data) => {
   data = mapParent(data, data.next);
+  data.next.push({ id: 1004, label: 'NOT', type: 'logicalOperator', next: data.next, parent: data });
   data.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: data.next, parent: data });
   return data;
 }
