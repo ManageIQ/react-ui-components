@@ -1,7 +1,5 @@
 // import ExpressionEditor from '../components/ExpressionEditor';
 import { logicalOperatorsMock, userInputMock } from "../constants"
-const endpoints = {
-};
 
 let defaultOptions = {};
 
@@ -24,17 +22,13 @@ const preProcessData = (data) => {
   data.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: data.next, parent: data });
   return data;
 }
-// defaultOptions = mapParent(defaultOptions, defaultOptions.next);
-// defaultOptions.next.push({ id: 1003, label: '(', type: 'leftParenteze', next: defaultOptions.next, parent: defaultOptions });
 
-
-export const dataProvider = (endpoints) => (Component) => {
+export const dataProvider = () => (Component) => {
   const DataProvider = (props) => {
     if (preProcess) {
       defaultOptions = preProcessData(props.data);
       preProcess = false;
     }
-    console.log(props);
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
     let newProps = {...props};

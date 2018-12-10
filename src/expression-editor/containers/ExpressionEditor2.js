@@ -5,7 +5,6 @@ import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
 const mapStateToProps = (state) => {
-  console.log('state: ', state, state.expressions.past );
   return {
   canUndo: !!(state.expressions.past && state.expressions.past.length > 0),
   canRedo: !!(state.expressions.future && state.expressions.future.length > 0),

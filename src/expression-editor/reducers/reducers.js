@@ -4,47 +4,36 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
-      console.log('REDUCER ON SUBMIT:', state.expressions, selected, previous, expressionIndex);
       newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_INSERT:
-      console.log('REDUCER ON INSERT:', previousExpressionIndex);
       newExpressions = calculateInsert([...state.expressions], previousExpressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE_EXPRESSION:
-      console.log('REDUCER ON DELETE EXPRESSION:', expressionIndex);
       newExpressions = calculateExpressionDelete([...state.expressions], expressionIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_DELETE:
-      console.log('REDUCER ON DELETE:', selected, expressionIndex, chipIndex);
       newExpressions = calculateDelete([...state.expressions], selected, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_CLICK:
-      console.log('REDUCER ON CLICK:', selected, expressionIndex, chipIndex);
       newExpressions = calculateClick([...state.expressions], selected, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_FOCUS:
-      console.log('REDUCER ON FOCUS:', selected, expressionIndex);
       newExpressions = calculateFocus([...state.expressions], selected, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.ON_BLUR:
-      console.log('REDUCER ON BLUR:', selected, expressionIndex);
       newExpressions = calculateBlur([...state.expressions], selected, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.BLUR_ALL_CHIPS:
-      console.log('REDUCER ON BLUR ALL CHIPS:');
       newExpressions = blurAllChips([...state.expressions]);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.SET_ALIAS:
-      console.log('REDUCER ON SET ALIAS:');
       newExpressions = setAlias([...state.expressions], alias, expressionIndex, chipIndex);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.CLEAR_FLAGS:
-      console.log('REDUCER ON SET CLEAR_FLAGS:');
       newExpressions = clearFlags([...state.expressions]);
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.COUNT_PARENTHESES:
-    console.log('REDUCER ON COUNT:');
       const newParenthesesCount = countParentheses({...state.parenthesesCount}, state.expressions);
       return {...state, parenthesesCount: newParenthesesCount};
     default:
