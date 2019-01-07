@@ -136,15 +136,17 @@ export default class AutocompleteTextInput extends React.Component {
             }
             isOpen={this.state.isFocused}
           >
-          {this.props.options.map((o, i) => (
-            <DropdownItem
-              component="button"
-              className="dropdownFontSize"
-              isHovered={this.state.index === i}
-              onMouseDown={this.generateMenuClick(i)}
-            >
-              {o.label}
-            </DropdownItem>))}
+          <div className="maxDropdownHeght">
+            {this.props.options.map((o, i) => (
+              <DropdownItem
+                component="button"
+                className="dropdownFontSize"
+                isHovered={this.state.index === i}
+                onMouseDown={this.generateMenuClick(i)}
+              >
+                {o.label}
+              </DropdownItem>))}
+            </div>
           </Dropdown>
           <Button className="inputButton" onClick={this.addButtonClick} isDisabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
       </span>

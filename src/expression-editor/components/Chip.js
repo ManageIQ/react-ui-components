@@ -86,17 +86,20 @@ export default class Chip extends React.Component {
         // DISEAPEAR BEFORE CLICK
         isOpen={this.props.isFocused}
       >
-        {this.state.menuItems.map((o, i) => (
-          <DropdownItem
-            component="button"
-            className="dropdownFontSize"
-            isHovered={this.state.menuIndex === i}
-            onClick={o.onClick}
-            onMouseDown={this.blockBlur}
-          >
-            {o.label}
-          </DropdownItem>)
-        )}
+
+        <div className="maxDropdownHeght">
+          {this.state.menuItems.map((o, i) => (
+            <DropdownItem
+              component="button"
+              className="dropdownFontSize"
+              isHovered={this.state.menuIndex === i}
+              onClick={o.onClick}
+              onMouseDown={this.blockBlur}
+            >
+              {o.label}
+            </DropdownItem>)
+          )}
+      </div>
       </Dropdown>
     );
   }
