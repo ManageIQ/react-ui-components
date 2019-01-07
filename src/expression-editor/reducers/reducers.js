@@ -92,7 +92,6 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
     state = [...state, []]
     }
   }
-
   return state;
 }
 

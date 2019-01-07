@@ -4,13 +4,13 @@ import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, 
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ( { expressionEditor }) => {
   return {
-  canUndo: !!(state.expressions.past && state.expressions.past.length > 0),
-  canRedo: !!(state.expressions.future && state.expressions.future.length > 0),
-  expressions: state.expressions.present.expressions,
-  isLastElement: state.isLastElement,
-  parenthesesCount:  state.expressions.present.parenthesesCount
+  canUndo: !!(expressionEditor.expressions.past && expressionEditor.expressions.past.length > 0),
+  canRedo: !!(expressionEditor.expressions.future && expressionEditor.expressions.future.length > 0),
+  expressions: expressionEditor.expressions.present.expressions,
+  isLastElement: expressionEditor.isLastElement,
+  parenthesesCount:  expressionEditor.expressions.present.parenthesesCount
 }};
 
 const mapDispatchToProps = dispatch => ({

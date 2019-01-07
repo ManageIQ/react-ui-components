@@ -54,10 +54,9 @@ function undoable(reducer) {
     }
   }
 }
-
-export default combineReducers({
+const combinedReducers = combineReducers({
   expressions: undoable(expressions),
-  next,
   isLastElement,
-  countParentheses
 });
+
+export default { expressionEditor:  combinedReducers };

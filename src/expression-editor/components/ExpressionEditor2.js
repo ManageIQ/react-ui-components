@@ -34,7 +34,7 @@ class ExpressionEditor2 extends React.Component {
     if (updateChips) {
       this.setState({ chipRefs: this.props.expressions.map(ex => ex.map(() => React.createRef())) });
     }
-  
+
     const defaultIndex = this.props.expressions.map(ex => ex.map(t => t.term.next.length === 0).reduce((a, b) => (a || b), false)).indexOf(false);
     const focusedExpressions = this.props.expressions.map(ex => ex.map(t => !!t.flags.isFocused).reduce((a, b) => (a || b), false));
     let focusedIndex = focusedExpressions.indexOf(true);

@@ -8,7 +8,9 @@ import ExpressionEditorReducers from '../reducers/'
 import './index.scss';
 import { logicalOperatorsMock, userInputMock } from "../constants"
 
-const store = createStore(ExpressionEditorReducers);
+
+
+const store = createStore(combineReducers({...ExpressionEditorReducers}));
 
 
 let defaultOptions = {id: 0, label: 'root', type: 'root', next:
