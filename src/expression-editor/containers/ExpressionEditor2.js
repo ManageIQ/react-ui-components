@@ -1,8 +1,10 @@
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
 import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement,
   onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
+import ExpressionEditorReducers from '../reducers/'
 
 const mapStateToProps = ( { expressionEditor }) => {
   return {
@@ -70,6 +72,9 @@ const mapDispatchToProps = dispatch => ({
 const ExpressionEditorConnected2 = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(dataProvider({foo: 'foo'})(ExpressionEditor));
+)(dataProvider()(ExpressionEditor));
 
-export { ExpressionEditorConnected2 };
+const store = createStore(combineReducers({...ExpressionEditorReducers}));
+const ExpressionEditorWithRedux = (props) => (<Provider store={store}><ExpressionEditorConnected2 {...props}/></Provider>)
+
+export { ExpressionEditorConnected2, ExpressionEditorWithRedux };

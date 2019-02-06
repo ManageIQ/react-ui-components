@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
-import { ExpressionEditorConnected2 } from '../containers/ExpressionEditor2'
+import { ExpressionEditorWithRedux } from '../containers/ExpressionEditor2'
 import ExpressionEditorReducers from '../reducers/'
 import './index.scss';
 import { logicalOperatorsMock, userInputMock } from "../constants"
@@ -51,4 +51,4 @@ let defaultOptions = {id: 0, label: 'root', type: 'root', next:
 };
 
 storiesOf('Expression Editor', module)
-  .add('New Expression Editor', () => (<Provider store={store}><ExpressionEditorConnected2 data={defaultOptions}/></Provider>));
+  .add('New Expression Editor', () => (ExpressionEditorWithRedux({data: defaultOptions})));
