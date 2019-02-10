@@ -120,6 +120,7 @@
     "es6-shim": "^0.35.3",
     "final-form": "^4.7.3",
     "lodash": "^4.17.10",
+    "numeral": "^2.0.6",
     "patternfly-react": "^2.5.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
