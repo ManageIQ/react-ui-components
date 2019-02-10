@@ -20,10 +20,10 @@ Most components are using these libraries:
 
 ### Build process
 
-Build process is using [webpack](https://github.com/webpack/webpack) which is set to extract 
+Build process is using [webpack](https://github.com/webpack/webpack) which is set to extract
 [external](https://webpack.js.org/configuration/externals/) libraries so the final library is as small as possible.
 
-Webpack is used to build [library](https://webpack.js.org/guides/author-libraries/#expose-the-library) so the final 
+Webpack is used to build [library](https://webpack.js.org/guides/author-libraries/#expose-the-library) so the final
 files can be imported into any other application. Library target is set to [umd](https://github.com/umdjs/umd).
 
 #### List of external libraries
@@ -37,7 +37,7 @@ files can be imported into any other application. Library target is set to [umd]
 * Lodash
 
 Settings of these externals can be found in [constants.js](/scripts/constants.js). Importing any of these libraries will
-not make final file bigger, but importing such file needs to ensure, that libraries used in this component are loaded. 
+not make final file bigger, but importing such file needs to ensure, that libraries used in this component are loaded.
 
 ## Architecture
 ## Development Environment
@@ -70,18 +70,22 @@ It will automatically watch your files and store final files into `dist` folder.
 
 This way you can create some components
 use [npm link](https://docs.npmjs.com/cli/link) to create symlink and use npm link inside your server application to include
-these components and debug them inside your environment.  
+these components and debug them inside your environment.
 
 #### 2. `[npm|yarn] run server`
 
-It will automatically watch your files, run [webpack-dev-server](https://github.com/webpack/webpack-dev-server) and 
+It will automatically watch your files, run [webpack-dev-server](https://github.com/webpack/webpack-dev-server) and
 serve your new components in demo app. To use your newly created components feel free to change `demo/demo-app.jsx` to include
 your components and you can debug them in node server environment.
+
+The server will run at http://localhost:8080.
 
 #### 3. `[npm|yarn] run storybook`
 It will automatically watch your files and presents them using [storybook](https://storybook.js.org/), if you want
 to use your new components, edit stories inside [stories/index.stories.js](/stories/index.stories.js) and debug them in
 nice storybook UI.
+
+The storybook server will run ad http://localhost:6006.
 
 #### Binding `this` to methods
 You have two ways how to create methods inside classes. One is based on babel using [preset-stage-0](https://babeljs.io/docs/plugins/preset-stage-0/), the other is based on decorators using
