@@ -65,6 +65,10 @@ renderComponent.propTypes = {
     labels: PropTypes.any,
     rows: PropTypes.any,
     rowLabel: PropTypes.string,
+    headers: PropTypes.arrayOf(PropTypes.any),
+    values: PropTypes.arrayOf(PropTypes.any),
+    colOrder: PropTypes.arrayOf(PropTypes.any),
+    text: PropTypes.string,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
