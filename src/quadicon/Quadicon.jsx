@@ -30,7 +30,7 @@ const renderQuad = data => (
 
 const isQuad = data => quadSet.some(quad => data[quad]);
 
-const Quadicon = props => (isQuad(props.data) ? renderQuad(data) : renderSingle(data));
+const Quadicon = props => (isQuad(props.data) ? renderQuad(props.data) : renderSingle(props.data));
 export default Quadicon;
 
 Quadicon.propTypes = {

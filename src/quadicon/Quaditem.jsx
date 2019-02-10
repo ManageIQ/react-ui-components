@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { numeral } from 'numeral';
 
 const abbrNumber = (value) => {
-  let num = numeral(value);
+  const num = numeral(value);
   // Return the input if it's not a number.
   if (!num.value() || num.value().toString() !== value.toString()) {
     return value;
@@ -30,7 +30,7 @@ const fontSize = (text) => {
 };
 
 const Quaditem = (props) => {
-  const shortText = abbrNumber(props.text);
+  const shortText = abbrNumber(props.data.text);
   const parts = [];
   if (props.data.fonticon) {
     parts.push((
