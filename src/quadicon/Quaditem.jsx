@@ -6,7 +6,6 @@ import './styles.scss';
 
 const abbrNumber = (value) => {
   const num = numeral(value);
-  console.log(num);
   // Return the input if it's not a number.
   if (!num.value() || num.value().toString() !== value.toString()) {
     return value;
@@ -57,7 +56,6 @@ const Quaditem = (props) => {
       <div className={`piechart fill-${props.piechart}`} />
     ));
   }
-  console.log('Quaditem', props);
   return (
     <div className={`miq-quaditem ${props.cls}`} title={props.tooltip} style={{ background: props.background }}>
       {parts}
