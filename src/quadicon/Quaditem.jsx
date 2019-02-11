@@ -36,24 +36,24 @@ const Quaditem = (props) => {
   const parts = [];
   if (props.fonticon) {
     parts.push((
-      <div className="fonticon">
+      <div key="fonticon" className="fonticon">
         <i className={props.fonticon} style={props.color ? { color: props.color } : {}} />
       </div>));
   } else if (props.fileicon) {
     parts.push((
-      <div className="fileicon">
+      <div key="fileicon" className="fileicon">
         <img alt="fileicon" src={props.fileicon} />
       </div>));
   }
   if (props.text) {
     parts.push((
-      <div className={`text ${fontSize(shortText)}`}>
+      <div key="text" className={`text ${fontSize(shortText)}`}>
         {shortText}
       </div>));
   }
   if (props.piechart || props.piechart === 0) {
     parts.push((
-      <div className={`piechart fill-${props.piechart}`} />
+      <div key="piechart" className={`piechart fill-${props.piechart}`} />
     ));
   }
   return (
@@ -78,12 +78,12 @@ export default Quaditem;
  */
 
 Quaditem.propTypes = {
-  cls: PropTypes.string.isRequired,
+  cls: PropTypes.string,
   fonticon: PropTypes.string,
   fileicon: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   tooltip: PropTypes.string,
   background: PropTypes.string,
   color: PropTypes.string,
-  piechart: PropTypes.string,
+  piechart: PropTypes.number,
 };

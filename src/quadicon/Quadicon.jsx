@@ -29,6 +29,7 @@ const renderQuad = data => (
   <div className="quad-wrapper">
     {quadSet.filter(key => data[key]).map(item => (
       <Quaditem
+        key={item}
         fonticon={data[item].fonticon}
         fileicon={data[item].fileicon}
         text={data[item].text}
