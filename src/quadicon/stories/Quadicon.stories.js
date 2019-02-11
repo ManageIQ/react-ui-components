@@ -2,6 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Quadicon } from '..';
 
+import './styles.scss';
+
 const quads = [
   {
     topLeft: {
