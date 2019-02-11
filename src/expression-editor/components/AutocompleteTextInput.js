@@ -46,10 +46,21 @@ export default class AutocompleteTextInput extends React.Component {
         break;
       case keyCodes.upArrow:
         index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
+        var dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
+        var dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
+        var itemPossition = dropdownItem.getBoundingClientRect().height * index;
+        dropdown.scrollTo(0, itemPossition);
         this.setState(prevState => ({ index }));
         break;
       case keyCodes.downArrow:
         index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
+        console.log(this.state.menuItemRefs[index]);
+        // this.state.menuItemRefs[index].current.focus();
+        var dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
+        var dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
+        var itemPossition = dropdownItem.getBoundingClientRect().height * index;
+        dropdown.scrollTo(0, itemPossition);
+
         this.setState(prevState => ({ index }));
         break;
       case keyCodes.leftArrow:
@@ -117,7 +128,7 @@ export default class AutocompleteTextInput extends React.Component {
 
   render() {
     return (
-      <span>
+      <span className="maxDropdownHeght">
           <Dropdown
             toggle={
               <input
@@ -134,9 +145,8 @@ export default class AutocompleteTextInput extends React.Component {
                 onChange={this.handleChange}
               />
             }
-            isOpen={this.state.isFocused}
+            isOpen={true}
           >
-          <div className="maxDropdownHeght">
             {this.props.options.map((o, i) => (
               <DropdownItem
                 component="button"
@@ -146,8 +156,8 @@ export default class AutocompleteTextInput extends React.Component {
               >
                 {o.label}
               </DropdownItem>))}
-            </div>
           </Dropdown>
+
           <Button className="inputButton" onClick={this.addButtonClick} isDisabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
       </span>
 

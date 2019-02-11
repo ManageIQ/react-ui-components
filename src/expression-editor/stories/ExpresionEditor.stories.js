@@ -16,7 +16,12 @@ const store = createStore(combineReducers({...ExpressionEditorReducers}));
 let defaultOptions = {id: 0, label: 'root', type: 'root', next:
   [{ id: 1, label: 'Fields', type: 'category', next: [
       { id: 11, label: 'Hostname', type: 'category',
-        next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock}]
+        next: [{ id: 111, label: '=', type: 'operator', next: userInputMock}, { id: 112, label: '!=', type: 'operator', next: userInputMock},
+            { id: 113, label: 'CONTAINS', type: 'operator', next: userInputMock}, { id: 114, label: 'MATCH REG EXP', type: 'operator', next: userInputMock},
+            { id: 115, label: 'BLABLA', type: 'operator', next: userInputMock}, { id: 116, label: 'BLABLA2', type: 'operator', next: userInputMock},
+            { id: 117, label: 'BLAsasaBLA', type: 'operator', next: userInputMock}, { id: 118, label: 'BLABLA2', type: 'operator', next: userInputMock},
+            { id: 119, label: 'BLABLsasA', type: 'operator', next: userInputMock}, { id: 120, label: 'BLABLsssA2', type: 'operator', next: userInputMock}
+          ]
       },
       { id: 12, label: 'IP Address', type: 'category',
         next: [{ id: 121, label: '=', type: 'operator', next: userInputMock}, { id: 122, label: '!=', type: 'operator', next: userInputMock}]

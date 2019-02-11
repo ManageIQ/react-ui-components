@@ -7,6 +7,8 @@
 }
 
 .maxDropdownHeght {
+  .pf-c-dropdown__menu {
   max-height: 300px;
   overflow: auto;
+  }
 }
