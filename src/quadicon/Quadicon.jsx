@@ -11,34 +11,21 @@ const quadSet = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'middle'];
 //   data[item] && data[item].background ? { background: data[item].background } : {}
 // ); // FIXME: check if we can just pass an undefined background in the markup
 
-const renderSingle = item => (
-  <div className="single-wrapper">
-    <Quaditem
-      fonticon={item.fonticon}
-      fileicon={item.fileicon}
-      text={item.text}
-      tooltip={item.tooltip}
-      background={item.background}
-      color={item.color}
-      piechart={item.piechart}
-    />
-  </div>
-);
+const renderSingle = (item) => {
+  const { className: _className, ...rest } = item;
+  return (
+    <div className="single-wrapper">
+      <Quaditem {...rest} />
+    </div>
+  );
+};
 
 const renderQuad = data => (
   <div className="quad-wrapper">
-    {quadSet.filter(key => data[key]).map(item => (
-      <Quaditem
-        key={item}
-        fonticon={data[item].fonticon}
-        fileicon={data[item].fileicon}
-        text={data[item].text}
-        tooltip={data[item].tooltip}
-        background={data[item].background}
-        color={data[item].color}
-        piechart={data[item].piechart}
-        cls={kebabCase(item)}
-      />))}
+    {quadSet.filter(key => data[key]).map((item) => {
+      const { className: _className, ...rest } = data[item];
+      return (<Quaditem key={item} className={kebabCase(item)} {...rest} />);
+    })}
   </div>
 );
 

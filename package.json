@@ -116,6 +116,7 @@
     "@patternfly/react-core": "^1.11.1",
     "@patternfly/react-icons": "^2.4.0",
     "array-includes": "^3.0.3",
+    "classnames": "^2.2.6",
     "d3": "^5.5.0",
     "es6-shim": "^0.35.3",
     "final-form": "^4.7.3",

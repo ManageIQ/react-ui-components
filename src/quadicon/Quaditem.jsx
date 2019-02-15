@@ -4,6 +4,8 @@ import numeral from 'numeral';
 
 import './styles.scss';
 
+const classNames = require('classnames');
+
 const abbrNumber = (value) => {
   const num = numeral(value);
   // Return the input if it's not a number.
@@ -33,31 +35,28 @@ const fontSize = (text) => {
 
 const Quaditem = (props) => {
   const shortText = abbrNumber(props.text);
-  const parts = [];
-  if (props.fonticon) {
-    parts.push((
+  const parts = [
+    props.fonticon && (
       <div key="fonticon" className="fonticon">
         <i className={props.fonticon} style={props.color ? { color: props.color } : {}} />
-      </div>));
-  } else if (props.fileicon) {
-    parts.push((
+      </div>
+    ),
+    !props.fonticon && props.fileicon && (
       <div key="fileicon" className="fileicon">
         <img alt="fileicon" src={props.fileicon} />
-      </div>));
-  }
-  if (props.text) {
-    parts.push((
+      </div>
+    ),
+    props.text && (
       <div key="text" className={`text ${fontSize(shortText)}`}>
         {shortText}
-      </div>));
-  }
-  if (props.piechart || props.piechart === 0) {
-    parts.push((
+      </div>
+    ),
+    (props.piechart || props.piechart === 0) && (
       <div key="piechart" className={`piechart fill-${props.piechart}`} />
-    ));
-  }
+    ),
+  ].filter(Boolean);
   return (
-    <div className={`miq-quaditem ${props.cls}`} title={props.tooltip} style={{ background: props.background }}>
+    <div className={classNames('miq-quaditem', props.className)} title={props.tooltip} style={{ background: props.background }}>
       {parts}
     </div>
   );
@@ -74,11 +73,11 @@ export default Quaditem;
  *   background - background color of the given quadrant
  *   color - color of text/fonticon
  *   piechart - numeric value between 0..20, requires the .piechart CSS class from the demo to be extracted
- *   cls - class of an individual quad calculated from `quadSet`
+ *   className - class of an individual quad calculated from `quadSet`
  */
 
 Quaditem.propTypes = {
-  cls: PropTypes.string,
+  className: PropTypes.string,
   fonticon: PropTypes.string,
   fileicon: PropTypes.string,
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
