@@ -1,17 +1,17 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { Grid } from 'patternfly-react';
-import { IconPicker } from '../src/icon-picker';
+import { Toolbar } from '../src/toolbar';
 
-const IconTypes = [
-  { type: 'pf', title: 'Patternfly' },
-  { type: 'fa', title: 'Font Awesome' },
-];
+const toolbarData = require('../src/toolbar/data/toolbar.json');
+const viewData = require('../src/toolbar/data/toolbar-view.json');
+
+// const onSubmit = values => console.log('onSubmit: ', values);
 
 const wrapperComponent = () => (
-  <Grid>
-    <IconPicker iconTypes={IconTypes} />
-  </Grid>
+  <Toolbar
+    groups={toolbarData}
+    views={viewData}
+  />
 );
 
 export default function renderApp() {

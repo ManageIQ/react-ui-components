@@ -1,0 +1,48 @@
+// copied: src/styles/toolbar.scss
+
+.dropdown-kebab-pf {
+  .dropdown-submenu {
+    .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+
+      &:after, &:before {
+        border: none;
+      }
+
+      a:empty {
+        display: none;
+      }
+    }
+  }
+}
+
+// copied: ui-components/src/styles/ui-components.scss
+// overrides _toolbar.scss to account for intermediate Angular markup and adjusted the margins to properly style wrapped form-groups
+
+.miq-toolbar-actions {
+  margin-top: -10px;
+  .form-group:first-of-type {
+    padding-left: 0;
+  }
+  .form-group {
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 15px; /* adjusted to account for button margin */
+    white-space: nowrap;
+    .btn { /* margin for buttons (not part of Patternfly) */
+      margin-right: 5px;
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.miq-custom-html {
+  .form-group.text, .form-group.has-clear {
+    padding-right: 20px;
+  }
+}
