@@ -85,7 +85,7 @@ It will automatically watch your files and presents them using [storybook](https
 to use your new components, edit stories inside [stories/index.stories.js](/stories/index.stories.js) and debug them in
 nice storybook UI.
 
-The storybook server will run ad http://localhost:6006.
+The storybook server will run at http://localhost:6006.
 
 #### Binding `this` to methods
 You have two ways how to create methods inside classes. One is based on babel using [preset-stage-0](https://babeljs.io/docs/plugins/preset-stage-0/), the other is based on decorators using

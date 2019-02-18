@@ -56,7 +56,7 @@ const Quaditem = (props) => {
     ),
   ].filter(Boolean);
   return (
-    <div className={classNames('miq-quaditem', props.className)} title={props.tooltip} style={{ background: props.background }}>
+    <div className={classNames('miq-quaditem', props.className)} title={props.tooltip} style={{ background: props.background || 'initial' }}>
       {parts}
     </div>
   );

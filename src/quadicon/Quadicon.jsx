@@ -7,10 +7,6 @@ import './styles.scss';
 
 const quadSet = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'middle'];
 
-// const getBackground = (data, item) => (
-//   data[item] && data[item].background ? { background: data[item].background } : {}
-// ); // FIXME: check if we can just pass an undefined background in the markup
-
 const renderSingle = (item) => {
   const { className: _className, ...rest } = item;
   return (
