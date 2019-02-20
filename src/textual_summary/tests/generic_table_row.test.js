@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import GenericTableRow from '../generic_table_row';
 
@@ -25,7 +25,7 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const row = mount(<table>
+    const row = shallow(<table>
       <tbody>
         <GenericTableRow item={item} onClick={() => null} />
       </tbody>
@@ -47,7 +47,7 @@ describe('Simple Table', () => {
       hoverClass: '',
     };
 
-    const row = mount(<table>
+    const row = shallow(<table>
       <tbody>
         <GenericTableRow item={item} onClick={() => null} />
       </tbody>

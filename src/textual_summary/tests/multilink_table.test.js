@@ -1,12 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import MultilinkTable from '../multilink_table';
 import { multilinkTableData } from '../data/multilink_table';
 
 describe('MultilinkTable', () => {
   it('renders just fine', () => {
-    const table = mount(<MultilinkTable
+    const table = shallow(<MultilinkTable
       title={multilinkTableData.title}
       items={multilinkTableData.items}
       onClick={() => null}

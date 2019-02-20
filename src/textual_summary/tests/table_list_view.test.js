@@ -1,12 +1,12 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import TableListView from '../table_list_view';
 import { tableListViewData } from '../data/table_list_view';
 
 describe('TableListView', () => {
   it('renders just fine...', () => {
-    const row = mount(<TableListView
+    const row = shallow(<TableListView
       title={tableListViewData.title}
       headers={tableListViewData.headers}
       values={tableListViewData.values}

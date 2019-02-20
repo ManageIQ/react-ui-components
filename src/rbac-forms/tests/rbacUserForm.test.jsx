@@ -1,6 +1,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Form } from 'react-final-form';
 import Select from 'react-select';
 
@@ -56,14 +56,14 @@ describe('RbacUserForm component', () => {
 
   it('Should not call submit function', () => {
     const onSave = jest.fn();
-    const wrapper = mount(<RbacUserForm {...initialProps} onSave={onSave} newRecord />);
+    const wrapper = shallow(<RbacUserForm {...initialProps} onSave={onSave} newRecord />);
     wrapper.find('button#user-submit').simulate('click');
     expect(onSave).not.toHaveBeenCalled();
   });
 
   it('Should call submit function', () => {
     const onSave = jest.fn();
-    const wrapper = mount(<RbacUserForm {...initialProps} onSave={onSave} newRecord />);
+    const wrapper = shallow(<RbacUserForm {...initialProps} onSave={onSave} newRecord />);
     const nameInput = wrapper.find('input#name');
     nameInput.instance().value = 'correctUsername';
     nameInput.simulate('change');
@@ -102,7 +102,7 @@ describe('RbacUserForm component', () => {
   });
 
   it('Should add input to change password and then hide', () => {
-    const wrapper = mount(<RbacUserForm {...initialProps} initialValues={user} editEnabled />);
+    const wrapper = shallow(<RbacUserForm {...initialProps} initialValues={user} editEnabled />);
     const enabler = wrapper.find('#password-change-enabler');
     let verify = wrapper.find('#password-verify');
     expect(verify.length).toBe(0);

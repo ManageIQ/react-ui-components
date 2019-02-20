@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { FinalFormCheckBox } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
@@ -27,7 +27,7 @@ describe('Final form checkbox component', () => {
   it('Should call onChange event', () => {
     const onChange = jest.fn();
     const props = { ...initialProps, input: { ...initialProps.input, onChange } };
-    const wrapper = mount(<FinalFormCheckBox {...props} />);
+    const wrapper = shallow(<FinalFormCheckBox {...props} />);
     wrapper.find('input[type="checkbox"]').simulate('change');
     expect(onChange).toHaveBeenCalled();
   });

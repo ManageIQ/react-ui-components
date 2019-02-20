@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import RbacUserPreview from '../rbacUserPreview';
@@ -31,7 +31,7 @@ describe('RbacUserPreview component', () => {
   };
 
   it('Should render correctly', () => {
-    const tree = mount(<RbacUserPreview user={user} />);
+    const tree = shallow(<RbacUserPreview user={user} />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 });

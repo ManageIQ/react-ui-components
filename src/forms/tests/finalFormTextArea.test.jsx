@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { FinalFormTextArea } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
@@ -27,7 +27,7 @@ describe('Final form textarea component', () => {
   it('Should call onChange event', () => {
     const onChange = jest.fn();
     const props = { ...initialProps, input: { ...initialProps.input, onChange } };
-    const wrapper = mount(<FinalFormTextArea {...props} />);
+    const wrapper = shallow(<FinalFormTextArea {...props} />);
     wrapper.find('textarea').simulate('change', { value: 'new value' });
     expect(onChange).toHaveBeenCalled();
   });

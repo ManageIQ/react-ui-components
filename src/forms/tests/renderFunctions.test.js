@@ -1,4 +1,4 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { renderFinalFormField, renderFinalFormTextArea, renderFinalFormCheckBox } from '../';
 import { fieldInputProp, fieldMetaProps } from './mocks';
@@ -12,7 +12,7 @@ describe('Final form component reder functions', () => {
     const tree = shallow(field).dive();
     expect(toJson(tree)).toMatchSnapshot();
 
-    const wrapper = mount(field);
+    const wrapper = shallow(field);
     expect(wrapper.find('input[type="text"]').length).toEqual(1);
   });
 
@@ -23,7 +23,7 @@ describe('Final form component reder functions', () => {
     const tree = shallow(field).dive();
     expect(toJson(tree)).toMatchSnapshot();
 
-    const wrapper = mount(field);
+    const wrapper = shallow(field);
     expect(wrapper.find('input[type="number"]').length).toEqual(1);
   });
 
@@ -34,7 +34,7 @@ describe('Final form component reder functions', () => {
     const tree = shallow(field).dive();
     expect(toJson(tree)).toMatchSnapshot();
 
-    const wrapper = mount(field);
+    const wrapper = shallow(field);
     expect(wrapper.find('input[type="password"]').length).toEqual(1);
   });
 
@@ -45,7 +45,7 @@ describe('Final form component reder functions', () => {
     const tree = shallow(field).dive();
     expect(toJson(tree)).toMatchSnapshot();
 
-    const wrapper = mount(field);
+    const wrapper = shallow(field);
     expect(wrapper.find('textarea').length).toEqual(1);
   });
 
@@ -56,7 +56,7 @@ describe('Final form component reder functions', () => {
     const tree = shallow(field).dive();
     expect(toJson(tree)).toMatchSnapshot();
 
-    const wrapper = mount(field);
+    const wrapper = shallow(field);
     expect(wrapper.find('input[type="checkbox"]').length).toEqual(1);
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Form as FinalForm, Field } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { FinalFormField } from '../../forms/';
@@ -39,7 +39,7 @@ describe('Dynamic form decorator', () => {
   it('Should send correct data on submit', () => {
     const onSave = jest.fn();
     const DynamicFormComponent = dynamicForm(FormComponent);
-    const wrapper = mount(<DynamicFormComponent
+    const wrapper = shallow(<DynamicFormComponent
       onSave={onSave}
       initialValues={{ testField: 'test value', hiddenField: 'hidden value' }}
     />);

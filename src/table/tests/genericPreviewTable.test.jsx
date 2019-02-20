@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import GenericPreviewTable from '../genericPreviewTable';
 
@@ -82,13 +82,13 @@ describe('RbacUsersTable component', () => {
   });
 
   it('Should render correctly', () => {
-    const tree = mount(<GenericPreviewTable {...initialProps} />);
+    const tree = shallow(<GenericPreviewTable {...initialProps} />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should return clicked row data', () => {
     const cellClick = jest.fn();
-    const wrapper = mount(<GenericPreviewTable {...initialProps} rowClick={cellClick} />);
+    const wrapper = shallow(<GenericPreviewTable {...initialProps} rowClick={cellClick} />);
     const row = wrapper.find('tr').at(1);
     const expectedPayload = {
       currentgroup: 'Some group',
@@ -118,7 +118,7 @@ describe('RbacUsersTable component', () => {
   });
 
   it('Should sort data correctly', () => {
-    const wrapper = mount(<GenericPreviewTable {...initialProps} />);
+    const wrapper = shallow(<GenericPreviewTable {...initialProps} />);
     const header = wrapper.find('tr').first();
     const originalData = [...rows];
     let cell = header.find('TableHeading').at(0);

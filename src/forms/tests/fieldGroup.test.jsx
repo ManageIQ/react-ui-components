@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Field, Form } from 'react-final-form';
 import { required } from 'redux-form-validators';
 import PropTypes from 'prop-types';
@@ -39,12 +39,12 @@ describe('Final form FieldGroup component', () => {
   };
 
   it('Should render correctly', () => {
-    const tree = mount(<Group />);
+    const tree = shallow(<Group />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 
   it('Should render correctly with error state', () => {
-    const tree = mount(<Group validateOnMount />);
+    const tree = shallow(<Group validateOnMount />);
     expect(toJson(tree)).toMatchSnapshot();
   });
 });

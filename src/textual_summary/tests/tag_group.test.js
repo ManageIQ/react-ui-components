@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import TagGroup from '../tag_group';
 import { tagGroupData } from '../data/tag_group';
@@ -16,7 +16,7 @@ describe('TagGroup', () => {
    *      values joined with "<b>&nbsp;|..."
    */
   it('renders just fine', () => {
-    const image = mount(<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
+    const image = shallow(<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
     expect(toJson(image)).toMatchSnapshot();
   });
 
@@ -35,7 +35,7 @@ describe('TagGroup', () => {
       title: 'Smart Management',
     };
 
-    const wrapper = mount(<TagGroup items={tagData.items} title={tagData.title} />);
+    const wrapper = shallow(<TagGroup items={tagData.items} title={tagData.title} />);
     expect(wrapper.html()).toContain('Policy<b>&nbsp;|&nbsp;</b>2');
     expect(wrapper.containsMatchingElement(<IconOrImage icon="fa fa-tag" />)).toEqual(true);
   });

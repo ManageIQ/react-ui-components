@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import { FinalFormRadio } from '../';
@@ -28,7 +28,7 @@ describe('Final form radio component', () => {
   it('Should call onChange event', () => {
     const onChange = jest.fn();
     const props = { ...initialProps, input: { ...initialProps.input, onChange } };
-    const wrapper = mount(<FinalFormRadio {...props} />);
+    const wrapper = shallow(<FinalFormRadio {...props} />);
     wrapper.find('input[type="radio"]').simulate('change');
     expect(onChange).toHaveBeenCalled();
   });

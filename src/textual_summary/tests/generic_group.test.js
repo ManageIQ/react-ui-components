@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import GenericGroup from '../generic_group';
 import GenericTableRow from '../generic_table_row';
@@ -17,7 +17,7 @@ describe('GenericGroup', () => {
   });
 
   it('renders just fine', () => {
-    const group = mount(<GenericGroup
+    const group = shallow(<GenericGroup
       items={genericGroupData.items}
       title={genericGroupData.title}
       onClick={() => null}

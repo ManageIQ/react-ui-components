@@ -1,6 +1,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { Quadicon } from '..';
 import { quads, numbers, piecharts, hosts, vms, containerproviders } from '../data/quadicons';
@@ -19,7 +19,7 @@ const hObj = (obj) => {
 describe('Quadicon', () => {
   it('renders just fine...', () => {
     const all = [...quads, ...numbers, ...piecharts, ...hosts, ...vms, ...containerproviders];
-    const qs = mount(<React.Fragment>
+    const qs = shallow(<React.Fragment>
       { all.map(quad => <Quadicon key={hObj(quad)} data={quad} />)}
     </React.Fragment>);
     expect(toJson(qs)).toMatchSnapshot();

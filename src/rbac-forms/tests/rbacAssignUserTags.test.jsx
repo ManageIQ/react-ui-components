@@ -1,6 +1,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { RbacAssignCompanyTags } from '../';
 import { usersTableColumns } from '../stories/data';
 import { users, categories } from '../stories/usersData';
@@ -73,7 +73,7 @@ describe('Rbac assign user tags component', () => {
 
   it('should not call save function', () => {
     const handleSave = jest.fn();
-    const wrapper = mount(<RbacAssignCompanyTags {...initialProps} handleSave={handleSave} />);
+    const wrapper = shallow(<RbacAssignCompanyTags {...initialProps} handleSave={handleSave} />);
     expect.assertions(1);
     return mockInitialLoad()
       .then(() => {
@@ -86,7 +86,7 @@ describe('Rbac assign user tags component', () => {
 
   it('should call save function', () => {
     const handleSave = jest.fn();
-    const wrapper = mount(<RbacAssignCompanyTags
+    const wrapper = shallow(<RbacAssignCompanyTags
       {...initialProps}
       users={[{
         ...users[0],
@@ -125,7 +125,7 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should call remove entry', () => {
-    const wrapper = mount(<RbacAssignCompanyTags
+    const wrapper = shallow(<RbacAssignCompanyTags
       {...initialProps}
       users={[{
         ...users[0],
@@ -164,7 +164,7 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should call reset function', () => {
-    const wrapper = mount(<RbacAssignCompanyTags
+    const wrapper = shallow(<RbacAssignCompanyTags
       {...initialProps}
       users={[{
         ...users[0],
@@ -202,7 +202,7 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should select new entry state', () => {
-    const wrapper = mount(<RbacAssignCompanyTags
+    const wrapper = shallow(<RbacAssignCompanyTags
       {...initialProps}
       users={[{
         ...users[0],
@@ -237,7 +237,7 @@ describe('Rbac assign user tags component', () => {
   });
 
   it('should select new entry state', () => {
-    const wrapper = mount(<RbacAssignCompanyTags
+    const wrapper = shallow(<RbacAssignCompanyTags
       {...initialProps}
       users={[{
         ...users[0],
