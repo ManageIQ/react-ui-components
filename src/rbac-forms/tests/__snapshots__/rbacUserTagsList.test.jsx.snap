@@ -1,183 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rbac user tags list component should render conrrectly with tags 1`] = `
-<RbacUserTagsList
-  tags={
-    Array [
-      Object {
-        "name": "Tag 1",
-        "value": "Tag value 1",
-      },
-      Object {
-        "name": "Tag 2",
-        "value": "Tag value 2",
-      },
-      Object {
-        "name": "Tag 3",
-        "value": "Tag value 3",
-      },
-      Object {
-        "name": "Tag 4",
-        "value": "Tag value 4",
-      },
-      Object {
-        "name": "Tag 5",
-        "value": "Tag value 5",
-      },
-    ]
-  }
-  tenant="Foo"
->
-  <div>
-    <h3>
-      Smart Management
-    </h3>
+<div>
+  <h3>
+    Smart Management
+  </h3>
+  <div
+    className="form-horizontal static"
+  >
     <div
-      className="form-horizontal static"
+      className="form-group"
     >
-      <div
-        className="form-group"
+      <label
+        className="col-md-2 control-label"
       >
-        <label
-          className="col-md-2 control-label"
-        >
-           
-          %s Tags
-        </label>
-        <div
-          className="col-md-8"
-        >
-          <Icon
-            name="tag"
-            type="fa"
-          >
-            <FontAwesome
-              name="tag"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tag"
-              />
-            </FontAwesome>
-          </Icon>
-           
-          Tag 1: Tag value 1
-          <br />
-          <Icon
-            name="tag"
-            type="fa"
-          >
-            <FontAwesome
-              name="tag"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tag"
-              />
-            </FontAwesome>
-          </Icon>
-           
-          Tag 2: Tag value 2
-          <br />
-          <Icon
-            name="tag"
-            type="fa"
-          >
-            <FontAwesome
-              name="tag"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tag"
-              />
-            </FontAwesome>
-          </Icon>
-           
-          Tag 3: Tag value 3
-          <br />
-          <Icon
-            name="tag"
-            type="fa"
-          >
-            <FontAwesome
-              name="tag"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tag"
-              />
-            </FontAwesome>
-          </Icon>
-           
-          Tag 4: Tag value 4
-          <br />
-          <Icon
-            name="tag"
-            type="fa"
-          >
-            <FontAwesome
-              name="tag"
-            >
-              <span
-                aria-hidden={true}
-                className="fa fa-tag"
-              />
-            </FontAwesome>
-          </Icon>
-           
-          Tag 5: Tag value 5
-          <br />
-        </div>
+         
+        %s Tags
+      </label>
+      <div
+        className="col-md-8"
+      >
+        <Icon
+          name="tag"
+          type="fa"
+        />
+         
+        Tag 1: Tag value 1
+        <br />
+        <Icon
+          name="tag"
+          type="fa"
+        />
+         
+        Tag 2: Tag value 2
+        <br />
+        <Icon
+          name="tag"
+          type="fa"
+        />
+         
+        Tag 3: Tag value 3
+        <br />
+        <Icon
+          name="tag"
+          type="fa"
+        />
+         
+        Tag 4: Tag value 4
+        <br />
+        <Icon
+          name="tag"
+          type="fa"
+        />
+         
+        Tag 5: Tag value 5
+        <br />
       </div>
     </div>
   </div>
-</RbacUserTagsList>
+</div>
 `;
 
 exports[`Rbac user tags list component should render conrrectly without tags 1`] = `
-<RbacUserTagsList
-  tags={Array []}
-  tenant="Foo"
->
-  <div>
-    <h3>
-      Smart Management
-    </h3>
+<div>
+  <h3>
+    Smart Management
+  </h3>
+  <div
+    className="form-horizontal static"
+  >
     <div
-      className="form-horizontal static"
+      className="form-group"
     >
-      <div
-        className="form-group"
+      <label
+        className="col-md-2 control-label"
       >
-        <label
-          className="col-md-2 control-label"
-        >
+         
+        %s Tags
+      </label>
+      <div
+        className="col-md-8"
+      >
+        <span>
+          <Icon
+            name="tag"
+            type="fa"
+          />
            
-          %s Tags
-        </label>
-        <div
-          className="col-md-8"
-        >
-          <span>
-            <Icon
-              name="tag"
-              type="fa"
-            >
-              <FontAwesome
-                name="tag"
-              >
-                <span
-                  aria-hidden={true}
-                  className="fa fa-tag"
-                />
-              </FontAwesome>
-            </Icon>
-             
-            No %s Tags have been assigned
-          </span>
-        </div>
+          No %s Tags have been assigned
+        </span>
       </div>
     </div>
   </div>
-</RbacUserTagsList>
+</div>
 `;

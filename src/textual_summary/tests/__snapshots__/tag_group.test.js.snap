@@ -1,129 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TagGroup renders just fine 1`] = `
-<TagGroup
-  items={
-    Array [
-      Object {
-        "hoverClass": "no-hover",
-        "icon": "pficon pficon-zone",
-        "label": "Managed by Zone",
-        "value": "default",
-      },
-      Object {
-        "hoverClass": "no-hover",
-        "label": "My Company X Tags",
-        "value": Array [
-          Object {
-            "icon": "fa fa-tag",
-            "label": "Dan Test",
-            "value": Array [
-              "Test 1",
-            ],
-          },
-          Object {
-            "icon": "fa fa-tag",
-            "label": "Demo bla",
-            "value": Array [
-              "Policy",
-              "2",
-            ],
-          },
-        ],
-      },
-    ]
-  }
-  title="Smart Management"
+<table
+  className="table table-bordered table-striped table-summary-screen"
 >
-  <table
-    className="table table-bordered table-striped table-summary-screen"
-  >
-    <thead>
-      <tr>
-        <th
-          align="left"
-          colSpan="2"
-        >
-          Smart Management
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        key="0"
+  <thead>
+    <tr>
+      <th
+        align="left"
+        colSpan="2"
       >
-        <td
-          className="label"
-        >
-          Managed by Zone
-        </td>
-        <td>
-          <IconOrImage
-            icon="pficon pficon-zone"
-            image={null}
-            title={null}
-          >
-            <i
-              className="pficon pficon-zone"
-              title={null}
-            />
-          </IconOrImage>
-          default
-        </td>
-      </tr>
-      <tr
-        key="0"
+        Smart Management
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="0"
+    >
+      <td
+        className="label"
       >
-        <td
-          className="label"
-          rowSpan={2}
-        >
-          My Company X Tags
-        </td>
-        <td>
-          <IconOrImage
-            icon="fa fa-tag"
-            image={null}
-            title={null}
-          >
-            <i
-              className="fa fa-tag"
-              title={null}
-            />
-          </IconOrImage>
-          <span>
-            Dan Test
-            : 
-            Test 1
-          </span>
-        </td>
-      </tr>
-      <tr
-        key="1"
+        Managed by Zone
+      </td>
+      <td>
+        <IconOrImage
+          icon="pficon pficon-zone"
+          image={null}
+          title={null}
+        />
+        default
+      </td>
+    </tr>
+    <tr
+      key="0"
+    >
+      <td
+        className="label"
+        rowSpan={2}
       >
-        <td>
-          <IconOrImage
-            icon="fa fa-tag"
-            image={null}
-            title={null}
-          >
-            <i
-              className="fa fa-tag"
-              title={null}
-            />
-          </IconOrImage>
-          <span>
-            Demo bla
-            : 
-            Policy
-            <b>
-               | 
-            </b>
-            2
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</TagGroup>
+        My Company X Tags
+      </td>
+      <td>
+        <IconOrImage
+          icon="fa fa-tag"
+          image={null}
+          title={null}
+        />
+        <span>
+          Dan Test
+          : 
+          Test 1
+        </span>
+      </td>
+    </tr>
+    <tr
+      key="1"
+    >
+      <td>
+        <IconOrImage
+          icon="fa fa-tag"
+          image={null}
+          title={null}
+        />
+        <span>
+          Demo bla
+          : 
+          Policy
+          <b>
+             | 
+          </b>
+          2
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 `;
