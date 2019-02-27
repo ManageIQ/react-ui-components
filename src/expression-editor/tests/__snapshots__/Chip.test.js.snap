@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip Component match snapshot 1`] = `
+<Dropdown
+  className=""
+  direction="down"
+  dropdownItems={Array []}
+  isOpen={true}
+  isPlain={false}
+  onBlur={[Function]}
+  onSelect={[Function]}
+  position="left"
+  toggle={
+    <span
+      className="focusedChip"
+      onFocus={[MockFunction]}
+      onKeyDown={[Function]}
+      tabIndex="0"
+    >
+      <Label
+        className=""
+        isCompact={false}
+        onClick={[MockFunction]}
+        onDoubleClick={[MockFunction]}
+      >
+        label
+      </Label>
+    </span>
+  }
+>
+  <div
+    className="maxDropdownHeght"
+  >
+    <Item
+      className="dropdownFontSize"
+      component="button"
+      href="#"
+      isDisabled={false}
+      isHovered={false}
+      key="0"
+      onClick={[MockFunction]}
+      onMouseDown={[Function]}
+    >
+      Edit
+    </Item>
+    <Item
+      className="dropdownFontSize"
+      component="button"
+      href="#"
+      isDisabled={false}
+      isHovered={false}
+      key="1"
+      onClick={[MockFunction]}
+      onMouseDown={[Function]}
+    >
+      Delete
+    </Item>
+    <Item
+      className="dropdownFontSize"
+      component="button"
+      href="#"
+      isDisabled={false}
+      isHovered={false}
+      key="2"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      Set Alias
+    </Item>
+    <Item
+      className="dropdownFontSize"
+      component="button"
+      href="#"
+      isDisabled={false}
+      isHovered={false}
+      key="3"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      Remove Alias
+    </Item>
+  </div>
+</Dropdown>
+`;

@@ -12,7 +12,7 @@ const notEqOperatorOpen = {id: 122, label: "!=", type: "operator", next: [{label
 const hostnameOpen = {"id": 13, "label": "hostnameOpen", "next": [{label: "something else"}], "parent": {}, "type": "category"};
 const statusOpen = {"id": 14, "label": "statusOpen", "next": [{label: "something different"}], "parent": {}, "type": "category"};
 
-const defautExpressionState = {"expressions": [[]]};
+const defautExpressionState = {"expressions": [[]], "parenthesesCount": {"left": 0, "right": 0}};
 const oneElementExpressionState = {
   "expressions": [[{"flags": {"isEditing": false},
   "term": ipAddressOpen}]]
@@ -57,7 +57,7 @@ const twoExpressionsTwoElementsState = {
 describe('expressions reducer', () => {
   it('should return the initial state', () => {
     expect(expressions(undefined, {})).toEqual(defautExpressionState);
-    expect(defautExpressionState).toEqual({"expressions": [[]]});
+    expect(defautExpressionState).toEqual({"expressions": [[]], "parenthesesCount": {"left": 0, "right": 0}});
   });
 
   it('Add expression element that is closing the expression, it adds empty expression at the end', () => {
@@ -66,10 +66,11 @@ describe('expressions reducer', () => {
       actions.onSubmit(ipAddressClosed, {}, 0),
     )).toEqual({
     "expressions": [[{"flags": {"isEditing": false},
-    "term": ipAddressClosed}], []]
+    "term": ipAddressClosed}], []],
+    "parenthesesCount": {"left": 0, "right": 0}
     });
     expect(ipAddressClosed).toEqual({id: 12, label: "IP Address", type: "category", next: [], parent: {}});
-    expect(defautExpressionState).toEqual({"expressions": [[]]});
+    expect(defautExpressionState).toEqual({"expressions": [[]], "parenthesesCount": {"left": 0, "right": 0}});
 
   });
 
@@ -79,10 +80,11 @@ describe('expressions reducer', () => {
       actions.onSubmit(ipAddressOpen, {}, 0),
     )).toEqual({
     "expressions": [[{"flags": {"isEditing": false},
-    "term": ipAddressOpen}]]
+    "term": ipAddressOpen}]],
+    "parenthesesCount": {"left": 0, "right": 0}
     });
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
-    expect(defautExpressionState).toEqual({"expressions": [[]]});
+    expect(defautExpressionState).toEqual({"expressions": [[]], "parenthesesCount": {"left": 0, "right": 0}});
   });
 
   it('Add expression element that is closing the expression to non empty state', () => {
@@ -234,7 +236,7 @@ describe('expressions reducer', () => {
   it('Delete expression element from expression with one element', () => {
     expect(expressions(
       oneElementExpressionState,
-      actions.onDelete(ipAddressOpen, 0),
+      actions.onDelete(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[]]
     });
@@ -245,12 +247,12 @@ describe('expressions reducer', () => {
     });
   });
 
-  it('Delete first expression element leaves rest untouched', () => {
+  it('Delete first expression element and the rest of the expression', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onDelete(ipAddressOpen, 0),
+      actions.onDelete(ipAddressOpen, 0, 0),
     )).toEqual({
-    "expressions": [[twoExpressionsTwoElementsState.expressions[0][1]], twoExpressionsTwoElementsState.expressions[1]]
+    "expressions": [twoExpressionsTwoElementsState.expressions[1]]
     });
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
     expect(twoExpressionsTwoElementsState).toEqual({
@@ -270,7 +272,7 @@ describe('expressions reducer', () => {
   it('Delete last expression elementleaves rest untouched', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onDelete(eqOperatorClosed, 1),
+      actions.onDelete(eqOperatorClosed, 1, 1),
     )).toEqual({
     "expressions": [twoExpressionsTwoElementsState.expressions[0], [twoExpressionsTwoElementsState.expressions[1][0]]]
     });
@@ -289,12 +291,12 @@ describe('expressions reducer', () => {
     });
   });
 
-  it('Delete first expression element from second expression leaves rest untouched', () => {
+  it('Delete first expression element from second expression', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onDelete(statusOpen, 1),
+      actions.onDelete(statusOpen, 1, 0),
     )).toEqual({
-    "expressions": [twoExpressionsTwoElementsState.expressions[0], [twoExpressionsTwoElementsState.expressions[1][1]]]
+    "expressions": [twoExpressionsTwoElementsState.expressions[0]]
     });
     expect(statusOpen).toEqual({"id": 14, "label": "statusOpen", "next": [{label: "something different"}], "parent": {}, "type": "category"});
     expect(twoExpressionsTwoElementsState).toEqual({
@@ -314,7 +316,7 @@ describe('expressions reducer', () => {
   it('Click expression element set isEditing for simple expression', () => {
     expect(expressions(
       oneElementExpressionState,
-      actions.onClick(ipAddressOpen, 0),
+      actions.onClick(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -333,7 +335,7 @@ describe('expressions reducer', () => {
   it('Click expression element set isEditing from bit more complex expression', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onClick(ipAddressOpen, 0),
+      actions.onClick(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -363,7 +365,7 @@ describe('expressions reducer', () => {
   it('Focus expression element set isFocused for simple expression', () => {
     expect(expressions(
       oneElementExpressionState,
-      actions.onFocus(ipAddressOpen, 0),
+      actions.onFocus(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -374,7 +376,7 @@ describe('expressions reducer', () => {
     });
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
     expect(oneElementExpressionState).toEqual({
-      "expressions": [[{"flags": {"isEditing": false},
+      "expressions": [[{"flags": {"isEditing": false, isFocused: false},
       "term": ipAddressOpen}]]
     });
   });
@@ -382,7 +384,7 @@ describe('expressions reducer', () => {
   it('Focus expression element set isEditing for bit more complex expression', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onFocus(ipAddressOpen, 0),
+      actions.onFocus(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -396,13 +398,13 @@ describe('expressions reducer', () => {
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
     expect(twoExpressionsTwoElementsState).toEqual({
       "expressions": [
-        [{"flags": {"isEditing": false},
+        [{"flags": {"isEditing": false, "isFocused": false},
         "term": ipAddressOpen},
-        {"flags": {"isEditing": false},
+        {"flags": {"isEditing": false, "isFocused": false},
         "term": eqOperatorClosed}],
-        [{"flags": {"isEditing": false},
+        [{"flags": {"isEditing": false, "isFocused": false},
         "term": statusOpen},
-        {"flags": {"isEditing": false},
+        {"flags": {"isEditing": false, "isFocused": false},
         "term": eqOperatorClosed}]
       ]
     });
@@ -411,7 +413,7 @@ describe('expressions reducer', () => {
   it('Blur expression element reset isFocused for simple expression', () => {
     expect(expressions(
       oneElementExpressionState,
-      actions.onBlur(ipAddressOpen, 0),
+      actions.onBlur(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -422,7 +424,7 @@ describe('expressions reducer', () => {
     });
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
     expect(oneElementExpressionState).toEqual({
-      "expressions": [[{"flags": {"isEditing": false},
+      "expressions": [[{"flags": {"isEditing": false, "isFocused": false},
       "term": ipAddressOpen}]]
     });
   });
@@ -430,7 +432,7 @@ describe('expressions reducer', () => {
   it('Blur expression element set isEditing for bit more complex expression', () => {
     expect(expressions(
       twoExpressionsTwoElementsState,
-      actions.onBlur(ipAddressOpen, 0),
+      actions.onBlur(ipAddressOpen, 0, 0),
     )).toEqual({
     "expressions": [[
         {
@@ -444,15 +446,24 @@ describe('expressions reducer', () => {
     expect(ipAddressOpen).toEqual({id: 12, label: "IP Address", type: "category", next: [{label: "something"}], parent: {}});
     expect(twoExpressionsTwoElementsState).toEqual({
       "expressions": [
-        [{"flags": {"isEditing": false},
+        [{"flags": {"isEditing": false, "isFocused": false},
         "term": ipAddressOpen},
-        {"flags": {"isEditing": false},
+        {"flags": {"isEditing": false, "isFocused": false},
         "term": eqOperatorClosed}],
-        [{"flags": {"isEditing": false},
+        [{"flags": {"isEditing": false, "isFocused": false},
         "term": statusOpen},
-        {"flags": {"isEditing": false},
+        {"flags": {"isEditing": false, "isFocused": false},
         "term": eqOperatorClosed}]
       ]
+    });
+  });
+
+  it('should add new expression', () => {
+    expect(expressions(
+      oneElementExpressionState,
+      actions.onInsert(0),
+    )).toEqual({
+    "expressions": [oneElementExpressionState,[]]
     });
   });
 });

@@ -9,17 +9,10 @@ export default class AutocompleteTextInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuItemRefs: props.options.map(() => React.createRef()),
       toDelete: {},
       index: -1,
       isFocused: true
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.options.length !== this.props.options.length) {
-      this.setState({ menuItemRefs: this.props.options.map(() => React.createRef()) });
-    }
   }
 
   onMenuClick = (index) => {
@@ -40,25 +33,26 @@ export default class AutocompleteTextInput extends React.Component {
   handleKeyDown = (e) => {
     const { target: { value } } = e;
     let index = 0;
+    let dropdown;
+    let dropdownItem;
+    let itemPossition;
     switch (e.keyCode)  {
       case keyCodes.enter:
         this.handleSubmit(value);
         break;
       case keyCodes.upArrow:
         index = this.state.index <= -1 ? this.state.index : this.state.index - 1;
-        var dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
-        var dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
-        var itemPossition = dropdownItem.getBoundingClientRect().height * index;
+        dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
+        dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
+        itemPossition = dropdownItem.getBoundingClientRect().height * index;
         dropdown.scrollTo(0, itemPossition);
         this.setState(prevState => ({ index }));
         break;
       case keyCodes.downArrow:
-        index = this.state.index >= this.state.menuItemRefs.length - 1 ? this.state.menuItemRefs.length - 1 : this.state.index + 1;
-        console.log(this.state.menuItemRefs[index]);
-        // this.state.menuItemRefs[index].current.focus();
-        var dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
-        var dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
-        var itemPossition = dropdownItem.getBoundingClientRect().height * index;
+        index = this.state.index >= this.props.options.length - 1 ? this.props.options.length - 1 : this.state.index + 1;
+        dropdown = document.getElementsByClassName("pf-c-dropdown__menu")[0];
+        dropdownItem = document.getElementsByClassName("pf-c-dropdown__menu-item")[0];
+        itemPossition = dropdownItem.getBoundingClientRect().height * index;
         dropdown.scrollTo(0, itemPossition);
 
         this.setState(prevState => ({ index }));
@@ -86,23 +80,23 @@ export default class AutocompleteTextInput extends React.Component {
     }
     else if (this.props.aliasMode) {
       return value;
-    } else {
-      let selected = {label: ""};
-      if (this.state.index === -1) {
-        selected = this.props.options.find(this.props.matchingFunction(value)) || {
-          id: value, label: value, type: 'userinput', next: this.props.next,
-        };
-        if (this.props.denyUserInput && selected.type === "userinput") {
-          return false;
-        }
-      } else {
-        selected = this.props.options[this.state.index];
-      }
-      if (selected.label === "") {
+    }
+    let selected = {label: ""};
+    if (this.state.index === -1) {
+      selected = this.props.options.find(this.props.matchingFunction(value)) || {
+        id: value, label: value, type: 'userinput', next: this.props.next,
+      };
+      if (this.props.denyUserInput && selected.type === "userinput") {
         return false;
       }
-      return selected;
+    } else {
+      selected = this.props.options[this.state.index];
     }
+    if (selected.label === "") {
+      return false;
+    }
+    return selected;
+
   }
 
 
@@ -145,7 +139,7 @@ export default class AutocompleteTextInput extends React.Component {
                 onChange={this.handleChange}
               />
             }
-            isOpen={true}
+            isOpen={this.state.isFocused}
           >
             {this.props.options.map((o, i) => (
               <DropdownItem
@@ -158,7 +152,14 @@ export default class AutocompleteTextInput extends React.Component {
               </DropdownItem>))}
           </Dropdown>
 
-          <Button className="inputButton" onClick={this.addButtonClick} isDisabled={!this.eligibleForSubmit(this.props.value)}>Add</Button>
+          <Button
+            className="inputButton"
+            onClick={this.addButtonClick}
+            id="expressionEditorInputButton"
+            isDisabled={!this.eligibleForSubmit(this.props.value)}
+          >
+           Add
+          </Button>
       </span>
 
     );

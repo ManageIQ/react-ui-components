@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expression Component Matches the snapshot 1`] = `
+<div
+  className="expressionRow expressionOdd"
+>
+  <ul
+    className="list-inline expression"
+  >
+    <li
+      className="chip"
+    >
+      <EditableChip
+        blurAllChips={[MockFunction]}
+        chipRef={
+          Object {
+            "current": <span
+              class=""
+              id="pf-toggle-id-14"
+              tabindex="0"
+            >
+              <span
+                class="pf-c-label"
+              >
+                ahoj
+              </span>
+            </span>,
+          }
+        }
+        filterOption={[Function]}
+        index={0}
+        isAliasSet={false}
+        isEditing={false}
+        item={
+          Object {
+            "id": 1,
+            "label": "ahoj",
+            "next": Array [],
+            "parent": Object {
+              "id": 0,
+              "label": "root",
+              "next": Array [],
+              "parent": null,
+              "type": "root",
+            },
+            "type": "category",
+          }
+        }
+        key="1"
+        label="ahoj"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDelete={[Function]}
+        onDoubleClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onSubmit={[Function]}
+        options={Array []}
+        selected={
+          Object {
+            "id": 1,
+            "label": "ahoj",
+            "next": Array [],
+            "parent": Object {
+              "id": 0,
+              "label": "root",
+              "next": Array [],
+              "parent": null,
+              "type": "root",
+            },
+            "type": "category",
+          }
+        }
+        setAlias={[Function]}
+      />
+    </li>
+    <Component />
+  </ul>
+  <ul
+    className="list-inline expressionButtons"
+  >
+    <li>
+      <div
+        className="buttons .pf-c-form-control"
+      >
+        <Button
+          aria-label={null}
+          className="button"
+          component="button"
+          id="delete-expression-button"
+          isActive={false}
+          isBlock={false}
+          isDisabled={false}
+          isFocus={false}
+          isHover={false}
+          onClick={[Function]}
+          type="button"
+          variant="danger"
+        >
+           Delete Expression 
+        </Button>
+        <Button
+          aria-label={null}
+          className="button"
+          component="button"
+          id="insert-expression-button"
+          isActive={false}
+          isBlock={false}
+          isDisabled={false}
+          isFocus={false}
+          isHover={false}
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+           Insert Expression 
+        </Button>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Expression Component Matches the snapshot 2`] = `
+<div
+  className="expressionRow expressionOdd"
+>
+  <ul
+    className="list-inline expression"
+  >
+    <li
+      className="chip"
+    >
+      <EditableChip
+        blurAllChips={[MockFunction]}
+        chipRef={
+          Object {
+            "current": <span
+              class=""
+              id="pf-toggle-id-14"
+              tabindex="0"
+            >
+              <span
+                class="pf-c-label"
+              >
+                ahoj
+              </span>
+            </span>,
+          }
+        }
+        filterOption={[Function]}
+        index={0}
+        isAliasSet={false}
+        isEditing={false}
+        item={
+          Object {
+            "id": 1,
+            "label": "ahoj",
+            "next": Array [],
+            "parent": Object {
+              "id": 0,
+              "label": "root",
+              "next": Array [],
+              "parent": null,
+              "type": "root",
+            },
+            "type": "category",
+          }
+        }
+        key="1"
+        label="ahoj"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDelete={[Function]}
+        onDoubleClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onSubmit={[Function]}
+        options={Array []}
+        selected={
+          Object {
+            "id": 1,
+            "label": "ahoj",
+            "next": Array [],
+            "parent": Object {
+              "id": 0,
+              "label": "root",
+              "next": Array [],
+              "parent": null,
+              "type": "root",
+            },
+            "type": "category",
+          }
+        }
+        setAlias={[Function]}
+      />
+    </li>
+    <Component />
+  </ul>
+  <ul
+    className="list-inline expressionButtons"
+  >
+    <li>
+      <div
+        className="buttons .pf-c-form-control"
+      >
+        <Button
+          aria-label={null}
+          className="button"
+          component="button"
+          id="delete-expression-button"
+          isActive={false}
+          isBlock={false}
+          isDisabled={false}
+          isFocus={false}
+          isHover={false}
+          onClick={[Function]}
+          type="button"
+          variant="danger"
+        >
+           Delete Expression 
+        </Button>
+        <Button
+          aria-label={null}
+          className="button"
+          component="button"
+          id="insert-expression-button"
+          isActive={false}
+          isBlock={false}
+          isDisabled={false}
+          isFocus={false}
+          isHover={false}
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+           Insert Expression 
+        </Button>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

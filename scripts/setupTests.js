@@ -10,3 +10,5 @@ configure({ adapter: new Adapter() });
 const dom = new JSDOM();
 global.document = dom.window.document;
 global.d3 = d3;
+
+Element.prototype.scrollTo = () => {};

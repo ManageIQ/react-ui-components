@@ -64,7 +64,7 @@ class ExpressionEditor2 extends React.Component {
 
   onKeyDown = (key, chipIndex, selected, expressionIndex) => {
     let index = this.localToGlobalIndex(chipIndex, expressionIndex);
-    const chipRefs = this.state.chipRefs.flat();
+    const chipRefs = this.state.chipRefs.flatMap(item => item);
 
     switch (key.keyCode) {
       case keyCodes.leftArrow:
@@ -86,16 +86,16 @@ class ExpressionEditor2 extends React.Component {
         this.props.onInsert(expressionIndex);
         break;
       case keyCodes.home:
-        if (this.props.expressions.flat().length > 0) {
+        if (this.props.expressions.flatMap(item => item).length > 0) {
           this.focusChip(0);
         }
         break;
       case keyCodes.end:
-        if (this.props.expressions.flat().length > 0) {
+        if (this.props.expressions.flatMap(item => item).length > 0) {
           if (this.state.inputRef.current) {
             this.focusInput()
           } else {
-            this.focusChip(this.props.expressions.flat().length - 1);
+            this.focusChip(this.props.expressions.flatMap(item => item).length - 1);
           }
         }
         break;
@@ -106,7 +106,7 @@ class ExpressionEditor2 extends React.Component {
   }
 
   focusChip = (index) => {
-    const chipRefs = this.state.chipRefs.flat();
+    const chipRefs = this.state.chipRefs.flatMap(item => item);
     chipRefs[index].current.focus();
   }
 
@@ -134,13 +134,13 @@ class ExpressionEditor2 extends React.Component {
     } else {
       index = index <= 0 ? index : index - 1;
     }
-    if (this.props.expressions.flat().length > 0) {
+    if (this.props.expressions.flatMap(item => item).length > 0) {
       this.focusChip(index);
     }
   }
 
   handleRightArrow = (chipIndex, expressionIndex, index, ctrl) => {
-    const lastElement = index >= this.state.chipRefs.flat().length - 1;
+    const lastElement = index >= this.state.chipRefs.flatMap(item => item).length - 1;
     if (ctrl) {
       const expressionLength = this.props.expressions[expressionIndex].length - 1;
       const lastElementOnRow = chipIndex >= expressionLength;

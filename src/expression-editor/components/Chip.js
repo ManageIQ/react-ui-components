@@ -90,6 +90,7 @@ export default class Chip extends React.Component {
         <div className="maxDropdownHeght">
           {this.state.menuItems.map((o, i) => (
             <DropdownItem
+              key={i}
               component="button"
               className="dropdownFontSize"
               isHovered={this.state.menuIndex === i}

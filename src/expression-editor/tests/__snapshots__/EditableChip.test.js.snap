@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditableChip Component Matches the snapshot with disabled edit 1`] = `
+<Chip
+  chipRef={
+    Object {
+      "current": <span
+        class=""
+        id="pf-toggle-id-16"
+        parentref="[object HTMLDivElement]"
+        tabindex="0"
+      >
+        <span
+          class="pf-c-label"
+        >
+          label
+        </span>
+      </span>,
+    }
+  }
+  index={0}
+  isAliasSet={false}
+  isFocused={false}
+  label="label"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDelete={[Function]}
+  onDoubleClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  setAlias={[Function]}
+  setAliasMode={[Function]}
+  type="operator"
+/>
+`;
+
+exports[`EditableChip Component Matches the snapshot with enabled edit 1`] = `
+<AutocompleteTextInput
+  aliasMode={false}
+  blurAllChips={[MockFunction]}
+  denyUserInput={false}
+  index={0}
+  inputRef={
+    Object {
+      "current": null,
+    }
+  }
+  isLastElement={false}
+  matchingFunction={[Function]}
+  next={Array []}
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  onSubmit={[Function]}
+  options={Array []}
+  setAliasMode={[Function]}
+  value="label"
+/>
+`;

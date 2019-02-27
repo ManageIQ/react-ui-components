@@ -81,12 +81,14 @@ class Expression extends React.Component {
 
   render() {
     const expression = this.props.expression;
-    const options = this.props.parenthesesCount.left > this.props.parenthesesCount.right ? this.props.next.parent.next : this.props.next.parent.next.filter(t => t.type !== "rightParenteze");
+    const options = this.props.parenthesesCount.left > this.props.parenthesesCount.right
+      ? this.props.next.parent.next
+      : this.props.next.parent.next.filter(t => t.type !== "rightParenteze");
     const newChip = (
       <li>
         <EditableChip
           label={this.props.next.label}
-          isEditing={this.props.next.isEditing}
+          isEditing={true}
           onClick={this.onClick}
           onDoubleClick={this.onDoubleClick}
           onSubmit={this.onSubmit}
@@ -110,17 +112,17 @@ class Expression extends React.Component {
       <div className={`expressionRow ${this.expressionStyle()}`}>
         <ul className="list-inline expression">
           {expression.map((term, index) => this.generateChip(term, index))}
-          {(endOfExpresion || isLastEditing || null) || ((this.props.isFocused || this.props.isLastExpression) && newChip)}
+          {(endOfExpresion || isLastEditing || null) || (this.props.isFocused || this.props.isLastExpression) && newChip}
         </ul>
         <ul className="list-inline expressionButtons">
-        <li>
-        <div className="buttons .pf-c-form-control">
-          <Button className="button" variant="danger" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
-          <Button className="button" onClick={this.onInsertExpressionClick}> Insert Expression </Button>
-        </div>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <div className="buttons .pf-c-form-control">
+              <Button id="delete-expression-button" className="button" variant="danger" onClick={this.onDeleteExpressionClick}> Delete Expression </Button>
+              <Button id="insert-expression-button" className="button" onClick={this.onInsertExpressionClick}> Insert Expression </Button>
+            </div>
+          </li>
+        </ul>
+      </div>
     );
   }
 }

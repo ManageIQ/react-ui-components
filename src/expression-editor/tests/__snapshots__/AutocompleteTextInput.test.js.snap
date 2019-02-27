@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutocompleteTextInput Component Matches the snapshot 1`] = `
+<span
+  className="maxDropdownHeght"
+>
+  <Dropdown
+    className=""
+    direction="down"
+    dropdownItems={Array []}
+    isOpen={true}
+    isPlain={false}
+    onSelect={[Function]}
+    position="left"
+    toggle={
+      <input
+        autoFocus={true}
+        className="pf-c-form-control autocompleteTextInput"
+        fullWidth={true}
+        input="true"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value=""
+      />
+    }
+  />
+  <Button
+    aria-label={null}
+    className="inputButton"
+    component="button"
+    id="expressionEditorInputButton"
+    isActive={false}
+    isBlock={false}
+    isDisabled={true}
+    isFocus={false}
+    isHover={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    Add
+  </Button>
+</span>
+`;

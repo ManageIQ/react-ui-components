@@ -41,14 +41,11 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
   }
 };
 
-export const isLastElement = (state = false, {selected, type}) => {
-  switch (type) {
-    case actionsConstants.IS_LAST_ELEMENT:
-    return selected.next.length === 0 && selected.type !== "operator";
-    default:
-    return state;
-  }
-}
+export const isLastElement = (state = false, {selected, type}) => (
+   type === actionsConstants.IS_LAST_ELEMENT
+    ? selected.next.length === 0 && selected.type !== "operator"
+    : state
+)
 
 const setAlias = (state, alias, expressionIndex, chipIndex) => {
   const expression = [...state[expressionIndex]];
@@ -60,13 +57,10 @@ const setAlias = (state, alias, expressionIndex, chipIndex) => {
   return [...state];
 }
 
-const countParentheses = (state = {left: 0, right: 0}, expressions) => {
-  const newCount = {
+const countParentheses = (state = {left: 0, right: 0}, expressions) => ({
     left: expressions.map(e => e.filter(t => t.term.type === "leftParenteze")).flat().length,
     right: expressions.map(e => e.filter(t => t.term.type === "rightParenteze")).flat().length
-  }
-  return newCount;
-}
+  })
 
 const calculateSubmit = (state, selected, previous, expressionIndex) => {
   let newState = [...state];
@@ -95,11 +89,8 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   return state;
 }
 
-const calculateInsert = (state, previousExpressionIndex) => {
-  state.splice(previousExpressionIndex + 1, 0, []);
-  return [...state];
+const calculateInsert = (state, previousExpressionIndex) => [...state.splice(previousExpressionIndex + 1, 0, [])]
 
-}
 
 const calculateExpressionDelete = (state, expressionIndex) => {
   state.splice(expressionIndex, 1);
@@ -107,7 +98,6 @@ const calculateExpressionDelete = (state, expressionIndex) => {
     state = [[]];
   }
   return [...state];
-
 }
 
 const calculateDelete = (state, selected, expressionIndex, chipIndex) => {
@@ -155,13 +145,16 @@ const calculateBlur = (state, selected, expressionIndex, chipIndex) => {
   }
 }
 
-const blurAllChips = (state) => {
-    return [...state].map(e => e.map(t => {t.flags.isFocused = false; return t}));
-}
+const blurAllChips = (state) => (
+    state.map(e => e.map(t => {t.flags.isFocused = false; return t}))
+)
 
-const clearFlags = (state) => {
-    return [...state].map(e => e.map(t => {t.flags.isFocused = false; t.flags.isEditing = false; return t}));
-}
+const clearFlags = (state) => (
+    state.map(e => e.map(t => ({ ...t, flags: {
+        isFocused: false,
+        isEditing: false
+      }})))
+)
 
 const cleanLastExpression = (state, selected) => {
   if (selected.next.length === 0 && state[state.length-1].length === 0) {
@@ -171,6 +164,6 @@ const cleanLastExpression = (state, selected) => {
 
 const lastExpressionCompleted = (state) => {
   const lastExpression = state[state.length-1] || [];
-  const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: ["meaningless not empty value"]}};
+  const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: ["meaningless not empty value which is not ever displayed"]}};
   return lastTerm.term.next.length === 0;
 }

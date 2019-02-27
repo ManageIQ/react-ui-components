@@ -15,6 +15,7 @@ class EditableChip extends React.Component {
     };
   }
 
+  // TODO can I get rid of this mothod?
   static getDerivedStateFromProps(props, state) {
     return { filteredOptions: props.options.filter(props.filterOption(state.filterString)) };
   }
@@ -94,8 +95,6 @@ class EditableChip extends React.Component {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
-          registerChip={this.props.registerChip}
-          unregisterChip={this.props.unregisterChip}
           isAliasSet={this.props.isAliasSet}
           setAliasMode={this.setAliasMode}
           setAlias={this.setAlias}
@@ -121,8 +120,6 @@ EditableChip.propTypes = {
   onBlur: PropTypes.func,
   setAlias: PropTypes.func,
   deleteExpression: PropTypes.func,
-  registerChip: PropTypes.func,
-  unregisterChip: PropTypes.func,
   label: PropTypes.string.isRequired,
   item: PropTypes.object,
   index: PropTypes.number.isRequired,
