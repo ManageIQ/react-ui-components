@@ -31,4 +31,22 @@ describe('Final form input component', () => {
     wrapper.find('input[type="text"]').simulate('change', { value: 'new value' });
     expect(onChange).toHaveBeenCalled();
   });
+
+  it('Should spread extraProps attributes to input', () => {
+    const props = {
+      ...initialProps,
+      extraProps: {
+        'data-cat': 'cat',
+        'data-dog': 'dog',
+        foo: 'bar',
+      },
+    };
+    const wrapper = mount(<FinalFormField {...props} />);
+    const input = wrapper.find('input');
+    expect(input.props()).toEqual(expect.objectContaining({
+      'data-dog': 'dog',
+      'data-cat': 'cat',
+      foo: 'bar',
+    }));
+  });
 });

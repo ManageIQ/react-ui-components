@@ -87,6 +87,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       clearable={false}
                       componentType="textfield"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "name",
@@ -239,6 +240,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       clearable={false}
                       componentType="textarea"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "description",
@@ -393,6 +395,7 @@ exports[`Final form input component Should render correctly 1`] = `
                       clearable={false}
                       componentType="switch"
                       disabled={false}
+                      extraProps={Object {}}
                       id="snap_memory"
                       input={
                         Object {
@@ -721,6 +724,7 @@ exports[`Final form input component Should render with description required 1`] 
                       clearable={false}
                       componentType="textfield"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "name",
@@ -873,6 +877,7 @@ exports[`Final form input component Should render with description required 1`] 
                       clearable={false}
                       componentType="textarea"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "description",
@@ -1036,6 +1041,7 @@ exports[`Final form input component Should render with description required 1`] 
                       clearable={false}
                       componentType="switch"
                       disabled={false}
+                      extraProps={Object {}}
                       id="snap_memory"
                       input={
                         Object {
@@ -1364,6 +1370,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       clearable={false}
                       componentType="textfield"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "name",
@@ -1525,6 +1532,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       clearable={false}
                       componentType="textarea"
                       disabled={false}
+                      extraProps={Object {}}
                       input={
                         Object {
                           "name": "description",
@@ -1679,6 +1687,7 @@ exports[`Final form input component Should render with name required 1`] = `
                       clearable={false}
                       componentType="switch"
                       disabled={false}
+                      extraProps={Object {}}
                       id="snap_memory"
                       input={
                         Object {

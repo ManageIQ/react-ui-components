@@ -13,16 +13,22 @@ const switchComponents = ['radio', 'checkbox'];
 const inputTypes = ['text', 'email', 'number', 'password'];
 const selectValue = option => option.sort((a, b) => a.label.localeCompare(b.label, 'en', { sensitivity: 'base' })).map(item => item.value);
 
-const componentSelect = (componentType, { input, meta, ...rest }) => ({
-  textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
-  radio: <Radio {...input} >{rest.label}</Radio>,
-  checkbox: <Checkbox {...input}>{rest.label}</Checkbox>,
-  textarea: <FormControl componentClass="textarea" {...input} placeholder={rest.placeholder} />,
+const componentSelect = (componentType, {
+  input,
+  meta,
+  extraProps,
+  ...rest
+}) => ({
+  textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} {...extraProps} />,
+  radio: <Radio {...extraProps} {...input} >{rest.label}</Radio>,
+  checkbox: <Checkbox {...extraProps} {...input}>{rest.label}</Checkbox>,
+  textarea: <FormControl {...extraProps} componentClass="textarea" {...input} placeholder={rest.placeholder} />,
   select: <ReactSelect
     className={`final-form-select ${meta.invalid ? 'has-error' : ''}`}
     styles={customStyles}
     {...input}
     {...rest}
+    {...extraProps}
     options={rest.options.filter(option => option.hasOwnProperty('value') && option.value !== null)} // eslint-disable-line
     value={rest.options.filter(({ value }) => (rest.multi ? input.value.includes(value) : value === input.value))}
     isMulti={rest.multi}
@@ -33,7 +39,7 @@ const componentSelect = (componentType, { input, meta, ...rest }) => ({
     noOptionsMessage={() => __('No option found')}
     onChange={option => input.onChange(rest.multi ? selectValue(option) : option && option.value)} // eslint-disable-line no-nested-ternary
   />,
-  switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
+  switch: <Switch {...input} {...extraProps} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
 
 const isSwitchInput = componentType => switchComponents.includes(componentType);
@@ -161,6 +167,7 @@ FinalFormComponent.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  extraProps: PropTypes.object,
 };
 
 FinalFormComponent.defaultProps = {
@@ -175,6 +182,7 @@ FinalFormComponent.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
   disabled: false,
+  extraProps: {},
 };
 
 export const FinalFormField = props => <FinalFormComponent componentType="textfield" {...props} />;
