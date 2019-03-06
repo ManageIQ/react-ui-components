@@ -1,7 +1,7 @@
 import { connect, Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement,
-  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags } from '../actions';
+  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags, setLoading } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 import ExpressionEditorReducers from '../reducers/'
@@ -12,7 +12,9 @@ const mapStateToProps = ( { expressionEditor }) => {
   canRedo: !!(expressionEditor.expressions.future && expressionEditor.expressions.future.length > 0),
   expressions: expressionEditor.expressions.present.expressions,
   isLastElement: expressionEditor.isLastElement,
-  parenthesesCount:  expressionEditor.expressions.present.parenthesesCount
+  parenthesesCount:  expressionEditor.expressions.present.parenthesesCount,
+  lastSubmited:  expressionEditor.expressions.present.lastSubmited,
+  isLoading: expressionEditor.isLoading,
 }};
 
 const mapDispatchToProps = dispatch => ({
@@ -52,6 +54,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(onSubmit(selected, previous, expressionIndex));
     dispatch(countParentheses());
 
+  },
+
+  setLoading: (isLoading) => {
+    dispatch(setLoading(isLoading));
   },
 
   setAlias: (alias, expressionIndex, chipIndex) => {

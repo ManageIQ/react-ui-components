@@ -1,11 +1,11 @@
 import * as actionsConstants from '../actions/actions';
 
-export const expressions = (state = {expressions: [[]], parenthesesCount: {left: 0, right: 0}}, {type, selected, previous, expressionIndex, previousExpressionIndex, chipIndex, alias}) => {
+export const expressions = (state = {expressions: [[]], parenthesesCount: {left: 0, right: 0}}, {type, target, next, selected, previous, expressionIndex, previousExpressionIndex, chipIndex, alias}) => {
   let newExpressions = [[]];
   switch (type) {
     case actionsConstants.ON_SUBMIT:
       newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
-      return { ...state, expressions: [...newExpressions]};
+      return { ...state, expressions: [...newExpressions], lastSubmited: selected};
     case actionsConstants.ON_INSERT:
       newExpressions = calculateInsert([...state.expressions], previousExpressionIndex);
       return { ...state, expressions: [...newExpressions]};
@@ -32,7 +32,6 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
       return { ...state, expressions: [...newExpressions]};
     case actionsConstants.CLEAR_FLAGS:
       newExpressions = clearFlags([...state.expressions]);
-      return { ...state, expressions: [...newExpressions]};
     case actionsConstants.COUNT_PARENTHESES:
       const newParenthesesCount = countParentheses({...state.parenthesesCount}, state.expressions);
       return {...state, parenthesesCount: newParenthesesCount};
@@ -40,6 +39,12 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
       return state;
   }
 };
+
+export const setLoading = (state = false, action) => {
+  return (action.type === actionsConstants.SET_LOADING
+    ? action.isLoading
+    : state);
+}
 
 export const isLastElement = (state = false, {selected, type}) => (
    type === actionsConstants.IS_LAST_ELEMENT

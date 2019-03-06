@@ -188,7 +188,7 @@ class ExpressionEditor2 extends React.Component {
       isLastExpression={index===this.props.expressions.length-1}
       parenthesesCount={this.props.parenthesesCount}
       inputRef={this.state.inputRef}
-
+      isLoading={this.props.isLoading}
       next={{
 ...userInputMock[0],
         parent: ((expression[expression.length - 1] && expression[expression.length - 1].term) ||
@@ -198,18 +198,38 @@ class ExpressionEditor2 extends React.Component {
   )
 
   render() {
-    return (
-      <div className="expressionEditor">
-        <h1 className="expressionEditorTitle">Expression Editor</h1>
-        <div>
-          <div className="undoRedoButtons">
-            <Button className="button" isDisabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
-            <Button className="button" isDisabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+    if (this.props.isLoading) {
+      const preLastindex = this.props.expressions[this.props.expressions.length-1].length-1 < 0
+        ? 0
+        : this.props.expressions[this.props.expressions.length-1].length-1;
+
+      return (
+        <div className="expressionEditor">
+          <h1 className="expressionEditorTitle">Expression Editor</h1>
+          <div>
+            <div className="undoRedoButtons">
+              <Button className="button" isDisabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
+              <Button className="button" isDisabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+            </div>
           </div>
+          {this.props.expressions.map(((expression, index) => (this.generateExpression(expression.slice(0, preLastindex), index))))}
         </div>
-        {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
-      </div>
-    );
+      );
+    }
+    else {
+      return (
+        <div className="expressionEditor">
+          <h1 className="expressionEditorTitle">Expression Editor</h1>
+          <div>
+            <div className="undoRedoButtons">
+              <Button className="button" isDisabled={!this.props.canUndo} onClick={this.props.undo}>Undo</Button>
+              <Button className="button" isDisabled={!this.props.canRedo} onClick={this.props.redo}>Redo</Button>
+            </div>
+          </div>
+          {this.props.expressions.map(((expression, index) => (this.generateExpression(expression, index))))}
+        </div>
+      );
+    }
   }
 }
 
@@ -224,11 +244,12 @@ ExpressionEditor2.propTypes = {
   expressions: PropTypes.arrayOf(ExpressionEditorPropTypes.expression),
   parenthesesCount: PropTypes.shape({left: PropTypes.number, right: PropTypes.number}),
   next: ExpressionEditorPropTypes.term,
-
 };
 
 ExpressionEditor2.defaultProps = {
-
+  isLoading: PropTypes.bool,
+  lastSubmited: PropTypes.shape(ExpressionEditorPropTypes.term)
 };
+
 
 export default ExpressionEditor2;

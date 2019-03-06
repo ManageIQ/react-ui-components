@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { onChange as selected, expressions, steps, next, options, isLastElement, countParentheses } from './reducers';
+import { onChange as selected, expressions, steps, next, options, isLastElement, countParentheses, setLoading } from './reducers';
 import * as actionsConstants from '../actions/actions';
 
 const undoableActions = [actionsConstants.ON_SUBMIT, actionsConstants.ON_INSERT,
@@ -57,6 +57,7 @@ function undoable(reducer) {
 const combinedReducers = combineReducers({
   expressions: undoable(expressions),
   isLastElement,
+  isLoading: setLoading,
 });
 
 export default { expressionEditor:  combinedReducers };

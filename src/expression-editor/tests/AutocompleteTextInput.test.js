@@ -81,8 +81,6 @@ describe('AutocompleteTextInput Component', () => {
     let options =  [{ id: 111, label: 'first', type: 'operator'}, { id: 112, label: 'second', type: 'operator'}];
     let onSubmit = jest.fn();
     let onKeyDown = jest.fn();
-    console.log(JSON.stringify(document.getElementsByClassName("pf-c-dropdown__menu")));
-    console.log(JSON.stringify(document.getElementsByClassName("pf-c-dropdown__menu-item")));
     const wrapper = mount(
       <AutocompleteTextInput
         onSubmit={onSubmit}

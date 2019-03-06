@@ -112,7 +112,8 @@ class Expression extends React.Component {
       <div className={`expressionRow ${this.expressionStyle()}`}>
         <ul className="list-inline expression">
           {expression.map((term, index) => this.generateChip(term, index))}
-          {(endOfExpresion || isLastEditing || null) || (this.props.isFocused || this.props.isLastExpression) && newChip}
+          {(endOfExpresion || isLastEditing || null) || (this.props.isFocused || this.props.isLastExpression) && !this.props.isLoading && newChip}
+          {this.props.isLoading && <li>LOADING...</li>}
         </ul>
         <ul className="list-inline expressionButtons">
           <li>
@@ -146,6 +147,7 @@ Expression.propTypes = {
   isFocused: PropTypes.bool.isRequired,
   chipRefs: PropTypes.arrayOf(PropTypes.object),
   inputRef: PropTypes.object,
+  isLoading: PropTypes.bool,
 };
 
 

@@ -72,6 +72,10 @@ export const countParentheses = () => ({
   type: actions.COUNT_PARENTHESES,
 })
 
+export const setLoading = (isLoading) => ({
+  isLoading: isLoading,
+  type: actions.SET_LOADING,
+})
 
 export const undo = () => ({
   type: actions.UNDO,

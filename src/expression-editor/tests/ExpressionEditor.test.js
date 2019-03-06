@@ -115,11 +115,8 @@ describe('Expression Component', () => {
     setTimeout(() => {
       let spy = jest.spyOn(wrapper.instance(), 'focusChip');
       wrapper.instance().focusChip(1)
-      // console.log(wrapper.find('span.focusedChip').instance());
-      // expect(wrapper.find('span.focusedChip').length > 0).toBeTruthy();
       expect(spy).toHaveBeenCalled();
       done()
-      // expect(wrapper.state().chipRefs.flatten()[1]).toBe(1)
     }, 100);
   });
 

@@ -6,7 +6,7 @@ let defaultOptions = {};
 let preProcess = true;
 const mapParent = (parent, nodes) => {
   nodes.map(node => node.parent = parent);
-  nodes.map(node => mapParent(node, node.next));
+  nodes.map(node => (node.next.length > 0 ? mapParent(node, node.next) : node));
   return parent;
 }
 
@@ -31,8 +31,18 @@ export const dataProvider = () => (Component) => {
     }
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
-    let newProps = {...props};
-    newProps.next = options;
+    let isLoading = props.isLoading;
+    if (props.lastSubmited && props.lastSubmited.next && props.lastSubmited.next.url) {
+      isLoading = true;
+      props.setLoading(true);
+      props.loadNestedData(props.lastSubmited).then(data => {
+        props.lastSubmited.next = data;
+        props.setLoading(false);
+      }).catch(error => {
+        console.log('Error while loading Expression Editor Data');
+      })
+    }
+    let newProps = {...props, isLoading, next: options};
     return <Component  {...newProps}/>
   };
   return DataProvider;

@@ -12,6 +12,13 @@ import { logicalOperatorsMock, userInputMock } from "../constants"
 
 const store = createStore(combineReducers({...ExpressionEditorReducers}));
 
+const loadNestedData = (lastSubmited = {next: []}) => {
+  return new Promise((resolve, reject) => {
+      setTimeout((lastSubmited) => {(
+        resolve(userInputMock)
+      )}, 1000);
+  })
+};
 
 let defaultOptions = {id: 0, label: 'root', type: 'root', next:
   [{ id: 1, label: 'Fields', type: 'category', next: [
@@ -36,7 +43,7 @@ let defaultOptions = {id: 0, label: 'root', type: 'root', next:
   },
     { id: 2, label: 'Tags', type: 'category', next: [
         { id: 21, label: 'Location', type: 'category',
-          next: [{ id: 211, label: '=', type: 'operator', next: userInputMock}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
+          next: [{ id: 211, label: '=', type: 'operator', next: {url: 'blablaurl'}}, { id: 212, label: '!=', type: 'operator', next: userInputMock}]
         },
         { id: 22, label: 'Department', type: 'category',
           next: [{ id: 221, label: '=', type: 'operator', next: [{ id: 2211, label: 'Financial Services', type: 'value', next: []},
@@ -56,4 +63,4 @@ let defaultOptions = {id: 0, label: 'root', type: 'root', next:
 };
 
 storiesOf('Expression Editor', module)
-  .add('New Expression Editor', () => (ExpressionEditorWithRedux({data: defaultOptions})));
+  .add('New Expression Editor', () => (ExpressionEditorWithRedux({data: defaultOptions, loadNestedData})));
