@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
-import { OverlayTrigger, Tooltip } from 'patternfly-react';
 import { __ } from '../../../global-functions';
 import TaggingPropTypes from '../TaggingPropTypes';
 
@@ -13,17 +12,15 @@ class TagSelector extends React.Component {
     });
   };
 
-  tooltip = text => <Tooltip id="tooltip">{text}</Tooltip>;
 
   labelWithIcon = (description, infoText) => (
     <div>
       <span>{description}</span>
-      <OverlayTrigger placement="bottom" overlay={this.tooltip(infoText)}>
-        <span
-          className="pull-right pficon pficon-info tag-icon"
-          aria-hidden="true"
-        />
-      </OverlayTrigger>
+      <span
+        className="pull-right pficon pficon-info tag-icon"
+        title={infoText}
+        aria-hidden="true"
+      />
       <span className="sr-only">{infoText}</span>
     </div>
   );
@@ -37,10 +34,10 @@ class TagSelector extends React.Component {
   }));
 
   render() {
+    const val = { value: this.props.selectedOption.id, label: this.props.selectedOption.description };
     return (
       <Select
-        value={this.props.selectedOption.id}
-        label={this.props.selectedOption.description}
+        value={val}
         options={this.tagCategories}
         onChange={this.handleChange}
         className="selected-option"
