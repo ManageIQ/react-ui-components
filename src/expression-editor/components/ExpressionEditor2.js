@@ -190,7 +190,8 @@ class ExpressionEditor2 extends React.Component {
       inputRef={this.state.inputRef}
       isLoading={this.props.isLoading}
       next={{
-...userInputMock[0],
+        ...userInputMock[0],
+
         parent: ((expression[expression.length - 1] && expression[expression.length - 1].term) ||
          this.props.next[index]),
 }}
@@ -244,6 +245,8 @@ ExpressionEditor2.propTypes = {
   expressions: PropTypes.arrayOf(ExpressionEditorPropTypes.expression),
   parenthesesCount: PropTypes.shape({left: PropTypes.number, right: PropTypes.number}),
   next: ExpressionEditorPropTypes.term,
+  lastSubmited: PropTypes.shape(ExpressionEditorPropTypes.term),
+  lastSubmitedExpressionIndex: PropTypes.number
 };
 
 ExpressionEditor2.defaultProps = {

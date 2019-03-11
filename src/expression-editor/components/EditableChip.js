@@ -137,7 +137,7 @@ EditableChip.defaultProps = {
   item: {},
   selected: {},
   isEditing: true,
-  filterOption: value => option => option.label.toLowerCase().includes(value.toLowerCase()),
+  filterOption: value => option => (option.label.toLowerCase().includes(value.toLowerCase()) || option.label === ''),
 };
 
 

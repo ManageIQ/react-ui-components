@@ -84,16 +84,20 @@ export default class AutocompleteTextInput extends React.Component {
     let selected = {label: ""};
     if (this.state.index === -1) {
       selected = this.props.options.find(this.props.matchingFunction(value)) || {
-        id: value, label: value, type: 'userinput', next: this.props.next,
+        id: value, label: value, type: 'not-valid', next: this.props.next,
       };
-      if (this.props.denyUserInput && selected.type === "userinput") {
+      selected = (selected.type === 'userinput'
+      ? { ...selected, id: value, label: value, type: 'userinput' }
+      : selected);
+
+      if (this.props.denyUserInput && selected.type === "not-valid") {
         return false;
       }
     } else {
       selected = this.props.options[this.state.index];
     }
     if (selected.label === "") {
-      return false;
+      // return false;
     }
     return selected;
 
@@ -182,5 +186,5 @@ AutocompleteTextInput.propTypes = {
 
 AutocompleteTextInput.defaultProps = {
   value: '',
-  matchingFunction: value => option => option.label.toLowerCase().includes(value.toLowerCase()),
+  matchingFunction: value => option => (option.label.toLowerCase().includes(value.toLowerCase()) || option.label === ''),
 };

@@ -26,20 +26,24 @@ const preProcessData = (data) => {
 export const dataProvider = () => (Component) => {
   const DataProvider = (props) => {
     if (preProcess) {
-      defaultOptions = preProcessData(props.data);
-      preProcess = false;
+      if (props.data) {
+        defaultOptions = preProcessData(props.data);
+        preProcess = false;
+      }
     }
     const isLastElementOperator = isLastExpressionOperator(props.expressions);
     const options = props.expressions.map((_, i) => (i % 2 === 0 ? defaultOptions : logicalOperatorsMock));
     let isLoading = props.isLoading;
-    if (props.lastSubmited && props.lastSubmited.next && props.lastSubmited.next.url) {
+    if (props.lastSubmited && props.lastSubmited.next && props.lastSubmited.next.url && !props.isLoading) {
       isLoading = true;
       props.setLoading(true);
       props.loadNestedData(props.lastSubmited).then(data => {
+
         props.lastSubmited.next = data;
+        mapParent(props.lastSubmited, props.lastSubmited.next);
+        // props.lastSubmited.next.map(node => node.parent = props.lastSubmited);
+        console.log('Data Provider: ', data);
         props.setLoading(false);
-      }).catch(error => {
-        console.log('Error while loading Expression Editor Data');
       })
     }
     let newProps = {...props, isLoading, next: options};

@@ -98,7 +98,7 @@ class Expression extends React.Component {
           deleteExpression={this.onDeleteExpressionClick}
           blurAllChips={this.props.blurAllChips}
           inputRef={(this.props.isLastExpression ? this.props.inputRef : {})}
-          options={options.filter(o => o.type !== "userinput")}
+          options={options}
           selected={this.props.next}
           item={this.props.next}
           index={this.props.expression.length}

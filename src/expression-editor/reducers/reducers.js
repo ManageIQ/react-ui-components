@@ -5,7 +5,7 @@ export const expressions = (state = {expressions: [[]], parenthesesCount: {left:
   switch (type) {
     case actionsConstants.ON_SUBMIT:
       newExpressions = calculateSubmit([...state.expressions], selected, previous, expressionIndex);
-      return { ...state, expressions: [...newExpressions], lastSubmited: selected};
+      return { ...state, expressions: [...newExpressions], lastSubmited: selected, lastSubmitedExpressionIndex: expressionIndex};
     case actionsConstants.ON_INSERT:
       newExpressions = calculateInsert([...state.expressions], previousExpressionIndex);
       return { ...state, expressions: [...newExpressions]};
@@ -83,8 +83,11 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
     expression.push({term: selected, flags: { ...selectedFlags, isEditing: false }});
   }
   state.splice(expressionIndex, 1, expression);
+  console.log('COPLETED', lastExpressionCompleted(state));
+  console.log('SUBMIT', expression);
   if (selected.next.length === 0) {
     const a = state[expressionIndex+1];
+    // edit
     if (a && a[0] && a[0].term.type === expression[0].term.type) {
       state.splice(expressionIndex + 1, 0, []);
     } else if (lastExpressionCompleted(state)) {
@@ -170,5 +173,6 @@ const cleanLastExpression = (state, selected) => {
 const lastExpressionCompleted = (state) => {
   const lastExpression = state[state.length-1] || [];
   const lastTerm = lastExpression[lastExpression.length-1] || {term: {next: ["meaningless not empty value which is not ever displayed"]}};
+  console.log(lastExpression, lastTerm);
   return lastTerm.term.next.length === 0;
 }

@@ -14,6 +14,7 @@ const mapStateToProps = ( { expressionEditor }) => {
   isLastElement: expressionEditor.isLastElement,
   parenthesesCount:  expressionEditor.expressions.present.parenthesesCount,
   lastSubmited:  expressionEditor.expressions.present.lastSubmited,
+  lastSubmitedExpressionIndex:  expressionEditor.expressions.present.lastSubmitedExpressionIndex,
   isLoading: expressionEditor.isLoading,
 }};
 
