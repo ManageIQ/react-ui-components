@@ -97,7 +97,10 @@ const calculateSubmit = (state, selected, previous, expressionIndex) => {
   return state;
 }
 
-const calculateInsert = (state, previousExpressionIndex) => [...state.splice(previousExpressionIndex + 1, 0, [])]
+const calculateInsert = (state, previousExpressionIndex) => {
+  state.splice(previousExpressionIndex + 1, 0, []);
+  return [...state];
+}
 
 
 const calculateExpressionDelete = (state, expressionIndex) => {
