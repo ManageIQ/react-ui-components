@@ -1,7 +1,7 @@
 import { connect, Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { onChange, calculateNext, onSubmit, onDelete, onClick, onFocus, onBlur, isLastElement,
-  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags, setLoading } from '../actions';
+  onInsert, onDeleteExpression, countParentheses, blurAllChips, setAlias, undo, redo, clearFlags, setLoading, reset, loadExpression } from '../actions';
 import ExpressionEditor from '../components/ExpressionEditor2';
 import { dataProvider } from './DataProvider';
 import ExpressionEditorReducers from '../reducers/'
@@ -74,6 +74,14 @@ const mapDispatchToProps = dispatch => ({
     dispatch(redo());
     dispatch(clearFlags());
   },
+
+  reset: () => {
+    dispatch(reset());
+  },
+
+  loadExpression: (expressions) => {
+    dispatch(loadExpression(expressions));
+  }
 });
 
 const ExpressionEditorConnected2 = connect(

@@ -83,13 +83,8 @@
     "copy-webpack-plugin": "^4.3.1",
     "coveralls": "^3.0.0",
     "css-loader": "^0.28.9",
-<<<<<<< HEAD
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.14.0",
-=======
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
->>>>>>> Add more tests
     "enzyme-to-json": "^3.3.4",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -118,8 +113,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "@patternfly/patternfly-next": "^1.0.42",
-    "@patternfly/react-core": "^1.51.6",
+    "@patternfly/patternfly": "^2.6.0",
+    "@patternfly/react-core": "^1.11.1",
     "@patternfly/react-icons": "^2.4.0",
     "array-includes": "^3.0.3",
     "classnames": "^2.2.6",
@@ -128,7 +123,7 @@
     "final-form": "^4.12.0",
     "lodash": "^4.17.10",
     "numeral": "^2.0.6",
-    "patternfly-react": "^2.5.1",
+    "patternfly-react": "^2.30.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",

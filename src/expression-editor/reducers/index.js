@@ -32,6 +32,20 @@ function undoable(reducer) {
           present: next,
           future: newFuture
         }
+      case actionsConstants.RESET:
+      const defaultState = past[0] || present;
+      return {
+        past: [...past, present],
+        present: defaultState,
+        future: []
+      }
+      case actionsConstants.LOAD_EXPRESSION:
+      // TODO test that this works!!!!!
+      return {
+        past: [...past],
+        present: action.expressions,
+        future: []
+      }
       default:
         // Delegate handling the action to the passed reducer
         const newPresent = reducer(present, action)

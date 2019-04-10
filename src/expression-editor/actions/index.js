@@ -88,3 +88,12 @@ export const redo = () => ({
 export const clearFlags = () => ({
   type: actions.CLEAR_FLAGS,
 });
+
+export const reset = () => ({
+  type: actions.RESET,
+});
+
+export const loadExpression = (expressions) => ({
+  type: actions.LOAD_EXPRESSION,
+  expressions: expressions
+});
