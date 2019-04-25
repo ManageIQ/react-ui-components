@@ -18,3 +18,16 @@ script:
 after_success:
 - npm run coverage
 - npm run release
+
+deploy:
+- provider: script
+  on:
+    branch: master
+  script: npm run build-storybook
+  skip_cleanup: true
+- provider: surge
+  on:
+    branch: master
+  project: ./.out/
+  domain: react-ui-components.surge.sh
+  skip_cleanup: true
