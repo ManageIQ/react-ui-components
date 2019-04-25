@@ -22,7 +22,7 @@ deploy:
 - provider: script
   on:
     branch: master
-  script: npm run vendor; npm run build-storybook
+  script: npm run vendor && npm run build-storybook
   skip_cleanup: true
 - provider: surge
   on:
