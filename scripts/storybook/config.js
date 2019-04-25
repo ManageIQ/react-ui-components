@@ -2,6 +2,7 @@ import { configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import '../../dist/vendor';
 import '../../dist/vendor.css';
+import './storybook.css';
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../../src', true, /stories\/.*stories\.(js|jsx)$/);
