@@ -14,9 +14,9 @@ class Tagging extends React.Component {
       tagValue: selectedTagValue,
     };
     if (this.findSelectedTag(this.props.selectedTagCategory).singleValue) {
-      this.props.onTagValueChange(action);
+      this.props.onTagValueChange(action, this.props.options);
     } else {
-      this.props.onTagMultiValueChange(action);
+      this.props.onTagMultiValueChange(action, this.props.options);
     }
   };
 
@@ -24,7 +24,7 @@ class Tagging extends React.Component {
     this.props.onTagCategoryChange(selectedTagCategory);
 
   onTagDeleteClick = (tagCategory, tagValue) => {
-    this.props.onTagDeleteClick({ tagCategory, tagValue });
+    this.props.onTagDeleteClick({ tagCategory, tagValue }, this.props.options);
   };
 
   getvalues = () =>
@@ -50,7 +50,7 @@ class Tagging extends React.Component {
       <Grid>
         <Row>
           <Col xs={12} md={8} lg={6}>
-            <TagModifier>
+            <TagModifier hideHeader={this.props.options && this.props.options.hideHeaders}>
               <CategoryModifier
                 selectedTagCategory={this.props.selectedTagCategory}
                 onTagCategoryChange={this.props.onTagCategoryChange}
@@ -66,6 +66,7 @@ class Tagging extends React.Component {
           </Col>
           <Col xs={12} md={4} lg={6}>
             <TagView
+              hideHeader={this.props.options && this.props.options.hideHeaders}
               assignedTags={this.props.assignedTags}
               onTagDeleteClick={this.onTagDeleteClick}
             />
@@ -85,6 +86,7 @@ Tagging.propTypes = {
   onTagCategoryChange: PropTypes.func.isRequired,
   onTagValueChange: PropTypes.func.isRequired,
   onTagMultiValueChange: PropTypes.func.isRequired,
+  options: PropTypes.object,
 };
 
 export default Tagging;
