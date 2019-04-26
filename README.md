@@ -2,12 +2,7 @@
 [![Build Status](https://travis-ci.org/ManageIQ/react-ui-components.svg?branch=master)](https://travis-ci.org/ManageIQ/react-ui-components)
 [![Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ManageIQ/manageiq/ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Purpose
-
-## List of components
-| Name          | Documentation                                                                  | Description  |
-| ------------- |:-----------------------------------------------------------------------------: | -----:|
-| HelloCmp      | [doc/comp-a/some-cmp/hello.component](/doc/comp-a/some-cmp/hello.component.md) | Example component |
+Documentation (Storybook): [react-ui-components.surge.sh](https://react-ui-components.surge.sh)
 
 ## Technologies
 
@@ -114,13 +109,3 @@ export class ExampleClass extends React.Component {
   }
 }
 ```
-
-### Generating of documentation
-This project is using [react-docgen](https://github.com/reactjs/react-docgen) to generate documentation out of your comments
-in components.
-
-If you wish to generate new documentation you have to have `react-docgen` installed as global dependency and run
-```bash
-$ scripts/documentation/genDoc.sh
-```
-This script will generate new documentation, run it trough and saves new markdown inside [/doc](/doc) folder.
