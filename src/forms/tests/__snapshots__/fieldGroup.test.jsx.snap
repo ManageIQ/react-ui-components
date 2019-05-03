@@ -42,54 +42,46 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
             <div
               className="col-xs-8"
             >
-              <Field
-                format={[Function]}
+              <ReactFinalForm(Field)
                 id="selectOne1"
                 name="radioGroup"
-                parse={[Function]}
                 render={[Function]}
                 type="radio"
                 validate={[Function]}
                 value="First radio"
               >
-                <FinalFormRadio
+                <Field
+                  format={[Function]}
                   id="selectOne1"
-                  input={
+                  name="radioGroup"
+                  parse={[Function]}
+                  reactFinalForm={
                     Object {
-                      "checked": false,
-                      "name": "radioGroup",
-                      "onBlur": [Function],
-                      "onChange": [Function],
-                      "onFocus": [Function],
-                      "value": "First radio",
+                      "batch": [Function],
+                      "blur": [Function],
+                      "change": [Function],
+                      "focus": [Function],
+                      "getFieldState": [Function],
+                      "getRegisteredFields": [Function],
+                      "getState": [Function],
+                      "initialize": [Function],
+                      "isValidationPaused": [Function],
+                      "mutators": Object {},
+                      "pauseValidation": [Function],
+                      "registerField": [Function],
+                      "reset": [Function],
+                      "resumeValidation": [Function],
+                      "setConfig": [Function],
+                      "submit": [Function],
+                      "subscribe": [Function],
                     }
                   }
-                  label="Radio button 1"
-                  meta={
-                    Object {
-                      "active": false,
-                      "data": Object {},
-                      "dirty": false,
-                      "dirtySinceLastSubmit": false,
-                      "error": "Please select one option",
-                      "initial": undefined,
-                      "invalid": true,
-                      "pristine": true,
-                      "submitError": undefined,
-                      "submitFailed": false,
-                      "submitSucceeded": false,
-                      "submitting": false,
-                      "touched": false,
-                      "valid": false,
-                      "visited": false,
-                    }
-                  }
+                  render={[Function]}
                   type="radio"
+                  validate={[Function]}
+                  value="First radio"
                 >
-                  <FinalFormComponent
-                    clearable={false}
-                    componentType="radio"
-                    disabled={false}
+                  <FinalFormRadio
                     id="selectOne1"
                     input={
                       Object {
@@ -101,10 +93,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "value": "First radio",
                       }
                     }
-                    inputColumnSize={8}
                     label="Radio button 1"
-                    labelColumnSize={2}
-                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -114,6 +103,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "error": "Please select one option",
                         "initial": undefined,
                         "invalid": true,
+                        "modified": false,
                         "pristine": true,
                         "submitError": undefined,
                         "submitFailed": false,
@@ -124,117 +114,152 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "visited": false,
                       }
                     }
-                    multi={false}
-                    placeholder=""
-                    searchable={false}
                     type="radio"
-                    validateOnMount={false}
-                    valueKey="value"
                   >
-                    <FormGroup
-                      bsClass="form-group"
-                      className="field-group"
-                      validationState={null}
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="radio"
+                      disabled={false}
+                      id="selectOne1"
+                      input={
+                        Object {
+                          "checked": false,
+                          "name": "radioGroup",
+                          "onBlur": [Function],
+                          "onChange": [Function],
+                          "onFocus": [Function],
+                          "value": "First radio",
+                        }
+                      }
+                      inputColumnSize={8}
+                      label="Radio button 1"
+                      labelColumnSize={2}
+                      labelKey="label"
+                      meta={
+                        Object {
+                          "active": false,
+                          "data": Object {},
+                          "dirty": false,
+                          "dirtySinceLastSubmit": false,
+                          "error": "Please select one option",
+                          "initial": undefined,
+                          "invalid": true,
+                          "modified": false,
+                          "pristine": true,
+                          "submitError": undefined,
+                          "submitFailed": false,
+                          "submitSucceeded": false,
+                          "submitting": false,
+                          "touched": false,
+                          "valid": false,
+                          "visited": false,
+                        }
+                      }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      type="radio"
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <div
-                        className="field-group form-group"
+                      <FormGroup
+                        bsClass="form-group"
+                        className="field-group"
+                        validationState={null}
                       >
-                        <Col
-                          bsClass="col"
-                          componentClass="div"
+                        <div
+                          className="field-group form-group"
                         >
-                          <div
-                            className=""
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
                           >
-                            <Radio
-                              bsClass="radio"
-                              checked={false}
-                              disabled={false}
-                              id="selectOne1"
-                              inline={false}
-                              name="radioGroup"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              title=""
-                              value="First radio"
+                            <div
+                              className=""
                             >
-                              <div
-                                className="radio"
+                              <Radio
+                                bsClass="radio"
+                                checked={false}
+                                disabled={false}
+                                id="selectOne1"
+                                inline={false}
+                                name="radioGroup"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                title=""
+                                value="First radio"
                               >
-                                <label
-                                  title=""
+                                <div
+                                  className="radio"
                                 >
-                                  <input
-                                    checked={false}
-                                    disabled={false}
-                                    id="selectOne1"
-                                    name="radioGroup"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="radio"
-                                    value="First radio"
-                                  />
-                                  Radio button 1
-                                </label>
-                              </div>
-                            </Radio>
-                          </div>
-                        </Col>
-                      </div>
-                    </FormGroup>
-                  </FinalFormComponent>
-                </FinalFormRadio>
-              </Field>
-              <Field
-                format={[Function]}
+                                  <label
+                                    title=""
+                                  >
+                                    <input
+                                      checked={false}
+                                      disabled={false}
+                                      id="selectOne1"
+                                      name="radioGroup"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="radio"
+                                      value="First radio"
+                                    />
+                                    Radio button 1
+                                  </label>
+                                </div>
+                              </Radio>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormRadio>
+                </Field>
+              </ReactFinalForm(Field)>
+              <ReactFinalForm(Field)
                 id="selectOne2"
                 name="radioGroup"
-                parse={[Function]}
                 render={[Function]}
                 type="radio"
                 validate={[Function]}
                 value="Second radio"
               >
-                <FinalFormRadio
+                <Field
+                  format={[Function]}
                   id="selectOne2"
-                  input={
+                  name="radioGroup"
+                  parse={[Function]}
+                  reactFinalForm={
                     Object {
-                      "checked": false,
-                      "name": "radioGroup",
-                      "onBlur": [Function],
-                      "onChange": [Function],
-                      "onFocus": [Function],
-                      "value": "Second radio",
+                      "batch": [Function],
+                      "blur": [Function],
+                      "change": [Function],
+                      "focus": [Function],
+                      "getFieldState": [Function],
+                      "getRegisteredFields": [Function],
+                      "getState": [Function],
+                      "initialize": [Function],
+                      "isValidationPaused": [Function],
+                      "mutators": Object {},
+                      "pauseValidation": [Function],
+                      "registerField": [Function],
+                      "reset": [Function],
+                      "resumeValidation": [Function],
+                      "setConfig": [Function],
+                      "submit": [Function],
+                      "subscribe": [Function],
                     }
                   }
-                  label="Radio button 2"
-                  meta={
-                    Object {
-                      "active": false,
-                      "data": Object {},
-                      "dirty": false,
-                      "dirtySinceLastSubmit": false,
-                      "error": "Please select one option",
-                      "initial": undefined,
-                      "invalid": true,
-                      "pristine": true,
-                      "submitError": undefined,
-                      "submitFailed": false,
-                      "submitSucceeded": false,
-                      "submitting": false,
-                      "touched": false,
-                      "valid": false,
-                      "visited": false,
-                    }
-                  }
+                  render={[Function]}
                   type="radio"
+                  validate={[Function]}
+                  value="Second radio"
                 >
-                  <FinalFormComponent
-                    clearable={false}
-                    componentType="radio"
-                    disabled={false}
+                  <FinalFormRadio
                     id="selectOne2"
                     input={
                       Object {
@@ -246,10 +271,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "value": "Second radio",
                       }
                     }
-                    inputColumnSize={8}
                     label="Radio button 2"
-                    labelColumnSize={2}
-                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -259,6 +281,7 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "error": "Please select one option",
                         "initial": undefined,
                         "invalid": true,
+                        "modified": false,
                         "pristine": true,
                         "submitError": undefined,
                         "submitFailed": false,
@@ -269,69 +292,112 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                         "visited": false,
                       }
                     }
-                    multi={false}
-                    placeholder=""
-                    searchable={false}
                     type="radio"
-                    validateOnMount={false}
-                    valueKey="value"
                   >
-                    <FormGroup
-                      bsClass="form-group"
-                      className="field-group"
-                      validationState={null}
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="radio"
+                      disabled={false}
+                      id="selectOne2"
+                      input={
+                        Object {
+                          "checked": false,
+                          "name": "radioGroup",
+                          "onBlur": [Function],
+                          "onChange": [Function],
+                          "onFocus": [Function],
+                          "value": "Second radio",
+                        }
+                      }
+                      inputColumnSize={8}
+                      label="Radio button 2"
+                      labelColumnSize={2}
+                      labelKey="label"
+                      meta={
+                        Object {
+                          "active": false,
+                          "data": Object {},
+                          "dirty": false,
+                          "dirtySinceLastSubmit": false,
+                          "error": "Please select one option",
+                          "initial": undefined,
+                          "invalid": true,
+                          "modified": false,
+                          "pristine": true,
+                          "submitError": undefined,
+                          "submitFailed": false,
+                          "submitSucceeded": false,
+                          "submitting": false,
+                          "touched": false,
+                          "valid": false,
+                          "visited": false,
+                        }
+                      }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      type="radio"
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <div
-                        className="field-group form-group"
+                      <FormGroup
+                        bsClass="form-group"
+                        className="field-group"
+                        validationState={null}
                       >
-                        <Col
-                          bsClass="col"
-                          componentClass="div"
+                        <div
+                          className="field-group form-group"
                         >
-                          <div
-                            className=""
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
                           >
-                            <Radio
-                              bsClass="radio"
-                              checked={false}
-                              disabled={false}
-                              id="selectOne2"
-                              inline={false}
-                              name="radioGroup"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              title=""
-                              value="Second radio"
+                            <div
+                              className=""
                             >
-                              <div
-                                className="radio"
+                              <Radio
+                                bsClass="radio"
+                                checked={false}
+                                disabled={false}
+                                id="selectOne2"
+                                inline={false}
+                                name="radioGroup"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                title=""
+                                value="Second radio"
                               >
-                                <label
-                                  title=""
+                                <div
+                                  className="radio"
                                 >
-                                  <input
-                                    checked={false}
-                                    disabled={false}
-                                    id="selectOne2"
-                                    name="radioGroup"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="radio"
-                                    value="Second radio"
-                                  />
-                                  Radio button 2
-                                </label>
-                              </div>
-                            </Radio>
-                          </div>
-                        </Col>
-                      </div>
-                    </FormGroup>
-                  </FinalFormComponent>
-                </FinalFormRadio>
-              </Field>
+                                  <label
+                                    title=""
+                                  >
+                                    <input
+                                      checked={false}
+                                      disabled={false}
+                                      id="selectOne2"
+                                      name="radioGroup"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="radio"
+                                      value="Second radio"
+                                    />
+                                    Radio button 2
+                                  </label>
+                                </div>
+                              </Radio>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormRadio>
+                </Field>
+              </ReactFinalForm(Field)>
             </div>
           </Col>
           <Col
@@ -348,10 +414,8 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                 name="some group"
                 validateOnMount={false}
               >
-                <Field
-                  format={[Function]}
+                <ReactFinalForm(Field)
                   name="some group"
-                  parse={[Function]}
                   render={[Function]}
                   subscription={
                     Object {
@@ -359,7 +423,41 @@ exports[`Final form FieldGroup component Should render correctly 1`] = `
                       "touched": true,
                     }
                   }
-                />
+                >
+                  <Field
+                    format={[Function]}
+                    name="some group"
+                    parse={[Function]}
+                    reactFinalForm={
+                      Object {
+                        "batch": [Function],
+                        "blur": [Function],
+                        "change": [Function],
+                        "focus": [Function],
+                        "getFieldState": [Function],
+                        "getRegisteredFields": [Function],
+                        "getState": [Function],
+                        "initialize": [Function],
+                        "isValidationPaused": [Function],
+                        "mutators": Object {},
+                        "pauseValidation": [Function],
+                        "registerField": [Function],
+                        "reset": [Function],
+                        "resumeValidation": [Function],
+                        "setConfig": [Function],
+                        "submit": [Function],
+                        "subscribe": [Function],
+                      }
+                    }
+                    render={[Function]}
+                    subscription={
+                      Object {
+                        "error": true,
+                        "touched": true,
+                      }
+                    }
+                  />
+                </ReactFinalForm(Field)>
               </ErrorBlock>
             </div>
           </Col>
@@ -414,54 +512,46 @@ exports[`Final form FieldGroup component Should render correctly with error stat
             <div
               className="col-xs-8"
             >
-              <Field
-                format={[Function]}
+              <ReactFinalForm(Field)
                 id="selectOne1"
                 name="radioGroup"
-                parse={[Function]}
                 render={[Function]}
                 type="radio"
                 validate={[Function]}
                 value="First radio"
               >
-                <FinalFormRadio
+                <Field
+                  format={[Function]}
                   id="selectOne1"
-                  input={
+                  name="radioGroup"
+                  parse={[Function]}
+                  reactFinalForm={
                     Object {
-                      "checked": false,
-                      "name": "radioGroup",
-                      "onBlur": [Function],
-                      "onChange": [Function],
-                      "onFocus": [Function],
-                      "value": "First radio",
+                      "batch": [Function],
+                      "blur": [Function],
+                      "change": [Function],
+                      "focus": [Function],
+                      "getFieldState": [Function],
+                      "getRegisteredFields": [Function],
+                      "getState": [Function],
+                      "initialize": [Function],
+                      "isValidationPaused": [Function],
+                      "mutators": Object {},
+                      "pauseValidation": [Function],
+                      "registerField": [Function],
+                      "reset": [Function],
+                      "resumeValidation": [Function],
+                      "setConfig": [Function],
+                      "submit": [Function],
+                      "subscribe": [Function],
                     }
                   }
-                  label="Radio button 1"
-                  meta={
-                    Object {
-                      "active": false,
-                      "data": Object {},
-                      "dirty": false,
-                      "dirtySinceLastSubmit": false,
-                      "error": "Please select one option",
-                      "initial": undefined,
-                      "invalid": true,
-                      "pristine": true,
-                      "submitError": undefined,
-                      "submitFailed": false,
-                      "submitSucceeded": false,
-                      "submitting": false,
-                      "touched": false,
-                      "valid": false,
-                      "visited": false,
-                    }
-                  }
+                  render={[Function]}
                   type="radio"
+                  validate={[Function]}
+                  value="First radio"
                 >
-                  <FinalFormComponent
-                    clearable={false}
-                    componentType="radio"
-                    disabled={false}
+                  <FinalFormRadio
                     id="selectOne1"
                     input={
                       Object {
@@ -473,10 +563,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "value": "First radio",
                       }
                     }
-                    inputColumnSize={8}
                     label="Radio button 1"
-                    labelColumnSize={2}
-                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -486,6 +573,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "error": "Please select one option",
                         "initial": undefined,
                         "invalid": true,
+                        "modified": false,
                         "pristine": true,
                         "submitError": undefined,
                         "submitFailed": false,
@@ -496,117 +584,152 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "visited": false,
                       }
                     }
-                    multi={false}
-                    placeholder=""
-                    searchable={false}
                     type="radio"
-                    validateOnMount={false}
-                    valueKey="value"
                   >
-                    <FormGroup
-                      bsClass="form-group"
-                      className="field-group"
-                      validationState={null}
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="radio"
+                      disabled={false}
+                      id="selectOne1"
+                      input={
+                        Object {
+                          "checked": false,
+                          "name": "radioGroup",
+                          "onBlur": [Function],
+                          "onChange": [Function],
+                          "onFocus": [Function],
+                          "value": "First radio",
+                        }
+                      }
+                      inputColumnSize={8}
+                      label="Radio button 1"
+                      labelColumnSize={2}
+                      labelKey="label"
+                      meta={
+                        Object {
+                          "active": false,
+                          "data": Object {},
+                          "dirty": false,
+                          "dirtySinceLastSubmit": false,
+                          "error": "Please select one option",
+                          "initial": undefined,
+                          "invalid": true,
+                          "modified": false,
+                          "pristine": true,
+                          "submitError": undefined,
+                          "submitFailed": false,
+                          "submitSucceeded": false,
+                          "submitting": false,
+                          "touched": false,
+                          "valid": false,
+                          "visited": false,
+                        }
+                      }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      type="radio"
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <div
-                        className="field-group form-group"
+                      <FormGroup
+                        bsClass="form-group"
+                        className="field-group"
+                        validationState={null}
                       >
-                        <Col
-                          bsClass="col"
-                          componentClass="div"
+                        <div
+                          className="field-group form-group"
                         >
-                          <div
-                            className=""
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
                           >
-                            <Radio
-                              bsClass="radio"
-                              checked={false}
-                              disabled={false}
-                              id="selectOne1"
-                              inline={false}
-                              name="radioGroup"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              title=""
-                              value="First radio"
+                            <div
+                              className=""
                             >
-                              <div
-                                className="radio"
+                              <Radio
+                                bsClass="radio"
+                                checked={false}
+                                disabled={false}
+                                id="selectOne1"
+                                inline={false}
+                                name="radioGroup"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                title=""
+                                value="First radio"
                               >
-                                <label
-                                  title=""
+                                <div
+                                  className="radio"
                                 >
-                                  <input
-                                    checked={false}
-                                    disabled={false}
-                                    id="selectOne1"
-                                    name="radioGroup"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="radio"
-                                    value="First radio"
-                                  />
-                                  Radio button 1
-                                </label>
-                              </div>
-                            </Radio>
-                          </div>
-                        </Col>
-                      </div>
-                    </FormGroup>
-                  </FinalFormComponent>
-                </FinalFormRadio>
-              </Field>
-              <Field
-                format={[Function]}
+                                  <label
+                                    title=""
+                                  >
+                                    <input
+                                      checked={false}
+                                      disabled={false}
+                                      id="selectOne1"
+                                      name="radioGroup"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="radio"
+                                      value="First radio"
+                                    />
+                                    Radio button 1
+                                  </label>
+                                </div>
+                              </Radio>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormRadio>
+                </Field>
+              </ReactFinalForm(Field)>
+              <ReactFinalForm(Field)
                 id="selectOne2"
                 name="radioGroup"
-                parse={[Function]}
                 render={[Function]}
                 type="radio"
                 validate={[Function]}
                 value="Second radio"
               >
-                <FinalFormRadio
+                <Field
+                  format={[Function]}
                   id="selectOne2"
-                  input={
+                  name="radioGroup"
+                  parse={[Function]}
+                  reactFinalForm={
                     Object {
-                      "checked": false,
-                      "name": "radioGroup",
-                      "onBlur": [Function],
-                      "onChange": [Function],
-                      "onFocus": [Function],
-                      "value": "Second radio",
+                      "batch": [Function],
+                      "blur": [Function],
+                      "change": [Function],
+                      "focus": [Function],
+                      "getFieldState": [Function],
+                      "getRegisteredFields": [Function],
+                      "getState": [Function],
+                      "initialize": [Function],
+                      "isValidationPaused": [Function],
+                      "mutators": Object {},
+                      "pauseValidation": [Function],
+                      "registerField": [Function],
+                      "reset": [Function],
+                      "resumeValidation": [Function],
+                      "setConfig": [Function],
+                      "submit": [Function],
+                      "subscribe": [Function],
                     }
                   }
-                  label="Radio button 2"
-                  meta={
-                    Object {
-                      "active": false,
-                      "data": Object {},
-                      "dirty": false,
-                      "dirtySinceLastSubmit": false,
-                      "error": "Please select one option",
-                      "initial": undefined,
-                      "invalid": true,
-                      "pristine": true,
-                      "submitError": undefined,
-                      "submitFailed": false,
-                      "submitSucceeded": false,
-                      "submitting": false,
-                      "touched": false,
-                      "valid": false,
-                      "visited": false,
-                    }
-                  }
+                  render={[Function]}
                   type="radio"
+                  validate={[Function]}
+                  value="Second radio"
                 >
-                  <FinalFormComponent
-                    clearable={false}
-                    componentType="radio"
-                    disabled={false}
+                  <FinalFormRadio
                     id="selectOne2"
                     input={
                       Object {
@@ -618,10 +741,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "value": "Second radio",
                       }
                     }
-                    inputColumnSize={8}
                     label="Radio button 2"
-                    labelColumnSize={2}
-                    labelKey="label"
                     meta={
                       Object {
                         "active": false,
@@ -631,6 +751,7 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "error": "Please select one option",
                         "initial": undefined,
                         "invalid": true,
+                        "modified": false,
                         "pristine": true,
                         "submitError": undefined,
                         "submitFailed": false,
@@ -641,69 +762,112 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                         "visited": false,
                       }
                     }
-                    multi={false}
-                    placeholder=""
-                    searchable={false}
                     type="radio"
-                    validateOnMount={false}
-                    valueKey="value"
                   >
-                    <FormGroup
-                      bsClass="form-group"
-                      className="field-group"
-                      validationState={null}
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="radio"
+                      disabled={false}
+                      id="selectOne2"
+                      input={
+                        Object {
+                          "checked": false,
+                          "name": "radioGroup",
+                          "onBlur": [Function],
+                          "onChange": [Function],
+                          "onFocus": [Function],
+                          "value": "Second radio",
+                        }
+                      }
+                      inputColumnSize={8}
+                      label="Radio button 2"
+                      labelColumnSize={2}
+                      labelKey="label"
+                      meta={
+                        Object {
+                          "active": false,
+                          "data": Object {},
+                          "dirty": false,
+                          "dirtySinceLastSubmit": false,
+                          "error": "Please select one option",
+                          "initial": undefined,
+                          "invalid": true,
+                          "modified": false,
+                          "pristine": true,
+                          "submitError": undefined,
+                          "submitFailed": false,
+                          "submitSucceeded": false,
+                          "submitting": false,
+                          "touched": false,
+                          "valid": false,
+                          "visited": false,
+                        }
+                      }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      type="radio"
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <div
-                        className="field-group form-group"
+                      <FormGroup
+                        bsClass="form-group"
+                        className="field-group"
+                        validationState={null}
                       >
-                        <Col
-                          bsClass="col"
-                          componentClass="div"
+                        <div
+                          className="field-group form-group"
                         >
-                          <div
-                            className=""
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
                           >
-                            <Radio
-                              bsClass="radio"
-                              checked={false}
-                              disabled={false}
-                              id="selectOne2"
-                              inline={false}
-                              name="radioGroup"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              title=""
-                              value="Second radio"
+                            <div
+                              className=""
                             >
-                              <div
-                                className="radio"
+                              <Radio
+                                bsClass="radio"
+                                checked={false}
+                                disabled={false}
+                                id="selectOne2"
+                                inline={false}
+                                name="radioGroup"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                title=""
+                                value="Second radio"
                               >
-                                <label
-                                  title=""
+                                <div
+                                  className="radio"
                                 >
-                                  <input
-                                    checked={false}
-                                    disabled={false}
-                                    id="selectOne2"
-                                    name="radioGroup"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="radio"
-                                    value="Second radio"
-                                  />
-                                  Radio button 2
-                                </label>
-                              </div>
-                            </Radio>
-                          </div>
-                        </Col>
-                      </div>
-                    </FormGroup>
-                  </FinalFormComponent>
-                </FinalFormRadio>
-              </Field>
+                                  <label
+                                    title=""
+                                  >
+                                    <input
+                                      checked={false}
+                                      disabled={false}
+                                      id="selectOne2"
+                                      name="radioGroup"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="radio"
+                                      value="Second radio"
+                                    />
+                                    Radio button 2
+                                  </label>
+                                </div>
+                              </Radio>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormRadio>
+                </Field>
+              </ReactFinalForm(Field)>
             </div>
           </Col>
           <Col
@@ -720,10 +884,8 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                 name="some group"
                 validateOnMount={true}
               >
-                <Field
-                  format={[Function]}
+                <ReactFinalForm(Field)
                   name="some group"
-                  parse={[Function]}
                   render={[Function]}
                   subscription={
                     Object {
@@ -731,7 +893,41 @@ exports[`Final form FieldGroup component Should render correctly with error stat
                       "touched": true,
                     }
                   }
-                />
+                >
+                  <Field
+                    format={[Function]}
+                    name="some group"
+                    parse={[Function]}
+                    reactFinalForm={
+                      Object {
+                        "batch": [Function],
+                        "blur": [Function],
+                        "change": [Function],
+                        "focus": [Function],
+                        "getFieldState": [Function],
+                        "getRegisteredFields": [Function],
+                        "getState": [Function],
+                        "initialize": [Function],
+                        "isValidationPaused": [Function],
+                        "mutators": Object {},
+                        "pauseValidation": [Function],
+                        "registerField": [Function],
+                        "reset": [Function],
+                        "resumeValidation": [Function],
+                        "setConfig": [Function],
+                        "submit": [Function],
+                        "subscribe": [Function],
+                      }
+                    }
+                    render={[Function]}
+                    subscription={
+                      Object {
+                        "error": true,
+                        "touched": true,
+                      }
+                    }
+                  />
+                </ReactFinalForm(Field)>
               </ErrorBlock>
             </div>
           </Col>
