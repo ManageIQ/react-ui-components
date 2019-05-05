@@ -43,42 +43,50 @@ exports[`Final form input component Should render correctly 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="name"
                   name="name"
+                  parse={[Function]}
                   render={[Function]}
                   validate={false}
                 >
-                  <Field
-                    format={[Function]}
-                    id="name"
-                    name="name"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormField
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "name",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={false}
+                    label="Name"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": undefined,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormField
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -88,7 +96,10 @@ exports[`Final form input component Should render correctly 1`] = `
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Name"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -98,7 +109,6 @@ exports[`Final form input component Should render correctly 1`] = `
                           "error": undefined,
                           "initial": undefined,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -109,82 +119,55 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textfield"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "name",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Name"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": undefined,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Name
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Name
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="input"
+                                disabled={false}
+                                id="name"
+                                name="name"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                type="text"
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="input"
+                                <input
+                                  className="form-control"
                                   disabled={false}
                                   id="name"
                                   name="name"
@@ -194,28 +177,15 @@ exports[`Final form input component Should render correctly 1`] = `
                                   placeholder=""
                                   type="text"
                                   value=""
-                                >
-                                  <input
-                                    className="form-control"
-                                    disabled={false}
-                                    id="name"
-                                    name="name"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    type="text"
-                                    value=""
-                                  />
-                                </FormControl>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormField>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                />
+                              </FormControl>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormField>
+                </Field>
               </div>
             </Col>
             <Col
@@ -226,42 +196,50 @@ exports[`Final form input component Should render correctly 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="description"
                   name="description"
+                  parse={[Function]}
                   render={[Function]}
                   validate={false}
                 >
-                  <Field
-                    format={[Function]}
-                    id="description"
-                    name="description"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormTextArea
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "description",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={false}
+                    label="Description"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": undefined,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormTextArea
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -271,7 +249,10 @@ exports[`Final form input component Should render correctly 1`] = `
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Description"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -281,7 +262,6 @@ exports[`Final form input component Should render correctly 1`] = `
                           "error": undefined,
                           "initial": undefined,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -292,82 +272,54 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textarea"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "description",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Description"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": undefined,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Description
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Description
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="textarea"
+                                disabled={false}
+                                id="description"
+                                name="description"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="textarea"
+                                <textarea
+                                  className="form-control"
                                   disabled={false}
                                   id="description"
                                   name="description"
@@ -376,27 +328,15 @@ exports[`Final form input component Should render correctly 1`] = `
                                   onFocus={[Function]}
                                   placeholder=""
                                   value=""
-                                >
-                                  <textarea
-                                    className="form-control"
-                                    disabled={false}
-                                    id="description"
-                                    name="description"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    value=""
-                                  />
-                                </FormControl>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormTextArea>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                />
+                              </FormControl>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormTextArea>
+                </Field>
               </div>
             </Col>
             <Col
@@ -407,46 +347,54 @@ exports[`Final form input component Should render correctly 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
                   component={[Function]}
+                  format={[Function]}
                   id="snap_memory"
                   label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
+                  parse={[Function]}
                 >
-                  <Field
-                    component={[Function]}
-                    format={[Function]}
+                  <FinalFormSwitch
                     id="snap_memory"
-                    label="Snapshot VM memory"
-                    name="snap_memory"
-                    offText="No"
-                    onText="Yes"
-                    parse={[Function]}
-                    reactFinalForm={
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "snap_memory",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": false,
                       }
                     }
+                    label="Snapshot VM memory"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": false,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    offText="No"
+                    onText="Yes"
                   >
-                    <FinalFormSwitch
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
@@ -457,7 +405,10 @@ exports[`Final form input component Should render correctly 1`] = `
                           "value": false,
                         }
                       }
+                      inputColumnSize={8}
                       label="Snapshot VM memory"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -467,7 +418,6 @@ exports[`Final form input component Should render correctly 1`] = `
                           "error": undefined,
                           "initial": false,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -478,186 +428,144 @@ exports[`Final form input component Should render correctly 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="switch"
-                        disabled={false}
-                        id="snap_memory"
-                        input={
-                          Object {
-                            "name": "snap_memory",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": false,
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Snapshot VM memory"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": false,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        offText="No"
-                        onText="Yes"
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={false}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Snapshot VM memory
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Snapshot VM memory
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <Switch
+                                animate={true}
+                                baseClass="bootstrap-switch"
+                                bsSize={null}
+                                clearable={false}
+                                defaultValue={true}
+                                disabled={false}
+                                handleWidth="auto"
+                                id="snap_memory"
+                                inverse={false}
+                                label="Snapshot VM memory"
+                                labelKey="label"
+                                labelText=" "
+                                labelWidth="auto"
+                                multi={false}
+                                name="snap_memory"
+                                offColor="default"
+                                offText="No"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onColor="primary"
+                                onFocus={[Function]}
+                                onText="Yes"
+                                options={Array []}
+                                placeholder=""
+                                readonly={false}
+                                searchable={false}
+                                tristate={false}
+                                value={false}
+                                valueKey="value"
+                                wrapperClass="wrapper"
                               >
-                                <Switch
-                                  animate={true}
-                                  baseClass="bootstrap-switch"
-                                  bsSize={null}
-                                  clearable={false}
-                                  defaultValue={true}
-                                  disabled={false}
-                                  handleWidth="auto"
-                                  id="snap_memory"
-                                  inverse={false}
-                                  label="Snapshot VM memory"
-                                  labelKey="label"
-                                  labelText=" "
-                                  labelWidth="auto"
-                                  multi={false}
-                                  name="snap_memory"
-                                  offColor="default"
-                                  offText="No"
+                                <div
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory"
                                   onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onColor="primary"
                                   onFocus={[Function]}
-                                  onText="Yes"
-                                  options={Array []}
-                                  placeholder=""
-                                  readonly={false}
-                                  searchable={false}
-                                  tristate={false}
-                                  value={false}
-                                  valueKey="value"
-                                  wrapperClass="wrapper"
+                                  onKeyDown={[Function]}
+                                  style={
+                                    Object {
+                                      "width": "auto",
+                                    }
+                                  }
+                                  tabIndex="0"
                                 >
                                   <div
-                                    className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory"
-                                    onBlur={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
+                                    className="bootstrap-switch-container"
                                     style={
                                       Object {
+                                        "marginLeft": -0,
                                         "width": "auto",
                                       }
                                     }
-                                    tabIndex="0"
                                   >
-                                    <div
-                                      className="bootstrap-switch-container"
+                                    <span
+                                      className="bootstrap-switch-handle-on bootstrap-switch-primary"
+                                      onClick={[Function]}
                                       style={
                                         Object {
-                                          "marginLeft": -0,
-                                          "width": "auto",
+                                          "width": 0,
                                         }
                                       }
                                     >
-                                      <span
-                                        className="bootstrap-switch-handle-on bootstrap-switch-primary"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      Yes
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-label"
+                                      onMouseDown={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseMove={[Function]}
+                                      onMouseUp={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchMove={[Function]}
+                                      onTouchStart={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                        Yes
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-label"
-                                        onMouseDown={[Function]}
-                                        onMouseLeave={[Function]}
-                                        onMouseMove={[Function]}
-                                        onMouseUp={[Function]}
-                                        onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
-                                        onTouchStart={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      }
+                                    >
+                                       
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-handle-off bootstrap-switch-default"
+                                      onClick={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                         
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-handle-off bootstrap-switch-default"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
-                                        }
-                                      >
-                                        No
-                                      </span>
-                                    </div>
+                                      }
+                                    >
+                                      No
+                                    </span>
                                   </div>
-                                </Switch>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormSwitch>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                </div>
+                              </Switch>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormSwitch>
+                </Field>
               </div>
             </Col>
             <Col
@@ -772,42 +680,50 @@ exports[`Final form input component Should render with description required 1`] 
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="name"
                   name="name"
+                  parse={[Function]}
                   render={[Function]}
                   validate={false}
                 >
-                  <Field
-                    format={[Function]}
-                    id="name"
-                    name="name"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormField
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "name",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={false}
+                    label="Name"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": undefined,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormField
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -817,7 +733,10 @@ exports[`Final form input component Should render with description required 1`] 
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Name"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -827,7 +746,6 @@ exports[`Final form input component Should render with description required 1`] 
                           "error": undefined,
                           "initial": undefined,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -838,82 +756,55 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textfield"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "name",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Name"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": undefined,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Name
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Name
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="input"
+                                disabled={false}
+                                id="name"
+                                name="name"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                type="text"
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="input"
+                                <input
+                                  className="form-control"
                                   disabled={false}
                                   id="name"
                                   name="name"
@@ -923,28 +814,15 @@ exports[`Final form input component Should render with description required 1`] 
                                   placeholder=""
                                   type="text"
                                   value=""
-                                >
-                                  <input
-                                    className="form-control"
-                                    disabled={false}
-                                    id="name"
-                                    name="name"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    type="text"
-                                    value=""
-                                  />
-                                </FormControl>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormField>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                />
+                              </FormControl>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormField>
+                </Field>
               </div>
             </Col>
             <Col
@@ -955,42 +833,50 @@ exports[`Final form input component Should render with description required 1`] 
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="description"
                   name="description"
+                  parse={[Function]}
                   render={[Function]}
                   validate={[Function]}
                 >
-                  <Field
-                    format={[Function]}
-                    id="description"
-                    name="description"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormTextArea
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "description",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={[Function]}
+                    label="Description"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": "Required",
+                        "initial": undefined,
+                        "invalid": true,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": false,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormTextArea
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -1000,7 +886,10 @@ exports[`Final form input component Should render with description required 1`] 
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Description"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1010,7 +899,6 @@ exports[`Final form input component Should render with description required 1`] 
                           "error": "Required",
                           "initial": undefined,
                           "invalid": true,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -1021,82 +909,54 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textarea"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "description",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Description"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": "Required",
-                            "initial": undefined,
-                            "invalid": true,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": false,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState="error"
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState="error"
+                        <div
+                          className="form-group has-error"
                         >
-                          <div
-                            className="form-group has-error"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Description
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Description
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="textarea"
+                                disabled={false}
+                                id="description"
+                                name="description"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="textarea"
+                                <textarea
+                                  className="form-control"
                                   disabled={false}
                                   id="description"
                                   name="description"
@@ -1105,36 +965,24 @@ exports[`Final form input component Should render with description required 1`] 
                                   onFocus={[Function]}
                                   placeholder=""
                                   value=""
+                                />
+                              </FormControl>
+                              <HelpBlock
+                                bsClass="help-block"
+                              >
+                                <span
+                                  className="help-block"
                                 >
-                                  <textarea
-                                    className="form-control"
-                                    disabled={false}
-                                    id="description"
-                                    name="description"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    value=""
-                                  />
-                                </FormControl>
-                                <HelpBlock
-                                  bsClass="help-block"
-                                >
-                                  <span
-                                    className="help-block"
-                                  >
-                                    Required
-                                  </span>
-                                </HelpBlock>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormTextArea>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                  Required
+                                </span>
+                              </HelpBlock>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormTextArea>
+                </Field>
               </div>
             </Col>
             <Col
@@ -1145,46 +993,54 @@ exports[`Final form input component Should render with description required 1`] 
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
                   component={[Function]}
+                  format={[Function]}
                   id="snap_memory"
                   label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
+                  parse={[Function]}
                 >
-                  <Field
-                    component={[Function]}
-                    format={[Function]}
+                  <FinalFormSwitch
                     id="snap_memory"
-                    label="Snapshot VM memory"
-                    name="snap_memory"
-                    offText="No"
-                    onText="Yes"
-                    parse={[Function]}
-                    reactFinalForm={
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "snap_memory",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": false,
                       }
                     }
+                    label="Snapshot VM memory"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": false,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    offText="No"
+                    onText="Yes"
                   >
-                    <FinalFormSwitch
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
@@ -1195,7 +1051,10 @@ exports[`Final form input component Should render with description required 1`] 
                           "value": false,
                         }
                       }
+                      inputColumnSize={8}
                       label="Snapshot VM memory"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1205,7 +1064,6 @@ exports[`Final form input component Should render with description required 1`] 
                           "error": undefined,
                           "initial": false,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -1216,186 +1074,144 @@ exports[`Final form input component Should render with description required 1`] 
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="switch"
-                        disabled={false}
-                        id="snap_memory"
-                        input={
-                          Object {
-                            "name": "snap_memory",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": false,
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Snapshot VM memory"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": false,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        offText="No"
-                        onText="Yes"
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={false}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Snapshot VM memory
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Snapshot VM memory
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <Switch
+                                animate={true}
+                                baseClass="bootstrap-switch"
+                                bsSize={null}
+                                clearable={false}
+                                defaultValue={true}
+                                disabled={false}
+                                handleWidth="auto"
+                                id="snap_memory"
+                                inverse={false}
+                                label="Snapshot VM memory"
+                                labelKey="label"
+                                labelText=" "
+                                labelWidth="auto"
+                                multi={false}
+                                name="snap_memory"
+                                offColor="default"
+                                offText="No"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onColor="primary"
+                                onFocus={[Function]}
+                                onText="Yes"
+                                options={Array []}
+                                placeholder=""
+                                readonly={false}
+                                searchable={false}
+                                tristate={false}
+                                value={false}
+                                valueKey="value"
+                                wrapperClass="wrapper"
                               >
-                                <Switch
-                                  animate={true}
-                                  baseClass="bootstrap-switch"
-                                  bsSize={null}
-                                  clearable={false}
-                                  defaultValue={true}
-                                  disabled={false}
-                                  handleWidth="auto"
-                                  id="snap_memory"
-                                  inverse={false}
-                                  label="Snapshot VM memory"
-                                  labelKey="label"
-                                  labelText=" "
-                                  labelWidth="auto"
-                                  multi={false}
-                                  name="snap_memory"
-                                  offColor="default"
-                                  offText="No"
+                                <div
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onColor="primary"
                                   onFocus={[Function]}
-                                  onText="Yes"
-                                  options={Array []}
-                                  placeholder=""
-                                  readonly={false}
-                                  searchable={false}
-                                  tristate={false}
-                                  value={false}
-                                  valueKey="value"
-                                  wrapperClass="wrapper"
+                                  onKeyDown={[Function]}
+                                  style={
+                                    Object {
+                                      "width": "auto",
+                                    }
+                                  }
+                                  tabIndex="0"
                                 >
                                   <div
-                                    className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
-                                    onBlur={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
+                                    className="bootstrap-switch-container"
                                     style={
                                       Object {
+                                        "marginLeft": -0,
                                         "width": "auto",
                                       }
                                     }
-                                    tabIndex="0"
                                   >
-                                    <div
-                                      className="bootstrap-switch-container"
+                                    <span
+                                      className="bootstrap-switch-handle-on bootstrap-switch-primary"
+                                      onClick={[Function]}
                                       style={
                                         Object {
-                                          "marginLeft": -0,
-                                          "width": "auto",
+                                          "width": 0,
                                         }
                                       }
                                     >
-                                      <span
-                                        className="bootstrap-switch-handle-on bootstrap-switch-primary"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      Yes
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-label"
+                                      onMouseDown={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseMove={[Function]}
+                                      onMouseUp={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchMove={[Function]}
+                                      onTouchStart={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                        Yes
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-label"
-                                        onMouseDown={[Function]}
-                                        onMouseLeave={[Function]}
-                                        onMouseMove={[Function]}
-                                        onMouseUp={[Function]}
-                                        onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
-                                        onTouchStart={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      }
+                                    >
+                                       
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-handle-off bootstrap-switch-default"
+                                      onClick={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                         
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-handle-off bootstrap-switch-default"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
-                                        }
-                                      >
-                                        No
-                                      </span>
-                                    </div>
+                                      }
+                                    >
+                                      No
+                                    </span>
                                   </div>
-                                </Switch>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormSwitch>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                </div>
+                              </Switch>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormSwitch>
+                </Field>
               </div>
             </Col>
             <Col
@@ -1510,42 +1326,50 @@ exports[`Final form input component Should render with name required 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="name"
                   name="name"
+                  parse={[Function]}
                   render={[Function]}
                   validate={[Function]}
                 >
-                  <Field
-                    format={[Function]}
-                    id="name"
-                    name="name"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormField
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "name",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={[Function]}
+                    label="Name"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": "Required",
+                        "initial": undefined,
+                        "invalid": true,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": false,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormField
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textfield"
+                      disabled={false}
                       input={
                         Object {
                           "name": "name",
@@ -1555,7 +1379,10 @@ exports[`Final form input component Should render with name required 1`] = `
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Name"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1565,7 +1392,6 @@ exports[`Final form input component Should render with name required 1`] = `
                           "error": "Required",
                           "initial": undefined,
                           "invalid": true,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -1576,82 +1402,55 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textfield"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "name",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Name"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": "Required",
-                            "initial": undefined,
-                            "invalid": true,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": false,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState="error"
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState="error"
+                        <div
+                          className="form-group has-error"
                         >
-                          <div
-                            className="form-group has-error"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Name
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Name
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="input"
+                                disabled={false}
+                                id="name"
+                                name="name"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                type="text"
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="input"
+                                <input
+                                  className="form-control"
                                   disabled={false}
                                   id="name"
                                   name="name"
@@ -1661,37 +1460,24 @@ exports[`Final form input component Should render with name required 1`] = `
                                   placeholder=""
                                   type="text"
                                   value=""
+                                />
+                              </FormControl>
+                              <HelpBlock
+                                bsClass="help-block"
+                              >
+                                <span
+                                  className="help-block"
                                 >
-                                  <input
-                                    className="form-control"
-                                    disabled={false}
-                                    id="name"
-                                    name="name"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    type="text"
-                                    value=""
-                                  />
-                                </FormControl>
-                                <HelpBlock
-                                  bsClass="help-block"
-                                >
-                                  <span
-                                    className="help-block"
-                                  >
-                                    Required
-                                  </span>
-                                </HelpBlock>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormField>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                  Required
+                                </span>
+                              </HelpBlock>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormField>
+                </Field>
               </div>
             </Col>
             <Col
@@ -1702,42 +1488,50 @@ exports[`Final form input component Should render with name required 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
+                  format={[Function]}
                   id="description"
                   name="description"
+                  parse={[Function]}
                   render={[Function]}
                   validate={false}
                 >
-                  <Field
-                    format={[Function]}
-                    id="description"
-                    name="description"
-                    parse={[Function]}
-                    reactFinalForm={
+                  <FinalFormTextArea
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "description",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": "",
                       }
                     }
-                    render={[Function]}
-                    validate={false}
+                    label="Description"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": undefined,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    validateOnMount={true}
                   >
-                    <FinalFormTextArea
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="textarea"
+                      disabled={false}
                       input={
                         Object {
                           "name": "description",
@@ -1747,7 +1541,10 @@ exports[`Final form input component Should render with name required 1`] = `
                           "value": "",
                         }
                       }
+                      inputColumnSize={8}
                       label="Description"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1757,7 +1554,6 @@ exports[`Final form input component Should render with name required 1`] = `
                           "error": undefined,
                           "initial": undefined,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -1768,82 +1564,54 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
                       validateOnMount={true}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="textarea"
-                        disabled={false}
-                        input={
-                          Object {
-                            "name": "description",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": "",
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Description"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": undefined,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={true}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Description
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Description
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <FormControl
+                                bsClass="form-control"
+                                componentClass="textarea"
+                                disabled={false}
+                                id="description"
+                                name="description"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder=""
+                                value=""
                               >
-                                <FormControl
-                                  bsClass="form-control"
-                                  componentClass="textarea"
+                                <textarea
+                                  className="form-control"
                                   disabled={false}
                                   id="description"
                                   name="description"
@@ -1852,27 +1620,15 @@ exports[`Final form input component Should render with name required 1`] = `
                                   onFocus={[Function]}
                                   placeholder=""
                                   value=""
-                                >
-                                  <textarea
-                                    className="form-control"
-                                    disabled={false}
-                                    id="description"
-                                    name="description"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder=""
-                                    value=""
-                                  />
-                                </FormControl>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormTextArea>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                />
+                              </FormControl>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormTextArea>
+                </Field>
               </div>
             </Col>
             <Col
@@ -1883,46 +1639,54 @@ exports[`Final form input component Should render with name required 1`] = `
               <div
                 className="col-xs-12"
               >
-                <ReactFinalForm(Field)
+                <Field
                   component={[Function]}
+                  format={[Function]}
                   id="snap_memory"
                   label="Snapshot VM memory"
                   name="snap_memory"
                   offText="No"
                   onText="Yes"
+                  parse={[Function]}
                 >
-                  <Field
-                    component={[Function]}
-                    format={[Function]}
+                  <FinalFormSwitch
                     id="snap_memory"
-                    label="Snapshot VM memory"
-                    name="snap_memory"
-                    offText="No"
-                    onText="Yes"
-                    parse={[Function]}
-                    reactFinalForm={
+                    input={
                       Object {
-                        "batch": [Function],
-                        "blur": [Function],
-                        "change": [Function],
-                        "focus": [Function],
-                        "getFieldState": [Function],
-                        "getRegisteredFields": [Function],
-                        "getState": [Function],
-                        "initialize": [Function],
-                        "isValidationPaused": [Function],
-                        "mutators": Object {},
-                        "pauseValidation": [Function],
-                        "registerField": [Function],
-                        "reset": [Function],
-                        "resumeValidation": [Function],
-                        "setConfig": [Function],
-                        "submit": [Function],
-                        "subscribe": [Function],
+                        "name": "snap_memory",
+                        "onBlur": [Function],
+                        "onChange": [Function],
+                        "onFocus": [Function],
+                        "value": false,
                       }
                     }
+                    label="Snapshot VM memory"
+                    meta={
+                      Object {
+                        "active": false,
+                        "data": Object {},
+                        "dirty": false,
+                        "dirtySinceLastSubmit": false,
+                        "error": undefined,
+                        "initial": false,
+                        "invalid": false,
+                        "pristine": true,
+                        "submitError": undefined,
+                        "submitFailed": false,
+                        "submitSucceeded": false,
+                        "submitting": false,
+                        "touched": false,
+                        "valid": true,
+                        "visited": false,
+                      }
+                    }
+                    offText="No"
+                    onText="Yes"
                   >
-                    <FinalFormSwitch
+                    <FinalFormComponent
+                      clearable={false}
+                      componentType="switch"
+                      disabled={false}
                       id="snap_memory"
                       input={
                         Object {
@@ -1933,7 +1697,10 @@ exports[`Final form input component Should render with name required 1`] = `
                           "value": false,
                         }
                       }
+                      inputColumnSize={8}
                       label="Snapshot VM memory"
+                      labelColumnSize={2}
+                      labelKey="label"
                       meta={
                         Object {
                           "active": false,
@@ -1943,7 +1710,6 @@ exports[`Final form input component Should render with name required 1`] = `
                           "error": undefined,
                           "initial": false,
                           "invalid": false,
-                          "modified": false,
                           "pristine": true,
                           "submitError": undefined,
                           "submitFailed": false,
@@ -1954,186 +1720,144 @@ exports[`Final form input component Should render with name required 1`] = `
                           "visited": false,
                         }
                       }
+                      multi={false}
                       offText="No"
                       onText="Yes"
+                      placeholder=""
+                      searchable={false}
+                      simpleValue={true}
+                      validateOnMount={false}
+                      valueKey="value"
                     >
-                      <FinalFormComponent
-                        clearable={false}
-                        componentType="switch"
-                        disabled={false}
-                        id="snap_memory"
-                        input={
-                          Object {
-                            "name": "snap_memory",
-                            "onBlur": [Function],
-                            "onChange": [Function],
-                            "onFocus": [Function],
-                            "value": false,
-                          }
-                        }
-                        inputColumnSize={8}
-                        label="Snapshot VM memory"
-                        labelColumnSize={2}
-                        labelKey="label"
-                        meta={
-                          Object {
-                            "active": false,
-                            "data": Object {},
-                            "dirty": false,
-                            "dirtySinceLastSubmit": false,
-                            "error": undefined,
-                            "initial": false,
-                            "invalid": false,
-                            "modified": false,
-                            "pristine": true,
-                            "submitError": undefined,
-                            "submitFailed": false,
-                            "submitSucceeded": false,
-                            "submitting": false,
-                            "touched": false,
-                            "valid": true,
-                            "visited": false,
-                          }
-                        }
-                        multi={false}
-                        offText="No"
-                        onText="Yes"
-                        placeholder=""
-                        searchable={false}
-                        simpleValue={true}
-                        validateOnMount={false}
-                        valueKey="value"
+                      <FormGroup
+                        bsClass="form-group"
+                        validationState={null}
                       >
-                        <FormGroup
-                          bsClass="form-group"
-                          validationState={null}
+                        <div
+                          className="form-group"
                         >
-                          <div
-                            className="form-group"
+                          <Col
+                            bsClass="col"
+                            className="control-label"
+                            componentClass="label"
+                            xs={2}
                           >
-                            <Col
-                              bsClass="col"
-                              className="control-label"
-                              componentClass="label"
-                              xs={2}
+                            <label
+                              className="control-label col-xs-2"
                             >
-                              <label
-                                className="control-label col-xs-2"
-                              >
-                                Snapshot VM memory
-                              </label>
-                            </Col>
-                            <Col
-                              bsClass="col"
-                              componentClass="div"
-                              xs={8}
+                              Snapshot VM memory
+                            </label>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            componentClass="div"
+                            xs={8}
+                          >
+                            <div
+                              className="col-xs-8"
                             >
-                              <div
-                                className="col-xs-8"
+                              <Switch
+                                animate={true}
+                                baseClass="bootstrap-switch"
+                                bsSize={null}
+                                clearable={false}
+                                defaultValue={true}
+                                disabled={false}
+                                handleWidth="auto"
+                                id="snap_memory"
+                                inverse={false}
+                                label="Snapshot VM memory"
+                                labelKey="label"
+                                labelText=" "
+                                labelWidth="auto"
+                                multi={false}
+                                name="snap_memory"
+                                offColor="default"
+                                offText="No"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onColor="primary"
+                                onFocus={[Function]}
+                                onText="Yes"
+                                options={Array []}
+                                placeholder=""
+                                readonly={false}
+                                searchable={false}
+                                tristate={false}
+                                value={false}
+                                valueKey="value"
+                                wrapperClass="wrapper"
                               >
-                                <Switch
-                                  animate={true}
-                                  baseClass="bootstrap-switch"
-                                  bsSize={null}
-                                  clearable={false}
-                                  defaultValue={true}
-                                  disabled={false}
-                                  handleWidth="auto"
-                                  id="snap_memory"
-                                  inverse={false}
-                                  label="Snapshot VM memory"
-                                  labelKey="label"
-                                  labelText=" "
-                                  labelWidth="auto"
-                                  multi={false}
-                                  name="snap_memory"
-                                  offColor="default"
-                                  offText="No"
+                                <div
+                                  className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
                                   onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onColor="primary"
                                   onFocus={[Function]}
-                                  onText="Yes"
-                                  options={Array []}
-                                  placeholder=""
-                                  readonly={false}
-                                  searchable={false}
-                                  tristate={false}
-                                  value={false}
-                                  valueKey="value"
-                                  wrapperClass="wrapper"
+                                  onKeyDown={[Function]}
+                                  style={
+                                    Object {
+                                      "width": "auto",
+                                    }
+                                  }
+                                  tabIndex="0"
                                 >
                                   <div
-                                    className="bootstrap-switch wrapper bootstrap-switch-off bootstrap-switch-snap_memory bootstrap-switch-animate"
-                                    onBlur={[Function]}
-                                    onFocus={[Function]}
-                                    onKeyDown={[Function]}
+                                    className="bootstrap-switch-container"
                                     style={
                                       Object {
+                                        "marginLeft": -0,
                                         "width": "auto",
                                       }
                                     }
-                                    tabIndex="0"
                                   >
-                                    <div
-                                      className="bootstrap-switch-container"
+                                    <span
+                                      className="bootstrap-switch-handle-on bootstrap-switch-primary"
+                                      onClick={[Function]}
                                       style={
                                         Object {
-                                          "marginLeft": -0,
-                                          "width": "auto",
+                                          "width": 0,
                                         }
                                       }
                                     >
-                                      <span
-                                        className="bootstrap-switch-handle-on bootstrap-switch-primary"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      Yes
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-label"
+                                      onMouseDown={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseMove={[Function]}
+                                      onMouseUp={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchMove={[Function]}
+                                      onTouchStart={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                        Yes
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-label"
-                                        onMouseDown={[Function]}
-                                        onMouseLeave={[Function]}
-                                        onMouseMove={[Function]}
-                                        onMouseUp={[Function]}
-                                        onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
-                                        onTouchStart={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
+                                      }
+                                    >
+                                       
+                                    </span>
+                                    <span
+                                      className="bootstrap-switch-handle-off bootstrap-switch-default"
+                                      onClick={[Function]}
+                                      style={
+                                        Object {
+                                          "width": 0,
                                         }
-                                      >
-                                         
-                                      </span>
-                                      <span
-                                        className="bootstrap-switch-handle-off bootstrap-switch-default"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "width": 0,
-                                          }
-                                        }
-                                      >
-                                        No
-                                      </span>
-                                    </div>
+                                      }
+                                    >
+                                      No
+                                    </span>
                                   </div>
-                                </Switch>
-                              </div>
-                            </Col>
-                          </div>
-                        </FormGroup>
-                      </FinalFormComponent>
-                    </FinalFormSwitch>
-                  </Field>
-                </ReactFinalForm(Field)>
+                                </div>
+                              </Switch>
+                            </div>
+                          </Col>
+                        </div>
+                      </FormGroup>
+                    </FinalFormComponent>
+                  </FinalFormSwitch>
+                </Field>
               </div>
             </Col>
             <Col
