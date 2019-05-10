@@ -13,6 +13,7 @@ const InlineFinalField = ({ inputName, initialValue }) => (
     render={({ input }) => <FormControl {...input} />}
   />
 );
+
 InlineFinalField.propTypes = {
   inputName: PropTypes.string.isRequired,
   initialValue: PropTypes.string,
@@ -31,6 +32,7 @@ export const InlineSelect = ({ selectName }) => (
     )}
   </ReportEditorContext.Consumer>
 );
+
 InlineSelect.propTypes = {
   selectName: PropTypes.string.isRequired,
 };
@@ -94,4 +96,5 @@ const ConsolidationTable = memo(({ values, consolidation }) => { // eslint-disab
     </Col>
   );
 });
+
 export default ConsolidationTable;

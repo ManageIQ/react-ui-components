@@ -51,5 +51,4 @@ GroupRecordsBy.propTypes = {
   columns: PropTypes.array,
 };
 
-
 export default GroupRecordsBy;
