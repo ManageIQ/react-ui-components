@@ -30,11 +30,11 @@ ButtonIcon.propTypes = {
  * ng-hide="props.hidden"
  * FIXME: where did this come from   style={props.enabled && props.hidden ? {} : { display: 'none !important' }}
  * ng-click="onItemClick({item: props, $event: $event})">
+ * style={props.hidden ? { display: 'none !important' } : {}}
  */
 export const ToolbarButton = props => (
   <button
     type="button"
-    style={props.hidden ? { display: 'none !important' } : {}}
     id={props.id}
     name={props.name}
     title={props.title}
@@ -71,5 +71,5 @@ ToolbarButton.propTypes = {
   data: PropTypes.any,
   selected: PropTypes.bool,
   enabled: PropTypes.bool,
-  hidden: PropTypes.bool,
+  // hidden: PropTypes.bool,
 };

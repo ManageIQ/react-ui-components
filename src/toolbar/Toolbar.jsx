@@ -47,19 +47,14 @@ const buttonCase = (item) => {
   console.log('item: ');
   console.log(item);
   if (isButton(item)) {
-    console.log('NORMAL');
     return <ToolbarButton {...item} onClick={onClick} />;
   } else if (isButtonTwoState(item) && (item.id.indexOf('view_') === -1)) {
-    console.log('TWOSTATE');
     return <ToolbarButton {...item} onClick={onClick} />;
   } else if (isButtonSelect(item) && (item.items.length > 0)) {
-    console.log('SELECT');
     return <ToolbarList {...item} onClick={onClick} />;
   } else if (isKebabMenu(item) && (item.items.length > 0)) {
-    console.log('KEBAB');
     return <ToolbarKebab kebab={item} onClick={onClick} />;
   } else if (isCustom(item) && item.args && item.args.html) {
-    console.log('CUSTOM');
     return (
       // ng-bind-html="vm.trustAsHtml(item.args.html)"
       <div
@@ -79,7 +74,7 @@ const ToolbarGroup = props => (
   <span
     className={classNames('miq-toolbar-group', { 'form-group': !toolbarHasCustom(props.group) })}
   >
-    {props.group.map(item => buttonCase(item))}
+    {props.group.filter(i => !i.hidden).map(i => buttonCase(i))}
   </span>
 );
 

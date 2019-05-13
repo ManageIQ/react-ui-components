@@ -15,41 +15,57 @@ const iconStyle = item => (
 
 /*    ng-hide="item.hidden" */
 
-export const ToolbarClick = ({ item }) => (
-  <a
-    title={item.title}
-    style={item.hidden ? { display: 'none !important' } : {}}
-    href=""
-    data-explorer={item.explorer}
-    data-confirm-tb={item.confirm}
-    data-function={item.data && item.data.function}
-    data-function-data={item.data && item.data['function-data']}
-    data-target={item.data && item.data.target}
-    data-toggle={item.data && item.data.toggle}
-    data-click={item.id}
-    name={item.id}
-    id={item.id}
-    data-url_parms={item.url_parms}
-    data-send_checked={item.send_checked ? 'true' : ''}
-    data-prompt={item.prompt}
-    data-popup={item.popup}
-    data-url={item.url}
-    ng-click="onItemClick({item: item, $event: $event})"
+export const ToolbarClick = props => (
+  <span
+    title={props.title}
+    style={props.hidden ? { display: 'none !important' } : {}}
+    data-explorer={props.explorer}
+    data-confirm-tb={props.confirm}
+    data-function={props.data && props.data.function}
+    data-function-data={props.data && props.data['function-data']}
+    data-target={props.data && props.data.target}
+    data-toggle={props.data && props.data.toggle}
+    data-click={props.id}
+    name={props.id}
+    id={props.id}
+    data-url_parms={props.url_parms}
+    data-send_checked={props.send_checked ? 'true' : ''}
+    data-prompt={props.prompt}
+    data-popup={props.popup}
+    data-url={props.url}
+    ng-click="onItemClick({props: props, $event: $event})"
   >
-    { item.icon && <i className={item.icon} style={iconStyle(item)} /> }
-    { item.img_url && !item.icon &&
+    { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
+    { props.img_url && !props.icon &&
       <img
-        alt={item.title}
-        src={item.img_url}
-        data-enabled={item.img_url}
-        data-disabled={item.img_url}
+        alt={props.title}
+        src={props.img_url}
+        data-enabled={props.img_url}
+        data-disabled={props.img_url}
       />
     }
-    <span>{item.text}</span>
-  </a>
+    <span>{props.text}</span>
+  </span>
 );
 
 ToolbarClick.propTypes = {
-  // text: PropTypes.text, FIXME
-  item: PropTypes.any.isRequired,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  id: PropTypes.string,
+  hidden: PropTypes.bool,
+  explorer: PropTypes.bool,
+  send_checked: PropTypes.bool,
+  prompt: PropTypes.string,
+  confirm: PropTypes.string,
+  popup: PropTypes.string,
+  img_url: PropTypes.string,
+  url: PropTypes.string,
+  url_parms: PropTypes.string,
+  icon: PropTypes.string,
+  data: PropTypes.shape({
+    function: PropTypes.string,
+    'function-data': PropTypes.string,
+    target: PropTypes.string,
+    toggle: PropTypes.string,
+  }),
 };
