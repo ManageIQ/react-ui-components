@@ -8,10 +8,12 @@ const viewData = require('../src/toolbar/data/toolbar-view.json');
 // const onSubmit = values => console.log('onSubmit: ', values);
 
 const wrapperComponent = () => (
-  <Toolbar
-    groups={toolbarData}
-    views={viewData}
-  />
+  <div className="toolbar-pf row">
+    <Toolbar
+      groups={toolbarData}
+      views={viewData}
+    />
+  </div>
 );
 
 export default function renderApp() {

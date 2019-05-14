@@ -19,11 +19,11 @@ const isToolbarNonEmpty = props =>
   props.items &&
   some(props.items, item => !item.hidden);
 
-// const isToolbarEnabled = props =>
-//   props.toolbarList &&
-//   props.toolbarList.enabled &&
-//   props.toolbarList.items &&
-//   some(props.items, item => item.enabled);
+const isToolbarEnabled = props =>
+  props &&
+  props.enabled &&
+  props.items &&
+  some(props.items, item => item.enabled);
 
 const ToolbarSeparator = props => (
   <span
@@ -54,8 +54,8 @@ ToolbarSeparator.propTypes = {
 
 const ToolbarListItem = item => (
   item.type === 'separator' ?
-    <MenuItem eventKey={item.id} divider /> :
-    <MenuItem eventKey={item.id} >
+    <MenuItem disabled={!item.enabled} eventKey={item.id} divider /> :
+    <MenuItem disabled={!item.enabled} eventKey={item.id} >
       <ToolbarClick {...item} />
     </MenuItem>
 );
@@ -107,7 +107,7 @@ export const ToolbarList = (props) => {
   // );
 
   return (
-    <DropdownButton title={toolbarListTitle(props)}>
+    <DropdownButton disabled={!isToolbarEnabled(props)} title={toolbarListTitle(props)}>
       { props.items.filter(i => !i.hidden).map(item => ToolbarListItem(item)) }
     </DropdownButton>
   );

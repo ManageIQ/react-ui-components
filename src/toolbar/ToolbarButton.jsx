@@ -2,6 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { adjustColor } from './utility';
 
+const classNames = require('classnames');
+
 const ButtonIcon = (props) => {
   const {
     img_url: imgUrl, icon, color, enabled,
@@ -29,7 +31,6 @@ ButtonIcon.propTypes = {
  * ng-class="{active: props.selected, disabled: !props.enabled}"
  * ng-hide="props.hidden"
  * FIXME: where did this come from   style={props.enabled && props.hidden ? {} : { display: 'none !important' }}
- * ng-click="onItemClick({item: props, $event: $event})">
  * style={props.hidden ? { display: 'none !important' } : {}}
  */
 export const ToolbarButton = props => (
@@ -38,8 +39,7 @@ export const ToolbarButton = props => (
     id={props.id}
     name={props.name}
     title={props.title}
-    className={`btn btn-default ${props.selected ? 'active' : ''} ${props.enabled ? '' : 'disabled'}`}
-
+    className={classNames('btn btn-default', { active: props.selected, disabled: !props.enabled })}
     data-explorer={props.explorer}
     data-confirm-tb={props.confirm}
     data-function={props.data && props.data.function}
@@ -50,6 +50,7 @@ export const ToolbarButton = props => (
     data-send_checked={props.send_checked ? 'true' : ''}
     data-prompt={props.prompt}
     data-popup={props.popup}
+    onClick={props.onClick}
   >
     { ButtonIcon(props) }
     { props.text }
@@ -72,4 +73,5 @@ ToolbarButton.propTypes = {
   selected: PropTypes.bool,
   enabled: PropTypes.bool,
   // hidden: PropTypes.bool,
+  onClick: PropTypes.func,
 };

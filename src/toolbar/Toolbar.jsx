@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-// import some from 'lodash/some';
 import find from 'lodash/find';
 
 import './styles.scss';
@@ -41,9 +40,7 @@ const toolbarGroupHasContent = group =>
     group.filter(item => item &&
       (isButtonOrSelect(item) || isCustom(item))).length !== 0;
 
-const onClick = () => console.log('FIXME: onClick');
-
-const buttonCase = (item) => {
+const buttonCase = (item, onClick) => {
   console.log('item: ');
   console.log(item);
   if (isButton(item)) {
@@ -74,18 +71,18 @@ const ToolbarGroup = props => (
   <span
     className={classNames('miq-toolbar-group', { 'form-group': !toolbarHasCustom(props.group) })}
   >
-    {props.group.filter(i => !i.hidden).map(i => buttonCase(i))}
+    {props.group.filter(i => !i.hidden).map(i => buttonCase(i, props.onClick))}
   </span>
 );
 
 ToolbarGroup.propTypes = {
   group: PropTypes.arrayOf(PropTypes.any),
+  onClick: PropTypes.func,
 };
 
 /*
- * podle ./components/toolbar-menu/toolbar-menu.html
+ * based on ~/Projects/ui-components/src/toolbar/components/toolbar-menu/toolbar-menu.html
  */
-
 
 /* loop over groups
  *   in each group
@@ -103,12 +100,15 @@ ToolbarGroup.propTypes = {
  */
 export const Toolbar = props => (
   <div className="toolbar-pf-actions miq-toolbar-actions">
-    { props.groups.filter(toolbarGroupHasContent).map(group => <ToolbarGroup group={group} />) }
-    <ToolbarView views={props.views} />
+    { props.groups.filter(toolbarGroupHasContent).map(group =>
+      <ToolbarGroup onClick={props.onClick} group={group} />)
+    }
+    <ToolbarView onClick={props.onClick} views={props.views} />
   </div>
 );
 
 Toolbar.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
+  onClick: PropTypes.func,
 };

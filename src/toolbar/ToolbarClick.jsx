@@ -17,6 +17,8 @@ const iconStyle = item => (
 
 export const ToolbarClick = props => (
   <span
+    tabIndex={0}
+    role="button"
     title={props.title}
     style={props.hidden ? { display: 'none !important' } : {}}
     data-explorer={props.explorer}
@@ -33,7 +35,7 @@ export const ToolbarClick = props => (
     data-prompt={props.prompt}
     data-popup={props.popup}
     data-url={props.url}
-    ng-click="onItemClick({props: props, $event: $event})"
+    onClick={props.onClick}
   >
     { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
     { props.img_url && !props.icon &&
@@ -68,4 +70,5 @@ ToolbarClick.propTypes = {
     target: PropTypes.string,
     toggle: PropTypes.string,
   }),
+  onClick: PropTypes.func,
 };

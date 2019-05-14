@@ -147,6 +147,28 @@
           "text": "Stop Server",
           "confirm": "Do you want to stop selected servers?",
           "url_parms": "main_div"
+        },
+	{
+	  "id": "sep_2",
+	  "type": "separator"
+	},
+        {
+          "child_id": "middleware_server_reload2",
+          "id": "middleware_server_power_choice__middleware_server_reload2",
+          "type": "button",
+          "img": "middleware_server_reload.png",
+          "imgdis": "middleware_server_reload.png",
+          "icon": "pficon pficon-restart fa-lg",
+          "name": "middleware_server_power_choice__middleware_server_reload2",
+          "hidden": false,
+          "pressed": null,
+          "onwhen": "1+",
+          "data": null,
+          "enabled": true,
+          "title": "Reload these Middleware Servers 2",
+          "text": "Reload Server 2",
+          "confirm": "Do you want to reload selected servers?",
+          "url_parms": "main_div"
         }
       ]
     },
