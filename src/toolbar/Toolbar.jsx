@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
+import some from 'lodash/some';
 
 import './styles.scss';
 
@@ -41,8 +42,6 @@ const toolbarGroupHasContent = group =>
       (isButtonOrSelect(item) || isCustom(item))).length !== 0;
 
 const buttonCase = (item, onClick) => {
-  console.log('item: ');
-  console.log(item);
   if (isButton(item)) {
     return <ToolbarButton {...item} onClick={onClick} />;
   } else if (isButtonTwoState(item) && (item.id.indexOf('view_') === -1)) {
@@ -50,7 +49,10 @@ const buttonCase = (item, onClick) => {
   } else if (isButtonSelect(item) && (item.items.length > 0)) {
     return <ToolbarList {...item} onClick={onClick} />;
   } else if (isKebabMenu(item) && (item.items.length > 0)) {
-    return <ToolbarKebab kebab={item} onClick={onClick} />;
+    console.log('item: ');
+    console.log(item);
+    console.log('KEBAB');
+    return <ToolbarKebab {...item} onClick={onClick} />;
   } else if (isCustom(item) && item.args && item.args.html) {
     return (
       // ng-bind-html="vm.trustAsHtml(item.args.html)"
@@ -63,13 +65,26 @@ const buttonCase = (item, onClick) => {
   return null;
 };
 
-// const isCustomButton = item => item && item.id && item.id.includes('custom_');
-// const hasCustomButtons = itemGroup => some(itemGroup, isCustomButton);
-const toolbarHasCustom = group => find(group, { name: 'custom' });
+const toolbarHasCustomContent = group => find(group, { name: 'custom' });
+
+const CUSTOM_ID = 'custom_';
+
+const collapseCustomGroups = itemsGroup => (
+  itemsGroup.length < 4
+    ? itemsGroup
+    : itemsGroup.reduce((acc, i) => {
+      if (i.id.includes(CUSTOM_ID)) {
+        acc[0].items.push(i);
+      } else {
+        acc.push(i);
+      }
+      return acc;
+    }, [{ type: ButtonType.KEBAB, items: [] }])
+);
 
 const ToolbarGroup = props => (
   <span
-    className={classNames('miq-toolbar-group', { 'form-group': !toolbarHasCustom(props.group) })}
+    className={classNames('miq-toolbar-group', { 'form-group': !toolbarHasCustomContent(props.group) })}
   >
     {props.group.filter(i => !i.hidden).map(i => buttonCase(i, props.onClick))}
   </span>
@@ -100,8 +115,10 @@ ToolbarGroup.propTypes = {
  */
 export const Toolbar = props => (
   <div className="toolbar-pf-actions miq-toolbar-actions">
-    { props.groups.filter(toolbarGroupHasContent).map(group =>
-      <ToolbarGroup onClick={props.onClick} group={group} />)
+    { props.groups
+      .filter(toolbarGroupHasContent)
+      .map(group =>
+        <ToolbarGroup onClick={props.onClick} group={collapseCustomGroups(group)} />)
     }
     <ToolbarView onClick={props.onClick} views={props.views} />
   </div>
