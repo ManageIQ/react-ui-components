@@ -33,3 +33,10 @@ div.field-group {
 div.field-group {
   margin-bottom: 25px;
 }
+
+.pf3-select_multi-values-wrapper {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}

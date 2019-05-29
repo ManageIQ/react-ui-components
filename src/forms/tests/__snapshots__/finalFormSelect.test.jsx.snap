@@ -18,26 +18,39 @@ exports[`React select component Should render correctly 1`] = `
     componentClass="div"
     xs={8}
   >
-    <StateManager
-      className="final-form-select "
+    <PfSelect
       clearable={false}
-      closeMenuOnSelect={true}
-      defaultInputValue=""
-      defaultMenuIsOpen={false}
-      defaultValue={null}
-      disabled={false}
-      hideSelectedOptions={false}
-      isClearable={false}
-      isMulti={false}
-      isSearchable={false}
+      input={
+        Object {
+          "disabled": false,
+          "id": "name",
+          "maxLength": undefined,
+          "name": "name",
+          "onBlur": [MockFunction],
+          "onChange": [MockFunction],
+          "onFocus": [MockFunction],
+          "value": "",
+        }
+      }
       label="test select"
       labelKey="label"
+      meta={
+        Object {
+          "active": false,
+          "data": Object {},
+          "dirty": false,
+          "dirtySinceLastSubmit": false,
+          "error": undefined,
+          "invalid": false,
+          "pristine": true,
+          "submitFailed": false,
+          "submitSucceeded": false,
+          "touched": false,
+          "valid": true,
+          "visited": false,
+        }
+      }
       multi={false}
-      name="name"
-      noOptionsMessage={[Function]}
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
       options={
         Array [
           Object {
@@ -52,23 +65,7 @@ exports[`React select component Should render correctly 1`] = `
       }
       placeholder=""
       searchable={false}
-      styles={
-        Object {
-          "container": [Function],
-          "control": [Function],
-          "dropdownIndicator": [Function],
-          "indicatorSeparator": [Function],
-          "input": [Function],
-          "menu": [Function],
-          "multiValue": [Function],
-          "multiValueLabel": [Function],
-          "multiValueRemove": [Function],
-          "option": [Function],
-          "placeholder": [Function],
-          "singleValue": [Function],
-        }
-      }
-      value={Array []}
+      simpleValue={true}
       valueKey="value"
     />
   </Col>
@@ -93,26 +90,39 @@ exports[`React select component Should render correctly in error state 1`] = `
     componentClass="div"
     xs={8}
   >
-    <StateManager
-      className="final-form-select "
+    <PfSelect
       clearable={false}
-      closeMenuOnSelect={true}
-      defaultInputValue=""
-      defaultMenuIsOpen={false}
-      defaultValue={null}
-      disabled={false}
-      hideSelectedOptions={false}
-      isClearable={false}
-      isMulti={false}
-      isSearchable={false}
+      input={
+        Object {
+          "disabled": false,
+          "id": "name",
+          "maxLength": undefined,
+          "name": "name",
+          "onBlur": [MockFunction],
+          "onChange": [MockFunction],
+          "onFocus": [MockFunction],
+          "value": "",
+        }
+      }
       label="test select"
       labelKey="label"
+      meta={
+        Object {
+          "active": false,
+          "data": Object {},
+          "dirty": false,
+          "dirtySinceLastSubmit": false,
+          "error": "Required",
+          "invalid": false,
+          "pristine": true,
+          "submitFailed": false,
+          "submitSucceeded": false,
+          "touched": false,
+          "valid": true,
+          "visited": false,
+        }
+      }
       multi={false}
-      name="name"
-      noOptionsMessage={[Function]}
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
       options={
         Array [
           Object {
@@ -127,23 +137,7 @@ exports[`React select component Should render correctly in error state 1`] = `
       }
       placeholder=""
       searchable={false}
-      styles={
-        Object {
-          "container": [Function],
-          "control": [Function],
-          "dropdownIndicator": [Function],
-          "indicatorSeparator": [Function],
-          "input": [Function],
-          "menu": [Function],
-          "multiValue": [Function],
-          "multiValueLabel": [Function],
-          "multiValueRemove": [Function],
-          "option": [Function],
-          "placeholder": [Function],
-          "singleValue": [Function],
-        }
-      }
-      value={Array []}
+      simpleValue={true}
       valueKey="value"
     />
     <HelpBlock
