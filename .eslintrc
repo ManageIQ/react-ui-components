@@ -22,7 +22,8 @@
     "jsx-a11y/no-noninteractive-element-interactions": [1],
     "jsx-a11y/anchor-is-valid": [1],
     "no-unused-expressions": [1],
-    "react/no-typos": [1]
+    "react/no-typos": [1],
+    "no-shadow": "off"
   },
   "settings" : {
     "import/extensions": ["js", "jsx"]
