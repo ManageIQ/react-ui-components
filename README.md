@@ -63,9 +63,7 @@ You can choose from three ways of how to code and test your application on local
 
 It will automatically watch your files and store final files into `dist` folder.
 
-This way you can create some components
-use [npm link](https://docs.npmjs.com/cli/link) to create symlink and use npm link inside your server application to include
-these components and debug them inside your environment.
+This way you can create some components, use [yarn link](https://yarnpkg.com/en/docs/cli/link) to create a symlink and use `yarn link @manageiq/react-ui-components` inside your server application to include these components and debug them inside your environment.
 
 #### 2. `[npm|yarn] run server`
 
