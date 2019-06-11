@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'patternfly-react';
 import IconOrImage from './icon_or_image';
 
 const filterValue = val => (val == null ? '' : String(val));
@@ -36,7 +37,7 @@ export default function GenericTableRow(props) {
       <td className="label">{item.label}</td>
       <td>
         <IconOrImage icon={item.icon} image={item.image} title={item.title} background={item.background} />
-        {value}
+        {item.button ? <Button bsSize="small">{value}</Button> : value}
       </td>
     </tr>
   );
