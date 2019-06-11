@@ -21,7 +21,7 @@ const componentSelect = (componentType, {
   textfield: <FormControl type={rest.type || 'text'} {...input} placeholder={rest.placeholder} />,
   radio: <Radio {...input} >{rest.label}</Radio>,
   checkbox: <Checkbox {...input}>{rest.label}</Checkbox>,
-  textarea: <FormControl componentClass="textarea" {...input} placeholder={rest.placeholder} />,
+  textarea: <FormControl componentClass="textarea" {...input} placeholder={rest.placeholder} cols={rest.cols} rows={rest.rows} />,
   select: <PfSelect input={input} meta={meta} simpleValue={simpleValue} {...rest} />,
   switch: <Switch {...input} value={!!input.value} onChange={(elem, state) => input.onChange(state)} {...rest} />,
 })[componentType];
