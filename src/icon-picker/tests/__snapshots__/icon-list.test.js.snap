@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconList test should render correctly 1`] = `""`;
+
+exports[`IconList test should render correctly in visible state 1`] = `
+<tr
+  key="fa-crosshairs,fa-foo"
+>
+  <td
+    key="fa-crosshairs"
+    onClick={[Function]}
+  >
+    <Component
+      icon="fa-crosshairs"
+      isActive={false}
+      type="fa"
+    />
+  </td>
+  <td
+    key="fa-foo"
+    onClick={[Function]}
+  >
+    <Component
+      icon="fa-foo"
+      isActive={false}
+      type="fa"
+    />
+  </td>
+</tr>
+`;
