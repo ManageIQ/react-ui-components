@@ -1,0 +1,22 @@
+.iconlist-item {
+    font-size: 24px;
+    text-align: center;
+    padding: 8px;
+    &.active {
+        background: red
+    }
+}
+
+.fonticon-modal{
+    .tab-content {
+        height: calc(100vh - 260px);
+        overflow-y: auto !important;
+        overflow-x: hidden; 
+        padding-right: 8px;
+    }
+}
+
+.icon-btn{
+    width: 36px;
+    height: 26px;
+}
