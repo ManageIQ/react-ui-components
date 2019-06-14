@@ -14,7 +14,8 @@
     "build-storybook": "build-storybook -c scripts/storybook -o .out",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublishOnly": "npm run build",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "gettext-extract": "yarn run react-gettext-parser --config ./scripts/react-gettext-parser-config.js 'src/**/{*.js,*.jsx}'"
   },
   "engines": {
     "node": ">= 6.0.0",
