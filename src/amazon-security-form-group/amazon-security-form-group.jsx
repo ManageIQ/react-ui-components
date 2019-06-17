@@ -77,44 +77,44 @@ class AmazonSecurityFormGroup extends Component {
                   <Field
                     name="vpc_id"
                     component={FinalFormSelect}
-                    label="Vpc ID"
-                    validate={required({ msg: 'Id required' })}
+                    label={__('Vpc ID')}
+                    validate={required({ msg: __('Id required') })}
                     options={vpcIds}
-                    placeholder="VPC Id"
+                    placeholder={__('VPC Id')}
                   />
                 </Col>
                 <Col xs={12}>
                   <Field
                     name="security_group_name"
                     component={FinalFormField}
-                    label="Security group name"
-                    validate={required({ msg: 'Group mame required' })}
+                    label={__('Security group name')}
+                    validate={required({ msg: __('Group mame required') })}
                   />
                 </Col>
                 <Col xs={12}>
                   <Field
                     name="security_group_description"
                     component={FinalFormTextArea}
-                    label="Security group description"
-                    validate={required({ msg: 'Description required' })}
+                    label={__('Security group description')}
+                    validate={required({ msg: __('Description required') })}
                   />
                 </Col>
                 <hr />
               </Row>
               <Row>
-                <h2>Security group rules</h2>
+                <h2>{__('Security group rules')}</h2>
                 {this.renderGroupRules(groups)}
                 <Col xs={12}>
-                  <Button onClick={this.addGroupRule}>Add group</Button>
-                  <Button onClick={this.removeGroupRule}>Remove Group</Button>
+                  <Button onClick={this.addGroupRule}>{__('Add group')}</Button>
+                  <Button onClick={this.removeGroupRule}>{__('Remove Group')}</Button>
                 </Col>
               </Row>
               {
                 !hideControls &&
                 <Row>
                   <Col className="pull-right">
-                    <Button bsStyle="primary" onClick={handleSubmit}>Submit</Button>
-                    <Button onClick={onCancel}>Cancel</Button>
+                    <Button bsStyle="primary" onClick={handleSubmit}>{__('Submit')}</Button>
+                    <Button onClick={onCancel}>{__('Cancel')}</Button>
                   </Col>
                 </Row>
               }
