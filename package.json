@@ -83,7 +83,7 @@
     "coveralls": "^3.0.0",
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
