@@ -20,9 +20,9 @@ const RowDetail = ({ sortType }) => (
         return (
           <Fragment>
             <Col xs={12}>
-              <FieldGroup label="Hide Detail Rows" name="checkboxGroup">
+              <FieldGroup label={__('Hide Detail Rows')} name="checkboxGroup">
                 <Field
-                  validate={required({ msg: 'Check input' })}
+                  validate={required({ msg: __('Check input') })}
                   name="hide_details"
                   id="hide_details"
                   type="checkbox"

@@ -18,7 +18,7 @@ const ConfigureReportColumns = ({ change }) => (
           <Field
             name="chosen_model"
             label={__('Base the report on')}
-            placeholder="Search selection..."
+            placeholder={__('Search selection...')}
             render={({ input, ...rest }) => (<FinalFormSelect
               input={resetInput(input, change, 'columns', [])}
               {...rest}
@@ -34,7 +34,7 @@ const ConfigureReportColumns = ({ change }) => (
                 <Field
                   name="columns"
                   label={__('Available Fields')}
-                  placeholder="Select one or more searchable fields..."
+                  placeholder={__('Select one or more searchable fields...')}
                   component={FinalFormSelect}
                   options={columnOptions}
                   searchable

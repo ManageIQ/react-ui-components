@@ -8,7 +8,7 @@ import { FinalFormField, composeValidators } from '../forms/';
 
 const validateNetworkMask = value =>
   (value.match(/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])?\/?[0-9]+$/)
-    ? undefined : 'Not a valid network mask');
+    ? undefined : __('Not a valid network mask'));
 
 
 const SecurityGroup = ({ groupNumber, label }) => (
@@ -18,16 +18,16 @@ const SecurityGroup = ({ groupNumber, label }) => (
       <Field
         name={`proto-${groupNumber}`}
         component={FinalFormField}
-        label="Proto"
-        validate={required({ msg: 'Proto required' })}
+        label={__('Proto')}
+        validate={required({ msg: __('Proto required') })}
       />
     </Col>
     <Col xs={12}>
       <Field
         name={`from_port-${groupNumber}`}
         component={FinalFormField}
-        label="From port"
-        validate={required({ msg: 'From port required' })}
+        label={__('From port')}
+        validate={required({ msg: __('From port required') })}
         type="number"
       />
     </Col>
@@ -35,8 +35,8 @@ const SecurityGroup = ({ groupNumber, label }) => (
       <Field
         name={`to_port-${groupNumber}`}
         component={FinalFormField}
-        label="To port"
-        validate={required({ msg: 'To port required' })}
+        label={__('To port')}
+        validate={required({ msg: __('To port required') })}
         type="number"
       />
     </Col>
@@ -44,8 +44,8 @@ const SecurityGroup = ({ groupNumber, label }) => (
       <Field
         name={`cidr_ip-${groupNumber}`}
         component={FinalFormField}
-        label="Cird ip"
-        validate={composeValidators(required({ msg: 'Cird ip required' }), validateNetworkMask)}
+        label={__('Cird ip')}
+        validate={composeValidators(required({ msg: __('Cird ip required') }), validateNetworkMask)}
       />
     </Col>
   </Fragment>

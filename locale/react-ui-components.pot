@@ -1,0 +1,512 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"POT-Creation-Date: Mon Jun 24 2019 13:51:46 GMT+0200 (Central European "
+"Summer Time)\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:80
+msgid "Vpc ID"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:81
+msgid "Id required"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:83
+msgid "VPC Id"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:90
+msgid "Security group name"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:91
+msgid "Group mame required"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:98
+msgid "Security group description"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:99
+msgid "Description required"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:105
+msgid "Security group rules"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:108
+msgid "Add group"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:109
+msgid "Remove Group"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:116
+msgid "Submit"
+msgstr ""
+
+#: src/amazon-security-form-group/amazon-security-form-group.jsx:117
+#: src/rbac-forms/rbacAssignUserTags.jsx:201
+#: src/rbac-forms/rbacUserForm.jsx:113
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:60
+msgid "Cancel"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:11
+msgid "Not a valid network mask"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:21
+msgid "Proto"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:22
+msgid "Proto required"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:29
+msgid "From port"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:30
+msgid "From port required"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:38
+msgid "To port"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:39
+msgid "To port required"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:47
+msgid "Cird ip"
+msgstr ""
+
+#: src/amazon-security-form-group/security-group.jsx:48
+msgid "Cird ip required"
+msgstr ""
+
+#: src/forms/pf-select.jsx:53
+msgid "No option found"
+msgstr ""
+
+#: src/rbac-forms/formPasswordFragment.jsx:31
+#: src/rbac-forms/formPasswordFragment.jsx:70
+msgid "Password"
+msgstr ""
+
+#: src/rbac-forms/formPasswordFragment.jsx:46
+msgid "Cancel password change"
+msgstr ""
+
+#: src/rbac-forms/formPasswordFragment.jsx:58
+msgid "Confirm password"
+msgstr ""
+
+#: src/rbac-forms/formPasswordFragment.jsx:76
+msgid "Change stored password"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:78
+msgid "No My Company Tags are assigned"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:116
+msgid "Tag Assignment"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:121
+msgid "Select a customer tag to assign"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:153
+#: src/tagging/components/InnerComponents/CategoryModifier.js:39
+msgid "Category"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:154
+msgid "Assigned Value"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:166
+msgid "EVM User Being Tagged"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:191
+#: src/rbac-forms/rbacUserForm.jsx:102
+msgid "Save"
+msgstr ""
+
+#: src/rbac-forms/rbacAssignUserTags.jsx:199
+#: src/rbac-forms/rbacUserForm.jsx:110
+msgid "Reset"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:12
+#: src/rbac-forms/rbacUserForm.jsx:81
+msgid "A User must be assigned to a Group"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:27
+msgid "Password/Verify Password do not match"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:46
+#: src/rbac-forms/rbacUserForm.jsx:55
+#: src/rbac-forms/rbacUserForm.jsx:64
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:29
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:40
+msgid "Required"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:48
+#: src/rbac-forms/rbacUserPreview.jsx:51
+msgid "Full Name"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:57
+#: src/rbac-forms/rbacUserPreview.jsx:54
+msgid "Username"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:71
+msgid "Email must be a valid email address"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:75
+msgid "Email Address"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:83
+msgid "Available Groups"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:85
+msgid "Choose one or more Groups"
+msgstr ""
+
+#: src/rbac-forms/rbacUserForm.jsx:102
+#: src/report-editor/report-editor.jsx:106
+msgid "Add"
+msgstr ""
+
+#: src/rbac-forms/rbacUserPreview.jsx:57
+msgid "E-mail Address"
+msgstr ""
+
+#: src/rbac-forms/rbacUserPreview.jsx:60
+msgid "Current group"
+msgstr ""
+
+#: src/rbac-forms/rbacUserPreview.jsx:63
+msgid "Groups"
+msgstr ""
+
+#: src/rbac-forms/rbacUserPreview.jsx:66
+msgid "Role"
+msgstr ""
+
+#: src/rbac-forms/rbacUserTagsList.jsx:15
+msgid "Smart Management"
+msgstr ""
+
+#: src/rbac-forms/rbacUserTagsList.jsx:19
+msgid "%s Tags"
+msgstr ""
+
+#: src/rbac-forms/rbacUserTagsList.jsx:25
+msgid "No %s Tags have been assigned"
+msgstr ""
+
+#: src/report-editor/basic-info.jsx:11
+msgid "Basic Report Info"
+msgstr ""
+
+#: src/report-editor/basic-info.jsx:16
+msgid "Menu Name is required"
+msgstr ""
+
+#: src/report-editor/basic-info.jsx:19
+msgid "Menu Name"
+msgstr ""
+
+#: src/report-editor/basic-info.jsx:26
+msgid "Title is required"
+msgstr ""
+
+#: src/report-editor/basic-info.jsx:29
+msgid "Title"
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:15
+msgid "Charts tab is not available unless a"
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:15
+msgid "sort field from Summary tab "
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:15
+#: src/report-editor/timeline-warning.jsx:15
+msgid "has been selected."
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:21
+#: src/report-editor/sort-criteria.jsx:171
+#: src/report-editor/sort-criteria.jsx:172
+msgid "Sort the Report By"
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:22
+msgid "Please, select a sort field."
+msgstr ""
+
+#: src/report-editor/charts-warning.jsx:32
+msgid "Charts component has been loaded."
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:15
+msgid "Configure Report Columns"
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:20
+msgid "Base the report on"
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:21
+msgid "Search selection..."
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:36
+msgid "Available Fields"
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:37
+#: src/report-editor/timeline-warning.jsx:22
+msgid "Select one or more searchable fields..."
+msgstr ""
+
+#: src/report-editor/configure-report-columns.jsx:45
+msgid "Selected Fields"
+msgstr ""
+
+#: src/report-editor/consolidation-table.jsx:49
+#: src/report-editor/formatting-table.jsx:53
+msgid "Column Name"
+msgstr ""
+
+#: src/report-editor/consolidation-table.jsx:58
+msgid "Calculation"
+msgstr ""
+
+#: src/report-editor/consolidation-table.jsx:82
+msgid "Specify Calculations for Summary Rows"
+msgstr ""
+
+#: src/report-editor/consolidation.jsx:17
+msgid "Group Records by up to 3 Columns"
+msgstr ""
+
+#: src/report-editor/consolidation.jsx:21
+#: src/report-editor/report-editor.jsx:45
+msgid "Columns"
+msgstr ""
+
+#: src/report-editor/consolidation.jsx:23
+msgid "Select max 3 columns"
+msgstr ""
+
+#: src/report-editor/consolidation.jsx:34
+msgid "Note:"
+msgstr ""
+
+#: src/report-editor/consolidation.jsx:34
+msgid "Consolidating records will not show detail records in the report."
+msgstr ""
+
+#: src/report-editor/creation-timeout.jsx:13
+msgid "Report Creation Timeout"
+msgstr ""
+
+#: src/report-editor/creation-timeout.jsx:18
+msgid "System default (about 1 hour)"
+msgstr ""
+
+#: src/report-editor/creation-timeout.jsx:19
+msgid "Cancel after"
+msgstr ""
+
+#: src/report-editor/formatting-table.jsx:62
+msgid "Header"
+msgstr ""
+
+#: src/report-editor/formatting-table.jsx:71
+msgid "Format"
+msgstr ""
+
+#: src/report-editor/formatting-table.jsx:94
+msgid "Specify Column Headers and Formats"
+msgstr ""
+
+#: src/report-editor/pdf-output.jsx:13
+msgid "PDP Output"
+msgstr ""
+
+#: src/report-editor/pdf-output.jsx:18
+msgid "Page Size"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:23
+msgid "Adding a new Report"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:48
+msgid "Consolidation"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:51
+msgid "Formatting"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:54
+msgid "Summary"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:57
+msgid "Charts"
+msgstr ""
+
+#: src/report-editor/report-editor.jsx:60
+msgid "Timeline"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:23
+msgid "Hide Detail Rows"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:25
+msgid "Check input"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:38
+msgid "Format on Summary Row"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:39
+msgid "Select Format"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:62
+msgid "Number of Rows to Show"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:79
+msgid "Time Format"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:96
+msgid "Within Above Field, Sort By"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:97
+msgid "Nothing selected"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:119
+msgid "Sort Order"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:127
+msgid "Show Sort Breaks"
+msgstr ""
+
+#: src/report-editor/sort-criteria.jsx:166
+msgid "Sort Criteria"
+msgstr ""
+
+#: src/report-editor/timeline-warning.jsx:15
+msgid "Timeline tab is not available until at least"
+msgstr ""
+
+#: src/report-editor/timeline-warning.jsx:15
+msgid "1 time-field from Columns tab"
+msgstr ""
+
+#: src/report-editor/timeline-warning.jsx:21
+msgid "Please, add time field"
+msgstr ""
+
+#: src/report-editor/timeline-warning.jsx:31
+msgid "Timeline component has been loaded."
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagModifier.js:25
+msgid "Add/Modify tag"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagSelector.js:54
+msgid "Select tag category"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagSelector.js:75
+msgid "Only a single value can be assigned from these categories"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagView.js:51
+msgid "Assigned tags"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/ValueModifier.js:39
+msgid "Value"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/ValueSelector.js:27
+msgid "Select tag value"
+msgstr ""
+
+#: src/topology/topologyCanvas.jsx:248
+msgid "Health State"
+msgstr ""
+
+#: src/topology/topologyCanvas.jsx:258
+msgid "Valid"
+msgstr ""
+
+#: src/topology/topologyCanvas.jsx:270
+msgid "Warning"
+msgstr ""
+
+#: src/topology/topologyCanvas.jsx:283
+msgid "Critical"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:32
+msgid "Name"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:41
+msgid "Description"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:50
+msgid "Snapshot VM memory"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:51
+msgid "Yes"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:52
+msgid "No"
+msgstr ""
+
+#: src/vm-snapshot-form/snapshot-form/snapshotForm.jsx:59
+msgid "Create"
+msgstr ""

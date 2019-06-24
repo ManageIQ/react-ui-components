@@ -50,7 +50,7 @@ const columns = [
   {
     property: 'columnName',
     header: {
-      label: 'Column Name',
+      label: __('Column Name'),
       formatters: [headerFormat],
     },
     cell: {
@@ -59,7 +59,7 @@ const columns = [
   }, {
     property: 'header',
     header: {
-      label: 'Header',
+      label: __('Header'),
       formatters: [headerFormat],
     },
     cell: {
@@ -68,7 +68,7 @@ const columns = [
   }, {
     property: 'format',
     header: {
-      label: 'Format',
+      label: __('Format'),
       formatters: [headerFormat],
     },
     cell: {
