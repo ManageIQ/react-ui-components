@@ -7,29 +7,51 @@ import IconOrImage from './icon_or_image';
  */
 export default class TagGroup extends React.Component {
   /**
+   * Return onClick function if link is defined for an item/subitem
+   */
+  checkLinkItem = (item, e) => {
+    if (item.link && this.props.onClick) {
+      this.props.onClick(item, e);
+    }
+  }
+
+  /**
    * Render a simple row. Label, icon, value.
    */
   renderTagRowSimple = item => (
     <tr key={item.key}>
       <td className="label">{item.label}</td>
-      <td>
+      <td title={item.title} onClick={e => this.checkLinkItem(item, e)}>
         <IconOrImage icon={item.icon} image={item.image} title={item.title} />
+        {' '}
         {item.value}
       </td>
     </tr>
   );
 
   /**
-   * Render a list of values joined with "<b> | </b>"
+   * Render a list of values joined with "<b> | </b>", with or without label
    */
-  renderSubiteList = subitem => (
+  renderSubitemList = subitem => (
     <span>
-      {subitem.label}: {subitem.value.map((val, index) => (
+      &nbsp;
+      {subitem.label && `${subitem.label}: `}{Array.isArray(subitem.value) && subitem.value.map((val, index) => (
         <React.Fragment key={index}>
           {val}
           {(index < subitem.value.length - 1) && <b>&nbsp;|&nbsp;</b>}
         </React.Fragment>
-        ))}
+      ))}
+    </span>
+  );
+
+  /**
+   * Render a single value, with or without label
+   */
+  renderSubitem = subitem => (
+    <span>
+      &nbsp;
+      {subitem.label && `${subitem.label}: `}
+      {subitem.value}
     </span>
   );
 
@@ -46,11 +68,11 @@ export default class TagGroup extends React.Component {
       {item.value.map((subitem, index) => (
         <tr key={index}>
           {(index === 0) && (
-          <td rowSpan={item.value.length} className="label">{item.label}</td>
+          <td rowSpan={item.value.length} className="label" title={item.title}>{item.label}</td>
             )}
-          <td>
+          <td title={subitem.title} onClick={e => this.checkLinkItem(subitem, e)}>
             <IconOrImage icon={subitem.icon} image={subitem.image} text={subitem.text} />
-            {this.renderSubiteList(subitem)}
+            {Array.isArray(subitem.value) ? this.renderSubitemList(subitem) : this.renderSubitem(subitem)}
           </td>
         </tr>
         ))}
@@ -59,7 +81,7 @@ export default class TagGroup extends React.Component {
 
   render() {
     return (
-      <table className="table table-bordered table-striped table-summary-screen">
+      <table className="table table-bordered table-hover table-striped table-summary-screen">
         <thead>
           <tr>
             <th colSpan="2" align="left">{this.props.title}</th>
@@ -76,4 +98,5 @@ export default class TagGroup extends React.Component {
 TagGroup.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.any.isRequired,
+  onClick: PropTypes.func,
 };

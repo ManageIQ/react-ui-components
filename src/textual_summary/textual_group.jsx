@@ -15,7 +15,7 @@ const renderComponent = (props) => {
         <GenericGroup onClick={props.onClick} items={props.group.items} title={props.group.title} />
       );
     case 'TagGroup':
-      return <TagGroup items={props.group.items} title={props.group.title} />;
+      return <TagGroup onClick={props.onClick} items={props.group.items} title={props.group.title} />;
     case 'SimpleTable':
       return (
         <SimpleTable
