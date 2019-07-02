@@ -31,12 +31,41 @@ exports[`TagGroup renders just fine 1`] = `
           },
         ],
       },
+      Object {
+        "label": "Other Tags",
+        "title": "All Other Tags",
+        "value": Array [
+          Object {
+            "icon": "fa fa-tag",
+            "label": "Test",
+            "value": Array [
+              "Test 1",
+            ],
+          },
+          Object {
+            "icon": "fa fa-tag",
+            "label": "Demo 2",
+            "value": Array [
+              "Policy",
+              "2",
+              "3",
+            ],
+          },
+          Object {
+            "link": "You clicked on Demo 3",
+            "title": "Click to display the item",
+            "value": Array [
+              "Demo 3",
+            ],
+          },
+        ],
+      },
     ]
   }
   title="Smart Management"
 >
   <table
-    className="table table-bordered table-striped table-summary-screen"
+    className="table table-bordered table-hover table-striped table-summary-screen"
   >
     <thead>
       <tr>
@@ -57,7 +86,9 @@ exports[`TagGroup renders just fine 1`] = `
         >
           Managed by Zone
         </td>
-        <td>
+        <td
+          onClick={[Function]}
+        >
           <IconOrImage
             icon="pficon pficon-zone"
             image={null}
@@ -68,6 +99,7 @@ exports[`TagGroup renders just fine 1`] = `
               title={null}
             />
           </IconOrImage>
+           
           default
         </td>
       </tr>
@@ -80,7 +112,9 @@ exports[`TagGroup renders just fine 1`] = `
         >
           My Company X Tags
         </td>
-        <td>
+        <td
+          onClick={[Function]}
+        >
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -92,8 +126,8 @@ exports[`TagGroup renders just fine 1`] = `
             />
           </IconOrImage>
           <span>
-            Dan Test
-            : 
+             
+            Dan Test: 
             Test 1
           </span>
         </td>
@@ -101,7 +135,9 @@ exports[`TagGroup renders just fine 1`] = `
       <tr
         key="1"
       >
-        <td>
+        <td
+          onClick={[Function]}
+        >
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -113,13 +149,92 @@ exports[`TagGroup renders just fine 1`] = `
             />
           </IconOrImage>
           <span>
-            Demo bla
-            : 
+             
+            Demo bla: 
             Policy
             <b>
                | 
             </b>
             2
+          </span>
+        </td>
+      </tr>
+      <tr
+        key="0"
+      >
+        <td
+          className="label"
+          rowSpan={3}
+          title="All Other Tags"
+        >
+          Other Tags
+        </td>
+        <td
+          onClick={[Function]}
+        >
+          <IconOrImage
+            icon="fa fa-tag"
+            image={null}
+            title={null}
+          >
+            <i
+              className="fa fa-tag"
+              title={null}
+            />
+          </IconOrImage>
+          <span>
+             
+            Test: 
+            Test 1
+          </span>
+        </td>
+      </tr>
+      <tr
+        key="1"
+      >
+        <td
+          onClick={[Function]}
+        >
+          <IconOrImage
+            icon="fa fa-tag"
+            image={null}
+            title={null}
+          >
+            <i
+              className="fa fa-tag"
+              title={null}
+            />
+          </IconOrImage>
+          <span>
+             
+            Demo 2: 
+            Policy
+            <b>
+               | 
+            </b>
+            2
+            <b>
+               | 
+            </b>
+            3
+          </span>
+        </td>
+      </tr>
+      <tr
+        key="2"
+      >
+        <td
+          onClick={[Function]}
+          title="Click to display the item"
+        >
+          <IconOrImage
+            icon={null}
+            image={null}
+            title={null}
+          />
+          <span>
+             
+            Demo 3
           </span>
         </td>
       </tr>
