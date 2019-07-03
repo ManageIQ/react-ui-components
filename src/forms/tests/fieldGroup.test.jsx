@@ -7,7 +7,7 @@ import toJson from 'enzyme-to-json';
 
 import { FieldGroup, FinalFormRadio } from '../';
 
-describe('Final form FieldGroup component', () => {
+describe.skip('Final form FieldGroup component', () => {
   const Group = ({ validateOnMount }) => (
     <Form
       onSubmit={() => {}}
