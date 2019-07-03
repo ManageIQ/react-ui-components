@@ -52,6 +52,8 @@ GenericTableRow.propTypes = {
     icon: PropTypes.string,
     label: PropTypes.any,
     value: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.number, PropTypes.bool]),
+    background: PropTypes.string,
+    button: PropTypes.bool,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };

@@ -108,4 +108,10 @@ const FormattingTable = memo(({ values }) => { // eslint-disable-line
     </Col>
   );
 });
+
+FormattingTable.propTypes = {
+  values: PropTypes.shape({
+    columns: PropTypes.arrayOf(PropTypes.object),
+  }),
+};
 export default FormattingTable;
