@@ -46,12 +46,15 @@ const customStyles = {
     position: 'relative',
     top: 10,
   }),
-  option: (provided, { isFocused, isSelected, isMulti }) => ({
+  option: (provided, {
+    isFocused, isSelected, isMulti, breakAll,
+  }) => ({
     ...provided,
     'background-color': isSelected ? '#0088ce' : isFocused ? '#def3ff' : '#ffffff', // eslint-disable-line no-nested-ternary
     'border-color': isSelected ? '#0088ce' : isFocused ? '#bee1f4' : 'transparent', // eslint-disable-line no-nested-ternary
     'border-style': 'solid',
     'border-width': '1px 0',
+    'word-break': breakAll ? 'break-all' : 'break-word',
     color: isSelected ? '#fff' : isFocused ? '#4d5258' : provided.color, // eslint-disable-line no-nested-ternary
     padding: '1px 10px',
     fontWeight: '400',
