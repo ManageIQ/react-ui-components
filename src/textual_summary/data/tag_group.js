@@ -14,6 +14,15 @@ export const tagGroupData = {
       ],
       hoverClass: 'no-hover',
     },
+    {
+      label: 'Other Tags',
+      value: [
+        { icon: 'fa fa-tag', label: 'Test', value: ['Test 1'] },
+        { icon: 'fa fa-tag', label: 'Demo 2', value: ['Policy', '2', '3'] },
+        { value: ['Demo 3'], title: 'Click to display the item', link: 'You clicked on Demo 3' },
+      ],
+      title: 'All Other Tags',
+    },
   ],
   title: 'Smart Management',
 };

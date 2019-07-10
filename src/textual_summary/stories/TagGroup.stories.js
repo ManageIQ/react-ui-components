@@ -6,6 +6,6 @@ import { tagGroupData } from '../data/tag_group';
 
 storiesOf('TextualSummary', module)
   .add('TagGroup', () => {
-    return (<TagGroup items={tagGroupData.items} title={tagGroupData.title} />);
+    return (<TagGroup items={tagGroupData.items} title={tagGroupData.title} onClick={(e) => console.log(e)} />);
   })
 ;

@@ -1557,10 +1557,11 @@ exports[`TextualSummary renders just fine 1`] = `
                 },
               ]
             }
+            onClick={[Function]}
             title="Smart Management"
           >
             <table
-              className="table table-bordered table-striped table-summary-screen"
+              className="table table-bordered table-hover table-striped table-summary-screen"
             >
               <thead>
                 <tr>
@@ -1581,7 +1582,9 @@ exports[`TextualSummary renders just fine 1`] = `
                   >
                     Managed by Zone
                   </td>
-                  <td>
+                  <td
+                    onClick={[Function]}
+                  >
                     <IconOrImage
                       icon="pficon pficon-zone"
                       image={null}
@@ -1592,6 +1595,7 @@ exports[`TextualSummary renders just fine 1`] = `
                         title={null}
                       />
                     </IconOrImage>
+                     
                     Amazon Zone
                   </td>
                 </tr>
@@ -1603,7 +1607,9 @@ exports[`TextualSummary renders just fine 1`] = `
                   >
                     My Company Tags
                   </td>
-                  <td>
+                  <td
+                    onClick={[Function]}
+                  >
                     <IconOrImage
                       icon="fa fa-tag"
                       image={null}
@@ -1614,6 +1620,7 @@ exports[`TextualSummary renders just fine 1`] = `
                         title={null}
                       />
                     </IconOrImage>
+                     
                     No My Company Tags have been assigned
                   </td>
                 </tr>
