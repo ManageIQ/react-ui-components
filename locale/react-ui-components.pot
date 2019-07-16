@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Mon Jun 24 2019 13:51:46 GMT+0200 (Central European "
+"POT-Creation-Date: Tue Jul 16 2019 13:06:31 GMT+0200 (Central European "
 "Summer Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -23,7 +23,7 @@ msgid "Security group name"
 msgstr ""
 
 #: src/amazon-security-form-group/amazon-security-form-group.jsx:91
-msgid "Group mame required"
+msgid "Group name required"
 msgstr ""
 
 #: src/amazon-security-form-group/amazon-security-form-group.jsx:98
@@ -451,11 +451,16 @@ msgstr ""
 msgid "Add/Modify tag"
 msgstr ""
 
-#: src/tagging/components/InnerComponents/TagSelector.js:54
+#: src/tagging/components/InnerComponents/TagSelector.js:55
 msgid "Select tag category"
 msgstr ""
 
-#: src/tagging/components/InnerComponents/TagSelector.js:75
+#: src/tagging/components/InnerComponents/TagSelector.js:56
+#: src/tagging/components/InnerComponents/ValueSelector.js:28
+msgid "No options"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagSelector.js:77
 msgid "Only a single value can be assigned from these categories"
 msgstr ""
 
