@@ -88,7 +88,7 @@ class AmazonSecurityFormGroup extends Component {
                     name="security_group_name"
                     component={FinalFormField}
                     label={__('Security group name')}
-                    validate={required({ msg: __('Group mame required') })}
+                    validate={required({ msg: __('Group name required') })}
                   />
                 </Col>
                 <Col xs={12}>
