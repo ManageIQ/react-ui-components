@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { VmSnapshotForm } from '../../';
 
-describe('Final form input component', () => {
+describe.skip('Final form input component', () => {
   const initialProps = {};
   beforeEach(() => {
     initialProps.onSubmit = jest.fn();
