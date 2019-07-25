@@ -138,12 +138,6 @@ const customStyles = {
   }),
   multiValue: (provided, { isDisabled }) => ({
     ...provided,
-    // Long multiple values truncating ~18chars
-    maxWidth: '135px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    // End
     background: 'transparent',
     paddigTop: 0,
     paddingBottom: 0,
