@@ -12,7 +12,7 @@ const TimelineTabWarning = ({ columnOptions, columns }) => (!isDateTime(columns)
     <Col xs={12}>
       <h3>
         <Icon type="fa" name="clock-o" className="report-editor-icon" />
-        {__('Timeline tab is not available until at least')} <strong>{__('1 time-field from Columns tab')}</strong> {__('has been selected.')}
+        {__('Timeline tab is not available until at least 1 time-field from Columns tab has been selected.')}
       </h3>
     </Col>
     <Col xs={12}>
