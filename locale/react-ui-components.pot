@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Tue Jul 16 2019 13:06:31 GMT+0200 (Central European "
+"POT-Creation-Date: Wed Aug 07 2019 13:42:09 GMT+0200 (Central European "
 "Summer Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -127,7 +127,7 @@ msgid "Select a customer tag to assign"
 msgstr ""
 
 #: src/rbac-forms/rbacAssignUserTags.jsx:153
-#: src/tagging/components/InnerComponents/CategoryModifier.js:39
+#: src/tagging/components/InnerComponents/CategoryModifier.js:36
 msgid "Category"
 msgstr ""
 
@@ -254,7 +254,6 @@ msgid "sort field from Summary tab "
 msgstr ""
 
 #: src/report-editor/charts-warning.jsx:15
-#: src/report-editor/timeline-warning.jsx:15
 msgid "has been selected."
 msgstr ""
 
@@ -432,11 +431,9 @@ msgid "Sort Criteria"
 msgstr ""
 
 #: src/report-editor/timeline-warning.jsx:15
-msgid "Timeline tab is not available until at least"
-msgstr ""
-
-#: src/report-editor/timeline-warning.jsx:15
-msgid "1 time-field from Columns tab"
+msgid ""
+"Timeline tab is not available until at least 1 time-field from Columns tab "
+"has been selected."
 msgstr ""
 
 #: src/report-editor/timeline-warning.jsx:21
@@ -462,6 +459,10 @@ msgstr ""
 
 #: src/tagging/components/InnerComponents/TagSelector.js:77
 msgid "Only a single value can be assigned from these categories"
+msgstr ""
+
+#: src/tagging/components/InnerComponents/TagView.js:24
+msgid "No Assigned Tags"
 msgstr ""
 
 #: src/tagging/components/InnerComponents/TagView.js:51
