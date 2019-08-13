@@ -44,13 +44,14 @@ export const ToolbarList = (props) => {
   }
 
   return (
-    <DropdownButton disabled={!isToolbarEnabled(props)} title={toolbarListTitle(props)}>
-      { props.items.filter(i => !i.hidden).map(item => <ToolbarListItem {...item} />) }
+    <DropdownButton id={props.id} disabled={!isToolbarEnabled(props)} title={toolbarListTitle(props)}>
+      { props.items.filter(i => !i.hidden).map(item => <ToolbarListItem key={item.id} {...item} />) }
     </DropdownButton>
   );
 };
 
 ToolbarList.propTypes = {
+  id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.any),
   // dropdownClass: PropTypes.string,
   // title: PropTypes.string,

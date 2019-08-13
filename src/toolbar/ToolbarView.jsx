@@ -4,10 +4,11 @@ import { adjustColor } from './utility';
 
 const classNames = require('classnames');
 
-export const ToolbarView = props => (
+export const ToolbarView = ({ views, onClick }) => (
   <div className="toolbar-pf-view-selector pull-right form-group">
-    { props.views.map(view => (
+    {views.map(view => (
       <button
+        key={view.id}
         id={view.id}
         name={view.name}
         title={view.title}
@@ -17,7 +18,7 @@ export const ToolbarView = props => (
         data-send_checked={view.send_checked ? 'true' : ''}
         data-prompt={view.prompt}
         data-popup={view.popup}
-        onClick={props.onClick}
+        onClick={() => onClick(view)}
       >
         <i className={view.icon} style={{ color: adjustColor(view.color, view.enabled) }} />
       </button>
@@ -28,6 +29,6 @@ export const ToolbarView = props => (
 
 ToolbarView.propTypes = {
   views: PropTypes.arrayOf(PropTypes.any),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 

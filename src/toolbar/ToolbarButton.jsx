@@ -50,7 +50,7 @@ export const ToolbarButton = props => (
     data-send_checked={props.send_checked ? 'true' : ''}
     data-prompt={props.prompt}
     data-popup={props.popup}
-    onClick={props.onClick}
+    onClick={() => props.onClick(props)}
   >
     { ButtonIcon(props) }
     { props.text }
@@ -67,11 +67,11 @@ ToolbarButton.propTypes = {
   url_parms: PropTypes.any,
   send_checked: PropTypes.bool,
   prompt: PropTypes.string,
-  popup: PropTypes.string,
+  popup: PropTypes.bool,
   text: PropTypes.string,
   data: PropTypes.any,
   selected: PropTypes.bool,
   enabled: PropTypes.bool,
   // hidden: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };

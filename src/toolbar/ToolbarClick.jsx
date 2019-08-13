@@ -35,7 +35,7 @@ export const ToolbarClick = props => (
     data-prompt={props.prompt}
     data-popup={props.popup}
     data-url={props.url}
-    onClick={props.onClick}
+    onClick={props.onClick && (() => props.onClick(props))}
   >
     { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
     { props.img_url && !props.icon &&
@@ -59,7 +59,7 @@ ToolbarClick.propTypes = {
   send_checked: PropTypes.bool,
   prompt: PropTypes.string,
   confirm: PropTypes.string,
-  popup: PropTypes.string,
+  popup: PropTypes.bool,
   img_url: PropTypes.string,
   url: PropTypes.string,
   url_parms: PropTypes.string,

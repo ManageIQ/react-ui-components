@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
-import some from 'lodash/some';
 
 import './styles.scss';
 
@@ -41,18 +40,15 @@ const toolbarGroupHasContent = group =>
     group.filter(item => item &&
       (isButtonOrSelect(item) || isCustom(item))).length !== 0;
 
-const buttonCase = (item, onClick) => {
+const buttonCase = (item, index, onClick) => {
   if (isButton(item)) {
-    return <ToolbarButton {...item} onClick={onClick} />;
+    return <ToolbarButton key={index} {...item} onClick={onClick} />;
   } else if (isButtonTwoState(item) && (item.id.indexOf('view_') === -1)) {
-    return <ToolbarButton {...item} onClick={onClick} />;
+    return <ToolbarButton key={index} {...item} onClick={onClick} />;
   } else if (isButtonSelect(item) && (item.items.length > 0)) {
-    return <ToolbarList {...item} onClick={onClick} />;
+    return <ToolbarList key={index} {...item} onClick={onClick} />;
   } else if (isKebabMenu(item) && (item.items.length > 0)) {
-    console.log('item: ');
-    console.log(item);
-    console.log('KEBAB');
-    return <ToolbarKebab {...item} onClick={onClick} />;
+    return <ToolbarKebab key={index} {...item} onClick={onClick} />;
   } else if (isCustom(item) && item.args && item.args.html) {
     return (
       // ng-bind-html="vm.trustAsHtml(item.args.html)"
@@ -86,13 +82,13 @@ const ToolbarGroup = props => (
   <span
     className={classNames('miq-toolbar-group', { 'form-group': !toolbarHasCustomContent(props.group) })}
   >
-    {props.group.filter(i => !i.hidden).map(i => buttonCase(i, props.onClick))}
+    {props.group.filter(i => !i.hidden).map((i, index) => buttonCase(i, index, props.onClick))}
   </span>
 );
 
 ToolbarGroup.propTypes = {
   group: PropTypes.arrayOf(PropTypes.any),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
 
 /*
@@ -117,8 +113,8 @@ export const Toolbar = props => (
   <div className="toolbar-pf-actions miq-toolbar-actions">
     { props.groups
       .filter(toolbarGroupHasContent)
-      .map(group =>
-        <ToolbarGroup onClick={props.onClick} group={collapseCustomGroups(group)} />)
+      .map((group, index) =>
+        <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
     }
     <ToolbarView onClick={props.onClick} views={props.views} />
   </div>
@@ -127,5 +123,5 @@ export const Toolbar = props => (
 Toolbar.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
