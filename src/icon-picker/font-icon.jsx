@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-const FontIcon = memo(({ type, icon, isActive }) => (
-  <i className={`${type} ${icon} iconlist-item ${isActive ? 'active' : ''}`} title={`.${type}.${icon}`} />
+const FontIcon = memo(({ type, icon }) => (
+  <i className={`${type} ${icon} icon-list-item`} title={`.${type}.${icon}`} />
 ));
 
-FontIcon.propTypes = { type: PropTypes.string, icon: PropTypes.string, isActive: PropTypes.bool };
+FontIcon.propTypes = { type: PropTypes.string, icon: PropTypes.string };
 
 export default FontIcon;

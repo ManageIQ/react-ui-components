@@ -14,7 +14,7 @@ const IconPicker = ({ iconTypes }) => {
   return (
     <div className="react-ui-components-icon-picker">
       <ButtonGroup>
-        <Button className="icon-btn"><i id="selected-icon" className={`${selectedType} ${selectedIcon}`} title={`.${selectedIcon}`} /></Button>
+        <Button className="icon-picker-btn"><i id="selected-icon" className={`${selectedType} ${selectedIcon}`} title={`.${selectedIcon}`} /></Button>
         <Button onClick={() => changeClicked(open => !open)}><Icon type="fa" name="angle-down" /></Button>
       </ButtonGroup>
       <Modal show={clicked} onHide={() => changeClicked(false)}>
@@ -31,11 +31,11 @@ const IconPicker = ({ iconTypes }) => {
           <Modal.Title>Select an icon</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="fonticon-modal">
+          <div className="icon-list-modal">
             <Tabs id="font-icon-tabs" activekey={activeTab} animation={false} onSelect={tab => tabChanged(tab)}>
               {iconTypes.map(({ title, type }, index) => (
                 <Tab eventKey={index} key={type} title={title}>
-                  <table>
+                  <table className="icon-list">
                     <tbody>
                       <IconsList isVisible={index === activeTab} activeIcon={icon} type={type} iconChanged={iconChanged} />
                     </tbody>

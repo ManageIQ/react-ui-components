@@ -31,8 +31,8 @@ class IconsList extends Component {
     return this.state.icons.map(row => (
       <tr key={row.toString()}>
         {row.map(icon => (
-          <td key={icon} onClick={() => iconChanged(icon)}>
-            <FontIcon type={type} icon={icon} isActive={activeIcon === icon} />
+          <td className={`icon-list-cell ${activeIcon === icon ? 'active' : ''}`} key={icon} onClick={() => iconChanged(icon)} >
+            <FontIcon type={type} icon={icon} />
           </td>))
           }
       </tr>
