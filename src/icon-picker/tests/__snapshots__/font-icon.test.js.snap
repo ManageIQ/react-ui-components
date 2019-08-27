@@ -2,14 +2,14 @@
 
 exports[`FontIcon test should render correctly 1`] = `
 <i
-  className="fa crosshairs iconlist-item "
+  className="fa crosshairs icon-list-item"
   title=".fa.crosshairs"
 />
 `;
 
 exports[`FontIcon test should render correctly in active state 1`] = `
 <i
-  className="fa crosshairs iconlist-item active"
+  className="fa crosshairs icon-list-item"
   title=".fa.crosshairs"
 />
 `;

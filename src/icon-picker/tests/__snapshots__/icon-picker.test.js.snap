@@ -15,7 +15,7 @@ exports[`IconList test should render correctly 1`] = `
       block={false}
       bsClass="btn"
       bsStyle="default"
-      className="icon-btn"
+      className="icon-picker-btn"
       disabled={false}
     >
       <i
@@ -92,7 +92,7 @@ exports[`IconList test should render correctly 1`] = `
       componentClass="div"
     >
       <div
-        className="fonticon-modal"
+        className="icon-list-modal"
       >
         <Uncontrolled(Tabs)
           activekey={0}
@@ -105,7 +105,9 @@ exports[`IconList test should render correctly 1`] = `
             key="fa"
             title="Font Awesome"
           >
-            <table>
+            <table
+              className="icon-list"
+            >
               <tbody>
                 <IconsList
                   iconChanged={[Function]}
@@ -120,7 +122,9 @@ exports[`IconList test should render correctly 1`] = `
             key="pf"
             title="PatternFly"
           >
-            <table>
+            <table
+              className="icon-list"
+            >
               <tbody>
                 <IconsList
                   iconChanged={[Function]}

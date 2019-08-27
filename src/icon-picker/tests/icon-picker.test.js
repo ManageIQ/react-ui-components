@@ -103,6 +103,6 @@ describe('IconList test', () => {
     wrapper.find('a').at(1).simulate('click');
     expect(wrapper.find(IconsList).at(1).instance().state.icons).toEqual([['pf-plus']]);
     wrapper.update();
-    expect(wrapper.find(Modal).find('i').props().className).toEqual('pf pf-plus iconlist-item ');
+    expect(wrapper.find(Modal).find('i').props().className).toEqual('pf pf-plus icon-list-item');
   });
 });

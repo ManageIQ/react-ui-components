@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 import { shallow, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import IconList from '../icon-list';
@@ -6,6 +6,15 @@ import IconList from '../icon-list';
 describe('IconList test', () => {
   let intialProps;
   let styleTag;
+
+  const TableWrapper = ({ children, ...props }) => (
+    <table>
+      <tbody>
+        {cloneElement(children, { ...props })}
+      </tbody>
+    </table>
+  );
+
   beforeEach(() => {
     intialProps = {
       activeIcon: 'crosshairs',
@@ -13,7 +22,6 @@ describe('IconList test', () => {
       iconChanged: jest.fn(),
     };
   });
-
 
   beforeAll(() => {
     styleTag = document.createElement('style');
@@ -32,26 +40,27 @@ describe('IconList test', () => {
   afterAll(() => {
     document.removeChild(styleTag);
   });
+
   it('should render correctly in visible state', () => {
-    const wrapper = shallow(<IconList {...intialProps} isVisible />);
+    const wrapper = shallow(<TableWrapper><IconList {...intialProps} isVisible /></TableWrapper>).find(IconList).dive();
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
   it('should render correctly', () => {
-    const wrapper = shallow(<IconList {...intialProps} />);
+    const wrapper = shallow(<TableWrapper><IconList {...intialProps} /></TableWrapper>).find(IconList).dive();
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
   it('should update state after isVisible change', () => {
-    const wrapper = mount(<IconList {...intialProps} />);
-    expect(wrapper.state()).toEqual({ icons: undefined });
+    const wrapper = mount(<TableWrapper><IconList {...intialProps} /></TableWrapper>);
+    expect(wrapper.find(IconList).state()).toEqual({ icons: undefined });
     wrapper.setProps({ isVisible: true });
-    expect(wrapper.state()).toEqual({ icons: [['fa-crosshairs', 'fa-foo']] });
+    expect(wrapper.find(IconList).state()).toEqual({ icons: [['fa-crosshairs', 'fa-foo']] });
   });
 
   it('should call onClick correctly', () => {
     const iconChanged = jest.fn();
-    const wrapper = mount(<IconList {...intialProps} isVisible iconChanged={iconChanged} />);
+    const wrapper = mount(<TableWrapper><IconList {...intialProps} isVisible iconChanged={iconChanged} /></TableWrapper>);
     wrapper.find('td').first().simulate('click');
 
     expect(iconChanged).toHaveBeenCalledWith('fa-crosshairs');

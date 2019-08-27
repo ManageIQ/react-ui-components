@@ -7,22 +7,22 @@ exports[`IconList test should render correctly in visible state 1`] = `
   key="fa-crosshairs,fa-foo"
 >
   <td
+    className="icon-list-cell "
     key="fa-crosshairs"
     onClick={[Function]}
   >
-    <Component
+    <Memo()
       icon="fa-crosshairs"
-      isActive={false}
       type="fa"
     />
   </td>
   <td
+    className="icon-list-cell "
     key="fa-foo"
     onClick={[Function]}
   >
-    <Component
+    <Memo()
       icon="fa-foo"
-      isActive={false}
       type="fa"
     />
   </td>
