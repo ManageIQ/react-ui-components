@@ -1,0 +1,31 @@
+.icon-list-modal {
+    .tab-content {
+        height: calc(100vh - 260px);
+        overflow-y: auto !important;
+        overflow-x: hidden; 
+        padding-right: 8px;
+    }
+}
+
+.icon-list {
+    width: 100%
+}
+
+.icon-list-cell {
+    text-align: center;
+    width: calc(100%/12);
+    &.active {
+        background: #0088ce
+    }
+}
+
+.icon-list-item {
+    font-size: 24px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+
+.icon-picker-btn {
+    width: 36px;
+    height: 26px;
+}

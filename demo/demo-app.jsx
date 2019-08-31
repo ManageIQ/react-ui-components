@@ -1,41 +1,16 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { Form, Field } from 'react-final-form';
-import { Form as PfForm, Col, Row, Button, Grid } from 'patternfly-react';
-import { FinalFormSwitch } from '../src/forms';
+import { Grid } from 'patternfly-react';
+import { IconPicker } from '../src/icon-picker';
 
-const onSubmit = values => console.log('onSubmit: ', values);
+const IconTypes = [
+  { type: 'pf', title: 'Patternfly' },
+  { type: 'fa', title: 'Font Awesome' },
+];
 
 const wrapperComponent = () => (
   <Grid>
-    <h1>Select</h1>
-    <Form
-      onSubmit={onSubmit}
-      initialValues={{
-        switch: false,
-      }}
-      render={({ handleSubmit }) => (
-        <PfForm
-          horizontal
-          onSubmit={handleSubmit}
-        >
-          <Row>
-            <Col xs={12}>
-              <Field
-                name="switch"
-                id="switch"
-                render={({ input, meta }) => <FinalFormSwitch input={input} meta={meta} label="Switch component" />}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Button type="submit">Submit</Button>
-            </Col>
-          </Row>
-        </PfForm>
-      )}
-    />
+    <IconPicker iconTypes={IconTypes} />
   </Grid>
 );
 

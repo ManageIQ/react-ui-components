@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconList test should render correctly 1`] = `
+<div
+  className="react-ui-components-icon-picker"
+>
+  <ButtonGroup
+    block={false}
+    bsClass="btn-group"
+    justified={false}
+    vertical={false}
+  >
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      className="icon-picker-btn"
+      disabled={false}
+    >
+      <i
+        className="undefined undefined"
+        id="selected-icon"
+        title=".undefined"
+      />
+    </Button>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+    >
+      <Icon
+        name="angle-down"
+        type="fa"
+      />
+    </Button>
+  </ButtonGroup>
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
+    bsClass="modal"
+    dialogComponentClass={[Function]}
+    enforceFocus={true}
+    keyboard={true}
+    manager={
+      ModalManager {
+        "add": [Function],
+        "containers": Array [],
+        "data": Array [],
+        "handleContainerOverflow": true,
+        "hideSiblingNodes": true,
+        "isTopModal": [Function],
+        "modals": Array [],
+        "remove": [Function],
+      }
+    }
+    onHide={[Function]}
+    renderBackdrop={[Function]}
+    restoreFocus={true}
+    show={false}
+  >
+    <ModalHeader
+      bsClass="modal-header"
+      closeButton={false}
+      closeLabel="Close"
+    >
+      <button
+        aria-hidden="true"
+        aria-label="Close"
+        className="close"
+        id="close-icon-picker-modal"
+        onClick={[Function]}
+      >
+        <Icon
+          name="close"
+          type="pf"
+        />
+      </button>
+      <ModalTitle
+        bsClass="modal-title"
+        componentClass="h4"
+      >
+        Select an icon
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody
+      bsClass="modal-body"
+      componentClass="div"
+    >
+      <div
+        className="icon-list-modal"
+      >
+        <Uncontrolled(Tabs)
+          activekey={0}
+          animation={false}
+          id="font-icon-tabs"
+          onSelect={[Function]}
+        >
+          <Tab
+            eventKey={0}
+            key="fa"
+            title="Font Awesome"
+          >
+            <table
+              className="icon-list"
+            >
+              <tbody>
+                <IconsList
+                  iconChanged={[Function]}
+                  isVisible={true}
+                  type="fa"
+                />
+              </tbody>
+            </table>
+          </Tab>
+          <Tab
+            eventKey={1}
+            key="pf"
+            title="PatternFly"
+          >
+            <table
+              className="icon-list"
+            >
+              <tbody>
+                <IconsList
+                  iconChanged={[Function]}
+                  isVisible={false}
+                  type="pf"
+                />
+              </tbody>
+            </table>
+          </Tab>
+        </Uncontrolled(Tabs)>
+      </div>
+    </ModalBody>
+    <ModalFooter
+      bsClass="modal-footer"
+      componentClass="div"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="primary"
+        disabled={true}
+        id="apply-icon-picker-icon"
+        onClick={[Function]}
+      >
+        Apply
+      </Button>
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="default"
+        className="btn-cancel"
+        disabled={false}
+        id="cancel-icon-picker-modal"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;

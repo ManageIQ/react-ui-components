@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconList test should render correctly 1`] = `""`;
+
+exports[`IconList test should render correctly in visible state 1`] = `
+<tr
+  key="fa-crosshairs,fa-foo"
+>
+  <td
+    className="icon-list-cell "
+    key="fa-crosshairs"
+    onClick={[Function]}
+  >
+    <Memo()
+      icon="fa-crosshairs"
+      type="fa"
+    />
+  </td>
+  <td
+    className="icon-list-cell "
+    key="fa-foo"
+    onClick={[Function]}
+  >
+    <Memo()
+      icon="fa-foo"
+      type="fa"
+    />
+  </td>
+</tr>
+`;
