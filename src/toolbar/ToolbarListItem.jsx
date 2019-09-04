@@ -15,4 +15,5 @@ ToolbarListItem.propTypes = {
   id: PropTypes.string.isRequired,
   enabled: PropTypes.bool,
   type: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

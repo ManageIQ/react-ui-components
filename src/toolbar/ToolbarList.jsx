@@ -45,7 +45,7 @@ export const ToolbarList = (props) => {
 
   return (
     <DropdownButton id={props.id} disabled={!isToolbarEnabled(props)} title={toolbarListTitle(props)}>
-      { props.items.filter(i => !i.hidden).map(item => <ToolbarListItem key={item.id} {...item} />) }
+      { props.items.filter(i => !i.hidden).map(item => <ToolbarListItem key={item.id} {...item} onClick={props.onClick} />) }
     </DropdownButton>
   );
 };
@@ -53,10 +53,10 @@ export const ToolbarList = (props) => {
 ToolbarList.propTypes = {
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.any),
+  onClick: PropTypes.func.isRequired,
   // dropdownClass: PropTypes.string,
   // title: PropTypes.string,
   // icon: PropTypes.string,
   // color: PropTypes.string,
   // text: PropTypes.string,
-  // onItemClick: (args: {item: any}) => void;
 };
