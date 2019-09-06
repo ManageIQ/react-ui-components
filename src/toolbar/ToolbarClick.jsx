@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 
 import { adjustColor } from './utility';
 
-/*
- * from ~/Projects/ui-components/src/toolbar/components/toolbar-menu/toolbar-item-click.html
- */
-
 const iconStyle = item => (
   item.text ?
     { color: adjustColor(item.color, item.enabled), marginRight: '5px' } :
     { color: adjustColor(item.color, item.enabled) }
-); /* FIXME: test null, or classNames */
+);
 
 /*    ng-hide="item.hidden" */
 
@@ -35,7 +31,7 @@ export const ToolbarClick = props => (
     data-prompt={props.prompt}
     data-popup={props.popup}
     data-url={props.url}
-    onClick={props.onClick && (() => props.onClick(props))}
+    onClick={props.onClick && props.enabled ? (() => props.onClick(props)) : null}
   >
     { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
     { props.img_url && !props.icon &&
@@ -70,5 +66,6 @@ ToolbarClick.propTypes = {
     target: PropTypes.string,
     toggle: PropTypes.string,
   }),
+  enabled: PropTypes.bool,
   onClick: PropTypes.func,
 };

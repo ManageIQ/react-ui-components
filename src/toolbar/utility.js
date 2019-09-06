@@ -10,3 +10,14 @@ export const adjustColor = (value, enabled) => {
 
   return `rgba(${r}, ${g}, ${b}, 0.5)`;
 };
+
+export const isEnabled = (onwhen, count) => {
+  if (!onwhen || onwhen.length < 1) {
+    return true;
+  }
+
+  const plus = onwhen[-1] === '+';
+  const number = parseInt(onwhen, 10);
+
+  return plus ? count >= number : count === number;
+};

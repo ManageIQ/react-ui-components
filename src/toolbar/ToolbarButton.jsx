@@ -1,6 +1,8 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { adjustColor } from './utility';
+
+import { adjustColor, isEnabled } from './utility';
+import CountContext from './ToolbarContext';
 
 const classNames = require('classnames');
 
@@ -33,29 +35,35 @@ ButtonIcon.propTypes = {
  * FIXME: where did this come from   style={props.enabled && props.hidden ? {} : { display: 'none !important' }}
  * style={props.hidden ? { display: 'none !important' } : {}}
  */
-export const ToolbarButton = props => (
-  <button
-    type="button"
-    id={props.id}
-    name={props.name}
-    title={props.title}
-    className={classNames('btn btn-default', { active: props.selected, disabled: !props.enabled })}
-    data-explorer={props.explorer}
-    data-confirm-tb={props.confirm}
-    data-function={props.data && props.data.function}
-    data-function-data={props.data && props.data['function-data']}
-    data-click={props.id}
-    data-url={props.url}
-    data-url_parms={props.url_parms}
-    data-send_checked={props.send_checked ? 'true' : ''}
-    data-prompt={props.prompt}
-    data-popup={props.popup}
-    onClick={() => props.onClick(props)}
-  >
-    { ButtonIcon(props) }
-    { props.text }
-  </button>
-);
+export const ToolbarButton = (props) => {
+  const count = useContext(CountContext);
+  const disabled = !props.enabled || !isEnabled(props.onwhen, count);
+
+  return (
+    <button
+      type="button"
+      id={props.id}
+      name={props.name}
+      title={props.title}
+      disabled={disabled}
+      className={classNames('btn btn-default', { active: props.selected, disabled })}
+      data-explorer={props.explorer}
+      data-confirm-tb={props.confirm}
+      data-function={props.data && props.data.function}
+      data-function-data={props.data && props.data['function-data']}
+      data-click={props.id}
+      data-url={props.url}
+      data-url_parms={props.url_parms}
+      data-send_checked={props.send_checked ? 'true' : ''}
+      data-prompt={props.prompt}
+      data-popup={props.popup}
+      onClick={() => props.onClick(props)}
+    >
+      { ButtonIcon(props) }
+      { props.text }
+    </button>
+  );
+};
 
 ToolbarButton.propTypes = {
   title: PropTypes.string,
@@ -73,5 +81,6 @@ ToolbarButton.propTypes = {
   selected: PropTypes.bool,
   enabled: PropTypes.bool,
   // hidden: PropTypes.bool,
+  onwhen: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };

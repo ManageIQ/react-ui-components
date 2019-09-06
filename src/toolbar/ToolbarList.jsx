@@ -1,29 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import some from 'lodash/some';
 import { DropdownButton } from 'patternfly-react';
 import { ToolbarListItem } from './ToolbarListItem';
+import { isEnabled } from './utility';
+
+import CountContext from './ToolbarContext';
 
 // const classNames = require('classnames');
-
-/* FIXME ?
-public $onChanges(changesObj: any) {
-  if (changesObj.toolbarList) {
-    this.isEmpty = this.isToolbarEmpty();
-  }
-} */
-
-const isToolbarNonEmpty = props =>
-  props &&
-  props.items &&
-  some(props.items, item => !item.hidden);
-
-const isToolbarEnabled = props =>
-  props &&
-  props.enabled &&
-  props.items &&
-  some(props.items, item => item.enabled);
-
 
 const toolbarListTitle = props => (
   <React.Fragment>
@@ -39,13 +22,32 @@ toolbarListTitle.propTypes = {
 };
 
 export const ToolbarList = (props) => {
-  if (!isToolbarNonEmpty(props)) {
+  const count = useContext(CountContext);
+
+  // Filter out invisible items.
+  const visibleItems = props.items.filter(i => !i.hidden);
+
+  // Do not render at all if no child is visible.
+  if (visibleItems.length === 0) {
     return null;
   }
 
+  // Calculate item's enable state based on item's initial enable state, onwhen and count.
+  // Toolbar is disabled if no item is enabled.
+  let isToolbarEnabled = false;
+  const enabledItems = visibleItems.map((i) => {
+    const enabled = i.enabled && isEnabled(i.onwhen, count);
+    isToolbarEnabled = isToolbarEnabled || enabled;
+
+    return {
+      ...i,
+      enabled,
+    };
+  });
+
   return (
-    <DropdownButton id={props.id} disabled={!isToolbarEnabled(props)} title={toolbarListTitle(props)}>
-      { props.items.filter(i => !i.hidden).map(item => <ToolbarListItem key={item.id} {...item} onClick={props.onClick} />) }
+    <DropdownButton id={props.id} disabled={!isToolbarEnabled} title={toolbarListTitle(props)}>
+      { enabledItems.map(item => <ToolbarListItem key={item.id} {...item} onClick={props.onClick} />) }
     </DropdownButton>
   );
 };

@@ -8,6 +8,7 @@ import { ToolbarView } from './ToolbarView';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarKebab } from './ToolbarKebab';
 import { ToolbarList } from './ToolbarList';
+import CountContext from './ToolbarContext';
 
 const classNames = require('classnames');
 
@@ -109,18 +110,22 @@ ToolbarGroup.propTypes = {
  *    on-item-click="vm.onViewClick({item: item, $event: $event})"
  *    className="miq-view-list"
  */
+
 export const Toolbar = props => (
-  <div className="toolbar-pf-actions miq-toolbar-actions">
-    { props.groups
-      .filter(toolbarGroupHasContent)
-      .map((group, index) =>
-        <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
-    }
-    <ToolbarView onClick={props.onClick} views={props.views} />
-  </div>
+  <CountContext.Provider value={props.count}>
+    <div className="toolbar-pf-actions miq-toolbar-actions">
+      { props.groups
+        .filter(toolbarGroupHasContent)
+        .map((group, index) =>
+          <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
+      }
+      <ToolbarView onClick={props.onClick} views={props.views} />
+    </div>
+  </CountContext.Provider>
 );
 
 Toolbar.propTypes = {
+  count: PropTypes.number.isRequired,
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
   onClick: PropTypes.func.isRequired,
