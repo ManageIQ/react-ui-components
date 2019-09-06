@@ -25,8 +25,12 @@ const ToolbarSubmenu = props => (
     submenu
   >
     { props.items.filter(i => !i.hidden).map(i => (
-      <MenuItem key={i.id} eventKey={i.id}>
-        <ToolbarClick {...i} onClick={props.onClick} />
+      <MenuItem
+        key={i.id}
+        eventKey={i.id}
+        onClick={props.onClick && i.enabled ? (() => props.onClick(i)) : null}
+      >
+        <ToolbarClick {...i} />
       </MenuItem>
     )) }
   </HorizontalNavMenuItem>

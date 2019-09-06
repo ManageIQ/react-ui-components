@@ -31,7 +31,6 @@ export const ToolbarClick = props => (
     data-prompt={props.prompt}
     data-popup={props.popup}
     data-url={props.url}
-    onClick={props.onClick && props.enabled ? (() => props.onClick(props)) : null}
   >
     { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
     { props.img_url && !props.icon &&
@@ -66,6 +65,4 @@ ToolbarClick.propTypes = {
     target: PropTypes.string,
     toggle: PropTypes.string,
   }),
-  enabled: PropTypes.bool,
-  onClick: PropTypes.func,
 };

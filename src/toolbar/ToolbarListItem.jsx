@@ -6,7 +6,12 @@ import { ToolbarClick } from './ToolbarClick';
 export const ToolbarListItem = props => (
   props.type === 'separator' ?
     <MenuItem key={props.id} disabled={!props.enabled} eventKey={props.id} divider /> :
-    <MenuItem key={props.id} disabled={!props.enabled} eventKey={props.id} >
+    <MenuItem
+      key={props.id}
+      disabled={!props.enabled}
+      eventKey={props.id}
+      onClick={props.onClick && props.enabled ? (() => props.onClick(props)) : null}
+    >
       <ToolbarClick {...props} />
     </MenuItem>
 );
