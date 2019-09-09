@@ -16,10 +16,8 @@ class Tagging extends React.Component {
 
     if (this.props.options && this.props.options.onlySingleTag) {
       this.props.onSingleTagValueChange(action);
-    } else if (this.findSelectedTag(this.props.selectedTagCategory).singleValue) {
-      this.props.onTagValueChange(action, this.props.options);
     } else {
-      this.props.onTagMultiValueChange(action, this.props.options);
+      this.props.onTagValueChange(action, this.props.options);
     }
   };
 
@@ -30,17 +28,21 @@ class Tagging extends React.Component {
     this.props.onTagDeleteClick({ tagCategory, tagValue }, this.props.options);
   };
 
-  getvalues = () =>
+  getCategoryValues = () =>
     (this.findSelectedTag(this.props.selectedTagCategory) &&
       this.findSelectedTag(this.props.selectedTagCategory).values) ||
     [];
 
+  getSelectedCategoryValues = () =>
+    this.props.assignedTags.find(tag => tag.id === this.props.selectedTagCategory.id) ||
+    { values: [] };
+
   findSelectedTag = (selectedTagCategory = { id: undefined }) =>
     this.props.tags.find(tag => tag.id === selectedTagCategory.id);
 
-  isSelectedCategoryMultiValue = selectedTagCategory =>
-    (this.findSelectedTag(selectedTagCategory.id) &&
-      this.findSelectedTag(selectedTagCategory.id).singleValue) === true;
+  isMulti = selectedTagCategory =>
+    this.findSelectedTag(selectedTagCategory) &&
+    this.findSelectedTag(selectedTagCategory).singleValue === false;
 
   tagCategories = this.props.tags.map(tag => ({
     description: tag.description,
@@ -61,9 +63,9 @@ class Tagging extends React.Component {
               />
               <ValueModifier
                 onTagValueChange={this.onTagValueChange}
-                selectedTagValue={this.props.selectedTagValue}
-                multiValue={this.isSelectedCategoryMultiValue(this.props.selectedTagCategory)}
-                values={this.getvalues()}
+                selectedTagValues={this.getSelectedCategoryValues().values}
+                multiValue={this.isMulti(this.props.selectedTagCategory)}
+                values={this.getCategoryValues()}
               />
             </TagModifier>
           </Col>
@@ -82,13 +84,11 @@ class Tagging extends React.Component {
 
 Tagging.propTypes = {
   selectedTagCategory: TaggingPropTypes.category,
-  selectedTagValue: TaggingPropTypes.value,
   tags: TaggingPropTypes.tags,
   assignedTags: TaggingPropTypes.tags,
   onTagDeleteClick: PropTypes.func.isRequired,
   onTagCategoryChange: PropTypes.func.isRequired,
   onTagValueChange: PropTypes.func.isRequired,
-  onTagMultiValueChange: PropTypes.func.isRequired,
   onSingleTagValueChange: PropTypes.func.isRequired,
   options: PropTypes.shape({
     onlySingleTag: PropTypes.bool,

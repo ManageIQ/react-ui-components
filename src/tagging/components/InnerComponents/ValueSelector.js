@@ -1,56 +1,75 @@
 import React from 'react';
-import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { __ } from '../../../global-functions';
 import TaggingPropTypes from '../TaggingPropTypes';
-import customStyles from '../../../forms/select-styles';
+import Select from '../../../forms/pf-select';
 
 class ValueSelector extends React.Component {
-  getvalues = values =>
+  getValues = values =>
     values.map(tag => ({ value: tag.id, label: tag.description }));
 
-  handleChange = (selectedOption) => {
-    this.props.onTagValueChange({
-      description: selectedOption.label,
-      id: selectedOption.value,
-    });
+  /**
+   * Maps the selected options for the select box input.
+   *
+   */
+  getActiveValues = () => {
+    if (this.props.selectedOption.length) {
+      return this.props.multiValue
+        ? this.props.selectedOption.map(el => el.id)
+        : this.props.selectedOption[0].id;
+    }
+    return [];
+  };
+
+  /**
+   * Handles the single and multi select value changes.
+   *
+   * Sends an Array of {description, id} to the callback.
+   * If null is received sends and empty array instead
+   * (happens when removing elements one by one).
+   * On reset button (multi select) sends the default empty array.
+   *
+   * @param val [] Currently selected values.
+   */
+  handleChange = (val) => {
+    // Deleting all the multi selected items
+    if (!val) {
+      return this.props.onTagValueChange([]);
+    }
+
+    return this.props.onTagValueChange((this.props.values.filter(el => (Array.isArray(val) ? val.includes(el.id) : el.id === val))));
   };
 
   selector = (value, values) => (
     <Select
-      id="cat_tags_div"
-      className="final-form-select"
-      optionClassName="selected-option final-form-select-option"
-      styles={customStyles}
-      name="form-field-name"
-      value={value}
-      placeholder={__('Select tag value')}
-      noOptionsMessage={() => __('No options')}
-      onChange={this.handleChange}
-      classNamePrefix="react-select"
+      meta={{}}
       options={values}
-      clearable={false}
-      ignoreCase
+      input={{ onChange: this.handleChange, name: 'ValueSelector', value }}
+      multi={this.props.multiValue}
+      simpleValue
+      clearable
+      placeholder={__('Select tag value')}
     />
   );
 
   render() {
-    const val = this.props.selectedOption.id ? { value: this.props.selectedOption.id, label: this.props.selectedOption.description } : null;
     return this.selector(
-      val,
-      this.getvalues(this.props.values),
+      this.getActiveValues(),
+      this.getValues(this.props.values),
     );
   }
 }
 
 ValueSelector.propTypes = {
-  selectedOption: TaggingPropTypes.value,
+  selectedOption: PropTypes.arrayOf(TaggingPropTypes.value),
   values: PropTypes.arrayOf(TaggingPropTypes.value).isRequired,
   onTagValueChange: PropTypes.func.isRequired,
+  multiValue: PropTypes.bool,
 };
 
 ValueSelector.defaultProps = {
-  selectedOption: {},
+  multiValue: false,
+  selectedOption: [],
 };
 
 export default ValueSelector;
