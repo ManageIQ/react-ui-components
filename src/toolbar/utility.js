@@ -16,7 +16,7 @@ export const isEnabled = (onwhen, count) => {
     return true;
   }
 
-  const plus = onwhen[-1] === '+';
+  const plus = onwhen.slice(-1) === '+';
   const number = parseInt(onwhen, 10);
 
   return plus ? count >= number : count === number;
