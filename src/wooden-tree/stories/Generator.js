@@ -58,7 +58,21 @@ export function generator() {
         {
           text: 'Child 4 - Changed background color - with transparency',
           icon: 'fa fa-circle',
-          iconBackground: 'rgba(0,0,0,0.5',
+          iconBackground: 'rgba(0,0,0,0.5)',
+        },
+      ],
+    },
+    {
+      text: 'Parent 5 - Not selectabe with children (click on text triggers expand/collapse)',
+      selectable: false,
+      nodes: [
+        {
+          text: 'Child 1 - Changed icon color',
+          icon: 'fa fa-circle ',
+        },
+        {
+          text: 'Child 2 - Changed background color',
+          icon: 'fa fa-circle',
         },
       ],
     },
