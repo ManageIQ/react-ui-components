@@ -4,10 +4,7 @@ import { Toolbar } from '../src/toolbar';
 
 const toolbarData = require('../src/toolbar/data/toolbar.json');
 const viewData = require('../src/toolbar/data/toolbar-view.json');
-// const toolbarBigData = require('../src/toolbar/data/toolbar-big.json');
-const toolbarBigData = require('../src/toolbar/data/toolbar-3.json');
-
-// const onSubmit = values => console.log('onSubmit: ', values);
+const toolbarBigData = require('../src/toolbar/data/toolbar-big.json');
 
 const wrapperComponent = () => (
   <React.Fragment>

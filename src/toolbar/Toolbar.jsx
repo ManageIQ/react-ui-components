@@ -65,7 +65,7 @@ const collapseCustomGroups = itemsGroup => (
     }, [{ type: ButtonType.KEBAB, items: [] }])
 );
 
-const ToolbarGroup = props => (
+export const ToolbarGroup = props => (
   <span className="miq-toolbar-group form-group">
     {props.group.filter(i => !i.hidden).map((i, index) => buttonCase(i, index, props.onClick))}
   </span>
@@ -76,31 +76,13 @@ ToolbarGroup.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-/*
- * based on ~/Projects/ui-components/src/toolbar/components/toolbar-menu/toolbar-menu.html
- */
-
-/* loop over groups
- *   in each group
- *   loop over items
- *     case over button type
- *     custom_html
- *   end loop
- * end loop
- *
- *
- *  <ToolbarView                 FIXME
- *    views={props.views}
- *    on-item-click="vm.onViewClick({item: item, $event: $event})"
- *    className="miq-view-list"
- */
-
 export const Toolbar = props => (
   <CountContext.Provider value={props.count}>
     <div className="toolbar-pf-actions miq-toolbar-actions">
       { props.groups
         .filter(toolbarGroupHasContent)
         .map((group, index) =>
+          /* eslint react/no-array-index-key: "off" */
           <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
       }
       <ToolbarView onClick={props.onClick} views={props.views} />
