@@ -85,7 +85,7 @@ export const Toolbar = props => (
           /* eslint react/no-array-index-key: "off" */
           <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
       }
-      <ToolbarView onClick={props.onClick} views={props.views} />
+      <ToolbarView onClick={props.onViewClick} views={props.views} />
     </div>
   </CountContext.Provider>
 );
@@ -95,4 +95,5 @@ Toolbar.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
   onClick: PropTypes.func.isRequired,
+  onViewClick: PropTypes.func.isRequired,
 };

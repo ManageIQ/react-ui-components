@@ -15,6 +15,7 @@ storiesOf('Toolbar', module)
         <div className="toolbar-pf row">
           <Toolbar
             onClick={action('Toolbar click')}
+            onViewClick={action('Toolbar click')}
             groups={toolbarData}
             views={viewData}
           />
@@ -23,10 +24,12 @@ storiesOf('Toolbar', module)
       <div style={{ padding: 16 }}>
         <div className="toolbar-pf row">
           <Toolbar
+            onClick={action('Toolbar click')}
+            onViewClick={action('Toolbar click')}
             groups={toolbarBigData}
             views={viewData}
           />
         </div>
       </div>
-     </React.Fragment>
+    </React.Fragment>
   ));

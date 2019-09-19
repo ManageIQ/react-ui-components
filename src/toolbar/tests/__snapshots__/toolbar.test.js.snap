@@ -2,7 +2,6 @@
 
 exports[`Toolbar Well it works ;-) 1`] = `
 ShallowWrapper {
-  "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Toolbar
     count={0}
@@ -980,6 +979,7 @@ ShallowWrapper {
       ]
     }
     onClick={[Function]}
+    onViewClick={[Function]}
     views={
       Array [
         Object {
@@ -7546,6 +7546,8 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Array [],
 }
 `;
