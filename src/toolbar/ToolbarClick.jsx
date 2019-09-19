@@ -9,36 +9,20 @@ const iconStyle = item => (
     { color: adjustColor(item.color, item.enabled) }
 );
 
-/*    ng-hide="item.hidden" */
-
 export const ToolbarClick = props => (
   <span
     tabIndex={0}
     role="button"
     title={props.title}
     style={props.hidden ? { display: 'none !important' } : {}}
-    data-explorer={props.explorer}
-    data-confirm-tb={props.confirm}
-    data-function={props.data && props.data.function}
-    data-function-data={props.data && props.data['function-data']}
-    data-target={props.data && props.data.target}
-    data-toggle={props.data && props.data.toggle}
-    data-click={props.id}
     name={props.id}
     id={props.id}
-    data-url_parms={props.url_parms}
-    data-send_checked={props.send_checked ? 'true' : ''}
-    data-prompt={props.prompt}
-    data-popup={props.popup}
-    data-url={props.url}
   >
     { props.icon && <i className={props.icon} style={iconStyle(props)} /> }
     { props.img_url && !props.icon &&
       <img
         alt={props.title}
         src={props.img_url}
-        data-enabled={props.img_url}
-        data-disabled={props.img_url}
       />
     }
     <span>{props.text}</span>
@@ -50,19 +34,6 @@ ToolbarClick.propTypes = {
   text: PropTypes.string,
   id: PropTypes.string,
   hidden: PropTypes.bool,
-  explorer: PropTypes.bool,
-  send_checked: PropTypes.bool,
-  prompt: PropTypes.string,
-  confirm: PropTypes.string,
-  popup: PropTypes.bool,
   img_url: PropTypes.string,
-  url: PropTypes.string,
-  url_parms: PropTypes.string,
   icon: PropTypes.string,
-  data: PropTypes.shape({
-    function: PropTypes.string,
-    'function-data': PropTypes.string,
-    target: PropTypes.string,
-    toggle: PropTypes.string,
-  }),
 };
