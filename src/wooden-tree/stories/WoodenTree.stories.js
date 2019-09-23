@@ -11,7 +11,7 @@ import combinedReducers from './reducers';
 /** Create the tree from hierarchical data */
 const tree = Tree.convertHierarchicalTree(Tree.initHierarchicalTree(generator()));
 /** The store */
-export const store = createStore(combinedReducers, { treeData: tree });
+const store = createStore(combinedReducers, { treeData: tree });
 
 class App extends React.Component {
   /**
@@ -66,18 +66,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  TreeDataType: state.TreeDataType,
-});
-
-const mapDispatchToProps = {
-  callBack,
-};
-
-const WoodenTreeExample = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+const WoodenTreeExample = connect(null, { callBack })(App);
 
 storiesOf('WoodenTree', module)
   .add('WoodenTreeExample', () => <Provider store={store}><WoodenTreeExample /></Provider>);
