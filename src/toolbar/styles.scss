@@ -42,12 +42,19 @@
 }
 
 .miq-custom-html {
-  .form-group.text, .form-group.has-clear {
+  .form-group.text,
+  .form-group.has-clear {
     padding-right: 20px;
   }
 }
 
 .kebab .btn-group.open .dropdown-toggle {
-   box-shadow: none;
+  box-shadow: none;
 }
+
+// disabled menu-items do not change on click
+.miq-toolbar-group .dropdown-menu > li.disabled > a:active {
+  color: #9c9c9c !important;
+}
+
 

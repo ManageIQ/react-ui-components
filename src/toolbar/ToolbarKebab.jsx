@@ -57,7 +57,7 @@ const KebabListItem = (item, onClick, openId, setIsOpenId) => {
   }
 
   if (item.type === 'buttonSelect') {
-    return <ToolbarSubmenu key={item.id} {...item} onClick={onClick} onSelect={console.log} openId={openId} setIsOpenId={setIsOpenId} />;
+    return <ToolbarSubmenu key={item.id} {...item} onClick={onClick} openId={openId} setIsOpenId={setIsOpenId} />;
   }
 
   return (
@@ -72,7 +72,7 @@ export const ToolbarKebab = (props) => {
 
   return (
     <div className="kebab">
-      <DropdownButton id="menu_kebab" title={<span className="fa fa-ellipsis-v" />}>
+      <DropdownButton onClick={() => setIsOpenId(undefined)} id="menu_kebab" title={<span className="fa fa-ellipsis-v" />}>
         {props.items.map(item => KebabListItem(item, props.onClick, openId, setIsOpenId))}
       </DropdownButton>
     </div>
