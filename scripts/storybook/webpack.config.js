@@ -12,6 +12,9 @@ module.exports = {
   plugins: [
     plugins().extractTextPlugin,
   ],
+  node: {
+    fs: 'empty'
+  },
   module: {
     rules: [
       ...rules,
