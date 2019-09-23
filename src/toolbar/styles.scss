@@ -1,5 +1,4 @@
 // copied: src/styles/toolbar.scss
-
 .dropdown-kebab-pf {
   .dropdown-submenu {
     .dropdown-menu {
@@ -21,7 +20,6 @@
 
 // copied: ui-components/src/styles/ui-components.scss
 // overrides _toolbar.scss to account for intermediate Angular markup and adjusted the margins to properly style wrapped form-groups
-
 .miq-toolbar-actions {
   margin-top: -10px;
   .form-group:first-of-type {

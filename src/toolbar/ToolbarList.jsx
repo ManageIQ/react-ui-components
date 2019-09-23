@@ -6,8 +6,6 @@ import { isEnabled } from './utility';
 
 import CountContext from './ToolbarContext';
 
-// const classNames = require('classnames');
-
 const toolbarListTitle = props => (
   <React.Fragment>
     { props.icon && <i className={props.icon} style={{ color: props.color }} /> }
@@ -56,9 +54,4 @@ ToolbarList.propTypes = {
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.any),
   onClick: PropTypes.func.isRequired,
-  // dropdownClass: PropTypes.string,
-  // title: PropTypes.string,
-  // icon: PropTypes.string,
-  // color: PropTypes.string,
-  // text: PropTypes.string,
 };

@@ -34,7 +34,7 @@ const isButtonOrSelect = item => (
 const toolbarGroupHasContent = group =>
   group &&
     group.filter(item => item &&
-      (isButtonOrSelect(item))).length !== 0;
+      isButtonOrSelect(item)).length !== 0;
 
 const buttonCase = (item, index, onClick) => {
   if (isButton(item)) {

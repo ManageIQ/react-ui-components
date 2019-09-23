@@ -4,11 +4,6 @@ import { DropdownButton, MenuItem, HorizontalNavMenuItem } from 'patternfly-reac
 import { ToolbarClick } from './ToolbarClick';
 import './styles.scss';
 
-/*
- * .btn-group.open .dropdown-toggle {
- *    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
- * }
- */
 const ToolbarSubmenu = props => (
   <HorizontalNavMenuItem
     id={props.id}

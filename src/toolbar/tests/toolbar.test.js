@@ -1,5 +1,4 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
 import { mount, shallow } from 'enzyme';
 
 import { Toolbar } from '..';
@@ -9,8 +8,8 @@ import { ToolbarKebab } from '../ToolbarKebab';
 import { ToolbarList } from '../ToolbarList';
 import { ToolbarView } from '../ToolbarView';
 
-const toolbarData = require('../data/toolbar-big.json');
-const viewData = require('../data/toolbar-view.json');
+import toolbarData from '../data/toolbar-big.json';
+import viewData from '../data/toolbar-view.json';
 
 describe('Toolbar', () => {
   it('Well it works ;-)', () => {

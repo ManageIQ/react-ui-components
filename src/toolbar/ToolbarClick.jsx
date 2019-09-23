@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { adjustColor } from './utility';
 
-const iconStyle = item => (
-  item.text ?
-    { color: adjustColor(item.color, item.enabled), marginRight: '5px' } :
-    { color: adjustColor(item.color, item.enabled) }
+const iconStyle = ({ color, enabled, text }) => (
+  text ?
+    { color: adjustColor(color, enabled), marginRight: '5px' } :
+    { color: adjustColor(color, enabled) }
 );
 
 export const ToolbarClick = props => (
