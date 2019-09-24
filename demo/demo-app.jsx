@@ -1,17 +1,26 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { Grid } from 'patternfly-react';
-import { IconPicker } from '../src/icon-picker';
+import { Toolbar } from '../src/toolbar';
 
-const IconTypes = [
-  { type: 'pf', title: 'Patternfly' },
-  { type: 'fa', title: 'Font Awesome' },
-];
+const toolbarData = require('../src/toolbar/data/toolbar.json');
+const viewData = require('../src/toolbar/data/toolbar-view.json');
+const toolbarBigData = require('../src/toolbar/data/toolbar-big.json');
 
 const wrapperComponent = () => (
-  <Grid>
-    <IconPicker iconTypes={IconTypes} />
-  </Grid>
+  <React.Fragment>
+    <div className="toolbar-pf row">
+      <Toolbar
+        groups={toolbarData}
+        views={viewData}
+      />
+    </div>
+    <div className="toolbar-pf row">
+      <Toolbar
+        groups={toolbarBigData}
+        views={viewData}
+      />
+    </div>
+  </React.Fragment>
 );
 
 export default function renderApp() {

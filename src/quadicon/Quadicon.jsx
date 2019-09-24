@@ -32,7 +32,7 @@ export default Quadicon;
 
 Quadicon.propTypes = {
   data: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape(Quadicon.propTypes)).isRequired,
-    PropTypes.shape(Quadicon.propTypes).isRequired,
+    PropTypes.arrayOf(PropTypes.shape(Quaditem.propTypes)).isRequired,
+    PropTypes.shape(Quaditem.propTypes).isRequired,
   ]),
 };
