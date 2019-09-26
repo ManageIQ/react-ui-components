@@ -1,8 +1,9 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import { storiesOf } from '@storybook/react';
-import Tree, { callBack } from '../';
+import Tree, { callBack, ActionTypes } from '../';
 import { generator, flatLazyChildren } from './Generator';
 import { ReduxTree } from './components/ReduxTree';
 import { ConnectedNode } from './components/ReduxNode';
@@ -11,9 +12,16 @@ import combinedReducers from './reducers';
 /** Create the tree from hierarchical data */
 const tree = Tree.convertHierarchicalTree(Tree.initHierarchicalTree(generator()));
 /** The store */
-const store = createStore(combinedReducers, { treeData: tree });
+const store = createStore(combinedReducers);
 
 class App extends React.Component {
+  /**
+   * Initialize the tree after the component mounted.
+   */
+  componentDidMount() {
+    this.props.callBack(null, ActionTypes.ADD_NODES, tree);
+  }
+
   /**
    * On data change this function is called. In this example it is just
    * dispatches redux event (and for demo app purposes logs the dispatched event).
@@ -65,6 +73,10 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  callBack: PropTypes.func.isRequired,
+};
 
 const WoodenTreeExample = connect(null, { callBack })(App);
 
