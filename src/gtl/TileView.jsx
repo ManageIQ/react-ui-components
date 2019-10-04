@@ -1,9 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as _ from 'lodash'; // FIXME: only needed
+import findIndex from 'lodash/findIndex';
+
+import {
+  Paginator,
+  PAGINATION_VIEW,
+} from 'patternfly-react';
 
 import Quadicon from '../quadicon/';
 
+/* eslint max-len: "off" */
 /*
  *
  * <div class="miq-tile-section">
@@ -73,7 +79,7 @@ import Quadicon from '../quadicon/';
 
 // import {TileType} from '../../interfaces/tileType';
 // import {IDataTableBinding} from '../../interfaces/dataTable';
-import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: probably needed
+// import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: probably needed
 
 // /**
 //  * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
@@ -89,7 +95,7 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: 
 //     super(MiQTranslateService);
 //     this.initOptions();
 //   }
-// 
+//
 //   /**
 //    * Method for creating basic options for tiles.
 //    * @memberof TileViewController
@@ -138,55 +144,55 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: 
 //      item.cells[2]['text'];
 //  }
 
-  /**
-   * Angular's method for fetching change events.
-   * @memberof TileViewController
-   * @function $onChanges
-   * @param changesObj angular's change object.
-   */
-  public $onChanges(changesObj: any) {
-    super.$onChanges(changesObj);
-    if (changesObj.type) {
-      this.options.type = this.type;
-    }
+/**
+ * Angular's method for fetching change events.
+ * @memberof TileViewController
+ * @function $onChanges
+ * @param changesObj angular's change object.
+ */
+//   public $onChanges(changesObj: any) {
+//     super.$onChanges(changesObj);
+//     if (changesObj.type) {
+//       this.options.type = this.type;
+//     }
+//
+//     if (changesObj.settings) {
+//       this.options.showSelectBox = !this.settings.hideSelect;
+//     }
+//
+//     if (changesObj.columns) {
+//       this.options.columns = this.columns;
+//     }
+//
+//     this.setPagingNumbers();
+//   }
 
-    if (changesObj.settings) {
-      this.options.showSelectBox = !this.settings.hideSelect;
-    }
+/**
+ * Method which will be called when clicking on tile.
+ * @memberof TileViewController
+ * @function onTileClick
+ * @param item which tile was clicked.
+ */
+//  public onTileClick(item) {
+//    if (!this.settings.hideSelect) {
+//      this.onItemSelected({item: item, isSelected: !item.selected});
+//    }
+//  }
+//
+//  public onTileSelect(item) {
+//    this.onItemSelected({item: item, isSelected: item.selected});
+//  }
 
-    if (changesObj.columns) {
-      this.options.columns = this.columns;
-    }
-
-    this.setPagingNumbers();
-  }
-
-  /**
-   * Method which will be called when clicking on tile.
-   * @memberof TileViewController
-   * @function onTileClick
-   * @param item which tile was clicked.
-   */
-  public onTileClick(item) {
-    if (!this.settings.hideSelect) {
-      this.onItemSelected({item: item, isSelected: !item.selected});
-    }
-  }
-
-  public onTileSelect(item) {
-    this.onItemSelected({item: item, isSelected: item.selected});
-  }
-
-  /**
-   * Method for checking all tiles and then filtering selected items.
-   * @memberof TileViewController
-   * @function tileClass
-   * @param isSelected true | false.
-   */
-  public onCheckAllTiles(isSelected: boolean) {
-    this.onCheckAll(isSelected);
-    this.options.selectedItems = this.filterSelected();
-  }
+/**
+ * Method for checking all tiles and then filtering selected items.
+ * @memberof TileViewController
+ * @function tileClass
+ * @param isSelected true | false.
+ */
+//  public onCheckAllTiles(isSelected: boolean) {
+//    this.onCheckAll(isSelected);
+//    this.options.selectedItems = this.filterSelected();
+//  }
 
 // NOT needed, we only implement "small"
 //   /**
@@ -198,7 +204,7 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: 
 //   public filterSelected() {
 //     return _.filter(this.rows, {checked: true});
 //   }
-// 
+//
 //   /**
 //    * Angular's method for getting tile's class based on it's type.
 //    * @memberof TileViewController
@@ -270,71 +276,106 @@ import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: 
 //   };
 // }
 
-const renderPagination = (props) => {
-  <div class="miq-pagination" >
-    <miq-pagination settings="tileCtrl.settings"
-                    per-page="tileCtrl.perPage"
-                    has-checkboxes="tileCtrl.countCheckboxes() > 0"
-                    on-select-all="tileCtrl.onCheckAll(isSelected)"
-                    on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
-                    on-change-page="tileCtrl.setPage(pageNumber)"
-                    on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
-  </div>
-}
+const limitToSuffix = (value, start, end) =>
+  (value.length > start + end + 3 ? `${value.slice(0, start)}...${value.slice(-end)}` : value);
 
-const limitToSuffix = (value, start, end) => {
-  value.length > start + end + 3 ? `${value.slice(0, start)}...${value.slice(-end)}` : value;
-};
+export const TileView = (props) => {
+  const {
+    rows, columns, settings, isLoading,
+  } = props;
 
-const fetchTileName = item => {
-  const nameIndex = _.findIndex(this.columns, oneColumn => oneColumn.text && oneColumn.text.indexOf('Name') !== -1);
-  return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
-    item.cells[nameIndex]['text'] :
-    item.cells[2]['text'];
-}
+  const renderPagination = () => {
+    const state = {
+      pagination: { page: 1, itemCount: 5, perPage: 10 },
+      total: 5,
+    };
+    const setPage = () => null;
+    const perPageSelect = () => null;
+    // <div class="miq-pagination" >
+    //   <miq-pagination settings="tileCtrl.settings"
+    //                   per-page="tileCtrl.perPage"
+    //                   has-checkboxes="tileCtrl.countCheckboxes() > 0"
+    //                   on-select-all="tileCtrl.onCheckAll(isSelected)"
+    //                   on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
+    //                   on-change-page="tileCtrl.setPage(pageNumber)"
+    //                   on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
+    // </div>
+    return (
+      <Paginator
+        viewType={PAGINATION_VIEW.TABLE}
+        pagination={state.pagination}
+        itemCount={state.total}
+        onPageSet={setPage}
+        onPerPageSelect={perPageSelect}
+      />
+    );
+  };
 
-const renderItem = item => (
-  <div>
-    <div class="miq-tile-head">
-      <a
-        href="javascript:void(0)"
-        title={fetchTileName(item)}
-        onClick={config.onItemClick(item, $event)}
-      >
-        {limitToSuffix(config.fetchTileName(item), 5, 5)}
-      </a>
+  const onItemClick = (item, ev) => {
+    console.log('onClick: ', item, ev);
+    // onClick={config.onItemClick(item, $event}
+  };
+
+  const fetchTileName = (item) => {
+    const nameIndex = findIndex(columns, oneColumn => oneColumn.text && oneColumn.text.indexOf('Name') !== -1);
+    return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
+      item.cells[nameIndex].text :
+      item.cells[2].text;
+  };
+
+  const renderItem = item => (
+    <div>
+      <div className="miq-tile-head">
+        <span
+          role="button"
+          tabIndex={0}
+          title={fetchTileName(item)}
+          onClick={ev => onItemClick(item, ev)}
+        >
+          {limitToSuffix(fetchTileName(item), 5, 5)}
+        </span>
+      </div>
+      <div className="miq-quadicon">
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={ev => onItemClick(item, ev)}
+        >
+          {item.quad && <Quadicon data={item.quad} />}
+        </span>
+      </div>
     </div>
-    <div class="miq-quadicon">
-      <a
-        href="javascript:void(0)"
-        onClick={config.onItemClick(item, $event}
-      >
-        {item.quad && <Quadicon data={item.quad} />}
-      </a>
+  );
+
+  const renderCardView = rows => (
+    //  className="pf-card-view"
+    // config="tileCtrl.options"
+    <div
+      className="miq-small-tile miq-sand-paper miq-tile-view"
+    >
+      { rows.map(i => renderItem(i)) }
     </div>
-  </div>
-);
+  );
 
-const renderCardView = rows => (
-  <div pf-card-view
-       config="tileCtrl.options"
-       className="miq-small-tile miq-sand-paper miq-tile-view"
-    {rows.map(i => renderItem(i)}
-  </div>
-)
+  const isVisible = settings && settings.sortBy && (isLoading || rows.length !== 0);
+  console.log('TileView: ', settings, rows);
+  console.log('TileView: ', isLoading);
+  console.log('TileView: ', isVisible);
 
-const TileView = (props) => {
-  const { rows } = props;
   return (
-    <div class="miq-tile-section">
-      { isLoading <div class="spinner spinner-lg"></div> }
+    <div className="miq-tile-section">
+      { isLoading && <div className="spinner spinner-lg" /> }
       { isVisible && renderPagination() }
       { isVisible && renderCardView(rows) }
     </div>
   );
-}
-
-TileView.propTypes = {
 };
 
-export default TileView;
+TileView.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.any),
+  columns: PropTypes.arrayOf(PropTypes.any),
+  settings: PropTypes.shape({
+    sortBy: PropTypes.shape({}),
+  }),
+  isLoading: PropTypes.bool,
+};
