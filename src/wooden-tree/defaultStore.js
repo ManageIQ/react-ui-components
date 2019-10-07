@@ -1,4 +1,4 @@
-import Tree, { ActionTypes } from './';
+import { Tree, ActionTypes } from 'react-wooden-tree';
 
 const nodeCheckedWithDirty = (propNode, value) => {
   let node = { ...propNode };

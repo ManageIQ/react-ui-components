@@ -1,3 +1,3 @@
-import defaultStore from '../../defaultStore';
+import { defaultStore } from '../../';
 
 export const treeDataReducer = defaultStore;
