@@ -37,7 +37,7 @@ module.exports = (env) => {
       publicPath: '/',
       inline: true,
       noInfo: false,
-      contentBase: './dist',
+      contentBase: ['./dist', './public/'],
       hot: true,
       clientLogLevel: 'none',
     },
