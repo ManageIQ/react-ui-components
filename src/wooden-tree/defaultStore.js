@@ -34,9 +34,6 @@ export default (state = {}, action) => {
   let node;
   if (action.nodeId) {
     node = Tree.nodeSelector(state, action.nodeId);
-    if (!node) {
-      return state;
-    }
   }
 
   return Object.hasOwnProperty.call(actionMapper, action.type) ?
