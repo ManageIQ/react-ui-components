@@ -1,9 +1,89 @@
-import * as React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import reduce from 'lodash/reduce';
-import camelCase from 'lodash/camelCase';
 
-import { TileView } from './TileView';
+import assign from 'lodash/assign';
+import find from 'lodash/find';
+
+import { StaticGTLView } from './StaticGTLView';
+
+// ui-component / src/gtl/services/dataTableService.ts
+
+const generateParamsFromSettings = (settings) => {
+  const params = {};
+  if (settings) {
+    assign(params, settings.current && { page: settings.current });
+    assign(params, settings.perpage && { ppsetting: settings.perpage });
+    assign(params, settings.sortBy && settings.sortBy.sortObject && {
+      sort_choice: settings.sortBy.sortObject.text,
+    });
+    assign(params, settings.sortBy && {
+      is_ascending: !!settings.sortBy.isAscending,
+    });
+  }
+  return params;
+};
+
+const generateConfig = (
+  modelName, // ?: string,  # string with name of model (either association or current model).
+  activeTree, // ?: string, # string with active tree.
+  parentId, // ?: string,   # ID of parent item.
+  isExplorer, // ?: string,
+  settings, // ?: any,
+  records, // ?: any,
+  additionalOptions, // ?: any) {
+) => {
+  const config = {};
+
+  // name of currently selected model.
+  assign(config, modelName && { model_name: modelName, model: modelName });
+  // create active tree object, activeTree --  name of currently selected tree.
+  assign(config, activeTree && { active_tree: activeTree });
+  // parentId of currently selected models ID.
+  assign(config, parentId && parentId !== null && { parent_id: parentId, model_id: parentId });
+  assign(config, isExplorer && isExplorer !== null && { explorer: isExplorer });
+  assign(config, generateParamsFromSettings(settings));
+  // array of record IDs
+  assign(
+    config,
+    records && records !== null && {
+      'records[]': records,
+      records,
+    },
+  );
+  assign(
+    config,
+    additionalOptions && additionalOptions !== null && { additional_options: additionalOptions },
+  );
+
+  return config;
+};
+
+const getData = (
+  modelName, // ?: string,
+  activeTree, // ?: string,
+  id, // ?: string,
+  isExplorer, // ?: string,
+  settings, // ?: any,
+  records, // ?: any,
+  additionalOptions, // ?: any): ng.IPromise<IRowsColsResponse> {
+) =>
+  window.http.post( // FIXME: window
+    './report_data',
+    generateConfig(
+      modelName,
+      activeTree,
+      id,
+      isExplorer,
+      settings,
+      records,
+      additionalOptions,
+    ),
+  ).then(responseData => ({
+    head: responseData.data.data.head,
+    rows: responseData.data.data.rows,
+    settings: responseData.data.settings,
+    messages: responseData.data.messages,
+  }));
 
 // app/assets/javascripts/controllers/report_data_controller.js
 //
@@ -14,8 +94,6 @@ import { TileView } from './TileView';
 //   var TREES_WITHOUT_PARENT = ['pxe', 'ops'];
 //   var TREE_TABS_WITHOUT_PARENT = ['action_tree', 'alert_tree', 'schedules_tree'];
 //   var USE_TREE_ID = ['automation_manager'];
-//   var DEFAULT_VIEW = 'grid';
-//   var TOOLBAR_CLICK_FINISH = 'TOOLBAR_CLICK_FINISH';
 //
 //   function isAllowedParent(initObject) {
 //     return TREES_WITHOUT_PARENT.indexOf(ManageIQ.controller) === -1 &&
@@ -45,10 +123,6 @@ import { TileView } from './TileView';
 //   * @param {Object} MiQEndpointsService service responsible for endpoits.
 //   * @returns {undefined}
 //   */
-//   function initEndpoints(MiQEndpointsService) {
-//     MiQEndpointsService.rootPoint = '/' + ManageIQ.controller;
-//     MiQEndpointsService.endpoints.listDataTable = '/' + ManageIQ.constants.reportData;
-//   }
 //
 //   function isCurrentControllerOrPolicies(splitUrl) {
 //     return splitUrl && (splitUrl[1] === ManageIQ.controller || splitUrl[2] === 'policies');
@@ -79,44 +153,6 @@ import { TileView } from './TileView';
 //     };
 //   }
 //
-//   /**
-//   * Private method for subscribing to rxSubject.
-//   * For success functuon @see ToolbarController#onRowSelect()
-//   * @returns {undefined}
-//   */
-//   function subscribeToSubject() {
-//     this.subscription = listenToRx(function(event) {
-//       if (event.initController && event.initController.name === CONTROLLER_NAME) {
-//         this.initController(event.initController.data);
-//       } else if (event.unsubscribe && event.unsubscribe === CONTROLLER_NAME) {
-//         this.onUnsubscribe();
-//       } else if (event.toolbarEvent && (event.toolbarEvent === 'itemClicked')) {
-//         this.setExtraClasses();
-//       } else if (event.type === TOOLBAR_CLICK_FINISH && (tileViewSelector() || tableViewSelector())) {
-//         this.setExtraClasses(this.initObject.gtlType);
-//       } else if (event.refreshData && event.refreshData.name === CONTROLLER_NAME) {
-//         this.refreshData(event.data);
-//       } else if (event.setScope && event.setScope.name === CONTROLLER_NAME) {
-//         this.setScope(event.data);
-//       } else if (event.type === 'gtlSetOneRowActive') {
-//         this.gtlSetOneRowActive(event.item);
-//       }
-//
-//       if (event.controller === CONTROLLER_NAME && this.apiFunctions && this.apiFunctions[event.action]) {
-//         var actionCallback = this.apiFunctions[event.action];
-//         var resultData = actionCallback.apply(this, event.data);
-//         if (event.eventCallback) {
-//           event.eventCallback(resultData);
-//         }
-//       }
-//     }.bind(this),
-//     function(err) {
-//       console.error('Angular RxJs Error: ', err);
-//     },
-//     function() {
-//       console.debug('Angular RxJs subject completed, no more events to catch.');
-//     });
-//   }
 //
 //   /**
 //   * Constructor for GTL controller. This constructor will init params accessible via `this` property and calls
@@ -293,41 +329,7 @@ import { TileView } from './TileView';
 //   * @param {Boolean} isSelected true | false.
 //   * @returns {undefined}
 //   */
-//   ReportDataController.prototype.onItemSelect = function(item, isSelected) {
-//     if (typeof item !== 'undefined') {
-//       var selectedItem = _.find(this.gtlData.rows, {long_id: item.long_id});
-//       if (selectedItem) {
-//         selectedItem.checked = isSelected;
-//         selectedItem.selected = isSelected;
-//         this.$window.sendDataWithRx({rowSelect: selectedItem});
-//         if (isSelected) {
-//           ManageIQ.gridChecks.push(item.long_id);
-//         } else {
-//           var index = ManageIQ.gridChecks.indexOf(item.long_id);
-//           index !== -1 && ManageIQ.gridChecks.splice(index, 1);
-//         }
-//       }
-//     }
-//   };
 //
-//   ReportDataController.prototype.initObjects = function(initObject) {
-//     this.gtlData = { cols: [], rows: [] };
-//     this.initObject = initObject;
-//     if (this.initObject.showUrl === '') {
-//       this.initObject.showUrl = '/' + ManageIQ.controller;
-//       if (this.initObject.isExplorer) {
-//         this.initObject.showUrl += '/x_show/';
-//       } else {
-//         this.initObject.showUrl += '/show/';
-//       }
-//     } else if (this.initObject.showUrl === 'false') {
-//       this.initObject.showUrl = false;
-//     }
-//     this.gtlType = initObject.gtlType || DEFAULT_VIEW;
-//     this.setLoading(true);
-//     ManageIQ.gridChecks = [];
-//     this.$window.sendDataWithRx({setCount: 0});
-//   };
 //
 //   ReportDataController.prototype.setLoading = function(state) {
 //     this.$window.ManageIQ.gtl.loading = state;
@@ -561,15 +563,129 @@ import { TileView } from './TileView';
 //   angular.module('ManageIQ').controller(CONTROLLER_NAME, ReportDataController);
 // })();
 
-const camelizeQuadicon = quad =>
-  reduce(quad, (result, current, key) => {
-    const item = {};
-    item[camelCase(key)] = current;
-    return Object.assign(result, item);
-  }, {});
+//   /**
+//   * Private method for subscribing to rxSubject.
+//   * For success functuon @see ToolbarController#onRowSelect()
+//   * @returns {undefined}
+//   */
+
+const gtlReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_ACTIVE_ROW':
+      // this.gtlSetOneRowActive(event.item);
+      // { type: 'SET_ACTIVE_ROW', item: event.item });
+      return {
+        ...state,
+      };
+    default:
+      return state;
+  }
+};
+
+const RX_IDENTITY = 'reportDataController';
+
+/* eslint no-unused-vars: 'off' */
+/* eslint no-undef: 'off' */
+const subscribeToSubject = dispatch =>
+  window.listenToRx && window.listenToRx(
+    (event) => {
+      // FIXME: use dispatch
+      if (event.initController && event.initController.name === RX_IDENTITY) {
+        this.initController(event.initController.data);
+      } else if (event.unsubscribe && event.unsubscribe === RX_IDENTITY) {
+        this.onUnsubscribe();
+      } else if (event.refreshData && event.refreshData.name === RX_IDENTITY) {
+        this.refreshData(event.data);
+      } else if (event.setScope && event.setScope.name === RX_IDENTITY) {
+        this.setScope(event.data);
+      } else if (event.type === 'gtlSetOneRowActive') {
+        dispatch({ type: 'SET_ACTIVE_ROW', item: event.item });
+      } else if (event.toolbarEvent && (event.toolbarEvent === 'itemClicked')) {
+        this.setExtraClasses();
+      } else if (event.type === 'TOOLBAR_CLICK_FINISH' && (tileViewSelector() || tableViewSelector())) {
+        this.setExtraClasses(this.initObject.gtlType);
+      }
+
+      if (event.controller === RX_IDENTITY && this.apiFunctions && this.apiFunctions[event.action]) {
+        const actionCallback = this.apiFunctions[event.action];
+        const resultData = actionCallback.apply(this, event.data);
+        if (event.eventCallback) {
+          event.eventCallback(resultData);
+        }
+      }
+    },
+    err => console.error('Angular RxJs Error: ', err),
+    () => console.debug('Angular RxJs subject completed, no more events to catch.'),
+  );
+
+const initState = {
+  cols: [],
+  rows: [],
+  gtlType: 'grid',
+  loading: true,
+//     this.initObject = initObject;
+//     if (this.initObject.showUrl === '') {
+//       this.initObject.showUrl = '/' + ManageIQ.controller;
+//       if (this.initObject.isExplorer) {
+//         this.initObject.showUrl += '/x_show/';
+//       } else {
+//         this.initObject.showUrl += '/show/';
+//       }
+//     } else if (this.initObject.showUrl === 'false') {
+//       this.initObject.showUrl = false;
+//     }
+//     this.gtlType = initObject.gtlType || DEFAULT_VIEW;
+//     this.setLoading(true);
+//     ManageIQ.gridChecks = [];
+//     this.$window.sendDataWithRx({setCount: 0});
+};
 
 export const GTLView = (props) => {
   const { settings, data } = props;
+
+  const [state, dispatch] = useReducer(gtlReducer, initState);
+
+  useEffect(() => {
+    // // Initiall toolbars are given in props.
+    // // Later can be changed by an RxJs event.
+    // dispatch({ type: 'TOOLBARS', toolbars });
+
+    const subscription = subscribeToSubject(dispatch);
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const onItemSelect = (item, isSelected) => {
+    console.log('onItemSelect: ', item, isSelected);
+
+    if (typeof item !== 'undefined') {
+      const selectedItem = find(data.heads, { long_id: item.long_id });
+      console.log('selectedItem: ', selectedItem);
+
+      if (!selectedItem) {
+        return;
+      }
+
+      selectedItem.checked = isSelected;
+      selectedItem.selected = isSelected;
+
+      if (window.sendDataWithRx) {
+        window.sendDataWithRx({ rowSelect: selectedItem });
+      }
+
+      if (window.ManageIQ) {
+        const { ManageIQ } = window;
+        if (isSelected) {
+          ManageIQ.gridChecks.push(item.long_id);
+        } else {
+          const index = ManageIQ.gridChecks.indexOf(item.long_id);
+          if (index !== -1) {
+            ManageIQ.gridChecks.splice(index, 1);
+          }
+        }
+      }
+    }
+  };
+
   //     activeTree,
   //     parentId,
   //     isExplorer,
@@ -586,21 +702,10 @@ export const GTLView = (props) => {
   //   sort_dir: 'DESC',
   // };
 
-  const tileSettings = {
-    ...settings, // not needed?
-    sortBy: {},
-  };
-
   // const sortBy = {
   //   sortObject: this.gtlData.cols[headerId],
   //   isAscending: isAscending,
   // };
-
-  const rowsWithQuads = data.rows.map(row => (
-    {
-      ...row,
-      quad: camelizeQuadicon(row.quad),
-    }));
 
   console.log(2);
 
@@ -639,8 +744,25 @@ export const GTLView = (props) => {
   //         return gtlData;
   //       }.bind(this));
   //   };
+
+
+  /* FIXME: removig flash div */
+  /* FIXME: missing no-record formatting/partial */
   return (
-    <TileView rows={rowsWithQuads} columns={data.heads} settings={tileSettings} />
+    <div id="miq-gtl-view">
+      { (!state.loading && data.rows.length === 0) ? (
+        <div className="no-record">
+          No Records Found.
+        </div>
+      ) : (
+        <StaticGTLView
+          gtlType={state.gtlType}
+          rows={state.rows}
+          heads={state.heads}
+          onItemSelect={onItemSelect}
+        />
+      )}
+    </div>
   );
 };
 
