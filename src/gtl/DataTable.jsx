@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+const classNames = require('classnames');
+
 /*
  *
  * <div class="miq-data-table">
@@ -240,24 +242,24 @@ const getColumnClass = column => (
  * </miq-data-table>
  */
 
-export default class DataTable {
-  public replace: boolean = true;
-  public template = require('./data-table.html');
-  public controller: any = DataTableController;
-  public transclude: boolean = true;
-  public controllerAs: string = 'tableCtrl';
-  public bindings: any = {
-    rows: '<',
-    columns: '<',
-    perPage: '<',
-    settings: '<',
-    loadMoreItems: '&',
-    onSort: '&',
-    onRowClick: '&',
-    onItemSelected: '&'
-  };
-}
-const DataTable = (props) => {
+// export default class DataTable {
+//   public replace: boolean = true;
+//   public template = require('./data-table.html');
+//   public controller: any = DataTableController;
+//   public transclude: boolean = true;
+//   public controllerAs: string = 'tableCtrl';
+// }
+
+export const DataTable = ({
+  rows,
+  columns,
+  perPage,
+  settings,
+  loadMoreItems,
+  onSort,
+  onRowClick,
+  onItemSelected,
+}) => {
   const isLoading = true;
 
   const renderPagination = () => (
@@ -301,13 +303,17 @@ const DataTable = (props) => {
     return (
       <tbody>
         {rows.map(row => (
-          <tr ng-class="{active : row.selected}" ng-click="tableCtrl.onRowClick({item: row, event: $event})">
+          <tr
+            className={ row.selected ? 'active' : ''}
+            onClick={(ev) => onRowClick({ item: row, event: ev })}
+          >
             {columns.map((columnKey, column ) =>
-              <td /*ng-repeat="(columnKey, column) in tableCtrl.columns"*/
+              <td
                 ng-class="{
                   narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
                   'is-checkbox-cell': row.cells[columnKey].is_checkbox,
-                }">
+                }
+              >
                 <input ng-if="row.cells[columnKey].is_checkbox && !tableCtrl.settings.hideSelect"
                        ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"
                        onclick="event.stopPropagation();"
@@ -347,7 +353,7 @@ const DataTable = (props) => {
 
   const renderTable = () => {
     return (
-      <table class="table table-bordered table-striped table-hover miq-table-with-footer miq-table">
+      <table className="table table-bordered table-striped table-hover miq-table-with-footer miq-table">
         { renderTableHeader() }
         { renderTableBody() }
       </table>
@@ -355,8 +361,8 @@ const DataTable = (props) => {
   }
 
   return (
-    <div class="miq-data-table">
-      { isLoading <div class="spinner spinner-lg"></div> }
+    <div className="miq-data-table">
+      { isLoading <div className="spinner spinner-lg"></div> }
       { isLoading && sortBy (isLoading || rows.length !== 0) && renderPagination() }
       { rows.length !== 0 && renderTable() }
     </div>
@@ -364,6 +370,14 @@ const DataTable = (props) => {
 }
 
 DataTable.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.any).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.any).isRequired,
+  perPage: PropTypes.any.isRequired,
+  settings: PropTypes.any.isRequired.
+  loadMoreItems: PropTypes.func.isRequired,
+  onSort: PropTypes.func.isRequired,
+  onRowClick: PropTypes.func.isRequired,
+  onItemSelected: PropTypes.func.isRequired,
 };
 
 export default DataTable;

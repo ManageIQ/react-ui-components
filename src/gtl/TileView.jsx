@@ -7,7 +7,7 @@ import {
   PAGINATION_VIEW,
 } from 'patternfly-react';
 
-import Quadicon from '../quadicon/';
+import { Quadicon } from '../quadicon/';
 
 /* eslint max-len: "off" */
 /*
@@ -43,34 +43,34 @@ import Quadicon from '../quadicon/';
  *           </a>
  *         </div>
  *       </ng-switch-when>
- *       <ng-switch-when ng-switch-when="big">
- *         <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item)}}</a>
- *         <div class="row miq-row-margin-only-top ">
- *           <div class="col-md-3 col-lg-3 col-xs-3 miq-icon-section">
- *             <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
- *               <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
- *               <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
- *             </a>
- *           </div>
- *           <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">
- *             <dl class="dl-horizontal tile">
- *               <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{header.header_text}}">{{header.header_text}}:</dt>
- *               <dd ng-repeat-end ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
- *             </dl>
- *             <div ng-repeat="(columnKey, column) in config.columns"
- *                  ng-if="item.cells[columnKey].is_button && item.cells[columnKey].onclick"
- *                  align="right">
- *               <button class="btn btn-primary"
- *                       title="{{item.cells[columnKey].title}}"
- *                       alt="{{item.cells[columnKey].title}}"
- *                       ng-disabled="item.cells[columnKey].disabled"
- *                       ng-click="config.onButtonItemClick(item.cells[columnKey], $event)">
- *                 {{item.cells[columnKey].text}}
- *               </button>
- *             </div>
- *           </div>
- *         </div>
- *       </ng-switch-when>
+ *       # BIIIIIG # <ng-switch-when ng-switch-when="big">
+ *       # BIIIIIG #   <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item)}}</a>
+ *       # BIIIIIG #   <div class="row miq-row-margin-only-top ">
+ *       # BIIIIIG #     <div class="col-md-3 col-lg-3 col-xs-3 miq-icon-section">
+ *       # BIIIIIG #       <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
+ *       # BIIIIIG #         <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
+ *       # BIIIIIG #         <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
+ *       # BIIIIIG #       </a>
+ *       # BIIIIIG #     </div>
+ *       # BIIIIIG #     <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">
+ *       # BIIIIIG #       <dl class="dl-horizontal tile">
+ *       # BIIIIIG #         <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{header.header_text}}">{{header.header_text}}:</dt>
+ *       # BIIIIIG #         <dd ng-repeat-end ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
+ *       # BIIIIIG #       </dl>
+ *       # BIIIIIG #       <div ng-repeat="(columnKey, column) in config.columns"
+ *       # BIIIIIG #            ng-if="item.cells[columnKey].is_button && item.cells[columnKey].onclick"
+ *       # BIIIIIG #            align="right">
+ *       # BIIIIIG #         <button class="btn btn-primary"
+ *       # BIIIIIG #                 title="{{item.cells[columnKey].title}}"
+ *       # BIIIIIG #                 alt="{{item.cells[columnKey].title}}"
+ *       # BIIIIIG #                 ng-disabled="item.cells[columnKey].disabled"
+ *       # BIIIIIG #                 ng-click="config.onButtonItemClick(item.cells[columnKey], $event)">
+ *       # BIIIIIG #           {{item.cells[columnKey].text}}
+ *       # BIIIIIG #         </button>
+ *       # BIIIIIG #       </div>
+ *       # BIIIIIG #     </div>
+ *       # BIIIIIG #   </div>
+ *       # BIIIIIG # </ng-switch-when>
  *     </div>
  *   </div>
  * </div>
@@ -281,7 +281,7 @@ const limitToSuffix = (value, start, end) =>
 
 export const TileView = (props) => {
   const {
-    rows, columns, settings, isLoading,
+    rows, columns, settings, isLoading, onItemSelect,
   } = props;
 
   const renderPagination = () => {
@@ -311,11 +311,6 @@ export const TileView = (props) => {
     );
   };
 
-  const onItemClick = (item, ev) => {
-    console.log('onClick: ', item, ev);
-    // onClick={config.onItemClick(item, $event}
-  };
-
   const fetchTileName = (item) => {
     const nameIndex = findIndex(columns, oneColumn => oneColumn.text && oneColumn.text.indexOf('Name') !== -1);
     return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
@@ -324,13 +319,13 @@ export const TileView = (props) => {
   };
 
   const renderItem = item => (
-    <div>
+    <div key={item.id}>
       <div className="miq-tile-head">
         <span
           role="button"
           tabIndex={0}
           title={fetchTileName(item)}
-          onClick={ev => onItemClick(item, ev)}
+          onClick={ev => onItemSelect(item, ev)}
         >
           {limitToSuffix(fetchTileName(item), 5, 5)}
         </span>
@@ -339,7 +334,7 @@ export const TileView = (props) => {
         <span
           role="button"
           tabIndex={0}
-          onClick={ev => onItemClick(item, ev)}
+          onClick={ev => onItemSelect(item, ev)}
         >
           {item.quad && <Quadicon data={item.quad} />}
         </span>
@@ -358,9 +353,9 @@ export const TileView = (props) => {
   );
 
   const isVisible = settings && settings.sortBy && (isLoading || rows.length !== 0);
-  console.log('TileView: ', settings, rows);
-  console.log('TileView: ', isLoading);
-  console.log('TileView: ', isVisible);
+  console.log('TileView settings, props: ', settings, rows);
+  console.log('TileView isLoading: ', isLoading);
+  console.log('TileView isVisible: ', isVisible);
 
   return (
     <div className="miq-tile-section">
@@ -378,4 +373,5 @@ TileView.propTypes = {
     sortBy: PropTypes.shape({}),
   }),
   isLoading: PropTypes.bool,
+  onItemSelect: PropTypes.func,
 };

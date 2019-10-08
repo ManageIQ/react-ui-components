@@ -1,20 +1,17 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 // import { GTLView, TileView } from '../src/gtl';
-import { GTLView } from '../src/gtl';
+import { StaticGTLView } from '../src/gtl/StaticGTLView';
 
-console.log('GTLView:', GTLView);
+console.log('StaticGTLView:', StaticGTLView);
 
-// const toolbarData = require('../src/toolbar/data/toolbar.json');
-// const viewData = require('../src/toolbar/data/toolbar-view.json');
-// const toolbarBigData = require('../src/toolbar/data/toolbar-big.json');
-const gtlData = require('../src/toolbar/data/gtl-small.json');
+const gtlData = require('../src/gtl/data/gtl-small.json');
 
 const wrapperComponent = () => (
   <React.Fragment>
     <h1>TileView</h1>
     <div className="foobar">
-      <GTLView settings={gtlData.settings} data={gtlData.data} />
+      <StaticGTLView gtlType="list" settings={gtlData.settings} heads={gtlData.data.heads} rows={gtlData.data.rows} />
     </div>
   </React.Fragment>
 );
