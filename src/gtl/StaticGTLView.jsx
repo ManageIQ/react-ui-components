@@ -16,7 +16,7 @@ const camelizeQuadicon = quad =>
 export const StaticGTLView = ({
   gtlType,
   rows,
-  heads,
+  head,
   settings,
   onItemSelect,
 }) => {
@@ -35,7 +35,7 @@ export const StaticGTLView = ({
     return (
       <TileView
         rows={rowsWithQuads}
-        columns={heads}
+        columns={head}
         settings={tileSettings}
         onItemSelect={onItemSelect}
       />
@@ -56,7 +56,15 @@ export const StaticGTLView = ({
 
   const miqDataTable = () => (
     <DataTable
-    
+      rows={rows}
+      columns={head}
+      perPage={10}
+      settings={tileSettings}
+      loadMoreItems={() => console.log('loadMoreItems')}
+      onSort={() => console.log('onSort')}
+      onRowClick={() => console.log('onRowClick')}
+      onItemSelect={onItemSelect}
+      onItemButtonClick={() => console.log('onItemButtonClick')}
     />
   );
   //     'miq-data-table', '',
@@ -82,6 +90,6 @@ StaticGTLView.propTypes = {
   gtlType: PropTypes.string,
   settings: PropTypes.any,
   rows: PropTypes.arrayOf(PropTypes.any).isRequired,
-  heads: PropTypes.arrayOf(PropTypes.any).isRequired,
+  head: PropTypes.arrayOf(PropTypes.any).isRequired,
   onItemSelect: PropTypes.func,
 };
