@@ -1,6 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  Paginator,
+  PAGINATION_VIEW,
+} from 'patternfly-react';
+
 const classNames = require('classnames');
 
 /*
@@ -22,7 +27,7 @@ const classNames = require('classnames');
  *     <thead>
  *     <tr>
  *       <th class="narrow">
- * 
+ *
  *       </th>
  *       <th ng-if="$index !== 0"
  *           ng-repeat="column in tableCtrl.columns track by $index"
@@ -80,9 +85,9 @@ const classNames = require('classnames');
  * </div>
  */
 
-import {IDataTableBinding} from '../../interfaces/dataTable';
-import {DataViewClass} from '../../interfaces/abstractDataViewClass';
-import * as _ from 'lodash';
+// import {IDataTableBinding} from '../../interfaces/dataTable';
+// import {DataViewClass} from '../../interfaces/abstractDataViewClass';
+// import * as _ from 'lodash';
 
 /**
  * This controller is for managing data table entities. It extends {@link miqStaticAssets.gtl.DataViewClass}
@@ -117,95 +122,53 @@ import * as _ from 'lodash';
 //   }
 
 /**
- * Public method for getting column class, narrow column with checkbox or image.
- * @memberof DataTableController
- * @function getColumnClass
- * @param column {Object} header column. This column will have `is_narrow` property set to true and `narrow` class
- * will be present in classes.
- * @returns {Object} angular class object. `{narrow: boolean}`
+ * What icon type should be displayed
+ * @param row {object} whole row with data.
+ * @param columnKey header column key.
+ * @returns {string} image | icon
  */
-const getColumnClass = column => (
-  {
-    narrow: column.is_narrow,
-    'table-view-pf-select': column.is_narrow
-  }
-)
+const getNodeIconType = (row, columnKey) =>
+  row && row.cells && ['image', 'icon']
+    .find(item => Object.prototype.hasOwnProperty.call(row.cells[columnKey], item)
+      && !!row.cells[columnKey][item]);
 
-  /**
-   * Public method for retrieving what icon type should be displayed
-   * @memberof DataTableController
-   * @function getNodeIconType
-   * @param row {object} whole row with data.
-   * @param columnKey header column key.
-   * @returns {string} image | icon
-   */
-  public getNodeIconType(row, columnKey) {
-    const allowedGraphics = ['image', 'icon'];
-    if (row && row.cells) {
-      return allowedGraphics.find(item => row.cells[columnKey].hasOwnProperty(item) && !!row.cells[columnKey][item]);
-    }
-  }
+//  /**
+//   * Public method for checking if column of table has an icon.
+//   * @memberof DataTableController
+//   * @function hasIcon
+//   */
+//  public hasIcon(row, columnKey): boolean {
+//    return row && row.cells && row.cells[columnKey].hasOwnProperty('icon') && row.cells[columnKey].icon;
+//  }
+//
+//  /**
+//   * Public method for checking if column of table has an image.
+//   * @memberof DataTableController
+//   * @function hasImage
+//   * @param row {object} whole row with data.
+//   * @param columnKey header column key.
+//   * @returns {boolean} true | false, if column has image or not.
+//   */
+//  public hasImage(row, columnKey): boolean {
+//    return row && row.cells && row.cells[columnKey].hasOwnProperty('image') && row.cells[columnKey].image;
+//  }
 
-  /**
-   * Public method for checking if column of table has an icon.
-   * @memberof DataTableController
-   * @function hasIcon
-   */
-  public hasIcon(row, columnKey): boolean {
-    return row && row.cells && row.cells[columnKey].hasOwnProperty('icon') && row.cells[columnKey].icon;
-  }
+const isFilteredBy = (sortBy, column) => !!sortBy && (sortBy.sortObject.col_idx === column.col_idx);
 
-  /**
-   * Public method for checking if column of table has an image.
-   * @memberof DataTableController
-   * @function hasImage
-   * @param row {object} whole row with data.
-   * @param columnKey header column key.
-   * @returns {boolean} true | false, if column has image or not.
-   */
-  public hasImage(row, columnKey): boolean {
-    return row && row.cells && row.cells[columnKey].hasOwnProperty('image') && row.cells[columnKey].image;
-  }
-
-  /**
-   * Public method for finding out if it's filtered by header column.
-   * @memberof DataTableController
-   * @function isFilteredBy
-   * @param column column which is checked if it's filtered by.
-   * @returns {boolean} true | false if `this.settings.sortBy.sortObject.col_idx` is equal to `column.col_idx`.
-   */
-  public isFilteredBy(column: any) {
-    return !!this.settings.sortBy && (this.settings.sortBy.sortObject.col_idx === column.col_idx);
-  }
-
-  /**
-   * Public method for getting sort class, either `fa-sort-asc` or `fa-sort-desc`.
-   * @memberof DataTableController
-   * @function getSortClass
-   * @returns {Object} angular class object: `{fa-sort-asc: boolean, fa-sort-desc: boolean}`
-   */
-  public getSortClass() {
-    return {
-      'fa-sort-asc': !!this.settings.sortBy && this.settings.sortBy.isAscending,
-      'fa-sort-desc': !(!!this.settings.sortBy && this.settings.sortBy.isAscending)
-    };
-  }
-
-  /**
-   * Angular's $onchange function to find out if one of bounded option has changed.
-   * @memberof DataTableController
-   * @function $onChanges
-   * @param changesObj angular changed object.
-   */
-  public $onChanges(changesObj: any) {
-    super.$onChanges(changesObj);
-    if (changesObj.settings && this.settings) {
-      this.currentPageView = this.settings.current;
-    }
-
-    this.setPagingNumbers();
-  }
-}
+//  /**
+//   * Angular's $onchange function to find out if one of bounded option has changed.
+//   * @memberof DataTableController
+//   * @function $onChanges
+//   * @param changesObj angular changed object.
+//   */
+//  public $onChanges(changesObj: any) {
+//    super.$onChanges(changesObj);
+//    if (changesObj.settings && this.settings) {
+//      this.currentPageView = this.settings.current;
+//    }
+//
+//    this.setPagingNumbers();
+//  }
 
 /**
  * @description
@@ -253,131 +216,165 @@ const getColumnClass = column => (
 export const DataTable = ({
   rows,
   columns,
-  perPage,
+  // perPage,
   settings,
-  loadMoreItems,
+  // loadMoreItems,
   onSort,
   onRowClick,
-  onItemSelected,
+  onItemButtonClick,
+  onItemSelect,
 }) => {
   const isLoading = true;
 
-  const renderPagination = () => (
-    <div class="miq-pagination"
-      <miq-pagination
-        settings="tableCtrl.settings"
-        per-page="tableCtrl.perPage"
-        on-select-all="tableCtrl.onCheckAll(isSelected)"
-        has-checkboxes="tableCtrl.countCheckboxes() > 0"
-        on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
-        on-change-page="tableCtrl.setPage(pageNumber)"
-        on-change-per-page="tableCtrl.perPageClick(item)">
-      </miq-pagination>
-    </div>
-  );
-
-  const renderTableHeader = () => {
+  // FIXME: share with TileView
+  const renderPagination = () => {
+    const state = {
+      pagination: { page: 1, itemCount: 5, perPage: 10 },
+      total: 5,
+    };
+    const setPage = () => null;
+    const perPageSelect = () => null;
     return (
-      <thead>
-      <tr>
-        <th class="narrow">
+      <Paginator
+        viewType={PAGINATION_VIEW.TABLE}
+        pagination={state.pagination}
+        itemCount={state.total}
+        onPageSet={setPage}
+        onPerPageSelect={perPageSelect}
+      />
+    );
+    // <div class="miq-pagination"
+    //   <miq-pagination
+    //     settings="tableCtrl.settings"
+    //     per-page="tableCtrl.perPage"
+    //     on-select-all="tableCtrl.onCheckAll(isSelected)"
+    //     has-checkboxes="tableCtrl.countCheckboxes() > 0"
+    //     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
+    //     on-change-page="tableCtrl.setPage(pageNumber)"
+    //     on-change-per-page="tableCtrl.perPageClick(item)">
+    //   </miq-pagination>
+    // </div>
+  };
 
-        </th>
+  const renderTableHeader = () => (
+    <thead>
+      <tr>
+        <th className="narrow" />
         {columns.map((column, index) =>
           index !== 0 &&
-            <th onClick={onSortClick(index, !!sortBy && !sortBy.isAscending)} className={getColumnClass(column)}>
+            <th
+              onClick={onSort({ headerId: index, isAscending: !!settings.sortBy && !settings.sortBy.isAscending })}
+              className={classNames({ narrow: column.is_narrow, 'table-view-pf-select': column.is_narrow })}
+            >
               {column.header_text}
-              {isFilteredBy(column) &&
-                <div class="pull-right">
-                  <i class="fa" className={getSortClass()}></i>
+              {isFilteredBy(settings.sortBy, column) &&
+                <div classNAme="pull-right">
+                  <i className={
+                    classNames('fa', {
+                      'fa-sort-asc': !!settings.sortBy && settings.sortBy.isAscending,
+                      'fa-sort-desc': !(!!settings.sortBy && settings.sortBy.isAscending),
+                    })}
+                  />
                 </div>
               }
-            </th>
+            </th>)
         }
       </tr>
-      </thead>
-    );
+    </thead>
+  );
+
+  const localOnItemSelected = (ev, item, isSelected) => {
+    onItemSelect({ item, isSelected });
+    ev.stopPropagation();
   };
 
-  const renderTableBody = () => {
-    return (
-      <tbody>
-        {rows.map(row => (
-          <tr
-            className={ row.selected ? 'active' : ''}
-            onClick={(ev) => onRowClick({ item: row, event: ev })}
-          >
-            {columns.map((columnKey, column ) =>
-              <td
-                ng-class="{
-                  narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
-                  'is-checkbox-cell': row.cells[columnKey].is_checkbox,
-                }
-              >
-                <input ng-if="row.cells[columnKey].is_checkbox && !tableCtrl.settings.hideSelect"
-                       ng-click="tableCtrl.onItemSelected({item: row, isSelected: isSelected})"
-                       onclick="event.stopPropagation();"
-                       type="checkbox"
-                       ng-model="isSelected"
-                       name="check_{{row.id}}"
-                       value="{{row.id}}"
-                       ng-checked="row.checked"
-                       class="list-grid-checkbox">
-                <i ng-if="tableCtrl.getNodeIconType(row, columnKey) === 'icon'"
-                   class="{{row.cells[columnKey].icon}}"
-                   title="{{row.cells[columnKey].title}}">
-                  <i ng-if="row.cells[columnKey].icon2" ng-class="row.cells[columnKey].icon2"></i>
+  const renderTableBody = () => (
+    <tbody>
+      {rows.map(row => (
+        <tr
+          className={row.selected ? 'active' : ''}
+          onClick={event => onRowClick({ item: row, event })}
+        >
+          {columns.map(columnKey => (
+            <td
+              className={classNames({
+                narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
+                'is-checkbox-cell': row.cells[columnKey].is_checkbox,
+              })}
+            >
+              { row.cells[columnKey].is_checkbox && !settings.hideSelect &&
+                <input
+                  onChange={ev => localOnItemSelected(ev, row, ev.target.checked)}
+                  type="checkbox"
+                  name={`check_${row.id}`}
+                  value={row.id}
+                  checked={row.checked}
+                  className="list-grid-checkbox"
+                />
+              }
+              { getNodeIconType(row, columnKey) === 'icon' &&
+                <i
+                  className={row.cells[columnKey].icon}
+                  title={row.cells[columnKey].title}
+                >
+                  <i ng-if="row.cells[columnKey].icon2" className={row.cells[columnKey].icon2} />
                 </i>
-                <img ng-if="tableCtrl.getNodeIconType(row, columnKey) === 'image'"
-                     ng-src="{{row.cells[columnKey].picture || row.cells[columnKey].image}}"
-                     alt="{{row.cells[columnKey].title}}"
-                     title="{{row.cells[columnKey].title}}" />
-                <span ng-if="row.cells[columnKey].text && !row.cells[columnKey].is_button">
-                      {{row.cells[columnKey].text}}
+              }
+              { getNodeIconType(row, columnKey) === 'image' &&
+                <img
+                  src={row.cells[columnKey].picture || row.cells[columnKey].image}
+                  alt={row.cells[columnKey].title}
+                  title={row.cells[columnKey].title}
+                />
+              }
+              { row.cells[columnKey].text && !row.cells[columnKey].is_button &&
+                <span>
+                  {row.cells[columnKey].text}
                 </span>
-                <button ng-if="row.cells[columnKey].is_button && row.cells[columnKey].onclick"
-                        class="btn btn-primary"
-                        ng-disabled="row.cells[columnKey].disabled"
-                        title="{{row.cells[columnKey].title}}"
-                        alt="{{row.cells[columnKey].title}}"
-                        ng-click="tableCtrl.onItemButtonClick(row.cells[columnKey], $event)">
-                  {{row.cells[columnKey].text}}
+              }
+              { row.cells[columnKey].is_button && row.cells[columnKey].onclick &&
+                <button
+                  className="btn btn-primary"
+                  disabled={row.cells[columnKey].disabled}
+                  title={row.cells[columnKey].title}
+                  alt={row.cells[columnKey].title}
+                  onClick={ev => onItemButtonClick(row.cells[columnKey], ev)}
+                >
+                  {row.cells[columnKey].text}
                 </button>
-              </td>
-            }
-          </tr>
-        )}
-      </tbody>
-    );
-  };
+              }
+            </td>))}
+        </tr>
+      ))}
+    </tbody>);
 
-  const renderTable = () => {
-    return (
-      <table className="table table-bordered table-striped table-hover miq-table-with-footer miq-table">
-        { renderTableHeader() }
-        { renderTableBody() }
-      </table>
-    );
-  }
+  const renderTable = () => (
+    <table className="table table-bordered table-striped table-hover miq-table-with-footer miq-table">
+      { renderTableHeader() }
+      { renderTableBody() }
+    </table>
+  );
 
   return (
     <div className="miq-data-table">
-      { isLoading <div className="spinner spinner-lg"></div> }
-      { isLoading && sortBy (isLoading || rows.length !== 0) && renderPagination() }
+      { isLoading && <div className="spinner spinner-lg" /> }
+      { isLoading && settings.sortBy && (isLoading || rows.length !== 0) && renderPagination() }
       { rows.length !== 0 && renderTable() }
     </div>
   );
-}
+};
 
 DataTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.any).isRequired,
   columns: PropTypes.arrayOf(PropTypes.any).isRequired,
-  perPage: PropTypes.any.isRequired,
-  settings: PropTypes.any.isRequired.
-  loadMoreItems: PropTypes.func.isRequired,
+  // perPage: PropTypes.any.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  settings: PropTypes.any.isRequired,
+  // loadMoreItems: PropTypes.func.isRequired,
   onSort: PropTypes.func.isRequired,
   onRowClick: PropTypes.func.isRequired,
-  onItemSelected: PropTypes.func.isRequired,
+  onItemSelect: PropTypes.func.isRequired,
+  onItemButtonClick: PropTypes.func.isRequired,
 };
 
 export default DataTable;

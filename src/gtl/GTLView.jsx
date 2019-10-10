@@ -658,7 +658,7 @@ export const GTLView = (props) => {
     console.log('onItemSelect: ', item, isSelected);
 
     if (typeof item !== 'undefined') {
-      const selectedItem = find(data.heads, { long_id: item.long_id });
+      const selectedItem = find(data.head, { long_id: item.long_id });
       console.log('selectedItem: ', selectedItem);
 
       if (!selectedItem) {
@@ -758,7 +758,7 @@ export const GTLView = (props) => {
         <StaticGTLView
           gtlType={state.gtlType}
           rows={state.rows}
-          heads={state.heads}
+          head={state.head}
           onItemSelect={onItemSelect}
         />
       )}
