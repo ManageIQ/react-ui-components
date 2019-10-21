@@ -73,9 +73,9 @@ export const ToolbarGroup = ({ group, onClick }) => {
   }
 
   return (
-    <span className="miq-toolbar-group form-group">
+    <div className="miq-toolbar-group form-group">
       {visibleItems.map((i, index) => buttonCase(i, index, onClick))}
-    </span>
+    </div>
   );
 };
 
