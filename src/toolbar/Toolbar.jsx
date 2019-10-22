@@ -22,24 +22,24 @@ const isButtonTwoState = item => (item.type === ButtonType.BUTTON_TWO_STATE);
 const isButtonSelect = item => (item.type === ButtonType.BUTTON_SELECT);
 const isKebabMenu = item => (item.type === ButtonType.KEBAB);
 
-const isButtonOrSelect = item => (
+const isButtonSelectVisible = props => props.items.filter(i => !i.hidden).length !== 0;
+
+const isVisibleButtonOrSelect = item => (
   item.type && (
-    (isButtonSelect(item) && item.items && item.items.length !== 0)
-    || isButton(item)
-    || isButtonTwoState(item)
-    || isKebabMenu(item)
+    (isButtonSelect(item) && isButtonSelectVisible(item))
+    || (isButton(item) && !item.hidden)
+    || (isButtonTwoState(item) && !item.hidden)
+    || (isKebabMenu(item) && !item.hidden)
   )
 );
 
 const toolbarGroupHasContent = group =>
   group &&
     group.filter(item => item &&
-      isButtonOrSelect(item)).length !== 0;
+      isVisibleButtonOrSelect(item)).length !== 0;
 
 const buttonCase = (item, index, onClick) => {
-  if (isButton(item)) {
-    return <ToolbarButton key={index} {...item} onClick={onClick} />;
-  } else if (isButtonTwoState(item) && (item.id.indexOf('view_') === -1)) {
+  if (isButton(item) || isButtonTwoState(item)) {
     return <ToolbarButton key={index} {...item} onClick={onClick} />;
   } else if (isButtonSelect(item) && (item.items.length > 0)) {
     return <ToolbarList key={index} {...item} onClick={onClick} />;
@@ -65,11 +65,19 @@ const collapseCustomGroups = itemsGroup => (
     }, [{ type: ButtonType.KEBAB, items: [] }])
 );
 
-export const ToolbarGroup = props => (
-  <span className="miq-toolbar-group form-group">
-    {props.group.filter(i => !i.hidden).map((i, index) => buttonCase(i, index, props.onClick))}
-  </span>
-);
+export const ToolbarGroup = ({ group, onClick }) => {
+  const visibleItems = group.filter(isVisibleButtonOrSelect);
+
+  if (visibleItems.length === 0) {
+    return null;
+  }
+
+  return (
+    <span className="miq-toolbar-group form-group">
+      {visibleItems.map((i, index) => buttonCase(i, index, onClick))}
+    </span>
+  );
+};
 
 ToolbarGroup.propTypes = {
   group: PropTypes.arrayOf(PropTypes.any),
