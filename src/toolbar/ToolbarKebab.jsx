@@ -21,9 +21,7 @@ const ToolbarSubmenu = props => (
     onItemClick={() => props.setIsOpenId(props.id)}
     onToggle={() => null}
     open={props.openId === props.id}
-    // eslint-disable-next-line react/prop-types
     onSelect={props.onSelect}
-    // eslint-disable-next-line react/prop-types
     onKeyDown={props.onKeyDown}
   >
     { props.items.filter(i => !i.hidden).map(i => (
@@ -48,7 +46,15 @@ ToolbarSubmenu.propTypes = {
   onClick: PropTypes.func.isRequired,
   openId: PropTypes.string,
   setIsOpenId: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
+
+ToolbarSubmenu.defaultProps = {
+  onSelect: null,
+  onKeyDown: null,
+};
+
 
 const KebabListItem = (item, props, openId, setIsOpenId) => {
   if (item.type === 'separator') {
