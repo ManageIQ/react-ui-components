@@ -21,6 +21,8 @@ const ToolbarSubmenu = props => (
     onItemClick={() => props.setIsOpenId(props.id)}
     onToggle={() => null}
     open={props.openId === props.id}
+    onSelect={props.onSelect}
+    onKeyDown={props.onKeyDown}
   >
     { props.items.filter(i => !i.hidden).map(i => (
       <MenuItem
@@ -44,19 +46,31 @@ ToolbarSubmenu.propTypes = {
   onClick: PropTypes.func.isRequired,
   openId: PropTypes.string,
   setIsOpenId: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
-const KebabListItem = (item, onClick, openId, setIsOpenId) => {
+ToolbarSubmenu.defaultProps = {
+  onSelect: null,
+  onKeyDown: null,
+};
+
+
+const KebabListItem = (item, props, openId, setIsOpenId) => {
   if (item.type === 'separator') {
     return <MenuItem key={item.id} disabled={!item.enabled} eventKey={item.id} divider />;
   }
 
   if (item.type === 'buttonSelect') {
-    return <ToolbarSubmenu key={item.id} {...item} onClick={onClick} openId={openId} setIsOpenId={setIsOpenId} />;
+    // eslint-disable-next-line react/prop-types
+    return <ToolbarSubmenu key={item.id} {...item} onClick={props.onClick} openId={openId} setIsOpenId={setIsOpenId} />;
   }
 
   return (
-    <MenuItem disabled={!item.enabled} eventKey={item.id} >
+    <MenuItem
+      disabled={!item.enabled}
+      eventKey={item.id}
+    >
       <ToolbarClick key={item.id} {...item} />
     </MenuItem>
   );
@@ -68,7 +82,7 @@ export const ToolbarKebab = (props) => {
   return (
     <div className="kebab">
       <DropdownButton onClick={() => setIsOpenId(undefined)} id="menu_kebab" title={<span className="fa fa-ellipsis-v" />}>
-        {props.items.map(item => KebabListItem(item, props.onClick, openId, setIsOpenId))}
+        {props.items.map(item => KebabListItem(item, props, openId, setIsOpenId))}
       </DropdownButton>
     </div>
   );
@@ -76,7 +90,8 @@ export const ToolbarKebab = (props) => {
 
 ToolbarKebab.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any),
-  onClick: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  onClick: PropTypes.func.isRequired, // this really IS required
 };
 
 export default ToolbarKebab;
