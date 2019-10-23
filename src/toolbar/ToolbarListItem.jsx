@@ -11,6 +11,10 @@ export const ToolbarListItem = props => (
       disabled={!props.enabled}
       eventKey={props.id}
       onClick={props.onClick && props.enabled ? (() => props.onClick(props)) : null}
+      // eslint-disable-next-line react/prop-types
+      onSelect={props.onSelect}
+      // eslint-disable-next-line react/prop-types
+      onKeyDown={props.onKeyDown}
     >
       <ToolbarClick {...props} />
     </MenuItem>
