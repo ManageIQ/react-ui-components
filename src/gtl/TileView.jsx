@@ -9,6 +9,8 @@ import {
 
 import { Quadicon } from '../quadicon/';
 
+import './styles.scss';
+
 /* eslint max-len: "off" */
 /*
  *
@@ -319,25 +321,27 @@ export const TileView = (props) => {
   };
 
   const renderItem = item => (
-    <div key={item.id}>
-      <div className="miq-tile-head">
-        <span
-          role="button"
-          tabIndex={0}
-          title={fetchTileName(item)}
-          onClick={ev => onItemSelect(item, ev)}
-        >
-          {limitToSuffix(fetchTileName(item), 5, 5)}
-        </span>
-      </div>
-      <div className="miq-quadicon">
-        <span
-          role="button"
-          tabIndex={0}
-          onClick={ev => onItemSelect(item, ev)}
-        >
-          {item.quad && <Quadicon data={item.quad} />}
-        </span>
+    <div className="card">
+      <div className="card-content" key={item.id}>
+        <div className="miq-tile-head">
+          <span
+            role="button"
+            tabIndex={0}
+            title={fetchTileName(item)}
+            onClick={ev => onItemSelect(item, ev)}
+          >
+            {limitToSuffix(fetchTileName(item), 5, 5)}
+          </span>
+        </div>
+        <div className="miq-quadicon">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={ev => onItemSelect(item, ev)}
+          >
+            {item.quad && <Quadicon data={item.quad} />}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -348,7 +352,9 @@ export const TileView = (props) => {
     <div
       className="miq-small-tile miq-sand-paper miq-tile-view"
     >
-      { rows.map(i => renderItem(i)) }
+      <div className="card-view-pf">
+        { rows.map(i => renderItem(i)) }
+      </div>
     </div>
   );
 

@@ -153,7 +153,7 @@ const getNodeIconType = (row, columnKey) =>
 //    return row && row.cells && row.cells[columnKey].hasOwnProperty('image') && row.cells[columnKey].image;
 //  }
 
-const isFilteredBy = (sortBy, column) => !!sortBy && (sortBy.sortObject.col_idx === column.col_idx);
+const isFilteredBy = (sortBy, column) => !!sortBy && (sortBy.sortObject && sortBy.sortObject.col_idx === column.col_idx);
 
 //  /**
 //   * Angular's $onchange function to find out if one of bounded option has changed.
@@ -295,7 +295,7 @@ export const DataTable = ({
           className={row.selected ? 'active' : ''}
           onClick={event => onRowClick({ item: row, event })}
         >
-          {columns.map(columnKey => (
+          {columns.map((column, columnKey) => (
             <td
               className={classNames({
                 narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
@@ -347,6 +347,8 @@ export const DataTable = ({
         </tr>
       ))}
     </tbody>);
+  console.log('rows: ', rows);
+  console.log('columns: ', columns);
 
   const renderTable = () => (
     <table className="table table-bordered table-striped table-hover miq-table-with-footer miq-table">

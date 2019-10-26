@@ -19,6 +19,16 @@ const wrapperComponent = () => (
         onItemSelect={arg => console.log('onItemSelect: ', arg)}
       />
     </div>
+    <h1>GridView</h1>
+    <div className="foobar">
+      <StaticGTLView
+        gtlType="grid"
+        settings={gtlData.settings}
+        head={gtlData.data.head}
+        rows={gtlData.data.rows}
+        onItemSelect={arg => console.log('onItemSelect: ', arg)}
+      />
+    </div>
   </React.Fragment>
 );
 
