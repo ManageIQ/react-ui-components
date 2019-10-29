@@ -11,24 +11,28 @@ const toolbarBigData = require('../data/toolbar-big.json');
 storiesOf('Toolbar', module)
   .add('Toolbar', () => (
     <React.Fragment>
-      <div style={{ padding: 16 }}>
+      <div className="container-fluid">
         <div className="toolbar-pf row">
-          <Toolbar
-            onClick={action('Toolbar click')}
-            onViewClick={action('Toolbar click')}
-            groups={toolbarData}
-            views={viewData}
-          />
+          <div className="col-sm-12">
+            <Toolbar
+              onClick={action('Toolbar click')}
+              onViewClick={action('Toolbar click')}
+              groups={toolbarData}
+              views={viewData}
+            />
+          </div>
         </div>
       </div>
-      <div style={{ padding: 16 }}>
+      <div className="container-fluid">
         <div className="toolbar-pf row">
-          <Toolbar
-            onClick={action('Toolbar click')}
-            onViewClick={action('Toolbar click')}
-            groups={toolbarBigData}
-            views={viewData}
-          />
+          <div className="col-sm-12">
+            <Toolbar
+              onClick={action('Toolbar click')}
+              onViewClick={action('Toolbar click')}
+              groups={toolbarBigData}
+              views={viewData}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
