@@ -1,13 +1,19 @@
-.Tree {
-  .Icon {
-    margin-right: 0;
+.react-tree-view {
+  ul {
+    padding-left: 0;
   }
 
-  .NoOpenButton {
-    margin-left: 1em;
+  li :first-child {
+    padding-left: 1em;
+    display: inline-block;
   }
 
   .dirty {
     color: #39A5DC;
+  }
+
+  .selected {
+    background-color: #349ad3;
+    color: #FFFFFF;
   }
 }

@@ -8,6 +8,7 @@ import { generator, flatLazyChildren } from './Generator';
 import { ReduxTree } from './components/ReduxTree';
 import { ConnectedNode } from './components/ReduxNode';
 import combinedReducers from './reducers';
+import '../index.scss';
 
 /** Create the tree from hierarchical data */
 const tree = Tree.convertHierarchicalTree(Tree.initHierarchicalTree(generator()));
@@ -63,6 +64,7 @@ class App extends React.Component {
         checkboxFirst
         connectedNode={ConnectedNode}
         nodeIcon="fa fa-file-o"
+        selectedIcon="fa"
         callbacks={
           {
             onDataChange: this.onDataChange,
