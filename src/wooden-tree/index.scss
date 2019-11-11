@@ -8,6 +8,10 @@
     display: inline-block;
   }
 
+  i.icon {
+    box-sizing: content-box;
+  }
+
   .dirty {
     color: #39A5DC;
   }
