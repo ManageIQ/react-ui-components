@@ -279,7 +279,15 @@ const limitToSuffix = (value, start, end) =>
   (value.length > start + end + 3 ? `${value.slice(0, start)}...${value.slice(-end)}` : value);
 
 export const TileView = ({
-  rows, columns, settings, isLoading, onItemSelect, pagination, total,
+  rows,
+  columns,
+  settings,
+  isLoading,
+  pagination,
+  total,
+  onItemSelect,
+  onPerPageSelect,
+  onPageSet,
 }) => {
   const fetchTileName = (item) => {
     const nameIndex = findIndex(columns, oneColumn => oneColumn.text && oneColumn.text.indexOf('Name') !== -1);
@@ -334,7 +342,11 @@ export const TileView = ({
   return (
     <div className="miq-tile-section">
       { isLoading && <div className="spinner spinner-lg" /> }
-      { isVisible && renderPagination(pagination, total) }
+      { isVisible &&
+          renderPagination({
+            pagination, total, onPerPageSelect, onPageSet,
+          })
+      }
       { isVisible && renderCardView(rows) }
     </div>
   );
@@ -350,4 +362,6 @@ TileView.propTypes = {
   total: PropTypes.number.isRequired,
   isLoading: PropTypes.bool,
   onItemSelect: PropTypes.func,
+  onPerPageSelect: PropTypes.func.isRequired,
+  onPageSet: PropTypes.func.isRequired,
 };

@@ -23,14 +23,18 @@ export const StaticGTLView = ({
   rows,
   head,
   settings,
+  pagination,
+
   onItemSelect,
+  onSort,
+  onPerPageSelect,
+  onPageSet,
 }) => {
   const tileSettings = {
     ...settings, // not needed?
     sortBy: {},
   };
 
-  const pagination = { page: 1, perPage: 10, perPageOptions: [5, 10, 20, 50, 100, 200] };
   const total = 128;
 
   const miqTileView = () => {
@@ -48,6 +52,8 @@ export const StaticGTLView = ({
         total={total}
         settings={tileSettings}
         onItemSelect={onItemSelect}
+        onPageSet={onPageSet}
+        onPerPageSelect={onPerPageSelect}
       />
     );
   };
@@ -72,10 +78,12 @@ export const StaticGTLView = ({
       total={total}
       settings={tileSettings}
       loadMoreItems={() => console.log('loadMoreItems')}
-      onSort={() => console.log('onSort')}
+      onSort={onSort}
       onRowClick={() => console.log('onRowClick')}
       onItemSelect={onItemSelect}
       onItemButtonClick={() => console.log('onItemButtonClick')}
+      onPageSet={onPageSet}
+      onPerPageSelect={onPerPageSelect}
     />
   );
   //     'miq-data-table', '',
@@ -95,6 +103,10 @@ export const StaticGTLView = ({
 
 StaticGTLView.defaultProps = {
   gtlType: 'grid',
+  pagination: { page: 1, perPage: 10, perPageOptions: [5, 10, 20, 50, 100, 200] },
+  onSort: (headerId, isAscending) => console.log('onSort', headerId, isAscending),
+  onPerPageSelect: foo => console.log('onPerPageSelect', foo),
+  onPageSet: foo => console.log('onPageSet', foo),
 };
 
 StaticGTLView.propTypes = {
@@ -102,5 +114,13 @@ StaticGTLView.propTypes = {
   settings: PropTypes.any,
   rows: PropTypes.arrayOf(PropTypes.any).isRequired,
   head: PropTypes.arrayOf(PropTypes.any).isRequired,
+  pagination: PropTypes.shape({
+    page: PropTypes.number,
+    perPage: PropTypes.number,
+    perPageOptions: PropTypes.arrayOf(PropTypes.number),
+  }),
   onItemSelect: PropTypes.func,
+  onSort: PropTypes.func,
+  onPerPageSelect: PropTypes.func,
+  onPageSet: PropTypes.func,
 };

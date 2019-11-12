@@ -1,31 +1,34 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Paginator,
   PAGINATION_VIEW,
 } from 'patternfly-react';
 
-export const renderPagination = (pagination, itemCount) => {
-  const setPage = () => null;
-  const perPageSelect = () => null;
-  return (
-    <Paginator
-      viewType={PAGINATION_VIEW.TABLE}
-      pagination={pagination}
-      itemCount={itemCount}
-      onPageSet={setPage}
-      onPerPageSelect={perPageSelect}
-    />
-  );
-  //   <miq-pagination
-  //  MISSING:
-  //     settings="tableCtrl.settings"
-  //     per-page="tableCtrl.perPage"
-  //     on-select-all="tableCtrl.onCheckAll(isSelected)"
-  //     has-checkboxes="tableCtrl.countCheckboxes() > 0"
-  //     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
-  //   </miq-pagination>
-};
+// fixme: Grid view paginator has sorting!
+export const renderPagination = ({
+  pagination,
+  total,
+  onPageSet,
+  onPerPageSelect,
+}) => (
+  <Paginator
+    viewType={PAGINATION_VIEW.TABLE}
+    pagination={pagination}
+    itemCount={total}
+    onPageSet={onPageSet}
+    onPerPageSelect={onPerPageSelect}
+  />
+);
+//   <miq-pagination
+//  MISSING:
+//     settings="tableCtrl.settings"
+//     per-page="tableCtrl.perPage"
+//     on-select-all="tableCtrl.onCheckAll(isSelected)"
+//     has-checkboxes="tableCtrl.countCheckboxes() > 0"
+//     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
+//   </miq-pagination>
 
 // import {IDataTableBinding, ITableSettings} from './dataTable';
 // import * as _ from 'lodash';
@@ -174,3 +177,14 @@ export const renderPagination = (pagination, itemCount) => {
 //     return (pageNumber - 1) * perPage;
 //   }
 // }
+
+renderPagination.propTypes = {
+  pagination: PropTypes.shape({
+    page: PropTypes.number,
+    perPage: PropTypes.number,
+    perPageOptions: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
+  total: PropTypes.number.isRequired,
+  onPageSet: PropTypes.func.isRequired,
+  onPerPageSelect: PropTypes.func.isRequired,
+};

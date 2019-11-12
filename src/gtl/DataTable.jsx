@@ -222,6 +222,8 @@ export const DataTable = ({
   onRowClick,
   onItemButtonClick,
   onItemSelect,
+  onPerPageSelect,
+  onPageSet,
 }) => {
   const isLoading = true;
 
@@ -329,7 +331,11 @@ export const DataTable = ({
   return (
     <div className="miq-data-table">
       { isLoading && <div className="spinner spinner-lg" /> }
-      { isLoading && settings.sortBy && (isLoading || rows.length !== 0) && renderPagination(pagination, total) }
+      { isLoading && settings.sortBy && (isLoading || rows.length !== 0) &&
+        renderPagination({
+          pagination, total, onPerPageSelect, onPageSet,
+        })
+      }
       { rows.length !== 0 && renderTable() }
     </div>
   );
@@ -350,6 +356,8 @@ DataTable.propTypes = {
   onRowClick: PropTypes.func.isRequired,
   onItemSelect: PropTypes.func.isRequired,
   onItemButtonClick: PropTypes.func.isRequired,
+  onPerPageSelect: PropTypes.func.isRequired,
+  onPageSet: PropTypes.func.isRequired,
 };
 
 export default DataTable;
