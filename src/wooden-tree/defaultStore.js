@@ -1,4 +1,4 @@
-import Tree, { ActionTypes } from './';
+import { Tree, ActionTypes } from 'react-wooden-tree';
 
 const nodeCheckedWithDirty = (propNode, value) => {
   let node = { ...propNode };
@@ -34,9 +34,6 @@ export default (state = {}, action) => {
   let node;
   if (action.nodeId) {
     node = Tree.nodeSelector(state, action.nodeId);
-    if (!node) {
-      return state;
-    }
   }
 
   return Object.hasOwnProperty.call(actionMapper, action.type) ?

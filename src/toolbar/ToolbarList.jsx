@@ -34,7 +34,7 @@ export const ToolbarList = (props) => {
   // Toolbar is disabled if no item is enabled.
   let isToolbarEnabled = false;
   const enabledItems = visibleItems.map((i) => {
-    const enabled = i.enabled && isEnabled(i.onwhen, count);
+    const enabled = i.onwhen ? isEnabled(i.onwhen, count) : i.enabled;
     isToolbarEnabled = isToolbarEnabled || enabled;
 
     return {

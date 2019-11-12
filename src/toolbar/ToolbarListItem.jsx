@@ -11,6 +11,8 @@ export const ToolbarListItem = props => (
       disabled={!props.enabled}
       eventKey={props.id}
       onClick={props.onClick && props.enabled ? (() => props.onClick(props)) : null}
+      onSelect={props.onSelect}
+      onKeyDown={props.onKeyDown}
     >
       <ToolbarClick {...props} />
     </MenuItem>
@@ -21,4 +23,11 @@ ToolbarListItem.propTypes = {
   enabled: PropTypes.bool,
   type: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  onKeyDown: PropTypes.func,
+};
+
+ToolbarListItem.defaultProps = {
+  onSelect: null,
+  onKeyDown: null,
 };

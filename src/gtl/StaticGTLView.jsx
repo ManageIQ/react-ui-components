@@ -6,6 +6,11 @@ import reduce from 'lodash/reduce';
 import { TileView } from './TileView';
 import { DataTable } from './DataTable';
 
+// temporary:
+const __ = x => x;
+
+const translateHeaderText = heads => heads.map(h => ({ ...h, header_text: __(h.text) }));
+
 const camelizeQuadicon = quad =>
   reduce(quad, (result, current, key) => {
     const item = {};
@@ -25,6 +30,9 @@ export const StaticGTLView = ({
     sortBy: {},
   };
 
+  const pagination = { page: 1, perPage: 10, perPageOptions: [5, 10, 20, 50, 100, 200] };
+  const total = 128;
+
   const miqTileView = () => {
     const rowsWithQuads = rows.map(row => (
       {
@@ -36,6 +44,8 @@ export const StaticGTLView = ({
       <TileView
         rows={rowsWithQuads}
         columns={head}
+        pagination={pagination}
+        total={total}
         settings={tileSettings}
         onItemSelect={onItemSelect}
       />
@@ -57,8 +67,9 @@ export const StaticGTLView = ({
   const miqDataTable = () => (
     <DataTable
       rows={rows}
-      columns={head}
-      perPage={10}
+      columns={translateHeaderText(head)}
+      pagination={pagination}
+      total={total}
       settings={tileSettings}
       loadMoreItems={() => console.log('loadMoreItems')}
       onSort={() => console.log('onSort')}

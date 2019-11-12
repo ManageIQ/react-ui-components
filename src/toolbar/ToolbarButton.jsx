@@ -29,7 +29,7 @@ ButtonIcon.propTypes = {
 
 export const ToolbarButton = (props) => {
   const count = useContext(CountContext);
-  const disabled = !props.enabled || !isEnabled(props.onwhen, count);
+  const disabled = !(props.onwhen ? isEnabled(props.onwhen, count) : props.enabled);
 
   return (
     <button

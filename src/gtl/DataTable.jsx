@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Paginator,
-  PAGINATION_VIEW,
-} from 'patternfly-react';
+import { renderPagination } from './utils';
 
 const classNames = require('classnames');
 
@@ -153,7 +150,7 @@ const getNodeIconType = (row, columnKey) =>
 //    return row && row.cells && row.cells[columnKey].hasOwnProperty('image') && row.cells[columnKey].image;
 //  }
 
-const isFilteredBy = (sortBy, column) => !!sortBy && (sortBy.sortObject.col_idx === column.col_idx);
+const isFilteredBy = (sortBy, column) => !!sortBy && (sortBy.sortObject && sortBy.sortObject.col_idx === column.col_idx);
 
 //  /**
 //   * Angular's $onchange function to find out if one of bounded option has changed.
@@ -218,6 +215,8 @@ export const DataTable = ({
   columns,
   // perPage,
   settings,
+  pagination,
+  total,
   // loadMoreItems,
   onSort,
   onRowClick,
@@ -226,36 +225,6 @@ export const DataTable = ({
 }) => {
   const isLoading = true;
 
-  // FIXME: share with TileView
-  const renderPagination = () => {
-    const state = {
-      pagination: { page: 1, itemCount: 5, perPage: 10 },
-      total: 5,
-    };
-    const setPage = () => null;
-    const perPageSelect = () => null;
-    return (
-      <Paginator
-        viewType={PAGINATION_VIEW.TABLE}
-        pagination={state.pagination}
-        itemCount={state.total}
-        onPageSet={setPage}
-        onPerPageSelect={perPageSelect}
-      />
-    );
-    // <div class="miq-pagination"
-    //   <miq-pagination
-    //     settings="tableCtrl.settings"
-    //     per-page="tableCtrl.perPage"
-    //     on-select-all="tableCtrl.onCheckAll(isSelected)"
-    //     has-checkboxes="tableCtrl.countCheckboxes() > 0"
-    //     on-change-sort="tableCtrl.onSortClick(sortId, isAscending)"
-    //     on-change-page="tableCtrl.setPage(pageNumber)"
-    //     on-change-per-page="tableCtrl.perPageClick(item)">
-    //   </miq-pagination>
-    // </div>
-  };
-
   const renderTableHeader = () => (
     <thead>
       <tr>
@@ -263,7 +232,7 @@ export const DataTable = ({
         {columns.map((column, index) =>
           index !== 0 &&
             <th
-              onClick={onSort({ headerId: index, isAscending: !!settings.sortBy && !settings.sortBy.isAscending })}
+              onClick={() => onSort({ headerId: index, isAscending: !!settings.sortBy && !settings.sortBy.isAscending })}
               className={classNames({ narrow: column.is_narrow, 'table-view-pf-select': column.is_narrow })}
             >
               {column.header_text}
@@ -295,7 +264,7 @@ export const DataTable = ({
           className={row.selected ? 'active' : ''}
           onClick={event => onRowClick({ item: row, event })}
         >
-          {columns.map(columnKey => (
+          {columns.map((column, columnKey) => (
             <td
               className={classNames({
                 narrow: row.cells[columnKey].is_checkbox || row.cells[columnKey].icon || row.cells[columnKey].is_button,
@@ -347,6 +316,8 @@ export const DataTable = ({
         </tr>
       ))}
     </tbody>);
+  console.log('rows: ', rows);
+  console.log('columns: ', columns);
 
   const renderTable = () => (
     <table className="table table-bordered table-striped table-hover miq-table-with-footer miq-table">
@@ -358,7 +329,7 @@ export const DataTable = ({
   return (
     <div className="miq-data-table">
       { isLoading && <div className="spinner spinner-lg" /> }
-      { isLoading && settings.sortBy && (isLoading || rows.length !== 0) && renderPagination() }
+      { isLoading && settings.sortBy && (isLoading || rows.length !== 0) && renderPagination(pagination, total) }
       { rows.length !== 0 && renderTable() }
     </div>
   );
@@ -370,6 +341,10 @@ DataTable.propTypes = {
   // perPage: PropTypes.any.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   settings: PropTypes.any.isRequired,
+
+  pagination: PropTypes.any.isRequired,
+  total: PropTypes.number.isRequired,
+
   // loadMoreItems: PropTypes.func.isRequired,
   onSort: PropTypes.func.isRequired,
   onRowClick: PropTypes.func.isRequired,

@@ -2,12 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import findIndex from 'lodash/findIndex';
 
-import {
-  Paginator,
-  PAGINATION_VIEW,
-} from 'patternfly-react';
+import { renderPagination } from './utils';
 
 import { Quadicon } from '../quadicon/';
+
+import './styles.scss';
 
 /* eslint max-len: "off" */
 /*
@@ -279,38 +278,9 @@ import { Quadicon } from '../quadicon/';
 const limitToSuffix = (value, start, end) =>
   (value.length > start + end + 3 ? `${value.slice(0, start)}...${value.slice(-end)}` : value);
 
-export const TileView = (props) => {
-  const {
-    rows, columns, settings, isLoading, onItemSelect,
-  } = props;
-
-  const renderPagination = () => {
-    const state = {
-      pagination: { page: 1, itemCount: 5, perPage: 10 },
-      total: 5,
-    };
-    const setPage = () => null;
-    const perPageSelect = () => null;
-    // <div class="miq-pagination" >
-    //   <miq-pagination settings="tileCtrl.settings"
-    //                   per-page="tileCtrl.perPage"
-    //                   has-checkboxes="tileCtrl.countCheckboxes() > 0"
-    //                   on-select-all="tileCtrl.onCheckAll(isSelected)"
-    //                   on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
-    //                   on-change-page="tileCtrl.setPage(pageNumber)"
-    //                   on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
-    // </div>
-    return (
-      <Paginator
-        viewType={PAGINATION_VIEW.TABLE}
-        pagination={state.pagination}
-        itemCount={state.total}
-        onPageSet={setPage}
-        onPerPageSelect={perPageSelect}
-      />
-    );
-  };
-
+export const TileView = ({
+  rows, columns, settings, isLoading, onItemSelect, pagination, total,
+}) => {
   const fetchTileName = (item) => {
     const nameIndex = findIndex(columns, oneColumn => oneColumn.text && oneColumn.text.indexOf('Name') !== -1);
     return (nameIndex !== -1 && item.cells && item.cells[nameIndex]) ?
@@ -319,25 +289,27 @@ export const TileView = (props) => {
   };
 
   const renderItem = item => (
-    <div key={item.id}>
-      <div className="miq-tile-head">
-        <span
-          role="button"
-          tabIndex={0}
-          title={fetchTileName(item)}
-          onClick={ev => onItemSelect(item, ev)}
-        >
-          {limitToSuffix(fetchTileName(item), 5, 5)}
-        </span>
-      </div>
-      <div className="miq-quadicon">
-        <span
-          role="button"
-          tabIndex={0}
-          onClick={ev => onItemSelect(item, ev)}
-        >
-          {item.quad && <Quadicon data={item.quad} />}
-        </span>
+    <div className="card">
+      <div className="card-content" key={item.id}>
+        <div className="miq-tile-head">
+          <span
+            role="button"
+            tabIndex={0}
+            title={fetchTileName(item)}
+            onClick={ev => onItemSelect(item, ev)}
+          >
+            {limitToSuffix(fetchTileName(item), 5, 5)}
+          </span>
+        </div>
+        <div className="miq-quadicon">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={ev => onItemSelect(item, ev)}
+          >
+            {item.quad && <Quadicon data={item.quad} />}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -348,7 +320,9 @@ export const TileView = (props) => {
     <div
       className="miq-small-tile miq-sand-paper miq-tile-view"
     >
-      { rows.map(i => renderItem(i)) }
+      <div className="card-view-pf">
+        { rows.map(i => renderItem(i)) }
+      </div>
     </div>
   );
 
@@ -360,7 +334,7 @@ export const TileView = (props) => {
   return (
     <div className="miq-tile-section">
       { isLoading && <div className="spinner spinner-lg" /> }
-      { isVisible && renderPagination() }
+      { isVisible && renderPagination(pagination, total) }
       { isVisible && renderCardView(rows) }
     </div>
   );
@@ -372,6 +346,8 @@ TileView.propTypes = {
   settings: PropTypes.shape({
     sortBy: PropTypes.shape({}),
   }),
+  pagination: PropTypes.any.isRequired,
+  total: PropTypes.number.isRequired,
   isLoading: PropTypes.bool,
   onItemSelect: PropTypes.func,
 };

@@ -646,9 +646,8 @@ export const GTLView = (props) => {
   const [state, dispatch] = useReducer(gtlReducer, initState);
 
   useEffect(() => {
-    // // Initiall toolbars are given in props.
-    // // Later can be changed by an RxJs event.
-    // dispatch({ type: 'TOOLBARS', toolbars });
+    // TODO: fire request to load data
+    // getData( state ... initObject ).then((date) => { console.log("Date fetched: ", data); })
 
     const subscription = subscribeToSubject(dispatch);
     return () => subscription.unsubscribe();
