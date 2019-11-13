@@ -22,6 +22,7 @@ export const StaticGTLView = ({
   gtlType,
   rows,
   head,
+  total,
   settings,
   pagination,
 
@@ -34,8 +35,6 @@ export const StaticGTLView = ({
     ...settings, // not needed?
     sortBy: {},
   };
-
-  const total = 128;
 
   const miqTileView = () => {
     const rowsWithQuads = rows.map(row => (
@@ -86,17 +85,10 @@ export const StaticGTLView = ({
       onPerPageSelect={onPerPageSelect}
     />
   );
-  //     'miq-data-table', '',
   //     "ng-class"         => "{'no-action': dataCtrl.initObject.showUrl === false}",
   //     "settings"         => "dataCtrl.settings",
-  //     "per-page"         => "dataCtrl.perPage",
-  //     "rows"             => "dataCtrl.gtlData.rows",
   //     "on-row-click"     => "dataCtrl.onItemClicked(item, event)",
-  //     "on-sort"          => "dataCtrl.onSort(headerId, isAscending)",
   //     "load-more-items"  => "dataCtrl.onLoadNext(start, perPage)",
-  //     "on-item-selected" => "dataCtrl.onItemSelect(item, isSelected)",
-  //     "columns"          => "dataCtrl.gtlData.cols"
-  //   )
 
   return gtlType === 'grid' ? miqTileView() : miqDataTable();
 };
@@ -107,6 +99,7 @@ StaticGTLView.defaultProps = {
   onSort: (headerId, isAscending) => console.log('onSort', headerId, isAscending),
   onPerPageSelect: foo => console.log('onPerPageSelect', foo),
   onPageSet: foo => console.log('onPageSet', foo),
+  total: 128,
 };
 
 StaticGTLView.propTypes = {
@@ -114,6 +107,7 @@ StaticGTLView.propTypes = {
   settings: PropTypes.any,
   rows: PropTypes.arrayOf(PropTypes.any).isRequired,
   head: PropTypes.arrayOf(PropTypes.any).isRequired,
+  total: PropTypes.number,
   pagination: PropTypes.shape({
     page: PropTypes.number,
     perPage: PropTypes.number,
