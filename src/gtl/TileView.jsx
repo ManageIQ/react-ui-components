@@ -4,81 +4,11 @@ import findIndex from 'lodash/findIndex';
 
 import { renderPagination } from './utils';
 
-import { Quadicon } from '../quadicon/';
+import { TileCard } from './TileCard';
 
 import './styles.scss';
 
 /* eslint max-len: "off" */
-/*
- *
- * <div class="miq-tile-section">
- *     <div ng-if="tileCtrl.settings.isLoading" class="spinner spinner-lg"></div>
- *     <div class="miq-pagination"
- *          ng-if="tileCtrl.isVisible()">
- *       <miq-pagination settings="tileCtrl.settings"
- *                       per-page="tileCtrl.perPage"
- *                       has-checkboxes="tileCtrl.countCheckboxes() > 0"
- *                       on-select-all="tileCtrl.onCheckAll(isSelected)"
- *                       on-change-sort="tileCtrl.onSortClick(sortId, isAscending)"
- *                       on-change-page="tileCtrl.setPage(pageNumber)"
- *                       on-change-per-page="tileCtrl.perPageClick(item)"></miq-pagination>
- *     </div>
- *   <div pf-card-view
- *        class="miq-sand-paper"
- *        config="tileCtrl.options"
- *        items="tileCtrl.rows"
- *        class="miq-tile-view"
- *        ng-if="tileCtrl.isVisible()"
- *        ng-class="tileCtrl.tileClass()">
- *     <div ng-switch="config.type">
- *       <ng-switch-when ng-switch-when="small">
- *         <div class="miq-tile-head">
- *           <a href="javascript:void(0)" title="{{config.fetchTileName(item)}}" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item) | limitToSuffix : 5 : 5 }}</a>
- *         </div>
- *         <div class="miq-quadicon">
- *           <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
- *             <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
- *             <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
- *           </a>
- *         </div>
- *       </ng-switch-when>
- *       # BIIIIIG # <ng-switch-when ng-switch-when="big">
- *       # BIIIIIG #   <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">{{config.fetchTileName(item)}}</a>
- *       # BIIIIIG #   <div class="row miq-row-margin-only-top ">
- *       # BIIIIIG #     <div class="col-md-3 col-lg-3 col-xs-3 miq-icon-section">
- *       # BIIIIIG #       <a href="javascript:void(0)" ng-click="config.onItemClick(item, $event)">
- *       # BIIIIIG #         <div ng-if="!item.quad" ng-bind-html="config.trustAsHtmlQuadicon(item)"></div>
- *       # BIIIIIG #         <miq-quadicon ng-if="item.quad" data="item.quad"></miq-quadicon>
- *       # BIIIIIG #       </a>
- *       # BIIIIIG #     </div>
- *       # BIIIIIG #     <div class="col-md-9 col-lg-9 col-xs-9 miq-info-section">
- *       # BIIIIIG #       <dl class="dl-horizontal tile">
- *       # BIIIIIG #         <dt ng-repeat-start="(key, header) in config.columns | limitTo: 7 track by $index" ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{header.header_text}}">{{header.header_text}}:</dt>
- *       # BIIIIIG #         <dd ng-repeat-end ng-if="header.header_text && header.header_text.indexOf('Name') === -1" title="{{item.cells[key].text}}">{{item.cells[key].text | limitToSuffix : 25 : 25}}</dd>
- *       # BIIIIIG #       </dl>
- *       # BIIIIIG #       <div ng-repeat="(columnKey, column) in config.columns"
- *       # BIIIIIG #            ng-if="item.cells[columnKey].is_button && item.cells[columnKey].onclick"
- *       # BIIIIIG #            align="right">
- *       # BIIIIIG #         <button class="btn btn-primary"
- *       # BIIIIIG #                 title="{{item.cells[columnKey].title}}"
- *       # BIIIIIG #                 alt="{{item.cells[columnKey].title}}"
- *       # BIIIIIG #                 ng-disabled="item.cells[columnKey].disabled"
- *       # BIIIIIG #                 ng-click="config.onButtonItemClick(item.cells[columnKey], $event)">
- *       # BIIIIIG #           {{item.cells[columnKey].text}}
- *       # BIIIIIG #         </button>
- *       # BIIIIIG #       </div>
- *       # BIIIIIG #     </div>
- *       # BIIIIIG #   </div>
- *       # BIIIIIG # </ng-switch-when>
- *     </div>
- *   </div>
- * </div>
- *
- */
-
-// import {TileType} from '../../interfaces/tileType';
-// import {IDataTableBinding} from '../../interfaces/dataTable';
-// import {DataViewClass} from '../../interfaces/abstractDataViewClass'; // FIXME: probably needed
 
 // /**
 //  * Controller for tile components. It extends {@link miqStaticAssets.gtl.DataViewClass}.
@@ -218,63 +148,6 @@ import './styles.scss';
 //   }
 // }
 
-// /**
-//  * @description
-//  *    Component for tile list. This component requires pf-tile to be part of angular's components. For patternfly's
-//  *    implementation look at
-//  *    <a href="http://angular-patternfly.rhcloud.com/#/api/patternfly.views.directive:pfCardView">pfCardView</a>
-//  * @memberof miqStaticAssets.gtl
-//  * @ngdoc component
-//  * @name miqTileView
-//  * @attr {Object} type
-//  *    Type of tile look at {@see miqStaticAssets.gtl.TileType}
-//  * @attr {Object} rows
-//  *    Array of rows which will be displayed.
-//  * @attr {Object} perPage
-//  *    Object which will be displayed as dropdown picker to filter number of tiles.
-//  * @attr {Object} columns
-//  *    Columns which will be displayed as header in tile.
-//  * @attr {Object} settings
-//  *    Tile settings look at {@see ITableSettings} for more information.
-//  * @attr {Expression} loadMoreItems
-//  *    Function which will be called upon loading more items. Function call has to have `start`, `perPage` params.
-//  * @attr {Expression} onSort
-//  *    Function to triggering sorting items. Function call has to have `headerId`, `isAscending` params.
-//  * @attr {Expression} onRowClick
-//  *    Function which will be executed when click on tile event is fired. Function call has to have `item` param.
-//  * @attr {Expression} onItemSelected
-//  *    Function to be called on selecting item (trough clicking on tile). Function call has to have `item`, `isSelected`
-//  *    params.
-//  * @example
-//  * <miq-tile-view type="ctrl.type"
-//  *                rows="ctrl.rows"
-//  *                columns="ctrl.columns"
-//  *                per-page="ctrl.perPage"
-//  *                settings="ctrl.settings"
-//  *                load-more-items="ctrl.onLoadMoreItems(start, perPage)"
-//  *                on-sort="ctrl.onSort(headerId, isAscending)"
-//  *                on-row-click="ctrl.onRowClick(item)"
-//  *                on-item-selected="ctrl.onItemSelect(item, isSelected)>
-//  * </miq-tile-view>
-//  */
-// export default class TileView implements ng.IComponentOptions {
-//   public replace = true;
-//   public controller = TileViewController;
-//   public template = require('./tile-view.html');
-//   public controllerAs = 'tileCtrl';
-//   public bindings: any = {
-//     type: '<',
-//     rows: '<',
-//     columns: '<',
-//     perPage: '<',
-//     settings: '<',
-//     loadMoreItems: '&',
-//     onSort: '&',
-//     onRowClick: '&',
-//     onItemSelected: '&'
-//   };
-// }
-
 const limitToSuffix = (value, start, end) =>
   (value.length > start + end + 3 ? `${value.slice(0, start)}...${value.slice(-end)}` : value);
 
@@ -285,6 +158,8 @@ export const TileView = ({
   isLoading,
   pagination,
   total,
+  onItemClick,
+  /* eslint-disable-next-line */
   onItemSelect,
   onPerPageSelect,
   onPageSet,
@@ -296,31 +171,19 @@ export const TileView = ({
       item.cells[2].text;
   };
 
-  const renderItem = item => (
-    <div className="card">
-      <div className="card-content" key={item.id}>
-        <div className="miq-tile-head">
-          <span
-            role="button"
-            tabIndex={0}
-            title={fetchTileName(item)}
-            onClick={ev => onItemSelect(item, ev)}
-          >
-            {limitToSuffix(fetchTileName(item), 5, 5)}
-          </span>
-        </div>
-        <div className="miq-quadicon">
-          <span
-            role="button"
-            tabIndex={0}
-            onClick={ev => onItemSelect(item, ev)}
-          >
-            {item.quad && <Quadicon data={item.quad} />}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
+  const renderItem = (item) => {
+    const tileName = fetchTileName(item);
+
+    return (
+      <TileCard
+        text={limitToSuffix(tileName, 5, 5)}
+        title={tileName}
+        item={item}
+        onItemClick={onItemClick}
+        onItemSelect={onItemSelect}
+      />
+    );
+  };
 
   const renderCardView = rows => (
     //  className="pf-card-view"
@@ -361,6 +224,7 @@ TileView.propTypes = {
   pagination: PropTypes.any.isRequired,
   total: PropTypes.number.isRequired,
   isLoading: PropTypes.bool,
+  onItemClick: PropTypes.func,
   onItemSelect: PropTypes.func,
   onPerPageSelect: PropTypes.func.isRequired,
   onPageSet: PropTypes.func.isRequired,

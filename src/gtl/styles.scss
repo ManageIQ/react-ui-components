@@ -22,15 +22,6 @@
   width: 260px;
 }
 
-.card-view-pf .card .card-check-box {
-  left: 10px;
-  position: absolute;
-  top: 8px;
-  visibility: hidden;
-  width: 20px;
-  z-index: 3;
-}
-
 .card-view-pf .card-content {
   height: 100%;
   margin: 2px 0 10px;
@@ -65,10 +56,6 @@
 .card-view-pf .card.active:focus .pficon {
   color: #ffffff;
 }
-.card-view-pf .card:hover .card-check-box,
-.card-view-pf .card.active .card-check-box {
-  visibility: visible;
-}
 
 .card-view-pf .card.disabled, .card.disabled:hover, .card.disabled:focus {
   border: 1px solid #eee;
@@ -100,11 +87,6 @@
 
     .card-content > div {
       padding-top: 10px;
-    }
-
-    .card-check-box {
-      left: 0 !important;
-      top: 12px !important;
     }
   }
 }
@@ -149,11 +131,6 @@
     width: 130px;
     height: 131px;
 
-    .card-check-box {
-      left: 4px !important;
-      top: 12px !important;
-    }
-
     .card-content {
       .miq-quadicon {
         display: inline-block;
@@ -166,6 +143,19 @@
       }
     }
   }
+}
+
+/* new checkbox style */
+.card-view-pf .card .card-checkbox {
+  left: 4px;
+  position: absolute;
+  top: 12px;
+  width: 20px;
+  z-index: 3;
+}
+
+.miq-tile-head {
+  color: #0099d3;
 }
 
 /* End Grid View (Quad Icon) & Tile View Styling */

@@ -25,7 +25,7 @@ export const StaticGTLView = ({
   total,
   settings,
   pagination,
-
+  onItemClick,
   onItemSelect,
   onSort,
   onPerPageSelect,
@@ -50,6 +50,7 @@ export const StaticGTLView = ({
         pagination={pagination}
         total={total}
         settings={tileSettings}
+        onItemClick={onItemClick}
         onItemSelect={onItemSelect}
         onPageSet={onPageSet}
         onPerPageSelect={onPerPageSelect}
@@ -64,7 +65,6 @@ export const StaticGTLView = ({
   //    "on-row-click"     => "dataCtrl.onItemClicked(item, event)",
   //    "on-sort"          => "dataCtrl.onSort(headerId, isAscending)",
   //    "on-item-selected" => "dataCtrl.onItemSelect(item, isSelected)",
-  //    "load-more-items"  => "dataCtrl.onLoadNext(start, perPage)",
   //    "columns"          => "dataCtrl.gtlData.cols",
   //    "type"             => "dataCtrl.gtlType === 'grid' ? 'small' : 'big'"
   //  )
@@ -78,7 +78,7 @@ export const StaticGTLView = ({
       settings={tileSettings}
       loadMoreItems={() => console.log('loadMoreItems')}
       onSort={onSort}
-      onRowClick={() => console.log('onRowClick')}
+      onItemClick={onItemClick}
       onItemSelect={onItemSelect}
       onItemButtonClick={() => console.log('onItemButtonClick')}
       onPageSet={onPageSet}
@@ -87,8 +87,6 @@ export const StaticGTLView = ({
   );
   //     "ng-class"         => "{'no-action': dataCtrl.initObject.showUrl === false}",
   //     "settings"         => "dataCtrl.settings",
-  //     "on-row-click"     => "dataCtrl.onItemClicked(item, event)",
-  //     "load-more-items"  => "dataCtrl.onLoadNext(start, perPage)",
 
   return gtlType === 'grid' ? miqTileView() : miqDataTable();
 };
@@ -99,6 +97,8 @@ StaticGTLView.defaultProps = {
   onSort: (headerId, isAscending) => console.log('onSort', headerId, isAscending),
   onPerPageSelect: foo => console.log('onPerPageSelect', foo),
   onPageSet: foo => console.log('onPageSet', foo),
+  onItemClick: foo => console.log('onItemClick', foo),
+  onItemSelect: foo => console.log('onItemSelect', foo),
   total: 128,
 };
 
@@ -114,6 +114,7 @@ StaticGTLView.propTypes = {
     perPageOptions: PropTypes.arrayOf(PropTypes.number),
   }),
   onItemSelect: PropTypes.func,
+  onRowClick: PropTypes.func,
   onSort: PropTypes.func,
   onPerPageSelect: PropTypes.func,
   onPageSet: PropTypes.func,

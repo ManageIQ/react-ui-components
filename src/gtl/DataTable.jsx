@@ -220,9 +220,9 @@ export const DataTable = ({
   total,
   // loadMoreItems,
   onSort,
-  onRowClick,
-  onItemButtonClick,
+  onItemClick,
   onItemSelect,
+  onItemButtonClick,
   onPerPageSelect,
   onPageSet,
 }) => {
@@ -253,9 +253,20 @@ export const DataTable = ({
     </thead>
   );
 
-  const localOnItemSelected = (ev, item, isSelected) => {
-    onItemSelect({ item, isSelected });
+  const localOnItemSelected = (row, ev) => {
     ev.stopPropagation();
+    onItemSelect(row, ev.target.checked);
+  };
+
+  const localOnClickItem = (row, ev) => {
+    if (ev.target.classList.contains('is-checkbox-cell') ||
+       ev.target.parentElement.classList.contains('is-checkbox-cell')) {
+      return;
+    }
+
+    ev.stopPropagation();
+    ev.preventDefault();
+    onItemClick(row);
   };
 
   const renderTableBody = () => (
@@ -263,7 +274,7 @@ export const DataTable = ({
       {rows.map(row => (
         <tr
           className={row.selected ? 'active' : ''}
-          onClick={event => onRowClick({ item: row, event })}
+          onClick={event => localOnClickItem(row, event)}
         >
           {columns.map((column, columnKey) => (
             <td
@@ -274,7 +285,7 @@ export const DataTable = ({
             >
               { row.cells[columnKey].is_checkbox && !settings.hideSelect &&
                 <input
-                  onChange={ev => localOnItemSelected(ev, row, ev.target.checked)}
+                  onChange={ev => localOnItemSelected(row, ev)}
                   type="checkbox"
                   name={`check_${row.id}`}
                   value={row.id}
@@ -353,7 +364,7 @@ DataTable.propTypes = {
   total: PropTypes.number.isRequired,
   isLoading: PropTypes.bool,
   onSort: PropTypes.func.isRequired,
-  onRowClick: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
   onItemSelect: PropTypes.func.isRequired,
   onItemButtonClick: PropTypes.func.isRequired,
   onPerPageSelect: PropTypes.func.isRequired,
