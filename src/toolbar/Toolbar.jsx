@@ -52,17 +52,33 @@ const buttonCase = (item, index, onClick) => {
 /* custom buttons have ID's starting with this: */
 const CUSTOM_ID = 'custom_';
 
-const collapseCustomGroups = itemsGroup => (
-  itemsGroup.length < 4
-    ? itemsGroup
-    : itemsGroup.reduce((acc, i) => {
-      if (i.id.includes(CUSTOM_ID)) {
-        acc[0].items.push(i);
+const collapseOverlimit = (itemsGroup, kebabLimit) => {
+  let numItems = 0;
+
+  return itemsGroup.reduce((acc, i) => {
+    if (i.id.includes(CUSTOM_ID)) {
+      if (numItems >= kebabLimit) {
+        acc[acc.length - 1].items.push(i);
       } else {
-        acc.push(i);
+        numItems += 1;
+        acc.splice(acc.length - 1, 0, i);
       }
-      return acc;
-    }, [{ type: ButtonType.KEBAB, items: [] }])
+    } else {
+      acc.splice(acc.length - 1, 0, i);
+    }
+    return acc;
+  }, [{ type: ButtonType.KEBAB, items: [] }]);
+};
+
+/*
+ * kebabLimit === -1 means no compacting
+ * kebabLimit === 0 means always compact into kebab
+ * other values of kebabLimit give number of items to keep, before the rest is kebabized
+*/
+const collapseCustomGroups = (itemsGroup, kebabLimit) => (
+  (kebabLimit === -1) || (itemsGroup.length < kebabLimit)
+    ? itemsGroup
+    : collapseOverlimit(itemsGroup, kebabLimit)
 );
 
 export const ToolbarGroup = ({ group, onClick }) => {
@@ -91,7 +107,7 @@ export const Toolbar = props => (
         .filter(toolbarGroupHasContent)
         .map((group, index) =>
           /* eslint react/no-array-index-key: "off" */
-          <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group)} />)
+          <ToolbarGroup key={index} onClick={props.onClick} group={collapseCustomGroups(group, props.kebabLimit)} />)
       }
       <ToolbarView onClick={props.onViewClick} views={props.views} />
     </div>
@@ -100,8 +116,13 @@ export const Toolbar = props => (
 
 Toolbar.propTypes = {
   count: PropTypes.number.isRequired,
+  kebabLimit: PropTypes.number,
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
   onClick: PropTypes.func.isRequired,
   onViewClick: PropTypes.func.isRequired,
+};
+
+Toolbar.defaultProps = {
+  kebabLimit: 3,
 };

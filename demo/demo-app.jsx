@@ -10,12 +10,46 @@ const wrapperComponent = () => (
   <React.Fragment>
     <div className="toolbar-pf row">
       <Toolbar
+        count={1}
         groups={toolbarData}
         views={viewData}
       />
     </div>
     <div className="toolbar-pf row">
       <Toolbar
+        count={1}
+        groups={toolbarBigData}
+        views={viewData}
+      />
+    </div>
+    <div className="toolbar-pf row">
+      <Toolbar
+        count={1}
+        kebabLimit={2}
+        groups={toolbarBigData}
+        views={viewData}
+      />
+    </div>
+    <div className="toolbar-pf row">
+      <Toolbar
+        count={1}
+        kebabLimit={1}
+        groups={toolbarBigData}
+        views={viewData}
+      />
+    </div>
+    <div className="toolbar-pf row">
+      <Toolbar
+        count={1}
+        kebabLimit={0}
+        groups={toolbarBigData}
+        views={viewData}
+      />
+    </div>
+    <div className="toolbar-pf row">
+      <Toolbar
+        count={1}
+        kebabLimit={-1}
         groups={toolbarBigData}
         views={viewData}
       />
