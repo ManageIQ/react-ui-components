@@ -94,7 +94,7 @@ exports[`IconList test should render correctly 1`] = `
       <div
         className="icon-list-modal"
       >
-        <Uncontrolled(Tabs)
+        <ForwardRef
           activekey={0}
           animation={false}
           id="font-icon-tabs"
@@ -134,7 +134,7 @@ exports[`IconList test should render correctly 1`] = `
               </tbody>
             </table>
           </Tab>
-        </Uncontrolled(Tabs)>
+        </ForwardRef>
       </div>
     </ModalBody>
     <ModalFooter

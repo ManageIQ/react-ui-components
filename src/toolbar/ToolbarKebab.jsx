@@ -80,7 +80,7 @@ export const ToolbarKebab = (props) => {
   const [openId, setIsOpenId] = useState(undefined);
 
   return (
-    <div className="kebab">
+    <div className="btn-group kebab">
       <DropdownButton onClick={() => setIsOpenId(undefined)} id="menu_kebab" title={<span className="fa fa-ellipsis-v" />}>
         {props.items.map(item => KebabListItem(item, props, openId, setIsOpenId))}
       </DropdownButton>

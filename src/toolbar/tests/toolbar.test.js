@@ -71,6 +71,7 @@ describe('Toolbar', () => {
 
   it('renders drop-down buttons', () => {
     const t = mount(<Toolbar
+      kebabLimit={0}
       onClick={() => {}}
       onViewClick={() => {}}
       groups={toolbarData}
@@ -81,6 +82,18 @@ describe('Toolbar', () => {
     expect(t.find(ToolbarList).at(1).text()).toContain('Configuration');
     expect(t.find(ToolbarList).at(1).containsMatchingElement(<i className="fa fa-cog fa-lg" />))
       .toBeTruthy();
+  });
+
+  it('renders applies kebabLimit properly', () => {
+    const t = mount(<Toolbar
+      kebabLimit={3}
+      onClick={() => {}}
+      onViewClick={() => {}}
+      groups={toolbarData}
+      views={viewData}
+      count={0}
+    />);
+    expect(t.find(ToolbarList)).toHaveLength(10);
   });
 
   it('renders kebab buttons', () => {
