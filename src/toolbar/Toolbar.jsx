@@ -115,7 +115,7 @@ export const Toolbar = props => (
 );
 
 Toolbar.propTypes = {
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
   kebabLimit: PropTypes.number,
   groups: PropTypes.arrayOf(PropTypes.any), // array of arrays of buttons
   views: PropTypes.arrayOf(PropTypes.any), // array of view buttons
@@ -124,5 +124,6 @@ Toolbar.propTypes = {
 };
 
 Toolbar.defaultProps = {
+  count: 0,
   kebabLimit: 3,
 };
