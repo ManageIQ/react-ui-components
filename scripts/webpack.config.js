@@ -26,6 +26,9 @@ module.exports = (env) => {
       umdNamedDefine: true,
     },
     plugins: Object.keys(appPlugins).map(pluginName => appPlugins[pluginName]),
+    node: {
+      fs: 'empty'
+    },
     module: {
       rules,
     },

@@ -1,2 +1,13 @@
 @import "~@patternfly/patternfly/components/Select/select.css";
 @import "~@patternfly/patternfly/patternfly-variables.css";
+
+.expression-options ul {
+    padding-left: 0px;
+    li {
+        display: block;
+    }
+}
+
+li {
+    display: block;
+}

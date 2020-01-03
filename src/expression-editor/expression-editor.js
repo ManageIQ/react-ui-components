@@ -1,36 +1,45 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { TypeAheadSelect } from 'patternfly-react';
 import Autosuggest from 'react-autosuggest';
-import { Select, SelectOption, SelectVariant } from '@patternfly/react-core';
 import { CheckCircleIcon, TimesCircleIcon } from '@patternfly/react-icons';
-import { parser } from './parser'
 import { trimInput } from './helper'
-
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 const nearley = require("nearley");
 const partialGrammar = require('./grammar.ne.js')
+const validationGrammar = require('./validation-grammar.ne.js')
 let partialParser = new nearley.Parser(nearley.Grammar.fromCompiled(partialGrammar));
+let parser = new nearley.Parser(nearley.Grammar.fromCompiled(validationGrammar));
 
-const autocomplete = {
-  exp_type: ["FIELD:", "TAGS:", "COUNT OF:", "FIND:", "REGKEY:"],
-  entity: ["vm.","host."],
-  field: ['name ', 'status '],
-  category: ['environment ', 'category '],
-  operator: ['= ', 'CONTAINS ', '< ', '> ', '<= ', '>= ', 'INCLUDES ', 'IS NOT EMPTY ', 'IS ', 'STARTS WITH ', "REGULAR EXPRESSION MATCHES "],
+let autocomplete = {
+  exp_type: ['FIELD:', 'TAGS:', 'COUNT OF:', 'FIND:', 'REGKEY:'],
+  entity: ['host.'],
+  field: ['name ', 'status ', 'system ', 'owner '],
+  category: ['environment ', 'location '],
+  operator: ['= ', 'CONTAINS ', '< ', '> ', '<= ', '>= ', 'INCLUDES ', 'IS NOT EMPTY ', 'IS ', 'STARTS WITH ', 'REGULAR EXPRESSION MATCHES '],
   tag_operator: ['= ', 'CONTAINS  ', ': '],
   exp_operator: ['AND ', 'OR '],
   value: ['value '],
-  check: ['CHECK ALL:', 'CHECK ANY:', 'CHECK COUNT:']
-}
+  check: ['CHECK ALL:', 'CHECK ANY:', 'CHECK COUNT:'],
+};
 
-const ast = value => ({
-  toString: () => value.map(x=> x.type === 'entity' ? x.value + '.' : x.value + ' ').reduce((acc, i) => acc+i, ''),
-  positionTokenIndex: (index) => value.reduce((acc, i) => (acc.length+i.value.length < index ? {index: acc.index+1, length: acc.length+i.value.length} : acc),{length: 0, index:-1}).index,
-  value,
-  last: value.slice(-1)[0]
-})
-
-const getSuggestions = next => next.map(n => autocomplete[n]).flat()
-
+const keywords = [
+  "=",
+  "CONTAINS",
+  "<",
+  ">",
+  ">=",
+  "<=",
+  "INCLUDES",
+  "IS NOT EMPTY",
+  "IS",
+  "STARTS WITH",
+  "REGULAR EXPRESSION MATCHES",
+  "COUNT OF",
+  "CHECK ALL",
+  "CHECK ANY",
+  "CHECK COUNT",
+]
+const getSuggestions = next => next.map(n => autocomplete[n]).flat().filter(Boolean);
+let reloadSuggestions;
 
 const initialState = {
   inputText: "",
@@ -45,221 +54,211 @@ const initialState = {
 }
 
 const reducer = (state, action) => {
-  // console.log(action);
-  let { type, inputText, caretPosition } = action;
-  // console.log('action: ',type);
+  let { type, inputText, caretPosition, model } = action;
+  console.log(action);
   switch (type) {
+    case 'reloadSuggestions':
+      return {
+        ...state,
+        suggestion,
+      }
+
+    case 'setInput':
+      return {
+        ...state,
+        inputText,
+        caretPosition,
+      }
+    
+    case 'getSuggestions':
+      console.log(state.next, getSuggestions(state.next), autocomplete);
+      
+      return {
+        ...state,
+        filteredSuggestions: getSuggestions(state.next).filter(x => x.toLowerCase().includes(state.filterStr.toLowerCase()))
+      }
     case 'inputChanged':
       const { parsedAST, isValid } = parse(inputText);
       let newState = {...state};
       let next = [];
       try {
         partialParser = new nearley.Parser(nearley.Grammar.fromCompiled(partialGrammar));
-        // while(inputText[caretPosition] !== ' '&& inputText[caretPosition] !== '.' && caretPosition < inputText.length) {
-        //   caretPosition++;
-        // }
-        let currentExp = inputText.slice(0,caretPosition)+"<<caret_position>>";
-        console.log('CURENT', currentExp);
-
-        const leftIndex = Math.max(currentExp.lastIndexOf('AND'), currentExp.lastIndexOf('OR'), 0);
-        const rightIndex = [inputText.indexOf('AND', caretPosition-3), inputText.indexOf('OR', caretPosition-2)].reduce((a,b) => b > 0 ? (a < b ? a : b) : a, inputText.length-1)
-        // console.log(inputText.slice(leftIndex, rightIndex));
-        // console.log(rightIndex);
-        // console.log(currentExp.slice(leftIndex).replace(/AND|OR/,''));
-        partialParser.feed(currentExp.slice(leftIndex).replace(/AND|OR/,''));
+        let currentExp = trimInput(inputText, caretPosition);
+        partialParser.feed(currentExp);
         next = partialParser.results[0][0].next;
-        // console.log(next);
         newState.partialAST = partialParser.results[0][0].results;
-        const tmp = ast(partialParser.results[0][0].results);
-        console.log(inputText.slice(leftIndex, rightIndex));
-        console.log(tmp.value, tmp.value[tmp.positionTokenIndex(caretPosition-leftIndex)]);
+        console.log(currentExp, next);
       }
       catch(err) {
-        console.log(err.message);
+        // console.log(err.message);
       }
-      const filterStr =  newState.partialAST.slice(-1)[0] ? newState.partialAST.slice(-1)[0].value : '';
-      // console.log(filterStr);
-      // console.log(newState.partialAST);
+      const filterStr = newState.partialAST.slice(-1)[0] ? newState.partialAST.slice(-1)[0].value : '';
+
       const suggestions = getSuggestions(next);
-      // console.log(suggestions);
+
       const filteredSuggestions = suggestions.filter(x => x.toLowerCase().includes(filterStr.toLowerCase()));
       return {...newState,
         inputText,
         parsedAST,
         isValid,
         caretPosition,
-        suggestions,
+        // suggestions,
         filteredSuggestions,
         filterStr,
+        next,
+        previousPartialAST: state.partialAST
       }
 
     case 'downArrow':
-      console.log('downArrow');
-      console.log( Math.min(state.selectedIndex+1, state.filteredSuggestions.length-1));
       return {
         ...state,
         selectedIndex: Math.min(state.selectedIndex+1, state.filteredSuggestions.length-1)
       };
     case 'upArrow':
-      console.log('upArrow');
-      console.log( Math.max(state.selectedIndex-1, 0));
       return {
         ...state,
         selectedIndex: Math.max(state.selectedIndex-1, 0)
       };
-    case 'leftArrow':
-      return {...state, caretPosition};
-    case 'rightArrow':
-      return {...state, caretPosition};
     case 'resetSelection':
       return {...state, selectedIndex: 0}
-    // case 'enter':
-    //   console.log('enter', state.filteredSuggestions[state.selectedIndex]);
-    //   return {...state};
     default:
       return state;
 
   }
 }
 
-const keyCodeToActions = (keyCode, {caretPosition, inputText, filterStr, newValue}) => ({
-  13: () => ([inputTextAction(inputText, newValue, caretPosition, filterStr), {type: 'resetSelection'}]),
-  37: () => ([{type: 'leftArrow', caretPosition}]),
+const keyCodeToActions = (keyCode, {caretPosition, inputText, filterStr, newValue, model}) => ({
+  13: () => ([inputTextAction(inputText, newValue, caretPosition, filterStr, model), {type: 'resetSelection'}]),
   38: () => ([{type: 'upArrow', caretPosition}]),
-  39: () => ([{type: 'rightArrow', caretPosition}]),
   40: () => ([{type: 'downArrow', caretPosition}]),
 }[keyCode])
 
 const parse = (text, callback) => {
   try {
-    return { parsedAST: JSON.stringify(parser.parse(text)), isValid: true};
+    parser = new nearley.Parser(nearley.Grammar.fromCompiled(validationGrammar));
+    parser.feed(text);
+    if(parser.results.length === 0) {
+      throw { message: 'Unexpected end of input. Please complete the expression.' };
+    }
+    return { parsedAST: JSON.stringify(parser.results[0]), isValid: true};
   }
   catch(err) {
     return { parsedAST: err.message, isValid: false};
   }
 }
-
-const statusDiv = (isValid) => ((
+const statusDiv = (isValid, isHidden = false) => ((
   isValid
-    ? <CheckCircleIcon style={{color: 'lightGreen', fontSize: '24px', 'margin-right': '10px'}}/>
-    : <TimesCircleIcon style={{color: 'red', fontSize: '24px', 'margin-right': '10px'}}/>
+    ? <CheckCircleIcon style={{ color: 'lightGreen', fontSize: '24px', 'margin-right': '10px', visibility: isHidden ? 'hidden' : 'visible'}}/>
+    : <TimesCircleIcon style={{ color: 'red', fontSize: '24px', 'margin-right': '10px', visibility: isHidden ? 'hidden' : 'visible'}}/>
 ));
 
-const generateMenu = (item, focus) => <button type='button' className={`pf-c-select__menu-item ${focus ? 'pf-m-focus' : ''}`}>{item}</button>
-const renderContainer = ({ containerProps, children, query }) => {
-  return (
-    <div className="pf-c-select pf-m-expanded" {... containerProps}>
-      {children}
-    </div>
-  );
-}
 
-const inputTextAction = (inputText, newValue, caretPosition, filterStr) => {
+const inputTextAction = (inputText, newValue, caretPosition, filterStr, model) => {
   const leftPart = inputText.slice(0, caretPosition);
   const rightPart = inputText.slice(caretPosition);
-  const cutedLeftPart = leftPart.slice(0, leftPart.length - filterStr.length);
+  let cutedLeftPart = leftPart.slice(0, leftPart.length - filterStr.length);
+  cutedLeftPart = cutedLeftPart.slice(-1) === '"' ? cutedLeftPart.slice(0, - 1) : cutedLeftPart;
+
+  console.log('REGEXP', newValue.match(/^[a-z0-9]+$/i), newValue, cutedLeftPart);
+  newValue = newValue.match(/^[a-z0-9]+$/i) || keywords.includes(newValue.toUpperCase()) ? newValue : `"${newValue}"`;
+  
+  // this works only for the same selection
+  let rightCut = 0;
+  for (let i = newValue.length; i > 0; i--) {
+    if (rightPart.slice(0, i) === newValue.slice(newValue.length-i)) {
+      rightCut = i;
+    }
+  }
   return {
     type: 'inputChanged',
     caretPosition: caretPosition + newValue.length - filterStr.length,
-    inputText: `${cutedLeftPart}${newValue}${rightPart}`,
+    inputText:  `${cutedLeftPart}${newValue}${rightPart.slice(rightCut)}`,
+    model: model, 
   };
 }
 
-export default function ExpressionEditor() {
+export default function ExpressionEditor(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log('STATE:', state)
+  reloadSuggestions = AwesomeDebouncePromise(props.reloadSuggestions, 500);
+  useEffect(() => {
+    (async () => {
+      autocomplete = await reloadSuggestions(props.model, ['exp_type', 'entity'], []);
+      console.log('ON  LOAD', autocomplete);
+    })()
+  }, []);
+  const onChange = async (e, { newValue, method }) => {
+    console.log('ONCHANGE', method, e, newValue);
+    
+    const selectionStart = e.target.selectionStart;
+    // don't add trailing enter, it should be done in different way, but...
+    if (newValue.slice(-1).charCodeAt(0) === 10) {
+      return;
+    }
 
-  const onChange = (e, { newValue, method }) => {
-    console.log('onchage');
-    switch (method) {
-      case 'type':
-        console.log('TYPE');
-        dispatch({
+    if (method === 'type') {
+      dispatch({
           type: 'inputChanged',
-          caretPosition: e.target.selectionStart,
-          inputText: e.target.value,
+          caretPosition: selectionStart,
+          inputText: newValue,
+          model: props.model
         })
-        break;
-        case 'click':
-          console.log('CLICK');
-          dispatch(inputTextAction(state.inputText, newValue, state.caretPosition, state.filterStr));
-        break;
-      //   case 'enter':
-      //   newValue = state.filteredSuggestions[state.selectedIndex];
-      //   console.log('enter', newValue);
-      //   leftPart = state.inputText.slice(0, state.caretPosition);
-      //   rightPart = state.inputText.slice(state.caretPosition);
-      //   cutedLeftPart = leftPart.slice(0, leftPart.length - state.filterStr.length);
-      //   console.log(state.partialAST);
-      //   console.log(`${cutedLeftPart}${newValue}${rightPart}`);
-      //     dispatch({
-      //       type: 'inputChanged',
-      //       caretPosition: state.caretPosition + newValue.length - state.filterStr.length,
-      //       inputText: `${cutedLeftPart}${newValue}${rightPart}`,
-      //     })
-      //   break;
-      default:
-
     }
   }
-
-  // const a =       (<TypeAheadSelect
-  //         id="ee"
-  //         options={state.suggestions}
-  //         emptyLabel={null}
-  //         filterBy={(x)=>(x)}
-  //         isValid={state.isValid}
-  //         isInvalid={!state.isValid}
-  //         onChange={e=>console.log(e)}
-  //         inputProps={{onKeyUp: e => dispatch({type: 'onKeyDown', caretPosition: e.target.selectionStart, inputText: e.target.value, keyCode: e.keyCode, ctrlKey: e.ctrlKey })}}
-  //         filterBy={(option, props) => {
-  //           return option.includes(state.filterStr)
-  //         }}
-  //       >
-  //
-  //       </TypeAheadSelect>);
-  // const b = (<input
-  //   // onChange={e => setInputText(e.target.value)}
-  //   onKeyDown={e => dispatch({type: 'onKeyDown', caretPosition: e.target.selectionStart, inputText: e.target.value, keyCode: e.keyCode, ctrlKey: e.ctrlKey })}
-  //   />);
-    // console.log(state.suggestions, state.filteredSuggestions, state.filterStr);
-    // console.log(state.filteredSuggestions[state.selectedIndex], state.selectedIndex);
-    const {inputText, filterStr, filteredSuggestions, selectedIndex } = state;
-    // console.log(keyCodeToActions(38, {caretPosition: 0, inputText, filterStr, newValue: filteredSuggestions[selectedIndex]})());
-    const c = (
-
+    const {inputText, filterStr, filteredSuggestions, selectedIndex, caretPosition } = state;
+    const inputComponent = (
       <div className="pf-c-select__toggle-wrapper">
         <div style={{display: 'flex'}}>
-        {statusDiv(state.isValid)}
+        {statusDiv(state.isValid, inputText.length === 0)}
         <Autosuggest
-          theme={{}}
           alwaysRenderSuggestions
+          theme={{}}
           suggestions={state.filteredSuggestions}
           getSuggestionValue={x=>x}
           inputProps={{
             value: state.inputText,
-            onChange: (e,  action) => onChange(e, action),
+            onChange,
             onKeyDown: (e) => {
-              const actions = (keyCodeToActions(e.keyCode, {caretPosition: e.target.selectionStart, inputText, filterStr, newValue: filteredSuggestions[selectedIndex]}) || (() => ([])))();
+              const actions = (keyCodeToActions(e.keyCode,
+                {caretPosition: e.target.selectionStart, inputText, filterStr, newValue: filteredSuggestions[selectedIndex], model: props.model}
+              ) || (() => ([])))();
               actions.map(action => dispatch(action));
             },
-            onKeyUp: (e) => dispatch({type: 'inputChanged', inputText: e.target.value, caretPosition: e.target.selectionStart}),
-            onClick: e => console.log(e.target.selectionStart), style: {width: '500px', 'font-size':'14px'},
+            onKeyUp: async (e) => {
+              console.log('KEY UP', state.next, state.partialAST, e.keyCode, e.key)
+              const selectionStart = e.target.selectionStart;
+              const changed = JSON.stringify(state.partialAST) !== JSON.stringify(state.previousPartialAST);
+              // fire request only when something "important" happened
+              // like type '.' or ' ' or delete piece of expression that contains '.' or ' '.
+              if (e.key === '.' || e.key === ' ' || ((e.keyCode == 46 || e.keyCode == 8) && changed)) {
+                const input = state.partialAST.slice(0, -1).map(i => i.value.replace(/"'/g));
+                console.log('RELOAD', props.model, state.next, input);
+                autocomplete = await reloadSuggestions(props.model, state.next, input);
+              }
+              if (e.keyCode == 37 || e.keyCode == 39) {
+                dispatch({ type: 'inputChanged', inputText, caretPosition: selectionStart, model: props.model })
+              } else {
+                dispatch({type: 'getSuggestions'});
+              }
+            },
+            onClick: e => console.log(e.target.selectionStart),
+            style: props.style,
           }}
-          renderSuggestion={(item) => generateMenu(item, state.filteredSuggestions[state.selectedIndex] === item)}
+          renderSuggestion={(item) => props.renderSuggestion(item, state.filteredSuggestions[state.selectedIndex] === item)}
           onSuggestionsFetchRequested={x => x}
-          onSuggestionSelected={ (e, { method, suggestionValue }) => onChange(e,{method, newValue: suggestionValue})}
-          renderSuggestionsContainer={renderContainer}
+          onSuggestionSelected={(_e, { suggestionValue }) => dispatch(inputTextAction(inputText, suggestionValue, caretPosition, filterStr, props.model))}
+          renderSuggestionsContainer={props.renderSuggestionsContainer}
+          renderInputComponent={props.renderInputComponent}
         />
         </div>
       </div>)
 
   return (
     <div>
-      {c}
-
-      <p>
+      {inputComponent}
+      <pre style={{ 'white-space': 'pre-wrap', visibility: inputText.length === 0 ? 'hidden' : 'visible'}}>
         {state.parsedAST}
-      </p>
+      </pre>
     </div>
   );
 }
