@@ -55,7 +55,10 @@ export default function SimpleTable(props) {
 
 SimpleTable.propTypes = {
   title: PropTypes.string.isRequired,
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  labels: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ value: PropTypes.string.isRequired, sortable: PropTypes.string }),
+  ])).isRequired,
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
   onClick: PropTypes.func.isRequired,
 };
