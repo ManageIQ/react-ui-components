@@ -202,7 +202,7 @@ const customStyles = {
     const valueStub = {
       content: !isMulti // eslint-disable-line no-nested-ternary
         ? showPlaceholder ? `"${placeholder}"` // eslint-disable-line no-nested-ternary
-          : showValue ? `"${value[0].label}"` : '""' : '""',
+          : showValue ? `"${value.label}"` : '""' : '""',
       color: showPlaceholder ? '#999999' : '#363636',
       fontWeight: '600',
       minHeight: 20,
