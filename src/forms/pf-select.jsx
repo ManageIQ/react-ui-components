@@ -32,7 +32,7 @@ ValueContainer.propTypes = {
   children: PropTypes.any,
 };
 
-const PfSelect = ({
+export const PfSelect = ({
   input,
   meta,
   simpleValue,
