@@ -1,3 +1,5 @@
+// FIXME a copy in manageiq-ui-classic/app/javascript/pf-select/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { components } from 'react-select';
@@ -32,7 +34,7 @@ ValueContainer.propTypes = {
   children: PropTypes.any,
 };
 
-const PfSelect = ({
+export const PfSelect = ({
   input,
   meta,
   simpleValue,

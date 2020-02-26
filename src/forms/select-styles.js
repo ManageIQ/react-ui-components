@@ -1,3 +1,5 @@
+// FIXME a copy in manageiq-ui-classic/app/javascript/pf-select/
+
 const customStyles = {
   indicatorSeparator: () => ({
     display: 'none',
