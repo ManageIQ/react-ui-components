@@ -73,6 +73,8 @@ export function generator() {
         {
           text: 'Child 2 - Changed background color',
           icon: 'fa fa-circle',
+          iconBackground: 'green',
+          iconColor: 'red',
         },
       ],
     },
