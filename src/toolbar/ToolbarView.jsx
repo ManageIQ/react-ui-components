@@ -19,6 +19,7 @@ export const ToolbarView = ({ views, onClick }) => (
           data-send_checked={view.send_checked ? 'true' : ''}
           data-prompt={view.prompt}
           data-popup={view.popup}
+          disabled={!view.enabled}
           onClick={() => onClick(view)}
         >
           <i className={view.icon} style={{ color: adjustColor(view.color, view.enabled) }} />
