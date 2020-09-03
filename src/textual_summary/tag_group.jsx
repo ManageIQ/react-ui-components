@@ -19,7 +19,7 @@ export default class TagGroup extends React.Component {
    * Render a simple row. Label, icon, value.
    */
   renderTagRowSimple = item => (
-    <tr key={item.key}>
+    <tr key={item.key} className={item.link ? '' : 'no-hover'}>
       <td className="label">{item.label}</td>
       <td title={item.title} onClick={e => this.checkLinkItem(item, e)}>
         <IconOrImage icon={item.icon} image={item.image} title={item.title} />
@@ -66,7 +66,7 @@ export default class TagGroup extends React.Component {
   renderTagRowMultivalue = item => (
     <React.Fragment key={item.key}>
       {item.value.map((subitem, index) => (
-        <tr key={index}>
+        <tr key={index} className={item.link ? '' : 'no-hover'}>
           {(index === 0) && (
           <td rowSpan={item.value.length} className="label" title={item.title}>{item.label}</td>
             )}
