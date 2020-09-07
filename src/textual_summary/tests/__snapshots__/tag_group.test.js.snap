@@ -79,6 +79,7 @@ exports[`TagGroup renders just fine 1`] = `
     </thead>
     <tbody>
       <tr
+        className="no-hover"
         key="0"
       >
         <td
@@ -104,6 +105,7 @@ exports[`TagGroup renders just fine 1`] = `
         </td>
       </tr>
       <tr
+        className="no-hover"
         key="0"
       >
         <td
@@ -133,6 +135,7 @@ exports[`TagGroup renders just fine 1`] = `
         </td>
       </tr>
       <tr
+        className="no-hover"
         key="1"
       >
         <td
@@ -160,6 +163,7 @@ exports[`TagGroup renders just fine 1`] = `
         </td>
       </tr>
       <tr
+        className="no-hover"
         key="0"
       >
         <td
@@ -190,6 +194,7 @@ exports[`TagGroup renders just fine 1`] = `
         </td>
       </tr>
       <tr
+        className="no-hover"
         key="1"
       >
         <td
@@ -221,6 +226,7 @@ exports[`TagGroup renders just fine 1`] = `
         </td>
       </tr>
       <tr
+        className="no-hover"
         key="2"
       >
         <td

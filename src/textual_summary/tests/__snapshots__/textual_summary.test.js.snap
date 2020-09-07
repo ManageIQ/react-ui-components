@@ -1575,6 +1575,7 @@ exports[`TextualSummary renders just fine 1`] = `
               </thead>
               <tbody>
                 <tr
+                  className="no-hover"
                   key="0"
                 >
                   <td
@@ -1600,6 +1601,7 @@ exports[`TextualSummary renders just fine 1`] = `
                   </td>
                 </tr>
                 <tr
+                  className="no-hover"
                   key="1"
                 >
                   <td
