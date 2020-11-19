@@ -300,7 +300,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -308,17 +307,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Aodh"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Aodh"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=1&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Aodh"
-            />
-          </IconOrImage>
-          Running (3)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Aodh"
+              />
+            </IconOrImage>
+            Running (3)
+          </a>
         </td>
         <td
           key="1"
@@ -334,7 +338,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -342,17 +345,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Aodh"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Aodh"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=1&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Aodh"
-            />
-          </IconOrImage>
-          All (3)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Aodh"
+              />
+            </IconOrImage>
+            All (3)
+          </a>
         </td>
         <td
           key="3"
@@ -388,7 +396,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -396,17 +403,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Ceilometer"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Ceilometer"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=2&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Ceilometer"
-            />
-          </IconOrImage>
-          Running (3)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Ceilometer"
+              />
+            </IconOrImage>
+            Running (3)
+          </a>
         </td>
         <td
           key="1"
@@ -422,7 +434,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -430,17 +441,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Ceilometer"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Ceilometer"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=2&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Ceilometer"
-            />
-          </IconOrImage>
-          All (3)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Ceilometer"
+              />
+            </IconOrImage>
+            All (3)
+          </a>
         </td>
         <td
           key="3"
@@ -476,7 +492,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -484,17 +499,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Cinder"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Cinder"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=3&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Cinder"
-            />
-          </IconOrImage>
-          Running (3)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Cinder"
+              />
+            </IconOrImage>
+            Running (3)
+          </a>
         </td>
         <td
           key="1"
@@ -510,7 +530,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -518,17 +537,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Cinder"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Cinder"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=3&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Cinder"
-            />
-          </IconOrImage>
-          All (3)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Cinder"
+              />
+            </IconOrImage>
+            All (3)
+          </a>
         </td>
         <td
           key="3"
@@ -564,7 +588,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -572,17 +595,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Glance"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Glance"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=4&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Glance"
-            />
-          </IconOrImage>
-          Running (2)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Glance"
+              />
+            </IconOrImage>
+            Running (2)
+          </a>
         </td>
         <td
           key="1"
@@ -598,7 +626,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -606,17 +633,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Glance"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Glance"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=4&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Glance"
-            />
-          </IconOrImage>
-          All (2)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Glance"
+              />
+            </IconOrImage>
+            All (2)
+          </a>
         </td>
         <td
           key="3"
@@ -652,7 +684,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -660,17 +691,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Gnocchi"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Gnocchi"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=5&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Gnocchi"
-            />
-          </IconOrImage>
-          Running (2)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Gnocchi"
+              />
+            </IconOrImage>
+            Running (2)
+          </a>
         </td>
         <td
           key="1"
@@ -686,7 +722,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -694,17 +729,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Gnocchi"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Gnocchi"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=5&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Gnocchi"
-            />
-          </IconOrImage>
-          All (2)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Gnocchi"
+              />
+            </IconOrImage>
+            All (2)
+          </a>
         </td>
         <td
           key="3"
@@ -740,7 +780,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -748,17 +787,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Heat"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Heat"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=6&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Heat"
-            />
-          </IconOrImage>
-          Running (4)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Heat"
+              />
+            </IconOrImage>
+            Running (4)
+          </a>
         </td>
         <td
           key="1"
@@ -774,7 +818,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -782,17 +825,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Heat"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Heat"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=6&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Heat"
-            />
-          </IconOrImage>
-          All (4)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Heat"
+              />
+            </IconOrImage>
+            All (4)
+          </a>
         </td>
         <td
           key="3"
@@ -850,7 +898,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -858,17 +905,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Keystone"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Keystone"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=7&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Keystone"
-            />
-          </IconOrImage>
-          All (1)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Keystone"
+              />
+            </IconOrImage>
+            All (1)
+          </a>
         </td>
         <td
           key="3"
@@ -904,7 +956,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -912,17 +963,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Nova"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Nova"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=8&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Nova"
-            />
-          </IconOrImage>
-          Running (5)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Nova"
+              />
+            </IconOrImage>
+            Running (5)
+          </a>
         </td>
         <td
           key="1"
@@ -938,7 +994,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -946,17 +1001,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Nova"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Nova"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=8&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Nova"
-            />
-          </IconOrImage>
-          All (10)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Nova"
+              />
+            </IconOrImage>
+            All (10)
+          </a>
         </td>
         <td
           key="3"
@@ -992,7 +1052,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="0"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -1000,17 +1059,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of running Swift"
         >
-          <IconOrImage
-            icon="pficon pficon-ok"
-            image={null}
-            title="Show list of running Swift"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=9&status=running"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-ok"
+            <IconOrImage
+              icon="pficon pficon-ok"
+              image={null}
               title="Show list of running Swift"
-            />
-          </IconOrImage>
-          Running (14)
+            >
+              <i
+                className="pficon pficon-ok"
+                title="Show list of running Swift"
+              />
+            </IconOrImage>
+            Running (14)
+          </a>
         </td>
         <td
           key="1"
@@ -1026,7 +1090,6 @@ exports[`MultilinkTable renders just fine 1`] = `
         <td
           className="hover"
           key="2"
-          onClick={[Function]}
           style={
             Object {
               "cursor": "pointer, hand",
@@ -1034,17 +1097,22 @@ exports[`MultilinkTable renders just fine 1`] = `
           }
           title="Show list of all Swift"
         >
-          <IconOrImage
-            icon="pficon pficon-service"
-            image={null}
-            title="Show list of all Swift"
+          <a
+            href="/host/host_services/18?db=host&host_service_group=9&status=all"
+            onClick={[Function]}
           >
-            <i
-              className="pficon pficon-service"
+            <IconOrImage
+              icon="pficon pficon-service"
+              image={null}
               title="Show list of all Swift"
-            />
-          </IconOrImage>
-          All (14)
+            >
+              <i
+                className="pficon pficon-service"
+                title="Show list of all Swift"
+              />
+            </IconOrImage>
+            All (14)
+          </a>
         </td>
         <td
           key="3"

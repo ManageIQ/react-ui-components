@@ -87,9 +87,7 @@ exports[`TagGroup renders just fine 1`] = `
         >
           Managed by Zone
         </td>
-        <td
-          onClick={[Function]}
-        >
+        <td>
           <IconOrImage
             icon="pficon pficon-zone"
             image={null}
@@ -114,9 +112,7 @@ exports[`TagGroup renders just fine 1`] = `
         >
           My Company X Tags
         </td>
-        <td
-          onClick={[Function]}
-        >
+        <td>
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -138,9 +134,7 @@ exports[`TagGroup renders just fine 1`] = `
         className="no-hover"
         key="1"
       >
-        <td
-          onClick={[Function]}
-        >
+        <td>
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -173,9 +167,7 @@ exports[`TagGroup renders just fine 1`] = `
         >
           Other Tags
         </td>
-        <td
-          onClick={[Function]}
-        >
+        <td>
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -197,9 +189,7 @@ exports[`TagGroup renders just fine 1`] = `
         className="no-hover"
         key="1"
       >
-        <td
-          onClick={[Function]}
-        >
+        <td>
           <IconOrImage
             icon="fa fa-tag"
             image={null}
@@ -228,22 +218,7 @@ exports[`TagGroup renders just fine 1`] = `
       <tr
         className="no-hover"
         key="2"
-      >
-        <td
-          onClick={[Function]}
-          title="Click to display the item"
-        >
-          <IconOrImage
-            icon={null}
-            image={null}
-            title={null}
-          />
-          <span>
-             
-            Demo 3
-          </span>
-        </td>
-      </tr>
+      />
     </tbody>
   </table>
 </TagGroup>

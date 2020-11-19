@@ -8,9 +8,11 @@ const simpleRow = (row, i, colOrder) => (
 );
 
 const clickableRow = (row, i, colOrder, rowLabel, onClick) => (
-  <tr key={i} onClick={e => onClick(row, e)}>
-    {colOrder.map((col, j) => <td key={j} title={rowLabel}>{`${row[col]}`}</td>)}
-  </tr>
+  <a href={row.link} onClick={e => onClick(row, e)}>
+    <tr key={i} >
+      {colOrder.map((col, j) => <td key={j} title={rowLabel}>{`${row[col]}`}</td>)}
+    </tr>
+  </a>
 );
 
 const renderRow = (row, i, colOrder, rowLabel, onClick) => (

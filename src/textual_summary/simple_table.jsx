@@ -28,7 +28,7 @@ export default function SimpleTable(props) {
       );
     } else if ((value != null) && (typeof value === 'object') && value.link) {
       // value with a link
-      return <td className="btn-link" onClick={e => onClick(value, e)} key={j}>{value.value}</td>;
+      return <td key={j} className="btn-link" ><a href={value.link} onClick={e => onClick(value, e)}>{value.value}</a></td>;
     }
     // simple value
     return <td className="no-hover" key={j}>{value}</td>;

@@ -332,7 +332,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -365,7 +364,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -398,7 +396,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -529,7 +526,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                     title="Ok"
                   >
                     <td
@@ -564,7 +560,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                     title="Ok"
                   >
                     <td
@@ -606,7 +601,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                     title={null}
                   >
                     <td
@@ -686,7 +680,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -1043,7 +1036,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className="no-hover"
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -1085,7 +1077,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Cloud Networks"
                   >
                     <td
@@ -1094,20 +1085,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Cloud Networks
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="ff ff-cloud-network"
-                        image={null}
-                        title="Show all Cloud Networks"
+                      <a
+                        href="/ems_network/39?display=cloud_networks"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="ff ff-cloud-network"
+                        <IconOrImage
+                          icon="ff ff-cloud-network"
+                          image={null}
                           title="Show all Cloud Networks"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        1
-                      </span>
+                        >
+                          <i
+                            className="ff ff-cloud-network"
+                            title="Show all Cloud Networks"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          1
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1128,7 +1124,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Cloud Subnets"
                   >
                     <td
@@ -1137,20 +1132,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Cloud Subnets
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="pficon pficon-network"
-                        image={null}
-                        title="Show all Cloud Subnets"
+                      <a
+                        href="/ems_network/39?display=cloud_subnets"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="pficon pficon-network"
+                        <IconOrImage
+                          icon="pficon pficon-network"
+                          image={null}
                           title="Show all Cloud Subnets"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        6
-                      </span>
+                        >
+                          <i
+                            className="pficon pficon-network"
+                            title="Show all Cloud Subnets"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          6
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1171,7 +1171,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Network Routers"
                   >
                     <td
@@ -1180,20 +1179,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Network Routers
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="pficon pficon-route"
-                        image={null}
-                        title="Show all Network Routers"
+                      <a
+                        href="/ems_network/39?display=network_routers"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="pficon pficon-route"
+                        <IconOrImage
+                          icon="pficon pficon-route"
+                          image={null}
                           title="Show all Network Routers"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        1
-                      </span>
+                        >
+                          <i
+                            className="pficon pficon-route"
+                            title="Show all Network Routers"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          1
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1214,7 +1218,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Security Groups"
                   >
                     <td
@@ -1223,20 +1226,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Security Groups
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="pficon pficon-cloud-security"
-                        image={null}
-                        title="Show all Security Groups"
+                      <a
+                        href="/ems_network/39?display=security_groups"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="pficon pficon-cloud-security"
+                        <IconOrImage
+                          icon="pficon pficon-cloud-security"
+                          image={null}
                           title="Show all Security Groups"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        18
-                      </span>
+                        >
+                          <i
+                            className="pficon pficon-cloud-security"
+                            title="Show all Security Groups"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          18
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1257,7 +1265,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Floating IPs"
                   >
                     <td
@@ -1266,20 +1273,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Floating IPs
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="ff ff-floating-ip"
-                        image={null}
-                        title="Show all Floating IPs"
+                      <a
+                        href="/ems_network/39?display=floating_ips"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="ff ff-floating-ip"
+                        <IconOrImage
+                          icon="ff ff-floating-ip"
+                          image={null}
                           title="Show all Floating IPs"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        14
-                      </span>
+                        >
+                          <i
+                            className="ff ff-floating-ip"
+                            title="Show all Floating IPs"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          14
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1300,7 +1312,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Network Ports"
                   >
                     <td
@@ -1309,20 +1320,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Network Ports
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="ff ff-network-port"
-                        image={null}
-                        title="Show all Network Ports"
+                      <a
+                        href="/ems_network/39?display=network_ports"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="ff ff-network-port"
+                        <IconOrImage
+                          icon="ff ff-network-port"
+                          image={null}
                           title="Show all Network Ports"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        26
-                      </span>
+                        >
+                          <i
+                            className="ff ff-network-port"
+                            title="Show all Network Ports"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          26
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1343,7 +1359,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show all Load Balancers"
                   >
                     <td
@@ -1352,20 +1367,25 @@ exports[`TextualSummary renders just fine 1`] = `
                       Load Balancers
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="ff ff-load-balancer"
-                        image={null}
-                        title="Show all Load Balancers"
+                      <a
+                        href="/ems_network/39?display=load_balancers"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="ff ff-load-balancer"
+                        <IconOrImage
+                          icon="ff ff-load-balancer"
+                          image={null}
                           title="Show all Load Balancers"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                        2
-                      </span>
+                        >
+                          <i
+                            className="ff ff-load-balancer"
+                            title="Show all Load Balancers"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                          2
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1385,7 +1405,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                   >
                     <td
                       className="label"
@@ -1487,7 +1506,6 @@ exports[`TextualSummary renders just fine 1`] = `
                 >
                   <tr
                     className=""
-                    onClick={[Function]}
                     title="Show topology"
                   >
                     <td
@@ -1496,19 +1514,24 @@ exports[`TextualSummary renders just fine 1`] = `
                       Topology
                     </td>
                     <td>
-                      <IconOrImage
-                        icon="pficon pficon-topology"
-                        image={null}
-                        title="Show topology"
+                      <a
+                        href="/network_topology/show/39"
+                        onClick={[Function]}
                       >
-                        <i
-                          className="pficon pficon-topology"
+                        <IconOrImage
+                          icon="pficon pficon-topology"
+                          image={null}
                           title="Show topology"
-                        />
-                      </IconOrImage>
-                      <span>
-                         
-                      </span>
+                        >
+                          <i
+                            className="pficon pficon-topology"
+                            title="Show topology"
+                          />
+                        </IconOrImage>
+                        <span>
+                           
+                        </span>
+                      </a>
                     </td>
                   </tr>
                 </GenericTableRow>
@@ -1583,9 +1606,7 @@ exports[`TextualSummary renders just fine 1`] = `
                   >
                     Managed by Zone
                   </td>
-                  <td
-                    onClick={[Function]}
-                  >
+                  <td>
                     <IconOrImage
                       icon="pficon pficon-zone"
                       image={null}
@@ -1609,9 +1630,7 @@ exports[`TextualSummary renders just fine 1`] = `
                   >
                     My Company Tags
                   </td>
-                  <td
-                    onClick={[Function]}
-                  >
+                  <td>
                     <IconOrImage
                       icon="fa fa-tag"
                       image={null}

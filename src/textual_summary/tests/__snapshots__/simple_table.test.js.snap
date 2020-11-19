@@ -222,9 +222,13 @@ exports[`Simple Table renders just fine... 1`] = `
         <td
           className="btn-link"
           key="1"
-          onClick={[Function]}
         >
-          TCP
+          <a
+            href="some_link"
+            onClick={[Function]}
+          >
+            TCP
+          </a>
         </td>
         <td
           className="no-hover"
