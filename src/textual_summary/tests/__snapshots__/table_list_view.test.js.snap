@@ -62,40 +62,48 @@ exports[`TableListView renders just fine... 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        key="0"
+      <a
+        href="miqTreeActivateNode('vmdb_tree', 'tb-10000000000181');"
         onClick={[Function]}
       >
-        <td
+        <tr
           key="0"
-          title="View the table"
         >
-          vim_performance_states
-        </td>
-        <td
-          key="1"
-          title="View the table"
-        >
-          676,150
-        </td>
-      </tr>
-      <tr
-        key="1"
+          <td
+            key="0"
+            title="View the table"
+          >
+            vim_performance_states
+          </td>
+          <td
+            key="1"
+            title="View the table"
+          >
+            676,150
+          </td>
+        </tr>
+      </a>
+      <a
+        href="miqTreeActivateNode('vmdb_tree', 'tb-10000000000197');"
         onClick={[Function]}
       >
-        <td
-          key="0"
-          title="View the table"
-        >
-          miq_report_result_details
-        </td>
-        <td
+        <tr
           key="1"
-          title="View the table"
         >
-          280,848
-        </td>
-      </tr>
+          <td
+            key="0"
+            title="View the table"
+          >
+            miq_report_result_details
+          </td>
+          <td
+            key="1"
+            title="View the table"
+          >
+            280,848
+          </td>
+        </tr>
+      </a>
     </tbody>
   </table>
 </TableListView>

@@ -46,7 +46,6 @@ exports[`GenericGroup renders just fine 1`] = `
       >
         <tr
           className="bar"
-          onClick={[Function]}
         >
           <td
             className="label"
@@ -79,7 +78,6 @@ exports[`GenericGroup renders just fine 1`] = `
       >
         <tr
           className="bar"
-          onClick={[Function]}
         >
           <td
             className="label"

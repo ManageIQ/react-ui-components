@@ -30,7 +30,6 @@ exports[`Simple Table renders multi-value just fine... 1`] = `
     >
       <tr
         className=""
-        onClick={[Function]}
         title="Show Network Manager 'Amazon East Network Manager'"
       >
         <td
@@ -39,70 +38,75 @@ exports[`Simple Table renders multi-value just fine... 1`] = `
           Network Manager
         </td>
         <td>
-          <IconOrImage
-            icon={null}
-            image="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
-            title="Show Network Manager 'Amazon East Network Manager'"
+          <a
+            href="/ems_network/10000000000045"
+            onClick={[Function]}
           >
-            <img
-              alt="Show Network Manager 'Amazon East Network Manager'"
-              src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+            <IconOrImage
+              icon={null}
+              image="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
               title="Show Network Manager 'Amazon East Network Manager'"
-            />
-          </IconOrImage>
-          <table
-            cellPadding="0"
-            cellSpacing="0"
-          >
-            <tbody>
-              <tr
-                className="no-hover"
-                key="0"
-                onClick={[Function]}
-                title="Amazon East Network Manager"
-              >
-                <td
-                  style={
-                    Object {
-                      "border": 0,
-                      "margin": 0,
-                      "padding": 0,
-                    }
-                  }
+            >
+              <img
+                alt="Show Network Manager 'Amazon East Network Manager'"
+                src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+                title="Show Network Manager 'Amazon East Network Manager'"
+              />
+            </IconOrImage>
+            <table
+              cellPadding="0"
+              cellSpacing="0"
+            >
+              <tbody>
+                <tr
+                  className="no-hover"
+                  key="0"
+                  onClick={[Function]}
+                  title="Amazon East Network Manager"
                 >
-                  <IconOrImage
-                    icon={null}
-                    image={null}
-                    title="Amazon East Network Manager"
-                  />
-                  foobar
-                </td>
-              </tr>
-              <tr
-                className="no-hover"
-                key="1"
-                onClick={[Function]}
-                title="Amazon West Network Manager"
-              >
-                <td
-                  style={
-                    Object {
-                      "border": 0,
-                      "margin": 0,
-                      "padding": 0,
+                  <td
+                    style={
+                      Object {
+                        "border": 0,
+                        "margin": 0,
+                        "padding": 0,
+                      }
                     }
-                  }
+                  >
+                    <IconOrImage
+                      icon={null}
+                      image={null}
+                      title="Amazon East Network Manager"
+                    />
+                    foobar
+                  </td>
+                </tr>
+                <tr
+                  className="no-hover"
+                  key="1"
+                  onClick={[Function]}
+                  title="Amazon West Network Manager"
                 >
-                  <IconOrImage
-                    icon={null}
-                    image={null}
-                    title="Amazon West Network Manager"
-                  />
-                  boofar
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <td
+                    style={
+                      Object {
+                        "border": 0,
+                        "margin": 0,
+                        "padding": 0,
+                      }
+                    }
+                  >
+                    <IconOrImage
+                      icon={null}
+                      image={null}
+                      title="Amazon West Network Manager"
+                    />
+                    boofar
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </a>
         </td>
       </tr>
     </GenericTableRow>
@@ -129,7 +133,6 @@ exports[`Simple Table renders simple value just fine... 1`] = `
     >
       <tr
         className=""
-        onClick={[Function]}
         title="Show Network Manager 'Amazon East Network Manager'"
       >
         <td
@@ -138,21 +141,26 @@ exports[`Simple Table renders simple value just fine... 1`] = `
           Network Manager
         </td>
         <td>
-          <IconOrImage
-            icon={null}
-            image="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
-            title="Show Network Manager 'Amazon East Network Manager'"
+          <a
+            href="/ems_network/10000000000045"
+            onClick={[Function]}
           >
-            <img
-              alt="Show Network Manager 'Amazon East Network Manager'"
-              src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+            <IconOrImage
+              icon={null}
+              image="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
               title="Show Network Manager 'Amazon East Network Manager'"
-            />
-          </IconOrImage>
-          <span>
-             
-            Amazon East Network Manager
-          </span>
+            >
+              <img
+                alt="Show Network Manager 'Amazon East Network Manager'"
+                src="http://localhost:3000/assets/svg/vendor-ec2_network-04c432db85be0fd670cd6da83b8685dab51e1b7a63258b70cccbdf8d7f72c988.svg"
+                title="Show Network Manager 'Amazon East Network Manager'"
+              />
+            </IconOrImage>
+            <span>
+               
+              Amazon East Network Manager
+            </span>
+          </a>
         </td>
       </tr>
     </GenericTableRow>

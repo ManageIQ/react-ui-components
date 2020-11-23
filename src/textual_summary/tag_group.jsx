@@ -7,25 +7,27 @@ import IconOrImage from './icon_or_image';
  */
 export default class TagGroup extends React.Component {
   /**
-   * Return onClick function if link is defined for an item/subitem
-   */
-  checkLinkItem = (item, e) => {
-    if (item.link && this.props.onClick) {
-      this.props.onClick(item, e);
-    }
-  }
-
-  /**
    * Render a simple row. Label, icon, value.
    */
   renderTagRowSimple = item => (
     <tr key={item.key} className={item.link ? '' : 'no-hover'}>
       <td className="label">{item.label}</td>
-      <td title={item.title} onClick={e => this.checkLinkItem(item, e)}>
+      {(item.link && this.props.onClick) &&
+      <td title={item.title}>
+        <a href={item.link} onClick={e => this.props.onClick(item, e)}>
+          <IconOrImage icon={item.icon} image={item.image} title={item.title} />
+          {' '}
+          {item.value}
+        </a>
+      </td>
+      }
+      {(item.link === undefined) &&
+      <td title={item.title}>
         <IconOrImage icon={item.icon} image={item.image} title={item.title} />
         {' '}
         {item.value}
       </td>
+      }
     </tr>
   );
 
@@ -70,10 +72,20 @@ export default class TagGroup extends React.Component {
           {(index === 0) && (
           <td rowSpan={item.value.length} className="label" title={item.title}>{item.label}</td>
             )}
-          <td title={subitem.title} onClick={e => this.checkLinkItem(subitem, e)}>
+          {(subitem.link && this.props.onClick) &&
+          <td title={subitem.title}>
+            <a href={subitem.link} onClick={e => this.props.onClick(subitem, e)}>
+              <IconOrImage icon={subitem.icon} image={subitem.image} text={subitem.text} />
+              {Array.isArray(subitem.value) ? this.renderSubitemList(subitem) : this.renderSubitem(subitem)}
+            </a>
+          </td>
+      }
+          {(subitem.link === undefined) &&
+          <td title={subitem.title}>
             <IconOrImage icon={subitem.icon} image={subitem.image} text={subitem.text} />
             {Array.isArray(subitem.value) ? this.renderSubitemList(subitem) : this.renderSubitem(subitem)}
           </td>
+      }
         </tr>
         ))}
     </React.Fragment>

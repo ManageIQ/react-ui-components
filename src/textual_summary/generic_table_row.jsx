@@ -33,12 +33,22 @@ export default function GenericTableRow(props) {
   const value = renderValue(item.value, props.onClick);
 
   return (
-    <tr onClick={e => props.onClick(item, e)} className={item.hoverClass} title={item.title}>
+    <tr className={item.hoverClass} title={item.title}>
       <td className="label">{item.label}</td>
+      {item.link &&
+      <td>
+        <a href={item.link} onClick={e => props.onClick(item, e)}>
+          <IconOrImage icon={item.icon} image={item.image} title={item.title} background={item.background} />
+          {item.button ? <Button bsSize="small">{value}</Button> : value}
+        </a>
+      </td>
+      }
+      {(item.link === undefined) &&
       <td>
         <IconOrImage icon={item.icon} image={item.image} title={item.title} background={item.background} />
         {item.button ? <Button bsSize="small">{value}</Button> : value}
       </td>
+      }
     </tr>
   );
 }

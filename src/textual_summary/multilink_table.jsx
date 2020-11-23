@@ -9,10 +9,11 @@ export default function MultilinkTable(props) {
       title={sub.title}
       className="hover"
       style={{ cursor: 'pointer, hand' }}
-      onClick={e => onClick(sub, e)}
     >
-      <IconOrImage icon={sub.icon} image={sub.image} title={sub.title} />
-      {sub.value}
+      <a href={sub.link} onClick={e => onClick(sub, e)}>
+        <IconOrImage icon={sub.icon} image={sub.image} title={sub.title} />
+        {sub.value}
+      </a>
     </td>
   );
 
