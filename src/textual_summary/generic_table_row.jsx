@@ -34,7 +34,7 @@ export default function GenericTableRow(props) {
 
   return (
     <tr className={item.hoverClass} title={item.title}>
-      <td className="label">{item.label}</td>
+      <td className="label generic-row-label">{item.label}</td>
       {item.link &&
       <td>
         <a href={item.link} onClick={e => props.onClick(item, e)}>

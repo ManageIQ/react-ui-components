@@ -48,7 +48,7 @@ exports[`GenericGroup renders just fine 1`] = `
           className="bar"
         >
           <td
-            className="label"
+            className="label generic-row-label"
           >
             foo
           </td>
@@ -80,7 +80,7 @@ exports[`GenericGroup renders just fine 1`] = `
           className="bar"
         >
           <td
-            className="label"
+            className="label generic-row-label"
           >
             mrkef?
           </td>
