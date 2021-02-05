@@ -33,7 +33,7 @@ exports[`Simple Table renders multi-value just fine... 1`] = `
         title="Show Network Manager 'Amazon East Network Manager'"
       >
         <td
-          className="label"
+          className="label generic-row-label"
         >
           Network Manager
         </td>
@@ -136,7 +136,7 @@ exports[`Simple Table renders simple value just fine... 1`] = `
         title="Show Network Manager 'Amazon East Network Manager'"
       >
         <td
-          className="label"
+          className="label generic-row-label"
         >
           Network Manager
         </td>
